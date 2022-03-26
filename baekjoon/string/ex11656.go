@@ -23,5 +23,7 @@ func main() {
 		return suffixArray[i] < suffixArray[j]
 	})
 
-	fmt.Println(suffixArray)
+	for _, suffix := range suffixArray {
+		fmt.Println(suffix)
+	}
 }
