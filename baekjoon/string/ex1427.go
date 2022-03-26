@@ -21,7 +21,7 @@ func main() {
 
 	sort.Sort(stringArray(array))
 
-	fmt.Println(array)
+	fmt.Println(strings.Join(array, ""))
 }
 
 func stringToStringArray(input string) []string {
