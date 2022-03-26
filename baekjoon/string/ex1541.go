@@ -32,7 +32,6 @@ func calculate(items []string) int {
 		} else {
 			total -= sum(props)
 		}
-
 	}
 
 	return total
