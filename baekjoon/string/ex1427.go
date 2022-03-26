@@ -31,9 +31,11 @@ func stringToStringArray(input string) []string {
 func (s stringArray) Len() int {
 	return len(s)
 }
+
 func (s stringArray) Swap(i, j int) {
 	s[i], s[j] = s[j], s[i]
 }
+
 func (s stringArray) Less(i, j int) bool {
 	si, _ := strconv.Atoi(s[i])
 	sj, _ := strconv.Atoi(s[j])
