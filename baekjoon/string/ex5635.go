@@ -14,37 +14,22 @@ func main() {
 	var infoMap = map[string]string{}
 	var birthArray []string
 
+	reader := bufio.NewReader(os.Stdin)
 	var num int
-	scanner := bufio.NewScanner(os.Stdin)
 
-	for {
+	fmt.Fscan(reader, &num)
 
-		scan := scanner.Scan()
+	for i := 0; i < num; i++ {
+		text, _, _ := reader.ReadLine()
+		fmt.Println(text)
 
-		if !scan {
-			break
-		}
-
-		text := scanner.Text()
-
-		if len(text) == 0 {
-			break
-		}
-
-		if len(text) == 1 {
-			n, _ := strconv.Atoi(text)
-			num = n
-			continue
-		}
-
-		infos := strings.Split(text, " ")
-
+		input := string(text)
+		infos := strings.Split(input, " ")
 		name := infos[0]
 		birth := fmt.Sprintf("%s%s%s", infos[3], addZero(infos[2]), addZero(infos[1]))
 
 		birthArray = append(birthArray, birth)
 		infoMap[birth] = name
-
 	}
 
 	sort.Slice(birthArray, func(i, j int) bool {
