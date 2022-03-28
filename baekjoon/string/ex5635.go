@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io"
 	"os"
 	"sort"
 	"strconv"
@@ -16,29 +15,36 @@ func main() {
 	var birthArray []string
 
 	var num int
-	reader := bufio.NewReader(os.Stdin)
+	scanner := bufio.NewScanner(os.Stdin)
 
 	for {
-		line, _, err := reader.ReadLine()
 
-		if err == io.EOF {
+		scan := scanner.Scan()
+
+		if !scan {
 			break
 		}
 
-		input := string(line)
-		infos := strings.Split(input, " ")
+		text := scanner.Text()
 
-		if len(infos) < 3 {
-			n, _ := strconv.Atoi(input)
+		if len(text) == 0 {
+			break
+		}
+
+		if len(text) == 1 {
+			n, _ := strconv.Atoi(text)
 			num = n
 			continue
 		}
+
+		infos := strings.Split(text, " ")
 
 		name := infos[0]
 		birth := fmt.Sprintf("%s%s%s", infos[3], addZero(infos[2]), addZero(infos[1]))
 
 		birthArray = append(birthArray, birth)
 		infoMap[birth] = name
+
 	}
 
 	sort.Slice(birthArray, func(i, j int) bool {
