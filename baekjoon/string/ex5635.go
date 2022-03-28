@@ -18,9 +18,7 @@ func main() {
 	var birthArray []string
 
 	for i := 0; i < num; i++ {
-		var input string
-		fmt.Fscanln(read, &input)
-
+		input, _ := read.ReadString('\n')
 		infos := strings.Split(input, " ")
 		name := infos[0]
 		birth := fmt.Sprintf("%s%s%s", infos[3], infos[2], infos[1])
