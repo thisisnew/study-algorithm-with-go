@@ -10,7 +10,6 @@ func main() {
 
 	var input string
 	var read = bufio.NewReader(os.Stdin)
-
 	fmt.Fscan(read, &input)
 
 	var result int
@@ -25,6 +24,7 @@ func main() {
 }
 
 func isVerb(ch rune) bool {
+
 	var verbs = []rune{'a', 'e', 'i', 'o', 'u'}
 
 	for _, verb := range verbs {
