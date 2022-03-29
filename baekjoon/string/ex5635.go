@@ -21,6 +21,7 @@ func main() {
 
 	for i := 0; i < num; i++ {
 		text, _, _ := reader.ReadLine()
+
 		fmt.Println(text)
 
 		input := string(text)
