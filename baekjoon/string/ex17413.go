@@ -12,7 +12,7 @@ func main() {
 	var input string
 	var read = bufio.NewReader(os.Stdin)
 
-	fmt.Fscanln(read, &input)
+	input, _ = read.ReadString('\n')
 
 	inputSplit := strings.Split(input, " ")
 
@@ -21,7 +21,7 @@ func main() {
 		result = append(result, reverseInput(item))
 	}
 
-	fmt.Println(strings.Join(result, " "))
+	fmt.Print(strings.Join(result, " "))
 
 }
 
