@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
@@ -11,26 +10,18 @@ import (
 func main() {
 
 	var input string
-	var read = bufio.NewScanner(os.Stdin)
+	var read = bufio.NewReader(os.Stdin)
 
-	isRead := read.Scan()
+	fmt.Fscanln(read, &input)
 
-	if isRead {
-		input = read.Text()
+	inputSplit := strings.Split(input, " ")
 
-		if err := read.Err(); err != nil {
-			log.Fatalf("Error while reading file: %s", err)
-		}
-
-		inputSplit := strings.Split(input, " ")
-
-		var result []string
-		for _, item := range inputSplit {
-			result = append(result, reverseInput(item))
-		}
-
-		fmt.Println(strings.Join(result, " "))
+	var result []string
+	for _, item := range inputSplit {
+		result = append(result, reverseInput(item))
 	}
+
+	fmt.Println(strings.Join(result, " "))
 
 }
 
