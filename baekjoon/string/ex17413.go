@@ -16,13 +16,39 @@ func main() {
 
 	inputSplit := strings.Split(input, " ")
 
-	var result []string
+	var resultArr []string
 	for _, item := range inputSplit {
-		result = append(result, reverseInput(item))
+
+		isSymbol := false
+		for i := 0; i < len(item); i++ {
+
+			runes := []rune(item)
+			var result string
+			var reversed string
+			for _, rn := range runes {
+
+				if rn == '<' {
+					isSymbol = true
+					result += reverseInput(reversed)
+					reversed = ""
+				}
+
+				if isSymbol {
+					result += string(rn)
+
+					if rn == '>' {
+						isSymbol = false
+					}
+				} else {
+					reversed += string(rn)
+				}
+			}
+
+			resultArr = append(resultArr, result)
+		}
 	}
 
-	fmt.Print(strings.Join(result, " "))
-
+	fmt.Print(strings.Join(resultArr, " "))
 }
 
 func reverseInput(input string) string {
