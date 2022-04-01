@@ -26,7 +26,6 @@ func main() {
 			var result string
 			var reversed string
 			for _, rn := range runes {
-
 				if rn == '<' {
 					isSymbol = true
 					result += reverseInput(reversed)
