@@ -29,6 +29,7 @@ func main() {
 	}
 
 	for i := m; i >= 1; i-- {
+
 		if n%i == 0 && m%i == 0 {
 			n = n / i
 			m = m / i
