@@ -16,5 +16,4 @@ func main() {
 	nums := strings.Split(input, ",")
 
 	fmt.Println(len(nums))
-
 }
