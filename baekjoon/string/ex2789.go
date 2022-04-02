@@ -9,11 +9,10 @@ import (
 func main() {
 
 	var input string
+	var result string
 	var read = bufio.NewReader(os.Stdin)
 
 	fmt.Fscanln(read, &input)
-
-	var result string
 
 	for _, s := range []rune(input) {
 
