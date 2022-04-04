@@ -3,14 +3,15 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/big"
 	"os"
 )
 
 func main() {
 
-	var a uint
+	var a big.Int
 	var op string
-	var b uint
+	var b big.Int
 
 	var read = bufio.NewReader(os.Stdin)
 
@@ -21,16 +22,16 @@ func main() {
 	fmt.Println(calc(a, b, op))
 }
 
-func calc(a, b uint, op string) uint {
+func calc(a, b big.Int, op string) string {
 
-	var sum uint
+	sum := new(big.Int)
 
 	switch op {
 	case "+":
-		sum = a + b
+		sum = sum.Add(&a, &b)
 	case "*":
-		sum = a * b
+		sum = sum.Mul(&a, &b)
 	}
 
-	return sum
+	return sum.Text(10)
 }
