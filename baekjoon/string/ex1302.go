@@ -20,8 +20,16 @@ func main() {
 		bookMap[book]++
 	}
 
-	for _, book := range bookMap {
+	var result string
+	var count int
 
+	for k, v := range bookMap {
+		if v > count {
+			count = v
+			result = k
+		}
 	}
+
+	fmt.Println(result)
 
 }
