@@ -12,7 +12,6 @@ func main() {
 	var n int
 	var m int
 	var read = bufio.NewReader(os.Stdin)
-
 	fmt.Fscanln(read, &n, &m)
 
 	noHearPersons := make(map[string]bool, n)
@@ -21,7 +20,6 @@ func main() {
 
 	for i := 0; i < n; i++ {
 		fmt.Fscanln(read, &name)
-
 		noHearPersons[name] = true
 	}
 
