@@ -17,11 +17,6 @@ func main() {
 		var word string
 		fmt.Fscanln(read, &pos, &word)
 
-		printEraseTypo(pos, word)
+		fmt.Println(word[0:pos-1] + word[pos:])
 	}
-
-}
-
-func printEraseTypo(pos int, word string) {
-	fmt.Println(fmt.Sprintf("%s%s", word[0:pos-1], word[pos:]))
 }
