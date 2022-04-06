@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 )
@@ -17,6 +18,10 @@ func main() {
 		var word string
 		fmt.Fscanln(read, &pos, &word)
 
-		fmt.Println(word[0:pos-1] + word[pos:])
+		var b bytes.Buffer
+		b.WriteString(word[0 : pos-1])
+		b.WriteString(word[pos:])
+
+		fmt.Println(b.String())
 	}
 }
