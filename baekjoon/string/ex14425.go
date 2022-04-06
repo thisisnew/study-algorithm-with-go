@@ -18,6 +18,7 @@ func main() {
 	for i := 0; i < n; i++ {
 		var word string
 		fmt.Fscanln(result, &word)
+
 		words[word] = word
 	}
 
@@ -25,6 +26,7 @@ func main() {
 	for i := 0; i < m; i++ {
 		var word string
 		fmt.Fscanln(result, &word)
+
 		if _, ok := words[word]; ok {
 			cnt++
 		}
