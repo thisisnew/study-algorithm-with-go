@@ -21,23 +21,23 @@ func main() {
 	//0 -> 1변환
 	for i, r := range s {
 
-		if i == 0 {
-			if string(r) == "1" {
-				zeroCnt++
-			}
-		}
-
-		if string(r) == "0" {
+		switch string(r) {
+		case "0":
 			if isReverse {
 				continue
 			}
-			isReverse = true
-		}
 
-		if string(r) == "1" {
+			isReverse = true
+		case "1":
+			if i == 0 {
+				zeroCnt++
+				continue
+			}
+
 			if !isReverse {
 				continue
 			}
+
 			zeroCnt++
 			isReverse = false
 		}
@@ -52,25 +52,25 @@ func main() {
 	//1 -> 0
 	for i, r := range s {
 
-		if i == 0 {
-			if string(r) == "0" {
+		switch string(r) {
+		case "0":
+			if i == 0 {
 				oneCnt++
-			}
-		}
-
-		if string(r) == "1" {
-			if isReverse {
 				continue
 			}
-			isReverse = true
-		}
 
-		if string(r) == "0" {
 			if !isReverse {
 				continue
 			}
+
 			oneCnt++
 			isReverse = false
+		case "1":
+			if isReverse {
+				continue
+			}
+
+			isReverse = true
 		}
 	}
 
