@@ -15,15 +15,31 @@ func main() {
 
 	var zeroCnt int
 	var oneCnt int
-	var prev = 0
+
+	var isReverse bool
 
 	//0 -> 1변환
 	for i, r := range s {
-		if string(r) == "0" {
-			if i == 0 || (i == prev+1) {
-				prev = i
+
+		if i == 0 {
+			if string(r) == "1" {
 				zeroCnt++
 			}
+		}
+
+		if string(r) == "0" {
+			if isReverse {
+				continue
+			}
+			isReverse = true
+		}
+
+		if string(r) == "1" {
+			if !isReverse {
+				continue
+			}
+			zeroCnt++
+			isReverse = false
 		}
 
 	}
@@ -34,14 +50,28 @@ func main() {
 	}
 
 	//1 -> 0
-	prev = 0
 	for i, r := range s {
-		if string(r) == "1" {
-			if i == 0 || (i == prev+1) {
+
+		if i == 0 {
+			if string(r) == "0" {
 				oneCnt++
 			}
 		}
-		prev = i
+
+		if string(r) == "1" {
+			if isReverse {
+				continue
+			}
+			isReverse = true
+		}
+
+		if string(r) == "0" {
+			if !isReverse {
+				continue
+			}
+			oneCnt++
+			isReverse = false
+		}
 	}
 
 	if zeroCnt < oneCnt {
