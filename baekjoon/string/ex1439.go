@@ -21,10 +21,11 @@ func main() {
 	for i, r := range s {
 		if string(r) == "0" {
 			if i == 0 || (i == prev+1) {
+				prev = i
 				zeroCnt++
 			}
 		}
-		prev = i
+
 	}
 
 	if zeroCnt == 0 || zeroCnt == len(s) {
