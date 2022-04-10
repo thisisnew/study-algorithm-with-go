@@ -12,7 +12,9 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 
 	for {
-		fmt.Fscanln(read, &input)
+		text, _, _ := read.ReadLine()
+
+		input = string(text)
 
 		if input == "END" {
 			break
