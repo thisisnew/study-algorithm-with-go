@@ -31,4 +31,11 @@ func compareRunes(inputRunes []rune, input string) []rune {
 		return []rune(input)
 	}
 
+	for i := 0; i < len(input); i++ {
+		if input[i:i+1] != string(inputRunes[i]) {
+			inputRunes[i] = '?'
+		}
+	}
+
+	return inputRunes
 }
