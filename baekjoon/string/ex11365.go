@@ -19,7 +19,9 @@ func main() {
 		}
 
 		for i := len(input) - 1; i >= 0; i-- {
-			fmt.Println(input[i : i+1])
+			fmt.Print(input[i : i+1])
 		}
+
+		fmt.Println()
 	}
 }
