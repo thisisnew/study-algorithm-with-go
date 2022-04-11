@@ -25,6 +25,7 @@ func countContinuityNumbers(input string) {
 	var prev = input[0:1]
 
 	for i := 1; i < len(input); i++ {
+
 		if input[i:i+1] == prev {
 			cnt++
 		} else {
