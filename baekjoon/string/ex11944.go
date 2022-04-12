@@ -13,7 +13,6 @@ func main() {
 	var n int
 	var m int
 	var read = bufio.NewReader(os.Stdin)
-
 	fmt.Fscanln(read, &n, &m)
 
 	w := strconv.Itoa(n)
