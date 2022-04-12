@@ -12,9 +12,9 @@ func main() {
 
 	var n int
 	var m int
-
 	var read = bufio.NewReader(os.Stdin)
-	fmt.Fscanln(read, n, m)
+
+	fmt.Fscanln(read, &n, &m)
 
 	w := strconv.Itoa(n)
 
@@ -26,7 +26,7 @@ func main() {
 
 	result := b.String()
 
-	if len(result) > len(result[:m]) {
+	if len(result) > m {
 		fmt.Println(result[:m])
 	} else {
 		fmt.Println(result)
