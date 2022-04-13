@@ -15,9 +15,9 @@ func main() {
 
 	for i := 0; i < n; i++ {
 		var a, b string
-		var answer strings.Builder
 		fmt.Fscanln(read, &a, &b)
 
+		var answer strings.Builder
 		answer.WriteString(a + " & " + b + " are ")
 
 		aRunes := []rune(a)
