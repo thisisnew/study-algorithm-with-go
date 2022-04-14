@@ -19,6 +19,7 @@ func main() {
 
 		var vowelCnt int
 		var consCnt int
+
 		var prevRn = input[0:1]
 		var isAcceptable = true
 
@@ -28,6 +29,7 @@ func main() {
 			switch {
 			case ch == "a", ch == "i", ch == "o", ch == "u", ch == "e":
 				vowelCnt++
+
 			default:
 				consCnt++
 			}
@@ -37,26 +39,29 @@ func main() {
 				break
 			}
 
-			if i > 0 && prevRn == ch {
-				str := fmt.Sprintf("%s%s", prevRn, ch)
+			if i > 0 {
 
-				if str != "ee" && str != "oo" {
-					isAcceptable = false
-					break
+				if prevRn == ch {
+					str := fmt.Sprintf("%s%s", prevRn, ch)
+
+					if str != "ee" && str != "oo" {
+						isAcceptable = false
+						break
+					}
 				}
-			}
 
-			prevRn = ch
+				prevRn = ch
+			}
 		}
 
 		if isAcceptable && vowelCnt == 0 {
 			isAcceptable = false
 		}
 
-		if isAcceptable {
-			fmt.Println(fmt.Sprintf("<%s> is acceptable.", input))
-		} else {
+		if !isAcceptable {
 			fmt.Println(fmt.Sprintf("<%s> is not acceptable.", input))
+		} else {
+			fmt.Println(fmt.Sprintf("<%s> is acceptable.", input))
 		}
 
 	}
