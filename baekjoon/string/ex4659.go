@@ -13,15 +13,16 @@ func main() {
 		var input string
 		fmt.Fscanln(read, &input)
 
-		if input == "END" {
+		if input == "end" {
 			break
 		}
 
 		var vowelCnt int
 		var consCnt int
 		var prevRn = input[0:1]
+		var isAcceptable = true
 
-		for i := 1; i < len(input); i++ {
+		for i := 0; i < len(input); i++ {
 			ch := input[i : i+1]
 
 			switch {
@@ -32,15 +33,15 @@ func main() {
 			}
 
 			if vowelCnt == 3 || consCnt == 3 {
-				fmt.Println(fmt.Sprintf("<%s> is not acceptable.", input))
+				isAcceptable = false
 				break
 			}
 
-			if prevRn == ch {
+			if i > 0 && prevRn == ch {
 				str := fmt.Sprintf("%s%s", prevRn, ch)
 
 				if str != "ee" && str != "oo" {
-					fmt.Println(fmt.Sprintf("<%s> is not acceptable.", input))
+					isAcceptable = false
 					break
 				}
 			}
@@ -48,11 +49,15 @@ func main() {
 			prevRn = ch
 		}
 
-		if vowelCnt == 0 {
-			fmt.Println(fmt.Sprintf("<%s> is not acceptable.", input))
-			continue
+		if isAcceptable && vowelCnt == 0 {
+			isAcceptable = false
 		}
 
-		fmt.Println(fmt.Sprintf("<%s> is acceptable.", input))
+		if isAcceptable {
+			fmt.Println(fmt.Sprintf("<%s> is acceptable.", input))
+		} else {
+			fmt.Println(fmt.Sprintf("<%s> is not acceptable.", input))
+		}
+
 	}
 }
