@@ -19,9 +19,21 @@ func main() {
 
 		var vowelCnt int
 		var consCnt int
-
 		var prevRn = input[0:1]
 		var isAcceptable = true
+
+		switch {
+		case prevRn == "a", prevRn == "i", prevRn == "o", prevRn == "u", prevRn == "e":
+			vowelCnt++
+		default:
+			consCnt++
+
+		}
+
+		if vowelCnt == 3 || consCnt == 3 {
+			isAcceptable = false
+			break
+		}
 
 		for i := 0; i < len(input); i++ {
 			ch := input[i : i+1]
@@ -29,9 +41,10 @@ func main() {
 			switch {
 			case ch == "a", ch == "i", ch == "o", ch == "u", ch == "e":
 				vowelCnt++
-
+				consCnt = 0
 			default:
 				consCnt++
+				vowelCnt = 0
 			}
 
 			if vowelCnt == 3 || consCnt == 3 {
