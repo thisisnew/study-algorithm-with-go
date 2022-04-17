@@ -23,8 +23,8 @@ func main() {
 		var pre int
 		var power = float64(len(words[0]) - 1)
 
-		for _, rn := range words[0] {
-			pre += int(rn * int32(math.Pow(26, power)))
+		for j := 0; j < len(words[0]); j++ {
+			pre += j * int(math.Pow(26, power))
 			power--
 		}
 
