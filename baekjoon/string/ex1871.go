@@ -20,7 +20,14 @@ func main() {
 
 		words := strings.Split(input, "-")
 
-		var pre = calculatePreWordValue(0, 0, float64(len(words[0])))
+		var pre int
+		var power = float64(len(words[0]) - 1)
+
+		for _, rn := range words[0] {
+			pre += int(rn * int32(math.Pow(26, power)))
+			power--
+		}
+
 		var post, _ = strconv.Atoi(words[1])
 
 		if math.Abs(float64(pre-post)) <= 100 {
@@ -30,21 +37,4 @@ func main() {
 		}
 
 	}
-}
-
-func calculatePreWordValue(total int, idx, len float64) int {
-
-	for {
-		if len < 0 {
-			return total
-		}
-
-		total += int(power(len-1) * idx)
-		idx++
-		len--
-	}
-}
-
-func power(len float64) float64 {
-	return math.Pow(26, len)
 }
