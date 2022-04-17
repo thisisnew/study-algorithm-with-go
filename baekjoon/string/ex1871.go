@@ -35,6 +35,5 @@ func main() {
 		} else {
 			fmt.Println("not nice")
 		}
-
 	}
 }
