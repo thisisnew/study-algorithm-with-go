@@ -12,25 +12,21 @@ func main() {
 	fmt.Fscanln(read, &input)
 
 	var yes = true
-	var ans string
-	for _, rn := range input {
-		ans += string(rn)
+	var i int
 
-		if len(ans) == 2 {
-			if ans == "pi" || ans == "ka" {
-				ans = ""
-				continue
-			}
+	for {
+
+		if i >= len(input) {
+			break
 		}
 
-		if len(ans) == 3 {
-			if ans == "chu" {
-				ans = ""
-				continue
-			}
-		}
-
-		if len(ans) > 3 {
+		if i+1 < len(input) && input[i:i+1] == "p" && input[i+1:i+2] == "i" {
+			i += 2
+		} else if i+1 < len(input) && input[i:i+1] == "k" && input[i+1:i+2] == "a" {
+			i += 2
+		} else if i+2 < len(input) && input[i:i+1] == "c" && input[i+1:i+2] == "h" && input[i+2:i+3] == "u" {
+			i += 3
+		} else {
 			yes = false
 			break
 		}
