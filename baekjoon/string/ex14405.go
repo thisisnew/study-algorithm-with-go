@@ -11,11 +11,9 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &input)
 
-	var yes = true
 	var i int
 
 	for {
-
 		if i >= len(input) {
 			break
 		}
@@ -27,15 +25,11 @@ func main() {
 		} else if i+2 < len(input) && input[i:i+1] == "c" && input[i+1:i+2] == "h" && input[i+2:i+3] == "u" {
 			i += 3
 		} else {
-			yes = false
-			break
+			fmt.Println("NO")
+			return
 		}
 	}
 
-	if !yes {
-		fmt.Println("NO")
-	} else {
-		fmt.Println("YES")
-	}
-
+	fmt.Println("YES")
+	return
 }
