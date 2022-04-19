@@ -29,7 +29,7 @@ func main() {
 			v = 0
 		}
 
-		arr[h][v] = input[v : v+1]
+		arr[h][v] = input[i : i+1]
 		v++
 	}
 
