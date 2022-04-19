@@ -14,7 +14,7 @@ func main() {
 	fmt.Fscanln(read, &n)
 	fmt.Fscanln(read, &input)
 
-	var arr = make([][]string, n)
+	var arr = make([][]string, len(input)/n)
 
 	for i := range arr {
 		arr[i] = make([]string, n)
