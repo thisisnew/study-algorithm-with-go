@@ -22,6 +22,7 @@ func main() {
 
 	var h = 0
 	var v = 0
+	var isReverse bool
 	for i := 0; i < len(input); i++ {
 
 		if i == len(input)-1 {
@@ -30,11 +31,23 @@ func main() {
 
 		if i > 0 && i%n == 0 {
 			h++
-			v = 0
+
+			if isReverse {
+				v = 0
+			} else {
+				v = n - 1
+			}
+
+			isReverse = !isReverse
 		}
 
 		arr[h][v] = input[i : i+1]
-		v++
+
+		if isReverse {
+			v--
+		} else {
+			v++
+		}
 	}
 
 	h = 0
