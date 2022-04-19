@@ -25,10 +25,6 @@ func main() {
 	var isReverse bool
 	for i := 0; i < len(input); i++ {
 
-		if i == len(input)-1 {
-			break
-		}
-
 		if i > 0 && i%n == 0 {
 			h++
 
@@ -41,7 +37,9 @@ func main() {
 			isReverse = !isReverse
 		}
 
-		arr[h][v] = input[i : i+1]
+		c := input[i : i+1]
+
+		arr[h][v] = c
 
 		if isReverse {
 			v--
@@ -52,11 +50,14 @@ func main() {
 
 	h = 0
 	v = 0
+
 	for i := 0; i < len(input); i++ {
-		if i > 0 && i%n == 0 {
+
+		if i > 0 && i%len(input)/n == 0 {
 			v++
 			h = 0
 		}
+
 		fmt.Print(arr[h][v])
 		h++
 	}
