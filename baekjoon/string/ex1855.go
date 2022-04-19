@@ -24,6 +24,10 @@ func main() {
 	var v = 0
 	for i := 0; i < len(input); i++ {
 
+		if i == len(input)-1 {
+			break
+		}
+
 		if i > 0 && i%n == 0 {
 			h++
 			v = 0
