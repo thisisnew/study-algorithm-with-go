@@ -12,7 +12,7 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &input)
 
-	data, _ := base64.URLEncoding.DecodeString(input)
+	data, _ := base64.StdEncoding.DecodeString(input)
 
 	fmt.Println(data)
 }
