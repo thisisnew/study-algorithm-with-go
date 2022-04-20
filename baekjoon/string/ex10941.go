@@ -14,5 +14,5 @@ func main() {
 
 	data, _ := base64.StdEncoding.DecodeString(input)
 
-	fmt.Println(data)
+	fmt.Println(string(data))
 }
