@@ -31,9 +31,7 @@ out:
 			} else {
 				result = result[1:] + str
 			}
-
 		}
-
 	}
 }
 
