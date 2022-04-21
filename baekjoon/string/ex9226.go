@@ -22,12 +22,14 @@ out:
 		var result = input
 		for _, ch := range input {
 
-			if isVowel(ch) {
-				fmt.Println(result)
+			isVowel, str := isVowel(ch)
+
+			if isVowel {
+				fmt.Println(result, "ay")
 
 				continue out
 			} else {
-
+				result = input[1:] + str
 			}
 
 		}
@@ -35,14 +37,14 @@ out:
 	}
 }
 
-func isVowel(ch rune) bool {
+func isVowel(ch rune) (bool, string) {
 
 	str := string(ch)
 
 	if str == "a" || str == "e" || str == "i" || str == "o" || str == "u" {
-		return true
+		return true, str
 	}
 
-	return false
+	return false, str
 
 }
