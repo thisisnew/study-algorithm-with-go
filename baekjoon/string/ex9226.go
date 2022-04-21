@@ -25,11 +25,11 @@ out:
 			isVowel, str := isVowel(ch)
 
 			if isVowel {
-				fmt.Println(result, "ay")
+				fmt.Println(result + "ay")
 
 				continue out
 			} else {
-				result = input[1:] + str
+				result = result[1:] + str
 			}
 
 		}
