@@ -33,12 +33,14 @@ func isAddition(input string) (bool, int, int) {
 
 	addition := strings.Split(input, "+")
 
-	if len(addition) == 0 {
+	if len(addition) < 2 {
 		return false, 0, 0
+
 	}
 
 	a, _ := strconv.Atoi(addition[0])
 	b, _ := strconv.Atoi(addition[1])
 
 	return true, a, b
+
 }
