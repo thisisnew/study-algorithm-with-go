@@ -1,4 +1,4 @@
-package queue
+package main
 
 import (
 	"bufio"
@@ -16,6 +16,7 @@ type Queue struct {
 func main() {
 	var n int
 	var read = bufio.NewReader(os.Stdin)
+	fmt.Fscanln(read, &n)
 
 	q := Queue{}
 
@@ -38,7 +39,7 @@ func main() {
 		} else {
 			switch fn {
 			case "push":
-				fmt.Println(q.push(x))
+				q.push(x)
 			case "pop":
 				fmt.Println(q.pop())
 			}
@@ -64,7 +65,7 @@ func getCommand(command string) (string, int, error) {
 	return fn, x, nil
 }
 
-func (q *Queue) push(x int) []int {
+func (q *Queue) push(x int) {
 	q.props = append(q.props, x)
 }
 
