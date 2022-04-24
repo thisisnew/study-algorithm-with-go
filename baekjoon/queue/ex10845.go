@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -21,31 +22,46 @@ func main() {
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
 
-		string(text)
+		if fn, x, err := getCommand(string(text)); err != nil {
+
+			switch fn {
+			case "front":
+				fmt.Println(q.front())
+			case "back":
+				fmt.Println(q.back())
+			case "empty":
+				fmt.Println(q.empty())
+			case "size":
+				fmt.Println(q.size())
+			}
+
+		} else {
+			switch fn {
+			case "push":
+				fmt.Println(q.push(x))
+			case "pop":
+				fmt.Println(q.pop())
+			}
+		}
 
 	}
 }
 
-func command(command string) {
+func getCommand(command string) (string, int, error) {
 
 	c := strings.Split(command, " ")
 
 	var fn = c[0]
-	var v int
+	var x int
 
-	if len(c) > 1 {
-
+	if len(c) == 1 {
+		return fn, x, errors.New("not exist value")
 	}
 
-	switch fn {
-	case "push":
-	case "pop":
-	case "front":
-	case "back":
-	case "empty":
-	case "size":
-	}
+	vl, _ := strconv.Atoi(c[1])
+	x = vl
 
+	return fn, x, nil
 }
 
 func (q *Queue) push(x int) []int {
