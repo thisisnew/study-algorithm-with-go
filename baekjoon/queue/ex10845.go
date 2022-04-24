@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"strings"
 )
 
 type Queue struct {
@@ -15,11 +16,36 @@ func main() {
 	var n int
 	var read = bufio.NewReader(os.Stdin)
 
+	q := Queue{}
+
 	for i := 0; i < n; i++ {
-		var input string
-		fmt.Fscanln(read, &input)
+		text, _, _ := read.ReadLine()
+
+		string(text)
 
 	}
+}
+
+func command(command string) {
+
+	c := strings.Split(command, " ")
+
+	var fn = c[0]
+	var v int
+
+	if len(c) > 1 {
+
+	}
+
+	switch fn {
+	case "push":
+	case "pop":
+	case "front":
+	case "back":
+	case "empty":
+	case "size":
+	}
+
 }
 
 func (q *Queue) push(x int) []int {
@@ -28,7 +54,7 @@ func (q *Queue) push(x int) []int {
 
 func (q *Queue) pop() (int, error) {
 	if len(q.props) == 0 {
-		return -1, errors.New("")
+		return -1, errors.New("empty")
 	}
 
 	x, props := q.props[0], q.props[1:]
