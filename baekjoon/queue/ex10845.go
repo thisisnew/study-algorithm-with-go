@@ -23,28 +23,26 @@ func main() {
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
 
-		if fn, x, err := getCommand(string(text)); err != nil {
+		cm, x, _ := getCommand(string(text))
+		q.execute(cm, x)
+	}
+}
 
-			switch fn {
-			case "front":
-				fmt.Println(q.front())
-			case "back":
-				fmt.Println(q.back())
-			case "empty":
-				fmt.Println(q.empty())
-			case "size":
-				fmt.Println(q.size())
-			}
-
-		} else {
-			switch fn {
-			case "push":
-				q.push(x)
-			case "pop":
-				fmt.Println(q.pop())
-			}
-		}
-
+func (q *Queue) execute(cm string, x int) {
+	switch cm {
+	case "front":
+		fmt.Println(q.front())
+	case "back":
+		fmt.Println(q.back())
+	case "empty":
+		fmt.Println(q.empty())
+	case "size":
+		fmt.Println(q.size())
+	case "pop":
+		v, _ := q.pop()
+		fmt.Println(v)
+	case "push":
+		q.push(x)
 	}
 }
 
