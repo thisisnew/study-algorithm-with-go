@@ -4,8 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
-	"strings"
 )
 
 type Stack struct {
@@ -21,26 +19,18 @@ func main() {
 	s := Stack{}
 
 	for i := 0; i < n; i++ {
-		text, _, _ := read.ReadLine()
+		var cmd string
+		var v int
+		fmt.Fscanln(read, &cmd, &v)
 
-		command := strings.Split(string(text), " ")
-
-		s.execute(command)
+		s.execute(cmd, v)
 	}
 }
 
-func (s *Stack) execute(command []string) {
-
-	var cmd = command[0]
-	var value string
-
-	if len(command) > 1 {
-		value = command[1]
-	}
+func (s *Stack) execute(cmd string, v int) {
 
 	switch cmd {
 	case "push":
-		v, _ := strconv.Atoi(value)
 		s.push(v)
 	case "pop":
 		fmt.Println(s.pop())
