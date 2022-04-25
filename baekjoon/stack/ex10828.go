@@ -12,8 +12,8 @@ type Stack struct {
 
 func main() {
 
-	var n int
 	var read = bufio.NewReader(os.Stdin)
+	var n int
 	fmt.Fscanln(read, &n)
 
 	s := Stack{}
