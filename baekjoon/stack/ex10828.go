@@ -21,7 +21,6 @@ func main() {
 	s := Stack{}
 
 	for i := 0; i < n; i++ {
-
 		text, _, _ := read.ReadLine()
 
 		command := strings.Split(string(text), " ")
