@@ -37,10 +37,16 @@ func main() {
 		arr[i], arr[minIndex] = arr[minIndex], arr[i]
 	}
 
-	min := arr[0]
-	fmt.Print(min)
+	var min int
 
-	for _, item := range arr {
+	for i, item := range arr {
+
+		if i == 0 {
+			fmt.Printf("%v ", item)
+			min = item
+			continue
+		}
+
 		if item > min {
 			fmt.Printf("%v ", item)
 			min = item
