@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func main() {
@@ -12,11 +14,14 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n)
 
+	text, _, _ := read.ReadLine()
+
+	nums := strings.Split(string(text), " ")
+
 	var arr []int
 
 	for i := 0; i < n; i++ {
-		var num int
-		fmt.Fscanln(read, &num)
+		num, _ := strconv.Atoi(nums[i])
 		arr = append(arr, num)
 	}
 
@@ -33,9 +38,11 @@ func main() {
 	}
 
 	min := arr[0]
+	fmt.Print(min)
+
 	for _, item := range arr {
 		if item > min {
-			fmt.Print(min)
+			fmt.Printf("%v ", item)
 			min = item
 		}
 	}
