@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 
-	var items = []int{7, 5, 9, 0, 1, 6, 2, 4, 8, 3}
+	var items = []int{9, 8, 7, 6, 5, 4, 3, 2, 1}
 
 	for i := len(items); i > 0; i-- {
 		isSwap := false
