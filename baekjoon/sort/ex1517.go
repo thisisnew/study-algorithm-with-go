@@ -18,7 +18,6 @@ func main() {
 	var result int
 
 	for i := n; i > 0; i-- {
-
 		isSwap := false
 
 		for j := 0; j < i-1; j++ {
