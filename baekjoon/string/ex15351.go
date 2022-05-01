@@ -15,7 +15,9 @@ func main() {
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
 
-		input := strings.Trim(string(text), " ")
+		inputs := strings.Split(string(text), " ")
+
+		input := strings.Join(inputs, "")
 
 		isPerfectLife, result := calculateWord(input)
 
@@ -33,7 +35,7 @@ func calculateWord(input string) (bool, int32) {
 	var result int32
 
 	for _, ch := range input {
-		result += ch - 65
+		result += ch - 65 + 1
 	}
 
 	if result == 100 {
