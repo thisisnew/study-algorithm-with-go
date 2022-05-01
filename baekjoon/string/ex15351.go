@@ -36,5 +36,9 @@ func calculateWord(input string) (bool, int32) {
 		result += ch - 65
 	}
 
+	if result == 100 {
+		isPerfectLife = true
+	}
+
 	return isPerfectLife, result
 }
