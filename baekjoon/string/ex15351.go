@@ -27,13 +27,13 @@ func main() {
 	}
 }
 
-func calculateWord(input string) (bool, int) {
+func calculateWord(input string) (bool, int32) {
 
 	var isPerfectLife bool
-	var result int
+	var result int32
 
 	for _, ch := range input {
-
+		result += ch - 65
 	}
 
 	return isPerfectLife, result
