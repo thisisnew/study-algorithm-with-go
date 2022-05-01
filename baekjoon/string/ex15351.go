@@ -16,22 +16,14 @@ func main() {
 		text, _, _ := read.ReadLine()
 
 		inputs := strings.Split(string(text), " ")
-
 		input := strings.Join(inputs, "")
 
-		isPerfectLife, result := calculateWord(input)
-
-		if isPerfectLife {
-			fmt.Println("PERFECT LIFE")
-		} else {
-			fmt.Println(result)
-		}
+		calculateWord(input)
 	}
 }
 
-func calculateWord(input string) (bool, int32) {
+func calculateWord(input string) {
 
-	var isPerfectLife bool
 	var result int32
 
 	for _, ch := range input {
@@ -39,8 +31,9 @@ func calculateWord(input string) (bool, int32) {
 	}
 
 	if result == 100 {
-		isPerfectLife = true
+		fmt.Println("PERFECT LIFE")
+	} else {
+		fmt.Println(result)
 	}
 
-	return isPerfectLife, result
 }
