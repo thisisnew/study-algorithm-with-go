@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(solution("abcde"))
+	fmt.Println(가운데글자가져오기("abcde"))
 }
 
-func solution(s string) string {
+func 가운데글자가져오기(s string) string {
 
 	var result string
 	ln := len(s)
