@@ -26,7 +26,6 @@ func year2016(a int, b int) string {
 	date, _ := time.Parse("2006-01-02", dateString)
 
 	return getDayOfWeek(date.Day())
-
 }
 
 func getDayOfWeek(day int) string {
