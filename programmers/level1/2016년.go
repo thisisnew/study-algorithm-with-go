@@ -2,17 +2,8 @@ package main
 
 import (
 	"fmt"
+	"strings"
 	"time"
-)
-
-const (
-	Sunday int = iota
-	Monday
-	Tuesday
-	Wednesday
-	Thursday
-	Friday
-	Saturday
 )
 
 func main() {
@@ -21,31 +12,19 @@ func main() {
 
 func year2016(a int, b int) string {
 
-	dateString := fmt.Sprintf("2016-%v-%v", a, b)
+	dateString := fmt.Sprintf("2016-%v-%v", addZero(a), addZero(b))
 
 	date, _ := time.Parse("2006-01-02", dateString)
 
-	return getDayOfWeek(date.Day())
+	return strings.ToUpper(date.Weekday().String()[:3])
+
 }
 
-func getDayOfWeek(day int) string {
+func addZero(n int) string {
 
-	switch day {
-	case Sunday:
-		return "SUN"
-	case Monday:
-		return "MON"
-	case Tuesday:
-		return "TUE"
-	case Wednesday:
-		return "WED"
-	case Thursday:
-		return "THU"
-	case Friday:
-		return "FRI"
-	case Saturday:
-		return "SAT"
+	if n < 10 {
+		return fmt.Sprintf("0%v", n)
 	}
 
-	return ""
+	return fmt.Sprintf("%v", n)
 }
