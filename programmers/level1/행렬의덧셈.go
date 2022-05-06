@@ -19,18 +19,22 @@ func main() {
 
 func 행렬의덧셈(arr1 [][]int, arr2 [][]int) [][]int {
 
+	result := make([][]int, len(arr1))
+
 	for i := 0; i < len(arr1); i++ {
-		arr1[i] = sumArray(arr1[i], arr2[i])
+		result[i] = *sumArray(&arr1[i], &arr2[i])
 	}
 
-	return arr1
+	return result
 }
 
-func sumArray(arr1 []int, arr2 []int) []int {
+func sumArray(arr1 *[]int, arr2 *[]int) *[]int {
 
-	for i := 0; i < len(arr1); i++ {
-		arr1[i] += arr2[i]
+	result := make([]int, len(*arr1))
+
+	for i := 0; i < len(*arr1); i++ {
+		result[i] = (*arr1)[i] + (*arr2)[i]
 	}
 
-	return arr1
+	return &result
 }
