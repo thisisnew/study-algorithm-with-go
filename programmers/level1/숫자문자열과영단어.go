@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	fmt.Println(숫자문자열과영단어("one4seveneight"))
+	fmt.Println(숫자문자열과영단어("123"))
 }
 
 func 숫자문자열과영단어(s string) int {
