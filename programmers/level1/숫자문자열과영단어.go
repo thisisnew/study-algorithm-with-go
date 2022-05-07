@@ -2,12 +2,13 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 )
 
 func main() {
-
+	fmt.Println(숫자문자열과영단어("one4seveneight"))
 }
 
 func 숫자문자열과영단어(s string) int {
@@ -23,13 +24,12 @@ func 숫자문자열과영단어(s string) int {
 		}
 
 		temp.WriteRune(ch)
-		err, n := convertWordToNumber(temp.String())
+		sNum, err := convertWordToNumber(temp.String())
 
 		if err != nil {
 			continue
 		}
 
-		sNum := strconv.Itoa(n)
 		sb.WriteString(sNum)
 		temp.Reset()
 	}
@@ -39,31 +39,35 @@ func 숫자문자열과영단어(s string) int {
 	return result
 }
 
-func convertWordToNumber(temp string) (error, int) {
+func convertWordToNumber(temp string) (string, error) {
+
+	var n int
+	var err error
 
 	switch temp {
 	case "zero":
-		return nil, 0
+		n = 0
 	case "one":
-		return nil, 1
+		n = 1
 	case "two":
-		return nil, 2
+		n = 2
 	case "three":
-		return nil, 3
+		n = 3
 	case "four":
-		return nil, 4
+		n = 4
 	case "five":
-		return nil, 5
+		n = 5
 	case "six":
-		return nil, 6
+		n = 6
 	case "seven":
-		return nil, 7
+		n = 7
 	case "eight":
-		return nil, 8
+		n = 8
 	case "nine":
-		return nil, 9
+		n = 9
+	default:
+		err = errors.New("not a number word")
 	}
 
-	return errors.New("not a number word"), 0
-
+	return strconv.Itoa(n), err
 }
