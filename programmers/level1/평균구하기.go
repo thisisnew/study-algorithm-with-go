@@ -12,12 +12,12 @@ func main() {
 
 func 평균구하기(arr []int) float64 {
 
-	var result float64
+	var result int
 
 	for _, n := range arr {
-		result += float64(n)
+		result += n
 	}
 
-	return result / float64(len(arr))
+	return float64(result) / float64(len(arr))
 
 }
