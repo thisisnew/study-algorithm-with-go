@@ -11,22 +11,25 @@ func main() {
 
 func 이상한문자만들기(s string) string {
 
-	var result []string
-	arr := strings.Split(s, " ")
+	var idx int
+	var sb strings.Builder
 
-	for _, item := range arr {
-		var sb strings.Builder
+	for _, ch := range s {
 
-		for i, ch := range item {
-			if (i+1)%2 == 0 {
-				sb.WriteString(string(ch))
-			} else {
-				sb.WriteString(strings.ToUpper(string(ch)))
-			}
+		if ch == 32 {
+			idx = 0
+			sb.WriteString(" ")
+			continue
 		}
 
-		result = append(result, sb.String())
+		if idx%2 == 0 {
+			sb.WriteString(strings.ToUpper(string(ch)))
+		} else {
+			sb.WriteString(strings.ToLower(string(ch)))
+		}
+
+		idx++
 	}
 
-	return strings.Join(result, " ")
+	return sb.String()
 }
