@@ -1,9 +1,11 @@
 package main
 
+import "fmt"
+
 const maximumCount = 500
 
 func main() {
-
+	fmt.Println(콜라츠추측(6))
 }
 
 func 콜라츠추측(num int) int {
@@ -13,10 +15,7 @@ func 콜라츠추측(num int) int {
 
 	for {
 
-		if cnt > maximumCount {
-			result = -1
-			break
-		}
+		cnt++
 
 		if isEven(num) {
 			num = num / 2
@@ -26,6 +25,11 @@ func 콜라츠추측(num int) int {
 
 		if num == 1 {
 			result = cnt
+			break
+		}
+
+		if cnt > maximumCount {
+			result = -1
 			break
 		}
 
