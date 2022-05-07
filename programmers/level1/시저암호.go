@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	CapitalLetterZ = 90
-	SmallLetterZ   = 122
+	CapitalLetterZ int32 = 90
+	SmallLetterZ   int32 = 122
 )
 
 func main() {
@@ -26,22 +26,26 @@ func 시저암호(s string, n int) string {
 			continue
 		}
 
-		var ch = rn + int32(n)
+		var ch int32
 
 		switch {
 		case unicode.IsLower(rn):
-			if ch > SmallLetterZ {
-				ch = ch - int32(26)
-			}
-
+			ch = moveLetter(rn+int32(n), SmallLetterZ)
 		default:
-			if ch > CapitalLetterZ {
-				ch = ch - int32(26)
-			}
+			ch = moveLetter(rn+int32(n), CapitalLetterZ)
 		}
 
 		result.WriteRune(ch)
 	}
 
 	return result.String()
+}
+
+func moveLetter(ch, last int32) int32 {
+
+	if ch <= last {
+		return ch
+	}
+
+	return ch - int32(26)
 }
