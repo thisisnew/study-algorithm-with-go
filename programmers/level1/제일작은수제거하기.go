@@ -41,8 +41,7 @@ func 제일작은수제거하기(arr []int) []int {
 		return arr[:minIdx]
 	}
 
-	result := arr[:minIdx]
-	result = append(result, arr[minIdx+1:]...)
+	result := append(arr[:minIdx], arr[minIdx+1:]...)
 
 	return result
 }
