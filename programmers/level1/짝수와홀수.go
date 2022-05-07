@@ -7,13 +7,14 @@ func main() {
 }
 
 func 짝수와홀수(num int) string {
+	var result string
 
 	switch num % 2 {
 	case 0:
-		return "Even"
-	case 1:
-		return "Odd"
+		result = "Even"
+	default:
+		result = "Odd"
 	}
 
-	return ""
+	return result
 }
