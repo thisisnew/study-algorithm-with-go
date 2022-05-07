@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(자릿수더하기(987))
 }
 
 func 자릿수더하기(n int) int {
