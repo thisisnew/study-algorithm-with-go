@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const totalZeroToNine = 45
+const sumZeroToNine = 45
 
 func main() {
 	n := []int{1, 2, 3, 4, 6, 7, 8, 0}
@@ -16,5 +16,5 @@ func 없는숫자더하기(numbers []int) int {
 		result += n
 	}
 
-	return totalZeroToNine - result
+	return sumZeroToNine - result
 }
