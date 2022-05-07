@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
-	fmt.Println(하샤드수(11))
+	fmt.Println(하샤드수(10))
 }
 
 func 하샤드수(x int) bool {
@@ -14,20 +13,15 @@ func 하샤드수(x int) bool {
 }
 
 func sumDigit(x int) int {
-
 	var result int
 
-	numStr := strconv.Itoa(x)
-
-	for _, nm := range numStr {
-
-		n, _ := strconv.Atoi(string(nm))
-
-		if n == 0 {
-			continue
+	for {
+		if x == 0 {
+			break
 		}
 
-		result += n
+		result += x % 10
+		x = x / 10
 	}
 
 	return result
