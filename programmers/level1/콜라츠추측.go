@@ -5,7 +5,7 @@ import "fmt"
 const maximumCount = 500
 
 func main() {
-	fmt.Println(콜라츠추측(6))
+	fmt.Println(콜라츠추측(7999999))
 }
 
 func 콜라츠추측(num int) int {
@@ -15,7 +15,10 @@ func 콜라츠추측(num int) int {
 
 	for {
 
-		cnt++
+		if num == 1 {
+			result = cnt
+			break
+		}
 
 		if isEven(num) {
 			num = num / 2
@@ -23,16 +26,12 @@ func 콜라츠추측(num int) int {
 			num = num*3 + 1
 		}
 
-		if num == 1 {
-			result = cnt
-			break
-		}
+		cnt++
 
 		if cnt > maximumCount {
 			result = -1
 			break
 		}
-
 	}
 
 	return result
@@ -40,9 +39,10 @@ func 콜라츠추측(num int) int {
 
 func isEven(num int) bool {
 
-	if num%2 == 0 {
+	switch num % 2 {
+	case 0:
 		return true
+	default:
+		return false
 	}
-
-	return false
 }
