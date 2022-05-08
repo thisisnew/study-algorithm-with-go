@@ -21,4 +21,5 @@ func 나머지가1이되는수찾기(n int) int {
 	}
 
 	return result
+
 }
