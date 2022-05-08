@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	fmt.Println(정수제곱근판별(121))
@@ -8,30 +11,12 @@ func main() {
 
 func 정수제곱근판별(n int64) int64 {
 
-	var result int64
-	var num int64
+	sqrt := math.Sqrt(float64(n))
 
-	for {
-
-		num++
-
-		pow := num * num
-
-		if pow < n {
-			continue
-		}
-
-		if pow > n {
-			result = -1
-			break
-		}
-
-		if pow == n {
-			result = (num + 1) * (num + 1)
-			break
-		}
-
+	if math.Mod(sqrt, 1.0) == 0 {
+		return int64((sqrt + 1) * (sqrt + 1))
+	} else {
+		return -1
 	}
 
-	return result
 }
