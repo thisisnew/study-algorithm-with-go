@@ -14,21 +14,26 @@ func 최대공약수와최소공배수(n int, m int) []int {
 		m = temp
 	}
 
-	var gcf int
+	return []int{gcd(n, m), lcm(n, m)}
+}
 
-	for i := 1; i <= m; i++ {
+func gcd(n, m int) int {
 
-		if m%i != 0 {
-			continue
-		}
+	var r int
 
-		if i > n {
+	for {
+		if n == 0 {
 			break
 		}
 
-		gcf = i
-
+		r = m % n
+		m = n
+		n = r
 	}
 
-	return []int{gcf, gcf * (n / gcf) * (m / gcf)}
+	return m
+}
+
+func lcm(n, m int) int {
+	return n * m / gcd(n, m)
 }
