@@ -11,12 +11,13 @@ func main() {
 
 func 정수제곱근판별(n int64) int64 {
 
+	var result int64 = -1
+
 	sqrt := math.Sqrt(float64(n))
 
 	if math.Mod(sqrt, 1.0) == 0 {
-		return int64((sqrt + 1) * (sqrt + 1))
-	} else {
-		return -1
+		result = int64(math.Pow(sqrt+1, 2))
 	}
 
+	return result
 }
