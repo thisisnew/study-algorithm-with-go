@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"sort"
-	"strings"
 )
 
 func main() {
@@ -12,11 +11,12 @@ func main() {
 
 func 문자열내림차순으로배치하기(s string) string {
 
-	result := strings.Split(s, "")
+	result := []byte(s)
 
 	sort.Slice(result, func(i, j int) bool {
 		return result[i] > result[j]
 	})
 
-	return strings.Join(result, "")
+	return string(result)
+
 }
