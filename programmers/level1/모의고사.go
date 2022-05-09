@@ -33,6 +33,7 @@ func 모의고사(answers []int) []int {
 			if idx == len(men) {
 				idx = 0
 			}
+
 		}
 
 		if cnt < max {
