@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	"unicode"
 )
 
 func main() {
@@ -11,14 +12,25 @@ func main() {
 
 func JadenCase문자열만들기(s string) string {
 
-	var result []string
+	var result strings.Builder
+	var idx = 0
 
-	sSlice := strings.Fields(s)
+	for _, st := range s {
 
-	for _, st := range sSlice {
-		result = append(result, fmt.Sprintf("%s%s", strings.ToUpper(st[0:1]), strings.ToLower(st[1:])))
+		if unicode.IsSpace(st) {
+			result.WriteRune(st)
+			idx = 0
+			continue
+		}
+
+		if idx == 0 {
+			result.WriteString(strings.ToUpper(string(st)))
+		} else {
+			result.WriteString(strings.ToLower(string(st)))
+		}
+
+		idx++
 	}
 
-	return strings.Join(result, " ")
-
+	return result.String()
 }
