@@ -11,6 +11,7 @@ func 피보나치수(n int) int {
 	var result = fibo(n)
 
 	return result % 1234567
+
 }
 
 func fibo(n int) int {
