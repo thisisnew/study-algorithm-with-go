@@ -23,13 +23,18 @@ func 가장큰수(numbers []int) string {
 		ni := getSingleDigit(numbers[i], digit)
 		nj := getSingleDigit(numbers[j], digit)
 
-		for {
-			if (ni < 10 && nj < 10) || ni != nj {
-				break
-			}
+		//for {
+		//	if ni != nj {
+		//		break
+		//	}
+		//
+		//	digit *= 10
+		//	ni = getSingleDigit(numbers[i], digit)
+		//	nj = getSingleDigit(numbers[j], digit)
+		//}
 
-			ni = getSingleDigit(numbers[i], digit)
-			nj = getSingleDigit(numbers[j], digit)
+		if ni == nj {
+			return numbers[i] > numbers[j]
 		}
 
 		return ni > nj
