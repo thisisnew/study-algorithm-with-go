@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math"
 )
@@ -26,9 +27,9 @@ func 기능개발(progresses []int, speeds []int) []int {
 		remain := 100 - pg
 		remainProgress := math.Ceil(float64(remain) / float64(speeds[i]))
 
-		peek := p.peek()
+		peek, err := p.peek()
 
-		if peek == nil || int(remainProgress) <= *peek {
+		if err != nil || int(remainProgress) <= peek {
 			p.push(remainProgress)
 			continue
 		}
@@ -44,14 +45,22 @@ func 기능개발(progresses []int, speeds []int) []int {
 	return p.result
 }
 
-func (p *ProgressQueue) peek() *int {
+func (p *ProgressQueue) peek() (int, error) {
 	if len(p.items) == 0 {
-		return nil
+		return 0, errors.New("empty slice")
 	}
 
-	return &p.items[0]
+	return p.items[0], nil
 }
 
 func (p *ProgressQueue) push(remainProgress float64) {
 	p.items = append(p.items, int(remainProgress))
+}
+
+func (p *ProgressQueue) pop() (int, error) {
+	if len(p.items) == 0 {
+		return 0, errors.New("empty slice")
+	}
+
+	return p.items[0], nil
 }
