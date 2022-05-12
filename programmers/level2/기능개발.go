@@ -29,13 +29,18 @@ func 기능개발(progresses []int, speeds []int) []int {
 
 		peek, err := p.peek()
 
-		if err != nil || int(remainProgress) <= peek {
+		if err != nil {
 			p.push(remainProgress)
 			continue
 		}
 
-		p.result = append(p.result, len(p.items))
-		p.items = []int{int(remainProgress)}
+		if int(remainProgress) <= peek {
+			p.push(remainProgress)
+			continue
+		}
+
+		p.push(remainProgress)
+		p.result = append(p.result, p.len())
 	}
 
 	if len(p.items) > 0 {
@@ -63,4 +68,8 @@ func (p *ProgressQueue) pop() (int, error) {
 	}
 
 	return p.items[0], nil
+}
+
+func (p *ProgressQueue) len() int {
+	return len(p.items)
 }
