@@ -24,7 +24,7 @@ func 가장큰수(numbers []int) string {
 		nj := getSingleDigit(numbers[j], digit)
 
 		for {
-			if ni != nj {
+			if (ni < 10 && nj < 10) || ni != nj {
 				break
 			}
 
@@ -47,15 +47,12 @@ func 가장큰수(numbers []int) string {
 
 func getSingleDigit(n int, digit int) int {
 
-	if n*digit < digit {
-		return n
-	}
-
 	for {
-		if n%digit < digit {
+		if n/digit < digit {
 			return n / digit
 		}
 
 		n = n / digit
 	}
+
 }
