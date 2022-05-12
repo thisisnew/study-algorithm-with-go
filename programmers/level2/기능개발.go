@@ -39,8 +39,8 @@ func 기능개발(progresses []int, speeds []int) []int {
 			continue
 		}
 
-		p.push(remainProgress)
 		p.result = append(p.result, p.len())
+		p.push(remainProgress)
 	}
 
 	if len(p.items) > 0 {
@@ -67,9 +67,27 @@ func (p *ProgressQueue) pop() (int, error) {
 		return 0, errors.New("empty slice")
 	}
 
-	return p.items[0], nil
+	pop := p.items[0]
+
+	p.items = p.items[1:]
+
+	return pop, nil
 }
 
 func (p *ProgressQueue) len() int {
-	return len(p.items)
+
+	var ln int
+
+	for {
+
+		_, err := p.pop()
+
+		if err != nil {
+			break
+		}
+
+		ln++
+	}
+
+	return ln
 }
