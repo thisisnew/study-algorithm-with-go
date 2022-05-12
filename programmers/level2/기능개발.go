@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"fmt"
 	"math"
 )
@@ -13,8 +12,8 @@ type ProgressQueue struct {
 
 func main() {
 
-	progresses := []int{93, 30, 55}
-	speeds := []int{1, 30, 5}
+	progresses := []int{95, 90, 99, 99, 80, 99}
+	speeds := []int{1, 1, 1, 1, 1, 1}
 
 	fmt.Println(기능개발(progresses, speeds))
 }
@@ -25,34 +24,34 @@ func 기능개발(progresses []int, speeds []int) []int {
 
 	for i, pg := range progresses {
 		remain := 100 - pg
-		remainProgress := math.Ceil(float64(remain / speeds[i]))
+		remainProgress := math.Ceil(float64(remain) / float64(speeds[i]))
 
-		err := p.push(remainProgress)
+		peek := p.peek()
 
-		if err != nil {
-			p.distribute(remainProgress)
+		if peek == nil || int(remainProgress) <= *peek {
+			p.push(remainProgress)
+			continue
 		}
+
+		p.result = append(p.result, len(p.items))
+		p.items = []int{int(remainProgress)}
+	}
+
+	if len(p.items) > 0 {
+		p.result = append(p.result, len(p.items))
 	}
 
 	return p.result
 }
 
-func (p *ProgressQueue) push(remainProgress float64) error {
-
+func (p *ProgressQueue) peek() *int {
 	if len(p.items) == 0 {
-		p.items = append(p.items, int(remainProgress))
+		return nil
 	}
 
-	if int(remainProgress) > p.items[0] {
-		return errors.New("must distribute")
-	}
-
-	p.items = append(p.items, int(remainProgress))
-
-	return nil
+	return &p.items[0]
 }
 
-func (p *ProgressQueue) distribute(remainProgress float64) {
-	p.result = append(p.result, len(p.items))
-	p.items = []int{int(remainProgress)}
+func (p *ProgressQueue) push(remainProgress float64) {
+	p.items = append(p.items, int(remainProgress))
 }
