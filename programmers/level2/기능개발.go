@@ -32,7 +32,6 @@ func 기능개발(progresses []int, speeds []int) []int {
 		if err != nil {
 			p.distribute(remainProgress)
 		}
-
 	}
 
 	return p.result
