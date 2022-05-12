@@ -28,7 +28,6 @@ func 가장큰수(numbers []int) string {
 				break
 			}
 
-			digit = digit * 10
 			ni = getSingleDigit(numbers[i], digit)
 			nj = getSingleDigit(numbers[j], digit)
 		}
@@ -47,12 +46,14 @@ func 가장큰수(numbers []int) string {
 
 func getSingleDigit(n int, digit int) int {
 
+	var result = n
+
 	for {
-		if n/digit < digit {
-			return n / digit
+		if result < digit {
+			return result
 		}
 
-		n = n / digit
+		result = result / digit
 	}
 
 }
