@@ -21,10 +21,7 @@ func main() {
 
 func 기능개발(progresses []int, speeds []int) []int {
 
-	p := ProgressQueue{
-		items:  []int{},
-		result: []int{},
-	}
+	p := &ProgressQueue{}
 
 	for i, pg := range progresses {
 		remain := 100 - pg
@@ -42,6 +39,10 @@ func 기능개발(progresses []int, speeds []int) []int {
 }
 
 func (p *ProgressQueue) push(remainProgress float64) error {
+
+	if len(p.items) == 0 {
+		p.items = append(p.items, int(remainProgress))
+	}
 
 	if int(remainProgress) > p.items[0] {
 		return errors.New("must distribute")
