@@ -11,6 +11,7 @@ func main() {
 }
 
 func 소수만들기(nums []int) int {
+
 	var result int
 
 	for i := 0; i < len(nums)-2; i++ {
