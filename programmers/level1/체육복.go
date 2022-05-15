@@ -10,11 +10,11 @@ type Students struct {
 
 func main() {
 
-	n := 5
-	nums := []int{2, 4}
-	reserve := []int{2, 4}
+	n := 3
+	lost := []int{1, 2}
+	reserve := []int{2, 3}
 
-	fmt.Println(체육복(n, nums, reserve))
+	fmt.Println(체육복(n, lost, reserve))
 }
 
 func 체육복(n int, lost []int, reserve []int) int {
@@ -84,14 +84,14 @@ func countStudentWhoHasGymSuit(students []Students) int {
 			continue
 		}
 
-		if i < len(students)-1 && students[i+1].reserve {
+		if i < len(students)-1 && students[i+1].reserve && !students[i+1].lost {
 			students[i+1].reserve = false
 			students[i].lost = false
 			result++
 			continue
 		}
 
-		if i > 0 && students[i-1].reserve {
+		if i > 0 && students[i-1].reserve && !students[i-1].lost {
 			students[i-1].reserve = false
 			students[i].lost = false
 			result++
