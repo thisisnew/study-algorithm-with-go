@@ -3,7 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	nums := []int{1, 2, 3, 4}
+	nums := []int{
+		1, 2, 7, 6, 4,
+	}
 
 	fmt.Println(소수만들기(nums))
 }
