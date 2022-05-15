@@ -15,13 +15,16 @@ func 소수만들기(nums []int) int {
 
 	for i := 0; i < len(nums)-2; i++ {
 
-		n := nums[i] + nums[i+1] + nums[i+2]
+		for j := i + 1; j < len(nums)-1; j++ {
+			for k := j + 1; k < len(nums); k++ {
+				n := nums[i] + nums[j] + nums[k]
 
-		if !isPrimeNumber(n) {
-			continue
+				if isPrimeNumber(n) {
+					result++
+				}
+
+			}
 		}
-
-		result++
 	}
 
 	return result
