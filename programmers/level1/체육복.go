@@ -19,86 +19,67 @@ func main() {
 
 func 체육복(n int, lost []int, reserve []int) int {
 
-	students := generateStudents(n)
+	var lostAndNotReserved []int
+	var lostAndNotBorrowed []int
 
-	for i := 0; i < len(students); i++ {
-		students[i].lost = isLostStudent(lost, students[i].num)
-		students[i].reserve = isReservedStudent(reserve, students[i].num)
-	}
+	for i := 0; i < len(lost); i++ {
 
-	return countStudentWhoHasGymSuit(students)
-}
+		isReserved, reservedButNotLost := isReservedStudent(reserve, lost[i])
 
-func generateStudents(n int) []Students {
-	var result []Students
+		reserve = reservedButNotLost
 
-	for i := 0; i < n; i++ {
-
-		r := Students{
-			num: i + 1,
+		if isReserved {
+			continue
 		}
 
-		result = append(result, r)
+		lostAndNotReserved = append(lostAndNotReserved, lost[i])
 	}
 
-	return result
-}
+	for i := 0; i < len(lostAndNotReserved); i++ {
+		canBorrow, notReservedYet := canBorrowGymSuit(reserve, lostAndNotReserved[i])
 
-func isLostStudent(lost []int, n int) bool {
+		reserve = notReservedYet
 
-	for _, ln := range lost {
-		if ln == n {
-			return true
+		if canBorrow {
+			continue
 		}
+
+		lostAndNotBorrowed = append(lostAndNotBorrowed, lostAndNotReserved[i])
 	}
 
-	return false
+	return n - len(lostAndNotBorrowed)
 }
 
-func isReservedStudent(reserve []int, n int) bool {
+func isReservedStudent(reserve []int, n int) (bool, []int) {
+
+	var reservedButNotLost []int
+	var isReserved bool
 
 	for _, rn := range reserve {
 		if rn == n {
-			return true
+			isReserved = true
+			continue
 		}
+
+		reservedButNotLost = append(reservedButNotLost, rn)
 	}
 
-	return false
+	return isReserved, reservedButNotLost
 }
 
-func countStudentWhoHasGymSuit(students []Students) int {
+func canBorrowGymSuit(reserve []int, n int) (bool, []int) {
 
-	var result int
+	var notLendYet []int
+	var canBorrow bool
 
-	for i := 0; i < len(students); i++ {
-
-		if !students[i].lost {
-			result++
+	for _, rn := range reserve {
+		if rn == n-1 || rn == n+1 {
+			canBorrow = true
 			continue
 		}
 
-		if students[i].reserve {
-			students[i].reserve = false
-			students[i].lost = false
-			result++
-			continue
-		}
-
-		if i < len(students)-1 && students[i+1].reserve && !students[i+1].lost {
-			students[i+1].reserve = false
-			students[i].lost = false
-			result++
-			continue
-		}
-
-		if i > 0 && students[i-1].reserve && !students[i-1].lost {
-			students[i-1].reserve = false
-			students[i].lost = false
-			result++
-			continue
-		}
-
+		notLendYet = append(notLendYet, rn)
 	}
 
-	return result
+	return canBorrow, notLendYet
 }
