@@ -77,6 +77,13 @@ func countStudentWhoHasGymSuit(students []Students) int {
 			continue
 		}
 
+		if students[i].reserve {
+			students[i].reserve = false
+			students[i].lost = false
+			result++
+			continue
+		}
+
 		if i >= 0 && i < len(students)-1 {
 			if students[i+1].reserve {
 				students[i+1].reserve = false
