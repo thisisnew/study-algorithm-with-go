@@ -12,7 +12,7 @@ func main() {
 
 	n := 5
 	nums := []int{2, 4}
-	reserve := []int{3}
+	reserve := []int{2, 4}
 
 	fmt.Println(체육복(n, nums, reserve))
 }
@@ -77,7 +77,7 @@ func countStudentWhoHasGymSuit(students []Students) int {
 			continue
 		}
 
-		if students[i].reserve {
+		if students[i].lost && students[i].reserve {
 			students[i].reserve = false
 			students[i].lost = false
 			result++
