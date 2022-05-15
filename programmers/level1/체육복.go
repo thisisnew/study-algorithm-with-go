@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 type Students struct {
 	num     int
@@ -18,6 +21,14 @@ func main() {
 }
 
 func 체육복(n int, lost []int, reserve []int) int {
+
+	sort.Slice(lost, func(i, j int) bool {
+		return lost[i] < lost[j]
+	})
+
+	sort.Slice(reserve, func(i, j int) bool {
+		return reserve[i] < reserve[j]
+	})
 
 	var lostAndNotReserved []int
 	var lostAndNotBorrowed []int
