@@ -7,86 +7,73 @@ import (
 
 func main() {
 
-	idList := []string{"muzi", "frodo", "apeach", "neo"}
+	idList := []string{"con", "ryan"}
 	report := []string{
-		"muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi",
+		"ryan con", "ryan con", "ryan con", "ryan con",
 	}
 
-	fmt.Println(신고결과받기(idList, report, 2))
+	fmt.Println(신고결과받기(idList, report, 3))
 }
 
 func 신고결과받기(id_list []string, report []string, k int) []int {
 
-	reporters := make(map[string]int, len(report))
-	userMap := generateUserMap(id_list)
-
-	for _, rp := range report {
-		reportedPerson := strings.Split(rp, " ")[1]
-		userMap[reportedPerson]++
-	}
-
-	stopUserMap := generateStopUserMap(userMap, k)
-
-	for _, rp := range report {
-
-		rpDetail := strings.Split(rp, " ")
-		reporter := rpDetail[0]
-		reportedPerson := rpDetail[1]
-
-		isReportedPersonStopped := isReportedPersonStopped(reportedPerson, stopUserMap)
-
-		if isReportedPersonStopped {
-			reporters[reporter]++
-		}
-	}
+	reporters := generateReporterList(report)
+	reportedPeopleCount := generateReportedPersonCount(reporters)
 
 	var result []int
-
 	for _, id := range id_list {
-		result = append(result, reporters[id])
-	}
+		var cnt int
+		reportedPeople := reporters[id]
 
-	return result
-}
-
-func generateUserMap(id_list []string) map[string]int {
-
-	result := make(map[string]int, len(id_list))
-
-	for _, id := range id_list {
-		result[id] = 0
-	}
-
-	return result
-}
-
-func generateStopUserMap(userMap map[string]int, k int) map[string]bool {
-
-	result := make(map[string]bool, len(userMap))
-
-	for key, val := range userMap {
-
-		if val == k {
-			result[key] = true
-			continue
+		for _, reportedPerson := range reportedPeople {
+			if reportedPeopleCount[reportedPerson] >= k {
+				cnt++
+			}
 		}
 
-		result[key] = false
+		result = append(result, cnt)
 	}
 
 	return result
 }
 
-func isReportedPersonStopped(reportedPerson string, stopUserMap map[string]bool) bool {
+func generateReporterList(report []string) map[string][]string {
 
-	for k, v := range stopUserMap {
+	var reporters = make(map[string][]string, len(report))
 
-		if k != reportedPerson {
-			continue
-		}
+	for _, rp := range report {
+		rpSlice := strings.Split(rp, " ")
 
-		return v
+		reporters[rpSlice[0]] = addReportedPerson(reporters[rpSlice[0]], rpSlice[1])
 	}
 
-	return false
+	return reporters
+}
+
+func addReportedPerson(reportedPeople []string, reportedPerson string) []string {
+
+	if reportedPeople == nil {
+		return []string{reportedPerson}
+	}
+
+	for _, rp := range reportedPeople {
+		if rp == reportedPerson {
+			return reportedPeople
+		}
+	}
+
+	reportedPeople = append(reportedPeople, reportedPerson)
+	return reportedPeople
+}
+
+func generateReportedPersonCount(reporters map[string][]string) map[string]int {
+	var result = make(map[string]int, len(reporters))
+
+	for _, reportedPeople := range reporters {
+		for _, reportedPerson := range reportedPeople {
+			result[reportedPerson]++
+		}
+	}
+
+	return result
 }
