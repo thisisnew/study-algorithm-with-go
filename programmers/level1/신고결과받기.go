@@ -22,14 +22,7 @@ func 신고결과받기(id_list []string, report []string, k int) []int {
 
 	var result []int
 	for _, id := range id_list {
-		var cnt int
-		reportedPeople := reporters[id]
-
-		for _, reportedPerson := range reportedPeople {
-			if reportedPeopleCount[reportedPerson] >= k {
-				cnt++
-			}
-		}
+		cnt := sendMail(reporters, reportedPeopleCount, id, k)
 
 		result = append(result, cnt)
 	}
@@ -76,4 +69,18 @@ func generateReportedPersonCount(reporters map[string][]string) map[string]int {
 	}
 
 	return result
+}
+
+func sendMail(reporters map[string][]string, reportedPeopleCount map[string]int, id string, k int) int {
+	var cnt int
+
+	reportedPeople := reporters[id]
+
+	for _, reportedPerson := range reportedPeople {
+		if reportedPeopleCount[reportedPerson] >= k {
+			cnt++
+		}
+	}
+
+	return cnt
 }
