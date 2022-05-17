@@ -8,17 +8,17 @@ func main() {
 
 func 피보나치수(n int) int {
 
-	var result = fibo(n)
+	var result = fibonacci(n)
 
 	return result % 1234567
 
 }
 
-func fibo(n int) int {
+func fibonacci(n int) int {
 
 	if n <= 1 {
 		return n
 	}
 
-	return fibo(n-1) + fibo(n-2)
+	return fibonacci(n-1) + fibonacci(n-2)
 }
