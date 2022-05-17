@@ -66,3 +66,11 @@ func controlDown(idx int, dist int32) (int, int) {
 
 	return result, idx
 }
+
+func cursorLeft() {
+
+}
+
+func cursorRight() {
+
+}
