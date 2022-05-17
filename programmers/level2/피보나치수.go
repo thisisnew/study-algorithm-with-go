@@ -3,22 +3,25 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(피보나치수(3))
+	fmt.Println(피보나치수(5))
 }
 
 func 피보나치수(n int) int {
 
-	var result = fibonacci(n)
+	var fibo []int
 
-	return result % 1234567
+	for i := 0; i <= n; i++ {
 
-}
+		switch i {
+		case 0:
+			fibo = append(fibo, 0)
+		case 1:
+			fibo = append(fibo, 1)
+		default:
+			fibo = append(fibo, (fibo[i-1]+fibo[i-2])%1234567)
+		}
 
-func fibonacci(n int) int {
-
-	if n <= 1 {
-		return n
 	}
 
-	return fibonacci(n-1) + fibonacci(n-2)
+	return fibo[n]
 }
