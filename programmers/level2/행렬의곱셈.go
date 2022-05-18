@@ -24,21 +24,31 @@ func 행렬의곱셈(arr1 [][]int, arr2 [][]int) [][]int {
 	var idx int
 	var result [][]int
 
+out:
 	for {
-
-		if idx > len(arr2[0]) {
-			break
-		}
 
 		for _, ar := range arr1 {
 
 			var a []int
 
 			for _, prop := range ar {
+
+				var sum int
+
 				for _, ar2 := range arr2 {
-					a = append(a, prop*ar2[idx])
+
+					if idx == len(ar2) {
+						break out
+					}
+
+					sum += prop * ar2[idx]
 				}
+
+				a = append(a, sum)
+				idx++
 			}
+
+			result = append(result, a)
 		}
 	}
 
