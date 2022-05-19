@@ -14,5 +14,26 @@ func main() {
 }
 
 func 위장(clothes [][]string) int {
-	return 0
+
+	var resultMap = map[string][]string{}
+
+	for _, cloth := range clothes {
+
+		c, ok := resultMap[cloth[1]]
+
+		if !ok {
+			resultMap[cloth[1]] = []string{cloth[0]}
+			continue
+		}
+
+		c = append(c, cloth[0])
+	}
+
+	var result = 1
+
+	for _, v := range resultMap {
+		result *= len(v)
+	}
+
+	return result
 }
