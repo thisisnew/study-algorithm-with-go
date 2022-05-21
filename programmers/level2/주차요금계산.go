@@ -36,7 +36,7 @@ func calculateTimesByVehicles(records []string) map[string]int {
 
 		tm := recordSlice[0]
 		num := recordSlice[1]
-		//inOut := recordSlice[2]
+
 		temp[num] = append(temp[num], tm)
 
 	}
@@ -58,7 +58,7 @@ func calculateTimesByVehicles(records []string) map[string]int {
 				continue
 			}
 
-			result[k] += getDurationTwoTimes(v[i-1], v[i])
+			result[k] += getDurationTwoTimes(v[i], v[i-1])
 		}
 
 	}
