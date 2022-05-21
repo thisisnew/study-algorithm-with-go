@@ -59,8 +59,8 @@ func calculateTimesByVehicles(records []string) map[string]int {
 			}
 
 			result[k] += getDurationTwoTimes(v[i], v[i-1])
-		}
 
+		}
 	}
 
 	return result
