@@ -8,6 +8,11 @@ import (
 	"time"
 )
 
+const (
+	Layout   = "15:04"
+	LastTime = "23:59"
+)
+
 func main() {
 	fees := []int{
 		180,
@@ -42,6 +47,7 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 
 	var temp = map[string][]string{}
 	var result = map[string]float64{}
+	var tempVehicles = map[string][]string{}
 	var vehicles []string
 
 	for _, record := range records {
@@ -58,15 +64,20 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 	sort.Strings(vehicles)
 
 	for _, vh := range vehicles {
+		tempVehicles[vh] = temp[vh]
+	}
 
-		if len(temp[vh])%2 == 0 {
+	for k, vh := range tempVehicles {
+
+		if len(vh)%2 == 0 {
 			continue
 		}
 
-		temp[vh] = append(temp[vh], "23:59")
+		vh = append(vh, LastTime)
+		tempVehicles[k] = vh
 	}
 
-	for k, v := range temp {
+	for k, v := range tempVehicles {
 
 		for i := len(v) - 1; i >= 0; i-- {
 
@@ -83,9 +94,8 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 
 func getDurationTwoTimes(after, before string) float64 {
 
-	layout := "15:04"
-	a, _ := time.Parse(layout, after)
-	b, _ := time.Parse(layout, before)
+	a, _ := time.Parse(Layout, after)
+	b, _ := time.Parse(Layout, before)
 
 	return a.Sub(b).Minutes()
 }
