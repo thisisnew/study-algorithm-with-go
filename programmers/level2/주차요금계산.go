@@ -42,7 +42,7 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 
 	var temp = map[string][]string{}
 	var result = map[string]float64{}
-	var sortKeys []string
+	var vehicles []string
 
 	for _, record := range records {
 
@@ -52,18 +52,18 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 		num := recordSlice[1]
 
 		temp[num] = append(temp[num], tm)
-		sortKeys = append(sortKeys, num)
+		vehicles = append(vehicles, num)
 	}
 
-	sort.Strings(sortKeys)
+	sort.Strings(vehicles)
 
-	for _, key := range sortKeys {
+	for _, vh := range vehicles {
 
-		if len(temp[key])%2 == 0 {
+		if len(temp[vh])%2 == 0 {
 			continue
 		}
 
-		temp[key] = append(temp[key], "23:59")
+		temp[vh] = append(temp[vh], "23:59")
 	}
 
 	for k, v := range temp {
