@@ -38,12 +38,12 @@ func main() {
 
 func 주차요금계산(fees []int, records []string) []int {
 
-	vehicles := calculateTimesByVehicles(records)
+	useTimes, vehicles := calculateTimesByVehicles(records)
 
-	return calculateFeesByVehicles(fees, vehicles)
+	return calculateFeesByVehicles(fees, useTimes, vehicles)
 }
 
-func calculateTimesByVehicles(records []string) map[string]float64 {
+func calculateTimesByVehicles(records []string) (map[string]float64, []string) {
 
 	var temp = map[string][]string{}
 	var result = map[string]float64{}
@@ -58,7 +58,10 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 		num := recordSlice[1]
 
 		temp[num] = append(temp[num], tm)
-		vehicles = append(vehicles, num)
+
+		if !isDuplicate(vehicles, num) {
+			vehicles = append(vehicles, num)
+		}
 	}
 
 	sort.Strings(vehicles)
@@ -77,7 +80,9 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 		tempVehicles[k] = vh
 	}
 
-	for k, v := range tempVehicles {
+	for _, vh := range vehicles {
+
+		v := tempVehicles[vh]
 
 		for i := len(v) - 1; i >= 0; i-- {
 
@@ -85,11 +90,22 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 				continue
 			}
 
-			result[k] += getDurationTwoTimes(v[i], v[i-1])
+			result[vh] += getDurationTwoTimes(v[i], v[i-1])
 		}
 	}
 
-	return result
+	return result, vehicles
+}
+
+func isDuplicate(vehicles []string, vehicle string) bool {
+
+	for _, vh := range vehicles {
+		if vh == vehicle {
+			return true
+		}
+	}
+
+	return false
 }
 
 func getDurationTwoTimes(after, before string) float64 {
@@ -100,7 +116,7 @@ func getDurationTwoTimes(after, before string) float64 {
 	return a.Sub(b).Minutes()
 }
 
-func calculateFeesByVehicles(fees []int, vehicles map[string]float64) []int {
+func calculateFeesByVehicles(fees []int, useTimes map[string]float64, vehicles []string) []int {
 
 	baseMinute := float64(fees[0])
 	baseFee := float64(fees[1])
@@ -111,13 +127,15 @@ func calculateFeesByVehicles(fees []int, vehicles map[string]float64) []int {
 
 	for _, vh := range vehicles {
 
-		if vh <= baseMinute {
+		useTime := useTimes[vh]
+
+		if useTime <= baseMinute {
 			result = append(result, int(baseFee))
 
 			continue
 		}
 
-		sum := baseFee + math.Ceil((vh-baseMinute)/unitMinute)*unitFee
+		sum := baseFee + math.Ceil((useTime-baseMinute)/unitMinute)*unitFee
 		result = append(result, int(sum))
 	}
 
