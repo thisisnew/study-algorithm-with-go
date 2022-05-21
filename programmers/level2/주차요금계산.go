@@ -15,14 +15,9 @@ func main() {
 
 func 주차요금계산(fees []int, records []string) []int {
 
-	//baseMinute := fees[0]
-	//baseFee := fees[1]
-	//unitMinute := fees[2]
-	//unitFee := fees[3]
-
 	vehicles := calculateTimesByVehicles(records)
-	fmt.Println(vehicles)
-	return []int{}
+
+	return calculationFeesByVehicles(fees, vehicles)
 }
 
 func calculateTimesByVehicles(records []string) map[string]int {
@@ -73,4 +68,28 @@ func getDurationTwoTimes(after, before string) int {
 	b, _ := time.Parse(layout, before)
 
 	return int(a.Sub(b).Minutes())
+}
+
+func calculationFeesByVehicles(fees []int, vehicles map[string]int) []int {
+
+	baseMinute := fees[0]
+	baseFee := fees[1]
+	unitMinute := fees[2]
+	unitFee := fees[3]
+
+	var result []int
+
+	for _, vh := range vehicles {
+
+		if vh <= baseMinute {
+			result = append(result, baseFee)
+
+			continue
+		}
+
+		sum := baseFee + ((vh - baseMinute) / unitMinute * unitFee)
+		result = append(result, sum)
+	}
+
+	return result
 }
