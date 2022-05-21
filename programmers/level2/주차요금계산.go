@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"sort"
 	"strings"
 	"time"
 )
@@ -30,18 +31,18 @@ func main() {
 	fmt.Println(주차요금계산(fees, result))
 }
 
-func 주차요금계산(fees []int, records []string) []float64 {
+func 주차요금계산(fees []int, records []string) []int {
 
 	vehicles := calculateTimesByVehicles(records)
 
 	return calculateFeesByVehicles(fees, vehicles)
-
 }
 
 func calculateTimesByVehicles(records []string) map[string]float64 {
 
 	var temp = map[string][]string{}
 	var result = map[string]float64{}
+	var sortKeys []string
 
 	for _, record := range records {
 
@@ -51,16 +52,18 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 		num := recordSlice[1]
 
 		temp[num] = append(temp[num], tm)
-
+		sortKeys = append(sortKeys, num)
 	}
 
-	for k, v := range temp {
+	sort.Strings(sortKeys)
 
-		if len(v)%2 == 0 {
+	for _, key := range sortKeys {
+
+		if len(temp[key])%2 == 0 {
 			continue
 		}
 
-		temp[k] = append(temp[k], "23:59")
+		temp[key] = append(temp[key], "23:59")
 	}
 
 	for k, v := range temp {
@@ -72,7 +75,6 @@ func calculateTimesByVehicles(records []string) map[string]float64 {
 			}
 
 			result[k] += getDurationTwoTimes(v[i], v[i-1])
-
 		}
 	}
 
@@ -88,25 +90,25 @@ func getDurationTwoTimes(after, before string) float64 {
 	return a.Sub(b).Minutes()
 }
 
-func calculateFeesByVehicles(fees []int, vehicles map[string]float64) []float64 {
+func calculateFeesByVehicles(fees []int, vehicles map[string]float64) []int {
 
 	baseMinute := float64(fees[0])
 	baseFee := float64(fees[1])
 	unitMinute := float64(fees[2])
 	unitFee := float64(fees[3])
 
-	var result []float64
+	var result []int
 
 	for _, vh := range vehicles {
 
 		if vh <= baseMinute {
-			result = append(result, baseFee)
+			result = append(result, int(baseFee))
 
 			continue
 		}
 
 		sum := baseFee + math.Ceil((vh-baseMinute)/unitMinute)*unitFee
-		result = append(result, sum)
+		result = append(result, int(sum))
 	}
 
 	return result
