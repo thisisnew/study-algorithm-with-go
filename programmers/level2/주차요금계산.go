@@ -100,14 +100,12 @@ func calculateFeesByVehicles(fees []int, vehicles map[string]float64) []float64 
 	for _, vh := range vehicles {
 
 		if vh <= baseMinute {
-			result = append(result, float64(baseFee))
+			result = append(result, baseFee)
 
 			continue
 		}
 
-		fee := math.Ceil((vh - baseMinute) / unitMinute)
-
-		sum := baseFee + fee*unitFee
+		sum := baseFee + math.Ceil((vh-baseMinute)/unitMinute)*unitFee
 		result = append(result, sum)
 	}
 
