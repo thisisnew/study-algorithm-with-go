@@ -11,5 +11,55 @@ func main() {
 }
 
 func hIndex(citations []int) int {
-	return 0
+
+	var result = 1
+
+	for {
+
+		a := above(result, citations)
+		b := below(result, citations)
+
+		if a != result || b != result {
+			result++
+			continue
+		}
+
+		break
+	}
+
+	return result
+}
+
+func above(n int, citations []int) int {
+
+	var result = 0
+
+	for _, c := range citations {
+
+		if c < n {
+			continue
+		}
+
+		result++
+	}
+
+	return result
+
+}
+
+func below(n int, citations []int) int {
+
+	var result = 0
+
+	for _, c := range citations {
+
+		if c > n {
+			continue
+		}
+
+		result++
+	}
+
+	return result
+
 }
