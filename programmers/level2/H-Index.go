@@ -41,6 +41,10 @@ func above(n int, citations []int) int {
 		}
 
 		result++
+
+		if result > n {
+			break
+		}
 	}
 
 	return result
@@ -58,6 +62,10 @@ func below(n int, citations []int) int {
 		}
 
 		result++
+
+		if result > n {
+			break
+		}
 	}
 
 	return result
