@@ -12,12 +12,12 @@ func main() {
 
 func hIndex(citations []int) int {
 
-	var result = 1
+	var result, a, b int
 
 	for {
 
-		a := above(result, citations)
-		b := below(result, citations)
+		a = above(result, citations)
+		b = below(result, citations)
 
 		if a != result || b != result {
 			result++
