@@ -38,5 +38,10 @@ func 위장(clothes [][]string) int {
 		plus += len(v)
 	}
 
-	return multiplying + plus
+	if len(resultMap) == 1 {
+		return plus
+	} else {
+		return multiplying + plus
+	}
+
 }
