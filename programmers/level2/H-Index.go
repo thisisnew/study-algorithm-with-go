@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
 
@@ -14,7 +17,16 @@ func hIndex(citations []int) int {
 
 	var result, a, b int
 
+	sort.Slice(citations, func(i, j int) bool {
+		return citations[i] > citations[j]
+	})
+
 	for {
+
+		if citations[0] <= result {
+			result = len(citations)
+			break
+		}
 
 		a = above(result, citations)
 		b = below(result, citations)
