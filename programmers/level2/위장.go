@@ -5,9 +5,9 @@ import "fmt"
 func main() {
 
 	clothes := [][]string{
-		{"yellowhat", "headgear"},
-		{"bluesunglasses", "eyewear"},
-		{"green_turban", "headgear"},
+		{"crowmask", "face"},
+		{"bluesunglasses", "face"},
+		{"smoky_makeup", "face"},
 	}
 
 	fmt.Println(위장(clothes))
@@ -27,13 +27,16 @@ func 위장(clothes [][]string) int {
 		}
 
 		c = append(c, cloth[0])
+		resultMap[cloth[1]] = c
 	}
 
-	var result = 1
+	var multiplying = 1
+	var plus = 0
 
 	for _, v := range resultMap {
-		result *= len(v)
+		multiplying *= len(v)
+		plus += len(v)
 	}
 
-	return result
+	return multiplying + plus
 }
