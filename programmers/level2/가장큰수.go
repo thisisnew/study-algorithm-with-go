@@ -16,23 +16,22 @@ func main() {
 
 func 가장큰수(numbers []int) string {
 
-	var result = make([]string, len(numbers))
+	sort.Slice(numbers, func(i, j int) bool {
+		a := strconv.Itoa(numbers[i])
+		b := strconv.Itoa(numbers[j])
 
-	for i, n := range numbers {
-		result[i] = strconv.Itoa(n)
-	}
-
-	sort.Slice(result, func(i, j int) bool {
-		a, _ := strconv.Atoi(fmt.Sprintf("%s%s", result[i], result[j]))
-		b, _ := strconv.Atoi(fmt.Sprintf("%s%s", result[j], result[i]))
-
-		return a-b >= 0
+		return a+b > b+a
 	})
 
-	if result[0] == "0" {
+	if numbers[0] == 0 {
 		return "0"
 	}
 
-	return strings.Join(result, "")
+	var result strings.Builder
 
+	for _, n := range numbers {
+		result.WriteString(strconv.Itoa(n))
+	}
+
+	return result.String()
 }
