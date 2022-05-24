@@ -28,10 +28,10 @@ func hIndex(citations []int) int {
 
 		if int(s) >= result {
 			result = int(math.Max(float64(result), s))
-		} else {
-			break
+			continue
 		}
 
+		break
 	}
 
 	return result
