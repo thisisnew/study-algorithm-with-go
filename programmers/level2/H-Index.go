@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"sort"
 )
 
@@ -22,12 +23,15 @@ func hIndex(citations []int) int {
 	})
 
 	for i, c := range citations {
-		if c < len(citations)-i {
-			continue
+
+		s := math.Min(float64(c), float64(len(citations)-i))
+
+		if int(s) >= result {
+			result = int(math.Max(float64(result), s))
+		} else {
+			break
 		}
 
-		result = len(citations) - i
-		break
 	}
 
 	return result
