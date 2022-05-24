@@ -22,9 +22,11 @@ func hIndex(citations []int) int {
 		return citations[i] < citations[j]
 	})
 
+	lc := len(citations)
+
 	for i, c := range citations {
 
-		s := math.Min(float64(c), float64(len(citations)-i))
+		s := math.Min(float64(c), float64(lc-i))
 
 		if int(s) >= result {
 			result = int(math.Max(float64(result), s))
