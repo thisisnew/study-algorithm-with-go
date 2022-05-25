@@ -15,8 +15,29 @@ func main() {
 func 다리를지나는트럭(bridge_length int, weight int, truck_weights []int) int {
 
 	var result int
+	var cTrucks []int
+
+	result++
+
+	totalWeight := getTotalTrucksWeight(cTrucks)
+
+	if totalWeight > weight {
+
+	}
 
 	return result
+}
+
+func getTotalTrucksWeight(cTrucks []int) int {
+
+	var result int
+
+	for _, c := range cTrucks {
+		result += c
+	}
+
+	return result
+
 }
 
 func crossingTheBridge() {
