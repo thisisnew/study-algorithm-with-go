@@ -21,7 +21,7 @@ func 다리를지나는트럭(bridge_length int, weight int, truck_weights []int
 
 	totalWeight := getTotalTrucksWeight(cTrucks)
 
-	if totalWeight > weight {
+	if totalWeight < weight {
 
 	}
 
