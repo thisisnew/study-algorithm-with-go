@@ -9,7 +9,19 @@ func 괄호회전하기(s string) int {
 }
 
 func isValidBracedString(s string) bool {
-	var result bool
 
-	return result
+	firstLetter := s[0:1]
+	lastLetter := s[len(s)-1:]
+
+	switch firstLetter {
+	case "}", "]", ")":
+		return false
+	}
+
+	switch lastLetter {
+	case "{", "[", "(":
+		return false
+	}
+
+	return true
 }
