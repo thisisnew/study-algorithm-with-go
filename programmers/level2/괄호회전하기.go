@@ -62,5 +62,9 @@ func isValidBracedString(s string) bool {
 
 	}
 
+	if cnt1 > 0 || cnt2 > 0 || cnt3 > 0 {
+		return false
+	}
+
 	return true
 }
