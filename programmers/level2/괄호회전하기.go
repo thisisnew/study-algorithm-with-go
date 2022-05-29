@@ -1,11 +1,24 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(괄호회전하기("[](){}"))
 }
 
 func 괄호회전하기(s string) int {
-	return -1
+
+	var result int
+
+	for {
+
+		if isValidBracedString(s) {
+			break
+		}
+
+	}
+
+	return result
 }
 
 func isValidBracedString(s string) bool {
