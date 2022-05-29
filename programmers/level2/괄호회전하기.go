@@ -35,15 +35,14 @@ func moveTokenLeft(s string) string {
 
 func isValidBracedString(s string) bool {
 
-	firstLetter := s[0:1]
-	lastLetter := s[len(s)-1:]
-
-	switch firstLetter {
+	//first
+	switch s[0:1] {
 	case "}", "]", ")":
 		return false
 	}
 
-	switch lastLetter {
+	//last
+	switch s[len(s)-1:] {
 	case "{", "[", "(":
 		return false
 	}
