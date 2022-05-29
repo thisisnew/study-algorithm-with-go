@@ -16,9 +16,16 @@ func 괄호회전하기(s string) int {
 			break
 		}
 
+		result++
+		s = moveTokenLeft(s)
+
 	}
 
 	return result
+}
+
+func moveTokenLeft(s string) string {
+	return s[1:] + s[0:1]
 }
 
 func isValidBracedString(s string) bool {
