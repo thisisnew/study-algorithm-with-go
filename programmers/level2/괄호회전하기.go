@@ -10,14 +10,19 @@ func 괄호회전하기(s string) int {
 
 	var result int
 
+	var sCopy = s
+
 	for {
 
 		if isValidBracedString(s) {
-			break
+			result++
 		}
 
-		result++
 		s = moveTokenLeft(s)
+
+		if s == sCopy {
+			break
+		}
 
 	}
 
