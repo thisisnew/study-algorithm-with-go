@@ -40,7 +40,6 @@ func getMinimalNumberHasDifBits(n int64) int64 {
 	}
 
 	return result
-
 }
 
 func addZeros(bin string, n int) string {
@@ -67,7 +66,6 @@ func setBitsLength(binN, binDif string) (string, string) {
 	}
 
 	return binN, binDif
-
 }
 
 func countDifBits(binN, binDif string) int {
@@ -76,12 +74,12 @@ func countDifBits(binN, binDif string) int {
 
 	for i := 0; i < len(binDif); i++ {
 
-		if binDif[i:i+1] != binN[i:i+1] {
-			result++
+		if binDif[i:i+1] == binN[i:i+1] {
+			continue
 		}
 
+		result++
 	}
 
 	return result
-
 }
