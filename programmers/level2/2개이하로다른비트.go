@@ -1,9 +1,14 @@
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
+	numbers := []int64{2, 7}
 
+	fmt.Println(두개이하로다른비트(numbers))
 }
 
 func 두개이하로다른비트(numbers []int64) []int64 {
@@ -26,16 +31,30 @@ func getMinimalNumberHasDifBits(n int64) int64 {
 
 	for {
 
+		result++
 		binDif := strconv.FormatInt(result, 2)
 
 		if countDifBits(binN, binDif) <= 2 {
 			break
 		}
 
-		result++
 	}
 
 	return result
+
+}
+
+func setBitsLength(binN, binDif string) (string, string) {
+
+	if len(binN) > len(binDif) {
+		return binN, binDif
+	}
+
+	if len(binN) < len(binDif) {
+		return binN, binDif
+	}
+
+	return binN, binDif
 
 }
 
