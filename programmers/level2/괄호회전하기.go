@@ -20,10 +20,11 @@ func 괄호회전하기(s string) int {
 
 		s = moveTokenLeft(s)
 
-		if s == sCopy {
-			break
+		if s != sCopy {
+			continue
 		}
 
+		break
 	}
 
 	return result
