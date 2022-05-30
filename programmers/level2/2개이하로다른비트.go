@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -34,7 +35,7 @@ func getMinimalNumberHasDifBits(n int64) int64 {
 		result++
 		binDif := strconv.FormatInt(result, 2)
 
-		if countDifBits(binN, binDif) <= 2 {
+		if countDifBits(setBitsLength(binN, binDif)) <= 2 {
 			break
 		}
 
@@ -44,14 +45,27 @@ func getMinimalNumberHasDifBits(n int64) int64 {
 
 }
 
+func addZeros(bin string, n int) string {
+
+	var result strings.Builder
+
+	for i := 0; i < n; i++ {
+		result.WriteString("0")
+	}
+
+	result.WriteString(bin)
+
+	return result.String()
+}
+
 func setBitsLength(binN, binDif string) (string, string) {
 
 	if len(binN) > len(binDif) {
-		return binN, binDif
+		return binN, addZeros(binDif, len(binN)-len(binDif))
 	}
 
 	if len(binN) < len(binDif) {
-		return binN, binDif
+		return addZeros(binN, len(binDif)-len(binN)), binDif
 	}
 
 	return binN, binDif
