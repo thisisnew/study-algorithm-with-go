@@ -17,7 +17,13 @@ func 두개이하로다른비트(numbers []int64) []int64 {
 	var result = make([]int64, len(numbers))
 
 	for i, n := range numbers {
-		result[i] = getMinimalNumberHasDifBits(n)
+
+		if n%2 == 0 {
+			result[i] = n + 1
+		} else {
+			result[i] = getMinimalNumberHasDifBits(n)
+		}
+
 	}
 
 	return result
