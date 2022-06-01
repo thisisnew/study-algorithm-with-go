@@ -19,7 +19,7 @@ func 두개이하로다른비트(numbers []int64) []int64 {
 	for i, n := range numbers {
 
 		if n%2 != 0 {
-			result[i] = n + int64(math.Pow(2, getMinimalNumberHasDifBits(n)-1))
+			result[i] = n + int64(math.Pow(2, countOneBits(n)-1))
 		} else {
 			result[i] = n + 1
 		}
@@ -29,7 +29,7 @@ func 두개이하로다른비트(numbers []int64) []int64 {
 	return result
 }
 
-func getMinimalNumberHasDifBits(n int64) float64 {
+func countOneBits(n int64) float64 {
 
 	var result float64
 	var binN = strconv.FormatInt(n, 2)
