@@ -50,9 +50,7 @@ func getMinimalNumberHasDifBits(n int64) int64 {
 
 	}
 
-	dec, _ := strconv.Atoi(sb.String())
-	decN := strconv.FormatInt(int64(dec), 10)
-	result, _ := strconv.Atoi(decN)
+	dec, _ := strconv.ParseInt(sb.String(), 2, 64)
 
-	return int64(result)
+	return dec
 }
