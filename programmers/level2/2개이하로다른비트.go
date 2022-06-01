@@ -47,7 +47,6 @@ func getMinimalNumberHasDifBits(n int64) int64 {
 		sb.WriteString(binN[0:lastZeroIdx])
 		sb.WriteString("10")
 		sb.WriteString(binN[nextLastZeroIdx+1:])
-
 	}
 
 	dec, _ := strconv.ParseInt(sb.String(), 2, 64)
