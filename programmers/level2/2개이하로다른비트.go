@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strconv"
-	"strings"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func 두개이하로다른비트(numbers []int64) []int64 {
 	for i, n := range numbers {
 
 		if n%2 != 0 {
-			result[i] = getMinimalNumberHasDifBits(n)
+			result[i] = n + int64(math.Pow(2, getMinimalNumberHasDifBits(n)-1))
 		} else {
 			result[i] = n + 1
 		}
@@ -29,27 +29,20 @@ func 두개이하로다른비트(numbers []int64) []int64 {
 	return result
 }
 
-func getMinimalNumberHasDifBits(n int64) int64 {
+func getMinimalNumberHasDifBits(n int64) float64 {
 
-	var sb strings.Builder
+	var result float64
 	var binN = strconv.FormatInt(n, 2)
 
-	if !strings.Contains(binN, "0") {
+	for i := len(binN) - 1; i >= 0; i-- {
 
-		sb.WriteString("10")
-		sb.WriteString(strings.ReplaceAll(binN[1:], "0", "1"))
+		if binN[i:i+1] == "0" {
+			break
+		}
 
-	} else {
+		result++
 
-		lastZeroIdx := strings.LastIndex(binN, "0")
-		nextLastZeroIdx := strings.Index(binN[lastZeroIdx:], "1")
-
-		sb.WriteString(binN[0:lastZeroIdx])
-		sb.WriteString("10")
-		sb.WriteString(binN[nextLastZeroIdx+1:])
 	}
 
-	dec, _ := strconv.ParseInt(sb.String(), 2, 64)
-
-	return dec
+	return result
 }
