@@ -18,10 +18,10 @@ func 두개이하로다른비트(numbers []int64) []int64 {
 
 	for i, n := range numbers {
 
-		if n%2 == 0 {
-			result[i] = n + 1
-		} else {
+		if n%2 != 0 {
 			result[i] = getMinimalNumberHasDifBits(n)
+		} else {
+			result[i] = n + 1
 		}
 
 	}
@@ -31,61 +31,28 @@ func 두개이하로다른비트(numbers []int64) []int64 {
 
 func getMinimalNumberHasDifBits(n int64) int64 {
 
-	var result = n
-	binN := strconv.FormatInt(n, 2)
+	var sb strings.Builder
+	var binN = strconv.FormatInt(n, 2)
 
-	for {
+	if !strings.Contains(binN, "0") {
 
-		result++
-		binDif := strconv.FormatInt(result, 2)
+		sb.WriteString("10")
+		sb.WriteString(strings.ReplaceAll(binN[1:], "0", "1"))
 
-		if countDifBits(setBitsLength(binN, binDif)) <= 2 {
-			break
-		}
+	} else {
+
+		lastZeroIdx := strings.LastIndex(binN, "0")
+		nextLastZeroIdx := strings.Index(binN[lastZeroIdx:], "1")
+
+		sb.WriteString(binN[0:lastZeroIdx])
+		sb.WriteString("10")
+		sb.WriteString(binN[nextLastZeroIdx+1:])
 
 	}
 
-	return result
-}
+	dec, _ := strconv.Atoi(sb.String())
+	decN := strconv.FormatInt(int64(dec), 10)
+	result, _ := strconv.Atoi(decN)
 
-func countDifBits(binN, binDif string) int {
-
-	var result int
-
-	for i := 0; i < len(binDif); i++ {
-
-		if binDif[i:i+1] == binN[i:i+1] {
-			continue
-		}
-
-		result++
-	}
-
-	return result
-}
-
-func setBitsLength(binN, binDif string) (string, string) {
-
-	if len(binN) > len(binDif) {
-		return binN, addZeros(binDif, len(binN)-len(binDif))
-	}
-
-	if len(binN) < len(binDif) {
-		return addZeros(binN, len(binDif)-len(binN)), binDif
-	}
-
-	return binN, binDif
-}
-
-func addZeros(bin string, n int) string {
-
-	var result strings.Builder
-
-	for i := 0; i < n; i++ {
-		result.WriteString("0")
-	}
-
-	result.WriteString(bin)
-
-	return result.String()
+	return int64(result)
 }
