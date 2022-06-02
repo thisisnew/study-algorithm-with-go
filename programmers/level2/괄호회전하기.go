@@ -9,15 +9,15 @@ type Stack struct {
 	v *list.List
 }
 
-func NewStack() *Stack {
+func newStack() *Stack {
 	return &Stack{list.New()}
 }
 
-func (q *Stack) Push(v interface{}) {
+func (q *Stack) push(v interface{}) {
 	q.v.PushBack(v)
 }
 
-func (q *Stack) Pop() interface{} {
+func (q *Stack) pop() interface{} {
 	back := q.v.Back()
 	if back == nil {
 		return nil
@@ -26,8 +26,12 @@ func (q *Stack) Pop() interface{} {
 	return q.v.Remove(back)
 }
 
-func (q *Stack) Peek() interface{} {
+func (q *Stack) peek() interface{} {
 	return q.v.Back()
+}
+
+func (q *Stack) isEmpty() book {
+
 }
 
 func main() {
@@ -64,29 +68,29 @@ func moveTokenLeft(s string) string {
 
 func isValidBracedString(s string) bool {
 
-	stack := NewStack()
+	stack := newStack()
 
 	switch s {
 	case "[", "{", "(":
-		stack.Push(s)
+		stack.push(s)
 	case "]":
-		if stack.Peek() != "[" {
+		if stack.peek() != "[" {
 			return false
 		}
 
-		stack.Pop()
+		stack.pop()
 	case "}":
-		if stack.Peek() != "{" {
+		if stack.peek() != "{" {
 			return false
 		}
 
-		stack.Pop()
+		stack.pop()
 	case ")":
-		if stack.Peek() != "(" {
+		if stack.peek() != "(" {
 			return false
 		}
 
-		stack.Pop()
+		stack.pop()
 	}
 
 	return true
