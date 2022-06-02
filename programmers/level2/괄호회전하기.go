@@ -1,6 +1,30 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+)
+
+type Stack struct {
+	v *list.List
+}
+
+func NewStack() *Stack {
+	return &Stack{list.New()}
+}
+
+func (q *Stack) Push(v interface{}) {
+	q.v.PushBack(v)
+}
+
+func (q *Stack) Pop() interface{} {
+	back := q.v.Back()
+	if back == nil {
+		return nil
+	}
+
+	return q.v.Remove(back)
+}
 
 func main() {
 	fmt.Println(괄호회전하기("([{)}]"))
@@ -36,36 +60,7 @@ func moveTokenLeft(s string) string {
 
 func isValidBracedString(s string) bool {
 
-	var cnt1 int
-	var cnt2 int
-	var cnt3 int
-
-	for _, c := range s {
-
-		switch string(c) {
-		case "{":
-			cnt1++
-		case "[":
-			cnt2++
-		case "(":
-			cnt3++
-		case "}":
-			cnt1--
-		case "]":
-			cnt2--
-		case ")":
-			cnt3--
-		}
-
-		if cnt1 < 0 || cnt2 < 0 || cnt3 < 0 {
-			return false
-		}
-
-	}
-
-	if cnt1 > 0 || cnt2 > 0 || cnt3 > 0 {
-		return false
-	}
+	stack := NewStack()
 
 	return true
 }
