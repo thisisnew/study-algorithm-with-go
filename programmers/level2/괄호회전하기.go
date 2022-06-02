@@ -26,6 +26,10 @@ func (q *Stack) Pop() interface{} {
 	return q.v.Remove(back)
 }
 
+func (q *Stack) Peek() interface{} {
+	return q.v.Back()
+}
+
 func main() {
 	fmt.Println(괄호회전하기("([{)}]"))
 }
@@ -61,6 +65,29 @@ func moveTokenLeft(s string) string {
 func isValidBracedString(s string) bool {
 
 	stack := NewStack()
+
+	switch s {
+	case "[", "{", "(":
+		stack.Push(s)
+	case "]":
+		if stack.Peek() != "[" {
+			return false
+		}
+
+		stack.Pop()
+	case "}":
+		if stack.Peek() != "{" {
+			return false
+		}
+
+		stack.Pop()
+	case ")":
+		if stack.Peek() != "(" {
+			return false
+		}
+
+		stack.Pop()
+	}
 
 	return true
 }
