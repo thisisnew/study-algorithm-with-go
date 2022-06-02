@@ -30,8 +30,8 @@ func (q *Stack) peek() interface{} {
 	return q.v.Back()
 }
 
-func (q *Stack) isEmpty() book {
-
+func (q *Stack) isEmpty() bool {
+	return q.v.Len() > 0
 }
 
 func main() {
@@ -93,5 +93,5 @@ func isValidBracedString(s string) bool {
 		stack.pop()
 	}
 
-	return true
+	return stack.isEmpty()
 }
