@@ -19,6 +19,7 @@ func (q *Stack) push(v interface{}) {
 
 func (q *Stack) pop() interface{} {
 	back := q.v.Back()
+
 	if back == nil {
 		return nil
 	}
