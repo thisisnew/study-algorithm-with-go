@@ -17,7 +17,7 @@ func 카펫(brown int, yellow int) []int {
 
 	for {
 
-		if yellow%yWidth != 0 {
+		if !isValidYellowWidth(yellow, yWidth) {
 			yWidth++
 			continue
 		}
@@ -40,6 +40,17 @@ func 카펫(brown int, yellow int) []int {
 			continue
 		}
 
-		return []int{bWidth, bHeight}
+		break
 	}
+
+	return []int{bWidth, bHeight}
+
+}
+
+func isValidYellowWidth(yellow int, yWidth int) bool {
+	if yellow%yWidth != 0 {
+		return false
+	}
+
+	return true
 }
