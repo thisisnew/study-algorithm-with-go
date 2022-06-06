@@ -38,9 +38,3 @@ func 카펫(brown int, yellow int) []int {
 		return []int{bWidth, bHeight}
 	}
 }
-
-func getYellowWidth(yellow int, add int) int {
-
-	var width = 2 + add
-
-}
