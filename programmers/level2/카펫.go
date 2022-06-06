@@ -27,10 +27,7 @@ func 카펫(brown int, yellow int) []int {
 
 		bWidth, bHeight = calculateBrownWidthAndHeight(yWidth, yHeight)
 
-		bArea := bWidth * bHeight
-		yArea := yWidth * yHeight
-
-		if countBrown(bArea, yArea) != brown {
+		if countBrown(calculateArea(bWidth, bHeight), calculateArea(yWidth, yHeight)) != brown {
 			yWidth++
 			continue
 		}
@@ -62,6 +59,10 @@ func calculateBrownWidthAndHeight(yWidth, yHeight int) (int, int) {
 	bHeight := yHeight + 2
 
 	return bWidth, bHeight
+}
+
+func calculateArea(width, height int) int {
+	return width * height
 }
 
 func countBrown(bArea int, yArea int) int {
