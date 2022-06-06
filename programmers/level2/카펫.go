@@ -12,6 +12,7 @@ func main() {
 func 카펫(brown int, yellow int) []int {
 
 	var yWidth = 1
+	var yHeight int
 	var bWidth int
 	var bHeight int
 
@@ -22,7 +23,7 @@ func 카펫(brown int, yellow int) []int {
 			continue
 		}
 
-		yHeight := yellow / yWidth
+		yHeight = calculateYellowHeight(yellow, yWidth)
 
 		bWidth = yWidth + 2
 		bHeight = yHeight + 2
@@ -55,4 +56,8 @@ func isValidYellowWidth(yellow int, yWidth int) bool {
 
 func countBrown(bArea int, yArea int) int {
 	return bArea - yArea
+}
+
+func calculateYellowHeight(yellow int, yWidth int) int {
+	return yellow / yWidth
 }
