@@ -32,7 +32,7 @@ func 카펫(brown int, yellow int) []int {
 			continue
 		}
 
-		if isBrownHeightLongerThenBrownWidth(bHeight, bWidth) {
+		if isBrownWidthShorterThenBrownHeight(bWidth, bHeight) {
 			yWidth++
 			continue
 		}
@@ -69,6 +69,6 @@ func countBrown(bArea int, yArea int) int {
 	return bArea - yArea
 }
 
-func isBrownHeightLongerThenBrownWidth(bHeight, bWidth int) bool {
-	return bHeight > bWidth
+func isBrownWidthShorterThenBrownHeight(bWidth, bHeight int) bool {
+	return bWidth < bHeight
 }
