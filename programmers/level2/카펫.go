@@ -10,19 +10,37 @@ func main() {
 }
 
 func 카펫(brown int, yellow int) []int {
-	sum := brown + yellow
 
-	var result []int
+	var yWidth = 2
+	var bWidth int
+	var bHeight int
 
-	for i := 1; i < (brown / 2); i++ {
+	for {
 
-		if i*2+2 != brown {
+		if yellow%yWidth != 0 {
+			yWidth++
 			continue
 		}
 
-		result = []int{i, sum / i}
-		break
-	}
+		yHeight := yellow / yWidth
 
-	return result
+		bWidth = yWidth + 2
+		bHeight = yHeight + 2
+
+		bArea := bWidth * bHeight
+		yArea := yWidth * yHeight
+
+		if bArea-yArea != brown {
+			yWidth++
+			continue
+		}
+
+		return []int{bWidth, bHeight}
+	}
+}
+
+func getYellowWidth(yellow int, add int) int {
+
+	var width = 2 + add
+
 }
