@@ -3,15 +3,15 @@ package main
 import "fmt"
 
 func main() {
-	brown := 10
-	yellow := 2
+	brown := 24
+	yellow := 24
 
 	fmt.Println(카펫(brown, yellow))
 }
 
 func 카펫(brown int, yellow int) []int {
 
-	var yWidth = 2
+	var yWidth = 1
 	var bWidth int
 	var bHeight int
 
@@ -31,6 +31,11 @@ func 카펫(brown int, yellow int) []int {
 		yArea := yWidth * yHeight
 
 		if bArea-yArea != brown {
+			yWidth++
+			continue
+		}
+
+		if bHeight > bWidth {
 			yWidth++
 			continue
 		}
