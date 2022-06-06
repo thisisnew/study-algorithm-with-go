@@ -30,7 +30,7 @@ func 카펫(brown int, yellow int) []int {
 		bArea := bWidth * bHeight
 		yArea := yWidth * yHeight
 
-		if bArea-yArea != brown {
+		if countBrown(bArea, yArea) != brown {
 			yWidth++
 			continue
 		}
@@ -40,10 +40,8 @@ func 카펫(brown int, yellow int) []int {
 			continue
 		}
 
-		break
+		return []int{bWidth, bHeight}
 	}
-
-	return []int{bWidth, bHeight}
 
 }
 
@@ -53,4 +51,8 @@ func isValidYellowWidth(yellow int, yWidth int) bool {
 	}
 
 	return true
+}
+
+func countBrown(bArea int, yArea int) int {
+	return bArea - yArea
 }
