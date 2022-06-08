@@ -7,5 +7,8 @@ func main() {
 }
 
 func 멀리뛰기(n int) int64 {
-	return 0
+
+	var result int64
+
+	return result
 }
