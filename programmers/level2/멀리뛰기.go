@@ -10,13 +10,23 @@ func main() {
 
 func 멀리뛰기(n int) int64 {
 
-	var result int64
+	var sl = make([]int64, n+1)
 
-	var sl = make([]int, n)
+	for i := 1; i <= n; i++ {
 
-	for i := 0; i < n; i++ {
-		sl[i] = 1
+		if i == 1 {
+			sl[i] = 1
+			continue
+		}
+
+		if i == 2 {
+			sl[i] = 2
+			continue
+		}
+
+		sl[i] = (sl[i-2] + sl[i-1]) % 1234567
+
 	}
 
-	return result / 1234567
+	return sl[n]
 }
