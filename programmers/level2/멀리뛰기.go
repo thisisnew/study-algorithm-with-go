@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 	fmt.Println(멀리뛰기(4))
@@ -10,5 +12,11 @@ func 멀리뛰기(n int) int64 {
 
 	var result int64
 
-	return result
+	var sl = make([]int, n)
+
+	for i := 0; i < n; i++ {
+		sl[i] = 1
+	}
+
+	return result / 1234567
 }
