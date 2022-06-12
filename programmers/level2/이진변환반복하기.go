@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
 	fmt.Println(이진변환반복하기())
@@ -32,4 +35,12 @@ func countAndRemoveZeros(s string) (string, int) {
 	}
 
 	return result, cnt
+}
+
+func convertDecimalToBinary(s string) string {
+
+	dec, _ := strconv.Atoi(s)
+
+	return strconv.FormatInt(int64(dec), 2)
+
 }
