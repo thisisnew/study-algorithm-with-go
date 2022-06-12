@@ -1,11 +1,43 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 func main() {
-	fmt.Println(N개의최소공배수([]int{2, 6, 8, 14}))
+	fmt.Println(N개의최소공배수([]int{1, 2, 3}))
 }
 
 func N개의최소공배수(arr []int) int {
-	return 0
+
+	sort.Slice(arr, func(i, j int) bool {
+		return arr[i] > arr[j]
+	})
+
+	var result = arr[0]
+
+	for {
+
+		if isLcm(arr, result) {
+			break
+		}
+
+		result++
+
+	}
+
+	return result
+}
+
+func isLcm(arr []int, lcm int) bool {
+
+	for _, n := range arr {
+		if lcm%n != 0 {
+			return false
+		}
+	}
+
+	return true
+
 }
