@@ -18,16 +18,14 @@ func N개의최소공배수(arr []int) int {
 	var result = arr[0]
 
 	for {
-
-		if isLcm(arr, result) {
-			break
+		if !isLcm(arr, result) {
+			result++
+			continue
 		}
 
-		result++
-
+		return result
 	}
 
-	return result
 }
 
 func isLcm(arr []int, lcm int) bool {
@@ -39,5 +37,4 @@ func isLcm(arr []int, lcm int) bool {
 	}
 
 	return true
-
 }
