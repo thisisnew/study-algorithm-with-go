@@ -7,7 +7,11 @@ func main() {
 }
 
 func 이진변환반복하기(s string) []int {
-	return []int{}
+
+	var cnt int
+	var result int
+
+	return []int{cnt, result}
 }
 
 func countAndRemoveZeros(s string) (string, int) {
