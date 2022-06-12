@@ -15,14 +15,14 @@ func 이진변환반복하기(s string) []int {
 	var result int
 
 	for {
-		result++
 
 		r, c := countAndRemoveZeros(s)
 
 		if c == 0 {
-			return []int{cnt, result}
+			return []int{result, cnt}
 		}
 
+		result++
 		cnt += c
 
 		s = convertDecimalToBinary(len(r))
