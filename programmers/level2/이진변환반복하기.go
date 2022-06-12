@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(이진변환반복하기())
+	fmt.Println(이진변환반복하기("110010101001"))
 }
 
 func 이진변환반복하기(s string) []int {
@@ -14,7 +14,20 @@ func 이진변환반복하기(s string) []int {
 	var cnt int
 	var result int
 
-	return []int{cnt, result}
+	for {
+		result++
+
+		r, c := countAndRemoveZeros(s)
+
+		if c == 0 {
+			return []int{cnt, result}
+		}
+
+		cnt += c
+
+		s = convertDecimalToBinary(len(r))
+
+	}
 }
 
 func countAndRemoveZeros(s string) (string, int) {
@@ -37,10 +50,6 @@ func countAndRemoveZeros(s string) (string, int) {
 	return result, cnt
 }
 
-func convertDecimalToBinary(s string) string {
-
-	dec, _ := strconv.Atoi(s)
-
-	return strconv.FormatInt(int64(dec), 2)
-
+func convertDecimalToBinary(l int) string {
+	return strconv.FormatInt(int64(l), 2)
 }
