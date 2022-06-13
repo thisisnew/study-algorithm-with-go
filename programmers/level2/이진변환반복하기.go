@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 func main() {
@@ -33,7 +34,7 @@ func 이진변환반복하기(s string) []int {
 func countAndRemoveZeros(s string) (string, int) {
 
 	var cnt int
-	var result string
+	var result strings.Builder
 
 	for _, r := range s {
 
@@ -44,10 +45,10 @@ func countAndRemoveZeros(s string) (string, int) {
 			continue
 		}
 
-		result += sr
+		result.WriteString(sr)
 	}
 
-	return result, cnt
+	return result.String(), cnt
 }
 
 func convertDecimalToBinary(l int) string {
