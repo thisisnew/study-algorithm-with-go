@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(이진변환반복하기("110010101001"))
+	fmt.Println(이진변환반복하기("01110"))
 }
 
 func 이진변환반복하기(s string) []int {
