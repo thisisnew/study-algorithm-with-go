@@ -12,10 +12,10 @@ func main() {
 func 큰수만들기(number string, k int) string {
 
 	var result []int
-	//var ln = len([]rune(number)) - k
+	var ln = len([]rune(number)) - k
 	var idx int
 
-	for _, num := range number {
+	for i, num := range number {
 
 		n, _ := strconv.Atoi(string(num))
 
@@ -28,6 +28,9 @@ func 큰수만들기(number string, k int) string {
 			result[idx] = n
 		}
 
+		if len([]rune(number[i:])) <= ln-len(result) {
+			idx++
+		}
 	}
 
 	return ""
