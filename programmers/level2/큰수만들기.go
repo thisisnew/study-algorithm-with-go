@@ -2,8 +2,7 @@ package main
 
 import (
 	"fmt"
-	"sort"
-	"strings"
+	"strconv"
 )
 
 func main() {
@@ -12,17 +11,24 @@ func main() {
 
 func 큰수만들기(number string, k int) string {
 
-	var sl []string
+	var result []int
+	//var ln = len([]rune(number)) - k
+	var idx int
 
-	for _, n := range number {
-		sl = append(sl, string(n))
+	for _, num := range number {
+
+		n, _ := strconv.Atoi(string(num))
+
+		if len(result) == 0 {
+			result = append(result, n)
+			continue
+		}
+
+		if n > result[idx] {
+			result[idx] = n
+		}
+
 	}
 
-	sort.Slice(sl, func(i, j int) bool {
-		return sl[i] > sl[j]
-	})
-
-	result := strings.Join(sl, "")
-
-	return result[0 : len(result)-k]
+	return ""
 }
