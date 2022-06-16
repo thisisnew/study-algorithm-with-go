@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(큰수만들기("1231234", 3))
+	fmt.Println(큰수만들기("1924", 3))
 }
 
 func 큰수만들기(number string, k int) string {
@@ -17,6 +17,12 @@ func 큰수만들기(number string, k int) string {
 
 	for i, num := range number {
 
+		remain := len([]rune(number[i:]))
+
+		if remain <= ln-1-idx {
+			idx++
+		}
+
 		n := string(num)
 
 		if len(strings.TrimSpace(result[idx])) == 0 {
@@ -26,12 +32,6 @@ func 큰수만들기(number string, k int) string {
 
 		if n > result[idx] {
 			result[idx] = n
-		}
-
-		remain := len([]rune(number[i:]))
-
-		if remain <= ln-1-idx {
-			idx++
 		}
 	}
 
