@@ -11,13 +11,19 @@ func main() {
 
 func 큰수만들기(number string, k int) string {
 
-	var result = []string{number[0:1]}
 	var ln = len([]rune(number)) - k
+	var result = make([]string, ln)
 	var idx int
 
-	for i := 1; i < len(number); i++ {
-		if number[i:i+1] > result[idx] {
-			result[idx] = number[i : i+1]
+	for i, n := range number {
+
+		if len(strings.TrimSpace(result[idx])) == 0 {
+			result[idx] = string(n)
+			continue
+		}
+
+		if string(n) > result[idx] {
+			result[idx] = string(n)
 		}
 
 		if len([]rune(number[i:])) <= ln-len(result) {
