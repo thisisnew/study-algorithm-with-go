@@ -15,18 +15,22 @@ func 큰수만들기(number string, k int) string {
 	var result = make([]string, ln)
 	var idx int
 
-	for i, n := range number {
+	for i, num := range number {
+
+		n := string(num)
 
 		if len(strings.TrimSpace(result[idx])) == 0 {
-			result[idx] = string(n)
+			result[idx] = n
 			continue
 		}
 
-		if string(n) > result[idx] {
-			result[idx] = string(n)
+		if n > result[idx] {
+			result[idx] = n
 		}
 
-		if len([]rune(number[i:])) <= ln-len(result) {
+		remain := len([]rune(number[i:]))
+
+		if remain <= ln-1-idx {
 			idx++
 		}
 	}
