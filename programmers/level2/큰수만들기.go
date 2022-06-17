@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -12,30 +13,56 @@ func main() {
 func 큰수만들기(number string, k int) string {
 
 	var ln = len([]rune(number)) - k
-	var result = make([]string, ln)
-	var idx int
+	var result string
+	numSlice := convertStringToArray(number)
 
-	for i, num := range number {
+	sort.Slice(numSlice, func(i, j int) bool {
+		return numSlice[i] > numSlice[j]
+	})
 
-		remain := len([]rune(number[i:]))
+	//남은길이체크 + 최대값찾기
+	//문자열 재할당당
 
-		if remain <= ln-1-idx {
-			if idx < ln-1 {
-				idx++
-			}
-		}
+	for _, num := range numSlice {
+		idx := getIndexByToken(num, number)
 
-		n := string(num)
-
-		if len(strings.TrimSpace(result[idx])) == 0 {
-			result[idx] = n
+		if idx < 0 {
 			continue
 		}
 
-		if n > result[idx] {
-			result[idx] = n
+		isLongerThanAnswer := isRemainNumberLongerThanAnswer(idx, number, ln)
+
+		if !isLongerThanAnswer {
+			continue
 		}
+
+		result += number[idx : idx+1]
+		number = number[idx+1:]
+		ln--
 	}
 
-	return strings.Join(result, "")
+	return result
+}
+
+func convertStringToArray(number string) []string {
+	return strings.Split(number, "")
+}
+
+func getIndexByToken(num string, number string) int {
+
+	for i, n := range number {
+
+		s := string(n)
+
+		if s == num {
+			return i
+		}
+
+	}
+
+	return -1
+}
+
+func isRemainNumberLongerThanAnswer(idx int, number string, ln int) bool {
+	return len([]rune(number[idx:])) > ln
 }
