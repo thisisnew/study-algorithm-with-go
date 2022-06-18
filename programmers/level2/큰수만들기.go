@@ -27,23 +27,18 @@ out:
 		}
 
 		for i, num := range numSlice {
+
 			idx := getIndexByToken(num, number)
 
-			if idx < 0 {
+			isLonger := isRemainNumberLongerThanAnswer(idx, number, ln)
+
+			if !isLonger {
 				continue
 			}
 
-			isLongerThanAnswer := isRemainNumberLongerThanAnswer(idx, number, ln)
-
-			if !isLongerThanAnswer {
-				continue
-			}
-
-			result += number[idx : idx+1]
-			number = number[idx+1:]
 			ln--
 			numSlice = regenerateStringSlice(numSlice, i)
-
+			result += num
 			continue out
 		}
 	}
