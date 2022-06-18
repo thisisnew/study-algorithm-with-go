@@ -37,6 +37,7 @@ out:
 			}
 
 			ln--
+			number = number[idx+1:]
 			numSlice = regenerateStringSlice(numSlice, i)
 			result += num
 			continue out
