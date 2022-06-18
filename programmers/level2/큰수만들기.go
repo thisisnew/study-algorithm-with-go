@@ -30,6 +30,10 @@ out:
 
 			idx := getIndexByToken(num, number)
 
+			if idx < 0 {
+				continue
+			}
+
 			isLonger := isRemainNumberLongerThanAnswer(idx, number, ln)
 
 			if !isLonger {
@@ -67,7 +71,7 @@ func getIndexByToken(num string, number string) int {
 }
 
 func isRemainNumberLongerThanAnswer(idx int, number string, ln int) bool {
-	return len([]rune(number[idx:])) > ln
+	return len([]rune(number[idx:])) >= ln
 }
 
 func regenerateStringSlice(numSlice []string, idx int) []string {
