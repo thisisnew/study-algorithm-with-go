@@ -20,6 +20,11 @@ func 큰수만들기(number string, k int) string {
 		return numSlice[i] > numSlice[j]
 	})
 
+	if numSlice[0] == numSlice[len(numSlice)-1] {
+		result = number[0:ln]
+		return result
+	}
+
 out:
 	for {
 		if ln == 0 {
