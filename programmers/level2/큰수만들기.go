@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -12,21 +11,19 @@ func main() {
 
 func 큰수만들기(number string, k int) string {
 
-	var result strings.Builder
-	var idx = 0
+	var result []string
 
-	for i := 0; i < len([]rune(number))-k; i++ {
-		var max = 0
-		for j := idx; j <= k+1; j++ {
-			num, _ := strconv.Atoi(number[j : j+1])
-			if max < num {
-				max = num
-				idx = j + 1
+	for _, n := range number {
+		for {
+			if len(result) == 0 || k <= 0 || result[len(result)-1] >= string(n) {
+				break
 			}
-		}
 
-		result.WriteString(strconv.Itoa(max))
+			result = result[:len(result)-1]
+			k--
+		}
+		result = append(result, string(n))
 	}
 
-	return result.String()
+	return strings.Join(result, "")[0 : len([]rune(number))-k]
 }
