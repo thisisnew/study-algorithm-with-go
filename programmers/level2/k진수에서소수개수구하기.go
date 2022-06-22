@@ -13,7 +13,13 @@ func k진수에서소수개수구하기(n int, k int) int {
 
 	var result int
 
-	kNumber := convertDecimalToKNumber(n, k)
+	kString := convertDecimalToKNumber(n, k)
+
+	kNumber, _ := strconv.Atoi(kString)
+
+	for _, num := range kString {
+
+	}
 
 	return result
 }
