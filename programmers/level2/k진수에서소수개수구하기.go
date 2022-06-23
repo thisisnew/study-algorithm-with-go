@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println(k진수에서소수개수구하기(437674, 3))
+	fmt.Println(k진수에서소수개수구하기(524287, 2))
 }
 
 func k진수에서소수개수구하기(n int, k int) int {
