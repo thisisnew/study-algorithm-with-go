@@ -14,21 +14,10 @@ func k진수에서소수개수구하기(n int, k int) int {
 
 	var result int
 
-	kString := convertDecimalToKNumber(n, k)
+	kStringSlice := strings.Split(convertDecimalToKNumber(n, k), "0")
 
-	//kNumber, _ := strconv.Atoi(kString)
-
-	var sb strings.Builder
-
-	for _, num := range kString {
-
-		if string(num) == "0" {
-			result += addResultIfPrimeNumber(sb.String())
-			sb.Reset()
-			continue
-		}
-
-		sb.WriteString(string(num))
+	for _, kString := range kStringSlice {
+		result += addResultIfPrimeNumber(kString)
 	}
 
 	return result
