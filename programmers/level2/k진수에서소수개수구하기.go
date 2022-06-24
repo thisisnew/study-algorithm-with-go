@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"strconv"
 	"strings"
 )
@@ -35,7 +36,9 @@ func addResultIfPrimeNumber(num string) int {
 		return 0
 	}
 
-	for i := 2; i < n; i++ {
+	sqrt := math.Sqrt(float64(n))
+
+	for i := 2; i < int(sqrt); i++ {
 
 		if n%i == 0 {
 			return 0
