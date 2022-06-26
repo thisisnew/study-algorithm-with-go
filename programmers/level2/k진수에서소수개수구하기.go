@@ -30,9 +30,9 @@ func convertDecimalToKNumber(n int, k int) string {
 
 func addResultIfPrimeNumber(num string) int {
 
-	n, _ := strconv.Atoi(num)
+	n, err := strconv.Atoi(num)
 
-	if n <= 1 {
+	if n <= 1 || err != nil {
 		return 0
 	}
 
