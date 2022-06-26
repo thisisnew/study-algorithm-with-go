@@ -30,17 +30,17 @@ func convertDecimalToKNumber(n int, k int) string {
 
 func addResultIfPrimeNumber(num string) int {
 
-	n, err := strconv.Atoi(num)
+	n, err := strconv.ParseFloat(num, 64)
 
 	if n <= 1 || err != nil {
 		return 0
 	}
 
-	sqrt := math.Sqrt(float64(n))
+	sqrt := math.Sqrt(n)
 
 	for i := 2; i < int(sqrt); i++ {
 
-		if n%i == 0 {
+		if int(n)%i == 0 {
 			return 0
 		}
 
