@@ -38,12 +38,19 @@ func addResultIfPrimeNumber(num string) int {
 
 	sqrt := math.Sqrt(n)
 
-	for i := 2; i < int(sqrt); i++ {
+	var i float64 = 2
 
-		if int(n)%i == 0 {
+	for {
+
+		if i >= sqrt {
+			break
+		}
+
+		if int(n)%int(i) == 0 {
 			return 0
 		}
 
+		i++
 	}
 
 	return 1
