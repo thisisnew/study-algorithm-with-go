@@ -42,7 +42,7 @@ func addResultIfPrimeNumber(num string) int {
 
 	for {
 
-		if i >= sqrt {
+		if i > sqrt {
 			break
 		}
 
