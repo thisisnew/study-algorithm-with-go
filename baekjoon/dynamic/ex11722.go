@@ -19,6 +19,9 @@ func main() {
 	var result []string
 
 	for _, s := range sl {
+
+		//todo
+
 		result = append(result, s)
 	}
 
