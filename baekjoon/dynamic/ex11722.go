@@ -19,7 +19,8 @@ func main() {
 	var result []string
 
 	for _, s := range sl {
-
+		result = append(result, s)
 	}
 
+	fmt.Println(len(result))
 }
