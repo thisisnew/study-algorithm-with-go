@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 	"strings"
 )
@@ -16,14 +17,22 @@ func main() {
 
 	sl := strings.Split(string(text), " ")
 
-	var result []string
+	var arr []string
+	var dp = make([]float64, n)
 
-	for _, s := range sl {
+	var result float64
+	for i, s := range sl {
+		arr = append(arr, s)
+		dp[i] = 1
 
-		//todo
+		for j := i - 1; j >= 0; j-- {
+			if arr[i] < arr[j] && dp[i] <= dp[j] {
+				dp[i] = dp[j] + 1
+			}
+		}
 
-		result = append(result, s)
+		result = math.Max(result, dp[i])
 	}
 
-	fmt.Println(len(result))
+	fmt.Println(result)
 }
