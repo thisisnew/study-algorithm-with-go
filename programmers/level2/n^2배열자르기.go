@@ -1,7 +1,9 @@
 package main
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println(n2배열자르기(3, 2, 5))
 }
 
 func n2배열자르기(n int, left int64, right int64) []int {
@@ -13,6 +15,8 @@ func generate2DSlice(n int) [][]int {
 	var result = make([][]int, n, n)
 
 	for i := 0; i < n; i++ {
+		result[i] = make([]int, n)
+
 		for j := 0; j < n; j++ {
 			result[i][j] = i
 		}
