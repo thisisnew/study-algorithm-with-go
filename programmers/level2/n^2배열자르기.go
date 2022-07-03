@@ -5,12 +5,7 @@ func main() {
 }
 
 func n2배열자르기(n int, left int64, right int64) []int {
-
-	var sl = generate2DSlice(n)
-
-	var result = convert2DSliceTo1DSlice(sl)
-
-	return result
+	return getSliceFromLeftToRight(convert2DSliceTo1DSlice(generate2DSlice(n)), left, right)
 }
 
 func generate2DSlice(n int) [][]int {
@@ -35,5 +30,15 @@ func convert2DSliceTo1DSlice(sl [][]int) []int {
 	}
 
 	return result
+}
 
+func getSliceFromLeftToRight(sl []int, left int64, right int64) []int {
+
+	var result []int
+
+	for i := left; i <= right; i++ {
+		result = append(result, sl[i])
+	}
+
+	return result
 }
