@@ -21,8 +21,10 @@ func main() {
 	var dp = make([]float64, n)
 
 	var result float64
+
 	for i, s := range sl {
 		arr = append(arr, s)
+
 		dp[i] = 1
 
 		for j := i - 1; j >= 0; j-- {
