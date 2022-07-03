@@ -30,7 +30,9 @@ func convert2DSliceTo1DSlice(sl [][]int) []int {
 	var result []int
 
 	for i := 0; i < len(sl); i++ {
-		result = append(result, sl[0][i])
+		for j := 0; j < len(sl); j++ {
+			result = append(result, sl[i][j])
+		}
 	}
 
 	return result
