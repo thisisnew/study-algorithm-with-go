@@ -19,7 +19,7 @@ func generate2DSlice(n int) [][]int {
 
 	for i := 0; i < n; i++ {
 		for j := 0; j < n; j++ {
-			result[i][j] = n - 1
+			result[i][j] = i
 		}
 	}
 
@@ -29,6 +29,10 @@ func generate2DSlice(n int) [][]int {
 func convert2DSliceTo1DSlice(sl [][]int) []int {
 
 	var result []int
+
+	for i := 0; i < len(sl); i++ {
+		result = append(result, sl[0][i])
+	}
 
 	return result
 
