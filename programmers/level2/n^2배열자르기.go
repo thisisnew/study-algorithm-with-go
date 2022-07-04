@@ -18,7 +18,7 @@ func generate2DSlice(n int) [][]int {
 		result[i] = make([]int, n)
 
 		for j := 0; j < n; j++ {
-			result[i][j] = i
+			result[i][j] = i + 1
 		}
 	}
 
