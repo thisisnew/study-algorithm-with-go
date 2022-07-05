@@ -18,11 +18,20 @@ func generate2DSlice(n int) [][]int {
 		result[i] = make([]int, n)
 
 		for j := 0; j < n; j++ {
-			result[i][j] = i + 1
+			result[i][j] = getValueCompareIAndJ(i, j)
 		}
 	}
 
 	return result
+}
+
+func getValueCompareIAndJ(i, j int) int {
+
+	if j > i {
+		return j + 1
+	}
+
+	return i + 1
 }
 
 func convert2DSliceTo1DSlice(sl [][]int) []int {
