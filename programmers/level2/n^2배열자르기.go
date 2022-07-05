@@ -36,11 +36,11 @@ func getValueCompareIAndJ(i, j int) int {
 
 func convert2DSliceTo1DSlice(sl [][]int) []int {
 
-	var result = make([]int, len(sl))
+	var result []int
 
 	for i := 0; i < len(sl); i++ {
 		for j := 0; j < len(sl); j++ {
-			result[i] = sl[i][j]
+			result = append(result, sl[i][j])
 		}
 	}
 
