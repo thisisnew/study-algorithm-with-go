@@ -19,9 +19,12 @@ func convert2DSliceTo1DSlice(n int, left int64, right int64) []int {
 		for j := 0; j < n; j++ {
 			v := getValueCompareIAndJ(i, j)
 			sl = append(sl, v)
-
 			if len(sl) >= (int(left)+1) && len(sl) <= (int(right)+1) {
 				result = append(result, v)
+			}
+
+			if len(result) >= int(right)-int(left)+1 {
+				break
 			}
 		}
 	}
