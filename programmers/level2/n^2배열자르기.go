@@ -18,7 +18,7 @@ func convert2DSliceTo1DSlice(n int, left int64, right int64) []float64 {
 	var result []float64
 
 	for left <= right {
-		result = append(result, math.Max(math.Floor(float64(int(left)/n)), float64(int(left+1)%n)+1))
+		result = append(result, math.Max(math.Floor(float64(int(left)/n)), float64(int(left+1)%n))+1)
 		left++
 	}
 
