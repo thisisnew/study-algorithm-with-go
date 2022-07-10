@@ -10,11 +10,6 @@ func main() {
 }
 
 func n2배열자르기(n int, left int64, right int64) []float64 {
-	return convert2DSliceTo1DSlice(n, left, right)
-}
-
-func convert2DSliceTo1DSlice(n int, left int64, right int64) []float64 {
-
 	var result []float64
 
 	for i := left; i <= right; i++ {
