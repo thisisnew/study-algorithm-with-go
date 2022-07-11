@@ -22,7 +22,6 @@ func main() {
 		} else {
 			fmt.Println("NO")
 		}
-
 	}
 }
 
@@ -37,11 +36,10 @@ func isSymmetry(n int) bool {
 func getReversedNumber(n int) int {
 
 	m := strconv.Itoa(n)
-
 	var sb strings.Builder
 
 	for i := len([]rune(m)) - 1; i >= 0; i-- {
-		sb.WriteString(m[i : i+1])
+		_, _ = sb.WriteString(m[i : i+1])
 	}
 
 	nReverse, _ := strconv.Atoi(sb.String())
