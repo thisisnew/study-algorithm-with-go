@@ -31,18 +31,19 @@ func main() {
 	}
 
 	var i = 0
-
+	var c = 1
 	for i < len(sl) {
 
 		var f = sl[i]
 		var s = sl[i+1]
 
 		if f == getReversedWord(s) {
-			fmt.Println(fmt.Sprintf("Case %v: same", i))
+			fmt.Println(fmt.Sprintf("Case %v: same", c))
 		} else {
-			fmt.Println(fmt.Sprintf("Case %v: different", i))
+			fmt.Println(fmt.Sprintf("Case %v: different", c))
 		}
 
+		c++
 		i += 2
 	}
 
