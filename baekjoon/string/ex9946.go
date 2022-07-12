@@ -37,7 +37,9 @@ func main() {
 		var f = sl[i]
 		var s = sl[i+1]
 
-		if f == getReversedWord(s) {
+		r := getReversedWord(s)
+
+		if f == r {
 			fmt.Println(fmt.Sprintf("Case %v: same", c))
 		} else {
 			fmt.Println(fmt.Sprintf("Case %v: different", c))
