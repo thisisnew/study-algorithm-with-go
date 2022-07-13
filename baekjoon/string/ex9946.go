@@ -24,11 +24,12 @@ func main() {
 			endCnt = 0
 		}
 
+		sl = append(sl, f)
+
 		if endCnt == 2 {
 			break
 		}
 
-		sl = append(sl, f)
 	}
 
 	var i = 0
@@ -37,6 +38,10 @@ func main() {
 
 		var f = sl[i]
 		var s = sl[i+1]
+
+		if f == "END" && s == "END" {
+			break
+		}
 
 		if isWithdrawRight(f, s) {
 			fmt.Println(fmt.Sprintf("Case %v: same", c))
