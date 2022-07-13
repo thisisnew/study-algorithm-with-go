@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -37,9 +38,7 @@ func main() {
 		var f = sl[i]
 		var s = sl[i+1]
 
-		r := getReversedWord(s)
-
-		if f == r {
+		if isWithdrawRight(f, s) {
 			fmt.Println(fmt.Sprintf("Case %v: same", c))
 		} else {
 			fmt.Println(fmt.Sprintf("Case %v: different", c))
@@ -51,13 +50,21 @@ func main() {
 
 }
 
-func getReversedWord(s string) string {
+func isWithdrawRight(f, s string) bool {
 
-	var result strings.Builder
-
-	for i := len([]rune(s)) - 1; i >= 0; i-- {
-		result.WriteString(s[i : i+1])
+	if len([]rune(f)) != len([]rune(s)) {
+		return false
 	}
 
-	return result.String()
+	if sortString(f) != sortString(s) {
+		return false
+	}
+
+	return true
+}
+
+func sortString(w string) string {
+	s := strings.Split(w, "")
+	sort.Strings(s)
+	return strings.Join(s, "")
 }
