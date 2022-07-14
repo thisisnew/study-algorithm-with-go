@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -13,7 +12,7 @@ func main() {
 	var n int
 	fmt.Fscanln(read, &n)
 
-	var seats = make([]int, n+1)
+	var seats = map[string]bool{}
 
 	text, _, _ := read.ReadLine()
 	reqs := strings.Split(string(text), " ")
@@ -22,14 +21,14 @@ func main() {
 
 	for _, seat := range reqs {
 
-		n, _ := strconv.Atoi(seat)
+		_, ok := seats[seat]
 
-		if seats[n] != 0 {
+		if ok {
 			result++
 			continue
 		}
 
-		seats[n]++
+		seats[seat] = true
 	}
 
 	fmt.Println(result)
