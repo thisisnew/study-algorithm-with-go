@@ -15,7 +15,27 @@ func main() {
 	fmt.Fscanln(read, &s)
 	fmt.Fscanln(read, &f)
 
+	if f < s {
+		f, s = s, f
+	}
+
+	for i := 0; i < f; i++ {
+
+	}
+
 	var result int
 
+	cal := calculateRune()
+
+	if result > cal {
+		result = cal
+	}
+
 	fmt.Println(result)
+}
+
+func calculateRune(a, b rune) int {
+	var result int
+
+	return result
 }
