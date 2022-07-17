@@ -15,11 +15,11 @@ func main() {
 	fmt.Fscanln(read, &s)
 	fmt.Fscanln(read, &f)
 
-	if f < s {
-		f, s = s, f
+	if n < m {
+		n, m = m, n
 	}
 
-	for i := 0; i < f; i++ {
+	for i := 0; i < n; i++ {
 
 	}
 
