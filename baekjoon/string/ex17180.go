@@ -17,6 +17,7 @@ func main() {
 
 	if n < m {
 		n, m = m, n
+		f, s = s, f
 	}
 
 	for i := 0; i < n; i++ {
