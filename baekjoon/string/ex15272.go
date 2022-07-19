@@ -23,9 +23,7 @@ func isHiss(input string) bool {
 	var sCnt = 0
 
 	for i := 0; i < len([]rune(input)); i++ {
-		s := input[i : i+1]
-
-		if s == "s" {
+		if input[i:i+1] == "s" {
 			sCnt++
 		} else {
 			sCnt = 0
@@ -34,7 +32,6 @@ func isHiss(input string) bool {
 		if sCnt == 2 {
 			return true
 		}
-
 	}
 
 	return false
