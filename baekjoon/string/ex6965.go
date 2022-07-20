@@ -28,12 +28,12 @@ func replace4lengthWordToAsterisk(input string) string {
 	var result = make([]string, len(tokens))
 
 	for i, token := range tokens {
-		if len([]rune(token)) != 4 {
-			result[i] = token
+		if len([]rune(token)) == 4 {
+			result[i] = "****"
 			continue
 		}
 
-		result[i] = "****"
+		result[i] = token
 	}
 
 	return strings.Join(result, " ")
