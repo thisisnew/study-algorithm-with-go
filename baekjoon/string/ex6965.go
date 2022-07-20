@@ -15,6 +15,10 @@ func main() {
 	for i := 0; i < n; i++ {
 		input, _, _ := read.ReadLine()
 		fmt.Println(replace4lengthWordToAsterisk(string(input)))
+
+		if i != n-1 {
+			fmt.Println()
+		}
 	}
 }
 
