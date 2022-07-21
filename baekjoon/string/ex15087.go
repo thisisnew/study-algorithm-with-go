@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -19,7 +20,7 @@ func divideDrm(drm string) (string, string) {
 	return drm[:len([]rune(drm))/2+1], drm[len([]rune(drm))/2+1:]
 }
 
-func sumTokenAsciiValue(input string) int32 {
+func sumTokenAsciiValue(input string) int {
 
 	var result int32
 
@@ -27,5 +28,15 @@ func sumTokenAsciiValue(input string) int32 {
 		result += n
 	}
 
-	return result
+	return int(result)
+}
+
+func getNewDrmWord(old string, asciiValue int) string {
+
+	var result strings.Builder
+
+	for _, o := range old {
+
+	}
+
 }
