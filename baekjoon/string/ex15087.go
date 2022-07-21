@@ -14,13 +14,16 @@ func main() {
 
 	pre, post := divideDrm(drm)
 
+	nPre := getNewDrmToken(pre, sumTokenAsciiValue(pre))
+	nPost := getNewDrmToken(post, sumTokenAsciiValue(post))
+
 }
 
 func divideDrm(drm string) (string, string) {
 	return drm[:len([]rune(drm))/2+1], drm[len([]rune(drm))/2+1:]
 }
 
-func sumTokenAsciiValue(input string) int {
+func sumTokenAsciiValue(input string) int32 {
 
 	var result int32
 
@@ -28,15 +31,20 @@ func sumTokenAsciiValue(input string) int {
 		result += n
 	}
 
-	return int(result)
+	return result
 }
 
-func getNewDrmWord(old string, asciiValue int) string {
+func getNewDrmToken(old string, asciiValue int32) string {
 
 	var result strings.Builder
 
 	for _, o := range old {
-
+		result.WriteString(string(o + asciiValue))
 	}
+
+	return result.String()
+}
+
+func getNewDrmWord(old string, token string) string {
 
 }
