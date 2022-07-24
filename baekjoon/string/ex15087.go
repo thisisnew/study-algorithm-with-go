@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -23,23 +24,23 @@ func divideDrm(drm string) (string, string) {
 	return drm[:len([]rune(drm))/2+1], drm[len([]rune(drm))/2+1:]
 }
 
-func sumTokenAsciiValue(input string) int32 {
+func sumTokenAsciiValue(input string) int {
 
-	var result int32
+	var result int
 
 	for _, n := range input {
-		result += n
+		result += int(n)
 	}
 
 	return result
 }
 
-func getNewDrmToken(old string, asciiValue int32) string {
+func getNewDrmToken(old string, asciiValue int) string {
 
 	var result strings.Builder
 
 	for _, o := range old {
-		result.WriteString(string(o + asciiValue))
+		result.WriteString(strconv.Itoa(int(o) + asciiValue))
 	}
 
 	return result.String()
