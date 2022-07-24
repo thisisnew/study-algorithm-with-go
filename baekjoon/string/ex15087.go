@@ -40,7 +40,14 @@ func getNewDrmToken(old string, asciiValue int) string {
 	var result strings.Builder
 
 	for _, o := range old {
-		result.WriteString(strconv.Itoa(int(o) + asciiValue))
+
+		v := int(o) + asciiValue
+
+		if v > int('Z') {
+			v = v - int('A')
+		}
+
+		result.WriteString(strconv.Itoa(v))
 	}
 
 	return result.String()
