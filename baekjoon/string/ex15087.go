@@ -45,11 +45,11 @@ func getNewDrmToken(old string, asciiValue int) string {
 		v := getDrmIntValue(string(o)) + asciiValue
 
 		for {
-			if v <= 25 {
+			if v <= 65 {
 				break
 			}
 
-			v = v - 25
+			v = v - 65
 		}
 
 		result.WriteString(getDrmCharacterValue(v))
