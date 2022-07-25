@@ -30,7 +30,7 @@ func sumTokenAsciiValue(input string) int {
 	var result int
 
 	for _, n := range input {
-		result += int(n)
+		result += int(n) - 65
 	}
 
 	return result
@@ -41,8 +41,7 @@ func getNewDrmToken(old string, asciiValue int) string {
 	var result strings.Builder
 
 	for _, o := range old {
-
-		v := int(o) + asciiValue - 65
+		v := int(o) - 65 + asciiValue
 
 		result.WriteString(string(v))
 	}
