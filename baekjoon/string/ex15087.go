@@ -41,10 +41,23 @@ func getNewDrmToken(old string, asciiValue int) string {
 	var result strings.Builder
 
 	for _, o := range old {
-		v := int(o) - 65 + asciiValue
-
-		result.WriteString(string(v))
+		result.WriteString(string(rotateDrmCharacter(int(o) + asciiValue)))
 	}
 
 	return result.String()
+}
+
+func rotateDrmCharacter(v int) int {
+
+	var result = v
+
+	for {
+		if result <= 90 {
+			break
+		}
+
+		result -= 26
+	}
+
+	return result
 }
