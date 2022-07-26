@@ -29,7 +29,7 @@ func sumTokenAsciiValue(input string) int {
 	var result int
 
 	for _, n := range input {
-		result += int(n) - 65
+		result += int(n) - int('A')
 	}
 
 	return result
@@ -51,11 +51,11 @@ func rotateDrmCharacter(v int) int {
 	var result = v
 
 	for {
-		if result <= 90 {
+		if result <= int('Z') {
 			break
 		}
 
-		result -= 26
+		result -= int('Z') - int('A') + 1
 	}
 
 	return result
@@ -65,7 +65,7 @@ func getDrmResultBetweenTwoWords(first, second string) string {
 	var result strings.Builder
 
 	for i, f := range first {
-		result.WriteString(string(rotateDrmCharacter(int(f) + int([]rune(second)[i]-65))))
+		result.WriteString(string(rotateDrmCharacter(int(f) + int([]rune(second)[i]) - int('A'))))
 	}
 
 	return result.String()
