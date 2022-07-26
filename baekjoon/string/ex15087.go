@@ -17,8 +17,7 @@ func main() {
 	nPre := getNewDrmToken(pre, sumTokenAsciiValue(pre))
 	nPost := getNewDrmToken(post, sumTokenAsciiValue(post))
 
-	fmt.Println(nPre)
-	fmt.Println(nPost)
+	fmt.Println(getDrmResultBetweenTwoWords(nPre, nPost))
 }
 
 func divideDrm(drm string) (string, string) {
@@ -60,4 +59,14 @@ func rotateDrmCharacter(v int) int {
 	}
 
 	return result
+}
+
+func getDrmResultBetweenTwoWords(first, second string) string {
+	var result strings.Builder
+
+	for i, f := range first {
+		result.WriteString(string(rotateDrmCharacter(int(f) + int([]rune(second)[i]-65))))
+	}
+
+	return result.String()
 }
