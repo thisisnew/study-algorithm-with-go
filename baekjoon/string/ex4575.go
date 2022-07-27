@@ -11,8 +11,9 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 
 	for {
-		var input string
-		fmt.Fscanln(read, &input)
+		text, _, _ := read.ReadLine()
+
+		var input = string(text)
 
 		if input == "END" {
 			break
