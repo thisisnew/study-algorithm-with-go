@@ -30,7 +30,7 @@ func main() {
 
 func hasDuplicateWord(input string) bool {
 
-	var sl = make([]bool, int('Z'))
+	var sl = make([]bool, int('Z')+1)
 
 	for _, w := range input {
 
