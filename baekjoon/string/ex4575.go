@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
+	"unicode"
 )
 
 func main() {
@@ -32,7 +32,12 @@ func hasDuplicateWord(input string) bool {
 
 	var sl = make([]bool, int('Z'))
 
-	for _, w := range strings.TrimSpace(input) {
+	for _, w := range input {
+
+		if unicode.IsSpace(w) {
+			continue
+		}
+
 		if sl[w] {
 			return true
 		}
