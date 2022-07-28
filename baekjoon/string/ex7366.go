@@ -27,7 +27,7 @@ func main() {
 			}
 		}
 
-		fmt.Println(result)
+		fmt.Println(fmt.Sprintf("Case %v: This list contains %v sheep.", i+1, result))
 	}
 
 }
