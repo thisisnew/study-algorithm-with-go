@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 func main() {
@@ -17,11 +16,18 @@ func main() {
 	for i := 0; i < n; i++ {
 		var m int
 		fmt.Fscan(read, &m)
-		text, _, _ := read.ReadLine()
+
+		var sl = make([]string, m)
+
+		for j := 0; j < m; j++ {
+			var w string
+			fmt.Fscan(read, &w)
+			sl[i] = w
+		}
 
 		var result int
 
-		for _, word := range strings.Split(string(text), " ") {
+		for _, word := range sl {
 			if isSheep(word) {
 				result++
 			}
