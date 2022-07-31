@@ -22,7 +22,7 @@ func main() {
 		for j := 0; j < m; j++ {
 			var w string
 			fmt.Fscan(read, &w)
-			sl[i] = w
+			sl[j] = w
 		}
 
 		var result int
