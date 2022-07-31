@@ -34,6 +34,11 @@ func main() {
 		}
 
 		fmt.Println(fmt.Sprintf("Case %v: This list contains %v sheep.", i+1, result))
+
+		if i != n-1 {
+			fmt.Println()
+		}
+
 	}
 
 }
