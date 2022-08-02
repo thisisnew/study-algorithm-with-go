@@ -19,26 +19,27 @@ func main() {
 		fmt.Fscanln(read, &input)
 
 		var sq = math.Sqrt(float64(len([]rune(input))))
-
-		var sl = make([][]string, int(sq), int(sq))
-		var idx = 0
-
-		for j := 0; j < len(sl); j++ {
-			sl[j] = make([]string, int(sq))
-
-			for k := 0; k < len(sl[j]); k++ {
-				sl[j][k] = input[idx : idx+1]
-				idx++
-			}
-		}
-
+		var idx = int(sq) - 1
+		var tempIdx = idx
+		var tempCnt = 1
+		var totalCnt = 1
 		var result strings.Builder
 
-		for j := len(sl) - 1; j >= 0; j-- {
-			for k := 0; k < len(sl); k++ {
-				s := sl[k][j]
-				result.WriteString(s)
+		for {
+			if totalCnt == len([]rune(input)) {
+				break
 			}
+
+			if tempCnt > int(sq) {
+				tempIdx = idx - 1
+				tempCnt = 1
+			}
+
+			s := input[tempIdx : tempIdx+1]
+			result.WriteString(s)
+			tempIdx += int(sq)
+			tempCnt++
+			totalCnt++
 		}
 
 		fmt.Println(result.String())
