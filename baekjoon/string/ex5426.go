@@ -22,7 +22,7 @@ func main() {
 		var idx = int(sq) - 1
 		var tempIdx = idx
 		var tempCnt = 1
-		var totalCnt = 1
+		var totalCnt = 0
 		var result strings.Builder
 
 		for {
@@ -32,11 +32,11 @@ func main() {
 
 			if tempCnt > int(sq) {
 				tempIdx = idx - 1
+				idx = tempIdx
 				tempCnt = 1
 			}
 
-			s := input[tempIdx : tempIdx+1]
-			result.WriteString(s)
+			result.WriteString(input[tempIdx : tempIdx+1])
 			tempIdx += int(sq)
 			tempCnt++
 			totalCnt++
