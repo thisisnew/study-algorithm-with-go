@@ -33,9 +33,10 @@ func main() {
 		}
 
 		var result strings.Builder
+
 		for j := len(sl) - 1; j >= 0; j-- {
 			for k := 0; k < len(sl); k++ {
-				s := sl[j][k]
+				s := sl[k][j]
 				result.WriteString(s)
 			}
 		}
