@@ -17,7 +17,6 @@ func main() {
 	var letters strings.Builder
 
 	for _, c := range input {
-
 		if index != int(c) {
 			continue
 		}
