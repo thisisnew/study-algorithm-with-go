@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -13,22 +14,17 @@ func main() {
 	fmt.Fscanln(read, &input)
 
 	var index = int('a')
-	var result = 0
+	var letters strings.Builder
 
 	for _, c := range input {
 
 		if index != int(c) {
-			if index == int('a') {
-				continue
-			}
-
-			result++
 			continue
 		}
 
+		letters.WriteString(string(c))
 		index++
 	}
 
-	fmt.Println(result)
-
+	fmt.Println(26 - len([]rune(letters.String())))
 }
