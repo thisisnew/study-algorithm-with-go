@@ -7,10 +7,11 @@ import (
 	"strings"
 )
 
+var fInput string
+var sInput string
+
 func main() {
 
-	var fInput string
-	var sInput string
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &fInput)
 	fmt.Fscanln(read, &sInput)
@@ -21,9 +22,9 @@ func main() {
 
 	var result strings.Builder
 
-	for _, s := range sInput {
+	for i, s := range sInput {
 
-		if !strings.ContainsRune(fInput, s) {
+		if !isContainRune(string(s), i) {
 			continue
 		}
 
@@ -31,4 +32,15 @@ func main() {
 	}
 
 	fmt.Println(result.String())
+}
+
+func isContainRune(s string, idx int) bool {
+
+	for i := idx; i < len([]rune(fInput)); i++ {
+		if s == fInput[i:i+1] {
+			return true
+		}
+	}
+
+	return false
 }
