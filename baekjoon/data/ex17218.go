@@ -4,13 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 var fInput string
 var sInput string
-var fSlice []string
-var sSlice []string
 
 func main() {
 
@@ -22,25 +19,25 @@ func main() {
 		fInput, sInput = sInput, fInput
 	}
 
-	var result strings.Builder
+	//var result strings.Builder
+	var commonSlice []string
 
-	for i, s := range sInput {
+	for _, s := range sInput {
 
-		if !isContainRune(string(s), i) {
+		if !isContainRune(string(s)) {
 			continue
 		}
 
-		sSlice = append(sSlice, string(s))
+		commonSlice = append(commonSlice, string(s))
 	}
 
-	fmt.Println(result.String())
+	fmt.Println(commonSlice)
 }
 
-func isContainRune(s string, idx int) bool {
+func isContainRune(s string) bool {
 
-	for i := idx; i < len([]rune(fInput)); i++ {
+	for i := 0; i < len([]rune(fInput)); i++ {
 		if s == fInput[i:i+1] {
-			fSlice = append(fSlice, fInput[i:i+1])
 			return true
 		}
 	}
