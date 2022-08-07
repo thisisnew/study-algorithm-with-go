@@ -9,6 +9,8 @@ import (
 
 var fInput string
 var sInput string
+var fSlice []string
+var sSlice []string
 
 func main() {
 
@@ -28,7 +30,7 @@ func main() {
 			continue
 		}
 
-		result.WriteRune(s)
+		sSlice = append(sSlice, string(s))
 	}
 
 	fmt.Println(result.String())
@@ -38,6 +40,7 @@ func isContainRune(s string, idx int) bool {
 
 	for i := idx; i < len([]rune(fInput)); i++ {
 		if s == fInput[i:i+1] {
+			fSlice = append(fSlice, fInput[i:i+1])
 			return true
 		}
 	}
