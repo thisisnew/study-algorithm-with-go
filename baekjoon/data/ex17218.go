@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 var fInput string
@@ -19,7 +20,6 @@ func main() {
 		fInput, sInput = sInput, fInput
 	}
 
-	//var result strings.Builder
 	var commonSlice []string
 
 	for _, s := range sInput {
@@ -32,6 +32,21 @@ func main() {
 	}
 
 	fmt.Println(commonSlice)
+
+	var result strings.Builder
+	var idx = 0
+
+	for _, c := range commonSlice {
+
+		isLocatedNext, i := isLocatedNext(c, idx)
+
+		idx = i
+
+		if isLocatedNext {
+			result.WriteString(c)
+		}
+	}
+
 }
 
 func isContainRune(s string) bool {
@@ -43,4 +58,13 @@ func isContainRune(s string) bool {
 	}
 
 	return false
+}
+
+func isLocatedNext(s string, idx int) (bool, int) {
+
+	for i := idx; i < len([]rune(fInput)); i++ {
+
+	}
+
+	return true, 0
 }
