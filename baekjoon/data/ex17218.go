@@ -66,5 +66,5 @@ func isLocatedNext(s string, idx int) (bool, int) {
 
 	}
 
-	return true, 0
+	return true, idx
 }
