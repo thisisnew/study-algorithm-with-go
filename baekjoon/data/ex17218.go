@@ -35,13 +35,21 @@ func main() {
 
 	var result strings.Builder
 
-	for _, c := range commonSlice {
+	for _, li := range longInput {
 
-		//if !isLocatedNext(c, commonSlice) {
-		//	continue
-		//}
+		ss := string(li)
 
-		result.WriteString(c)
+		if !isCharacterContainsCommonSlice(commonSlice, ss) {
+			continue
+		}
+
+		if ss != commonSlice[0] {
+			commonSlice = commonSlice[1:]
+			fmt.Println(commonSlice)
+			continue
+		}
+
+		result.WriteString(ss)
 	}
 
 	fmt.Println(result.String())
@@ -58,26 +66,6 @@ func isContainsInLongInput(s int32) bool {
 
 	return false
 }
-
-//func isLocatedNext(s string, commonSlice []string) bool {
-//
-//	for _, si := range fInput {
-//
-//		ss := string(si)
-//
-//		if !isCharacterContainsCommonSlice(commonSlice, ss) {
-//			continue
-//		}
-//
-//		if string(si) != s {
-//			return false
-//		}
-//
-//		return true
-//	}
-//
-//	return true
-//}
 
 func isCharacterContainsCommonSlice(commonSlice []string, s string) bool {
 	for _, c := range commonSlice {
