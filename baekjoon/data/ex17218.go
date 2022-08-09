@@ -7,24 +7,24 @@ import (
 	"strings"
 )
 
-var fInput string
-var sInput string
+var shortInput string
+var longInput string
 
 func main() {
 
 	var read = bufio.NewReader(os.Stdin)
-	fmt.Fscanln(read, &fInput)
-	fmt.Fscanln(read, &sInput)
+	fmt.Fscanln(read, &shortInput)
+	fmt.Fscanln(read, &longInput)
 
-	if len([]rune(sInput)) > len([]rune(fInput)) {
-		fInput, sInput = sInput, fInput
+	if len([]rune(shortInput)) > len([]rune(longInput)) {
+		longInput, shortInput = shortInput, longInput
 	}
 
 	var commonSlice []string
 
-	for _, s := range sInput {
+	for _, s := range shortInput {
 
-		if !isContainRune(string(s)) {
+		if !isContainsInLongInput(s) {
 			continue
 		}
 
@@ -37,9 +37,9 @@ func main() {
 
 	for _, c := range commonSlice {
 
-		if !isLocatedNext(c, commonSlice) {
-			continue
-		}
+		//if !isLocatedNext(c, commonSlice) {
+		//	continue
+		//}
 
 		result.WriteString(c)
 	}
@@ -48,10 +48,10 @@ func main() {
 
 }
 
-func isContainRune(s string) bool {
+func isContainsInLongInput(s int32) bool {
 
-	for i := 0; i < len([]rune(fInput)); i++ {
-		if s == fInput[i:i+1] {
+	for _, l := range longInput {
+		if l == s {
 			return true
 		}
 	}
@@ -59,25 +59,25 @@ func isContainRune(s string) bool {
 	return false
 }
 
-func isLocatedNext(s string, commonSlice []string) bool {
-
-	for _, si := range fInput {
-
-		ss := string(si)
-
-		if !isCharacterContainsCommonSlice(commonSlice, ss) {
-			continue
-		}
-
-		if string(si) != s {
-			return false
-		}
-
-		return true
-	}
-
-	return true
-}
+//func isLocatedNext(s string, commonSlice []string) bool {
+//
+//	for _, si := range fInput {
+//
+//		ss := string(si)
+//
+//		if !isCharacterContainsCommonSlice(commonSlice, ss) {
+//			continue
+//		}
+//
+//		if string(si) != s {
+//			return false
+//		}
+//
+//		return true
+//	}
+//
+//	return true
+//}
 
 func isCharacterContainsCommonSlice(commonSlice []string, s string) bool {
 	for _, c := range commonSlice {
