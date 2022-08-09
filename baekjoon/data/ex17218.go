@@ -38,7 +38,7 @@ func main() {
 
 	for _, c := range commonSlice {
 
-		isLocatedNext, i := isLocatedNext(c, idx)
+		isLocatedNext, i := isLocatedNext(c, idx, commonSlice)
 
 		idx = i
 
@@ -60,11 +60,29 @@ func isContainRune(s string) bool {
 	return false
 }
 
-func isLocatedNext(s string, idx int) (bool, int) {
+func isLocatedNext(s string, idx int, commonSlice []string) (bool, int) {
 
-	for i := idx; i < len([]rune(fInput)); i++ {
+	//for i := idx; i < len([]rune(fInput)); i++ {
+	//
+	//}
+
+	for _, s := range sInput {
+
+		if !isCharacterContainsCommonSlice(commonSlice, string(s)) {
+			continue
+		}
 
 	}
 
 	return true, idx
+}
+
+func isCharacterContainsCommonSlice(commonSlice []string, s string) bool {
+	for _, c := range commonSlice {
+		if c == s {
+			return true
+		}
+	}
+
+	return false
 }
