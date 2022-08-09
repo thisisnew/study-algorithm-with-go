@@ -37,11 +37,11 @@ func main() {
 
 	for _, c := range commonSlice {
 
-		isLocatedNext := isLocatedNext(c, commonSlice)
-
-		if isLocatedNext {
-			result.WriteString(c)
+		if !isLocatedNext(c, commonSlice) {
+			continue
 		}
+
+		result.WriteString(c)
 	}
 
 	fmt.Println(result.String())
@@ -63,7 +63,9 @@ func isLocatedNext(s string, commonSlice []string) bool {
 
 	for _, si := range fInput {
 
-		if !isCharacterContainsCommonSlice(commonSlice, string(si)) {
+		ss := string(si)
+
+		if !isCharacterContainsCommonSlice(commonSlice, ss) {
 			continue
 		}
 
