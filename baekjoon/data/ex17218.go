@@ -34,18 +34,17 @@ func main() {
 	fmt.Println(commonSlice)
 
 	var result strings.Builder
-	var idx = 0
 
 	for _, c := range commonSlice {
 
-		isLocatedNext, i := isLocatedNext(c, idx, commonSlice)
-
-		idx = i
+		isLocatedNext := isLocatedNext(c, commonSlice)
 
 		if isLocatedNext {
 			result.WriteString(c)
 		}
 	}
+
+	fmt.Println(result.String())
 
 }
 
@@ -60,21 +59,22 @@ func isContainRune(s string) bool {
 	return false
 }
 
-func isLocatedNext(s string, idx int, commonSlice []string) (bool, int) {
+func isLocatedNext(s string, commonSlice []string) bool {
 
-	//for i := idx; i < len([]rune(fInput)); i++ {
-	//
-	//}
+	for _, si := range sInput {
 
-	for _, s := range sInput {
-
-		if !isCharacterContainsCommonSlice(commonSlice, string(s)) {
+		if !isCharacterContainsCommonSlice(commonSlice, string(si)) {
 			continue
 		}
 
+		if string(si) != s {
+			return false
+		}
+
+		return true
 	}
 
-	return true, idx
+	return true
 }
 
 func isCharacterContainsCommonSlice(commonSlice []string, s string) bool {
