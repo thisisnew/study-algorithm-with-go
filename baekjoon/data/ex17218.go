@@ -50,6 +50,8 @@ func main() {
 		}
 
 		result.WriteString(ss)
+		commonSlice = commonSlice[1:]
+		fmt.Println(commonSlice)
 	}
 
 	fmt.Println(result.String())
