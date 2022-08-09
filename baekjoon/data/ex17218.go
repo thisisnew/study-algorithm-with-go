@@ -61,7 +61,7 @@ func isContainRune(s string) bool {
 
 func isLocatedNext(s string, commonSlice []string) bool {
 
-	for _, si := range sInput {
+	for _, si := range fInput {
 
 		if !isCharacterContainsCommonSlice(commonSlice, string(si)) {
 			continue
