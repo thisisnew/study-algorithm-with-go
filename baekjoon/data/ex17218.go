@@ -55,7 +55,6 @@ func main() {
 	}
 
 	fmt.Println(result.String())
-
 }
 
 func isContainsInLongInput(s int32) bool {
