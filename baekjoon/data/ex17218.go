@@ -37,6 +37,7 @@ func main() {
 		sIdx++
 	}
 
+	fmt.Println(result)
 }
 
 func getCommonPassWord(sIdx int) string {
@@ -44,7 +45,29 @@ func getCommonPassWord(sIdx int) string {
 	var lIdx int
 	for i := sIdx; i < len([]rune(shortInput)); i++ {
 
+		s := shortInput[i : i+1]
+
+		isNext, idx := isNextCharacterInLongInput(lIdx, s)
+
+		lIdx = idx
+
+		if !isNext {
+			continue
+		}
+
+		result.WriteString(s)
 	}
 
 	return result.String()
+}
+
+func isNextCharacterInLongInput(lIdx int, s string) (bool, int) {
+
+	for i := lIdx; i < len([]rune(longInput)); i++ {
+		if longInput[i:i+1] == s {
+			return true, i
+		}
+	}
+
+	return false, lIdx
 }
