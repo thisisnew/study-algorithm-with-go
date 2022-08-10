@@ -42,7 +42,7 @@ func main() {
 func getCommonPassWord(sIdx int) string {
 	var result strings.Builder
 	var lIdx int
-	for i := sIdx; i < len([]rune(longInput)); i++ {
+	for i := sIdx; i < len([]rune(shortInput)); i++ {
 
 	}
 
