@@ -21,7 +21,6 @@ func main() {
 		longInput, shortInput = shortInput, longInput
 	}
 
-	var temp strings.Builder
 	var sIdx int
 
 	for {
@@ -30,7 +29,19 @@ func main() {
 			break
 		}
 
+		temp := getCommonPassWord()
+
+		if len([]rune(temp)) > len([]rune(result)) {
+			result = temp
+		}
+
 		sIdx++
 	}
 
+}
+
+func getCommonPassWord() string {
+	var result strings.Builder
+
+	return result.String()
 }
