@@ -9,6 +9,7 @@ import (
 
 var shortInput string
 var longInput string
+var result string
 
 func main() {
 
@@ -20,60 +21,16 @@ func main() {
 		longInput, shortInput = shortInput, longInput
 	}
 
-	var commonSlice []string
+	var temp strings.Builder
+	var sIdx int
 
-	for _, s := range shortInput {
+	for {
 
-		if !isContainsInLongInput(s) {
-			continue
+		if sIdx == len([]rune(shortInput))-1 {
+			break
 		}
 
-		commonSlice = append(commonSlice, string(s))
+		sIdx++
 	}
 
-	fmt.Println(commonSlice)
-
-	var result strings.Builder
-
-	for _, li := range longInput {
-
-		ss := string(li)
-
-		if !isCharacterContainsCommonSlice(commonSlice, ss) {
-			continue
-		}
-
-		if ss != commonSlice[0] {
-			commonSlice = commonSlice[1:]
-			fmt.Println(commonSlice)
-			continue
-		}
-
-		result.WriteString(ss)
-		commonSlice = commonSlice[1:]
-		fmt.Println(commonSlice)
-	}
-
-	fmt.Println(result.String())
-}
-
-func isContainsInLongInput(s int32) bool {
-
-	for _, l := range longInput {
-		if l == s {
-			return true
-		}
-	}
-
-	return false
-}
-
-func isCharacterContainsCommonSlice(commonSlice []string, s string) bool {
-	for _, c := range commonSlice {
-		if c == s {
-			return true
-		}
-	}
-
-	return false
 }
