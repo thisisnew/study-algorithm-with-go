@@ -64,7 +64,8 @@ func getCommonPassWord(sIdx int) string {
 func isNextCharacterInLongInput(lIdx int, s string) (bool, int) {
 
 	for i := lIdx; i < len([]rune(longInput)); i++ {
-		if longInput[i:i+1] == s {
+		li := longInput[i : i+1]
+		if li == s {
 			return true, i
 		}
 	}
