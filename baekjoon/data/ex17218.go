@@ -66,7 +66,7 @@ func isNextCharacterInLongInput(lIdx int, s string) (bool, int) {
 	for i := lIdx; i < len([]rune(longInput)); i++ {
 		li := longInput[i : i+1]
 		if li == s {
-			return true, i
+			return true, i + 1
 		}
 	}
 
