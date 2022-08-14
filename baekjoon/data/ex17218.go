@@ -85,21 +85,25 @@ func isContainWordsInReplacedString(temp, replacedString string) bool {
 		return false
 	}
 
+	var result strings.Builder
+
 	for i := 0; i < len([]rune(replacedString)); i++ {
 
-		var rs = replacedString[i : i+1]
+		result.WriteString(replacedString[i : i+1])
 
 		for j := i + 1; j < len([]rune(replacedString)); j++ {
-			if !strings.Contains(temp, fmt.Sprintf("%s%s", rs, replacedString[j:j+1])) {
+			if !strings.Contains(temp, fmt.Sprintf("%s%s", result.String(), replacedString[j:j+1])) {
 				continue
 			}
 
-			rs += replacedString[j : j+1]
+			result.WriteString(replacedString[j : j+1])
 
-			if rs == temp {
+			if result.String() == temp {
 				return true
 			}
 		}
+
+		result.Reset()
 	}
 
 	return false
