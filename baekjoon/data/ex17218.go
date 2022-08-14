@@ -21,54 +21,86 @@ func main() {
 		longInput, shortInput = shortInput, longInput
 	}
 
-	var sIdx int
+	for i := 0; i < len([]rune(longInput))-1; i++ {
+		li := longInput[i : i+1]
 
-	for {
-		if sIdx == len([]rune(shortInput))-1 {
-			break
+		if !isInShortInput(li) {
+			continue
 		}
 
-		temp := getCommonPassWord(sIdx)
+		for j := i + 1; j < len([]rune(longInput)); j++ {
+			temp := fmt.Sprintf("%s%s", li, longInput[j:j+1])
+			replacedString := replaceCharactersExceptTemp(temp)
 
-		if len([]rune(temp)) > len([]rune(result)) {
-			result = temp
+			if !isContainWordsInReplacedString(temp, replacedString) {
+				continue
+			}
+
+			li += longInput[j : j+1]
 		}
 
-		sIdx++
+		if len([]rune(li)) > len([]rune(result)) {
+			result = li
+		}
 	}
 
 	fmt.Println(result)
 }
 
-func getCommonPassWord(sIdx int) string {
+func isInShortInput(li string) bool {
+
+	for i := 0; i < len([]rune(shortInput)); i++ {
+
+		si := shortInput[i : i+1]
+
+		if si == li {
+			return true
+		}
+
+	}
+
+	return false
+}
+
+func replaceCharactersExceptTemp(temp string) string {
 	var result strings.Builder
-	var lIdx int
-	for i := sIdx; i < len([]rune(shortInput)); i++ {
 
-		s := shortInput[i : i+1]
+	for i := 0; i < len([]rune(shortInput)); i++ {
 
-		isNext, idx := isNextCharacterInLongInput(lIdx, s)
+		si := shortInput[i : i+1]
 
-		lIdx = idx
-
-		if !isNext {
+		if !strings.Contains(temp, si) {
 			continue
 		}
 
-		result.WriteString(s)
+		result.WriteString(si)
 	}
 
 	return result.String()
 }
 
-func isNextCharacterInLongInput(lIdx int, s string) (bool, int) {
+func isContainWordsInReplacedString(temp, replacedString string) bool {
 
-	for i := lIdx; i < len([]rune(longInput)); i++ {
-		li := longInput[i : i+1]
-		if li == s {
-			return true, i + 1
+	if len(strings.TrimSpace(replacedString)) == 0 {
+		return false
+	}
+
+	for i := 0; i < len([]rune(replacedString)); i++ {
+
+		var rs = replacedString[i : i+1]
+
+		for j := i + 1; j < len([]rune(replacedString)); j++ {
+			if !strings.Contains(temp, fmt.Sprintf("%s%s", rs, replacedString[j:j+1])) {
+				continue
+			}
+
+			rs += replacedString[j : j+1]
+
+			if rs == temp {
+				return true
+			}
 		}
 	}
 
-	return false, lIdx
+	return false
 }
