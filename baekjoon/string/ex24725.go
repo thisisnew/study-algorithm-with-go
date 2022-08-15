@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -31,17 +32,23 @@ func main() {
 
 }
 
+func countMBTIs(word string) int {
+
+	var result int
+
+	for _, mbti := range []string{"ISTJ", "ISTP", "ISFJ", "ISFP", "INTJ", "INTP", "INFJ", "INFP", "ESTJ", "ESTP", "ESFJ", "ESFP", "ENTJ", "ENTP", "ENFJ", "ENFP"} {
+		result += strings.Count(word, mbti)
+	}
+
+	return result
+}
+
 func readHorizontalWord(sl [][]string) int {
 
 	var result int
 
 	for _, props := range sl {
-
-		var word string
-		for _, s := range props {
-
-		}
-
+		result += countMBTIs(strings.Join(props, ""))
 	}
 
 	return result
