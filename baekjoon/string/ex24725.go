@@ -28,7 +28,10 @@ func main() {
 		sl[i] = props
 	}
 
-	fmt.Println(sl)
+	//fmt.Println(sl)
+
+	var result int
+	result += readHorizontalWord(sl)
 
 }
 
