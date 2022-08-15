@@ -104,6 +104,7 @@ func readMBTIWordDiagonally(sl [][]string, m int) int {
 			fmt.Println("diagonal : ", word.String())
 			result += countMBTIs(word.String())
 			word.Reset()
+			continue
 		}
 
 		word.WriteString(props[idx])
