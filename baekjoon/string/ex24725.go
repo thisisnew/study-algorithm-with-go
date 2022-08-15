@@ -16,17 +16,33 @@ func main() {
 	var sl = make([][]string, n)
 
 	for i := 0; i < len(sl); i++ {
-		var prop = make([]string, m)
+		var props = make([]string, m)
 		var input string
 		fmt.Fscanln(read, &input)
 
 		for i, s := range input {
-			prop[i] = string(s)
+			props[i] = string(s)
 		}
 
-		sl[i] = prop
+		sl[i] = props
 	}
 
 	fmt.Println(sl)
 
+}
+
+func readHorizontalWord(sl [][]string) int {
+
+	var result int
+
+	for _, props := range sl {
+
+		var word string
+		for _, s := range props {
+
+		}
+
+	}
+
+	return result
 }
