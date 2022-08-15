@@ -56,6 +56,7 @@ func countMBTIs(word string) int {
 
 	for _, m := range mbtis {
 		result += strings.Count(word, m)
+		result += strings.Count(reverseMBTIWord(word), m)
 	}
 
 	return result
@@ -94,17 +95,30 @@ func readMBTIWordVertically(sl [][]string, m int) int {
 func readMBTIWordDiagonally(sl [][]string, m int) int {
 
 	var result int
+	var idx int
+	var word strings.Builder
 
-	for i := 0; i < m; i++ {
+	for _, props := range sl {
 
-		var word strings.Builder
-
-		for _, props := range sl {
-			word.WriteString(props[i])
+		if idx == len(props)-1 {
+			fmt.Println("diagonal : ", word.String())
+			result += countMBTIs(word.String())
+			word.Reset()
 		}
 
-		fmt.Println("diagonal : ", word.String())
-		result += countMBTIs(word.String())
+		word.WriteString(props[idx])
+		idx++
+	}
+
+	return result
+}
+
+func reverseMBTIWord(s string) string {
+
+	var result string
+
+	for _, v := range s {
+		result = string(v) + result
 	}
 
 	return result
