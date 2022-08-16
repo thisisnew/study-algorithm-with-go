@@ -111,6 +111,8 @@ func readMBTIWordDiagonally(sl [][]string, m int) int {
 		idx++
 	}
 
+	result += countMBTIs(word.String())
+
 	return result
 }
 
