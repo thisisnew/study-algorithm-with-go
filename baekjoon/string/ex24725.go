@@ -44,7 +44,7 @@ func main() {
 
 	//대각선
 	if n > 3 && m > 3 {
-		result += readMBTIWordDiagonally(sl, m)
+		result += readMBTIWordDiagonally(sl, n, m)
 	}
 
 	fmt.Println(result)
@@ -85,33 +85,43 @@ func readMBTIWordVertically(sl [][]string, m int) int {
 			word.WriteString(props[i])
 		}
 
-		fmt.Println("vertical : ", word.String())
 		result += countMBTIs(word.String())
 	}
 
 	return result
 }
 
-func readMBTIWordDiagonally(sl [][]string, m int) int {
+func readMBTIWordDiagonally(sl [][]string, n, m int) int {
 
 	var result int
-	var idx int
-	var word strings.Builder
+	var word string
+	var hIdx int
+	var vIdx int
 
-	for _, props := range sl {
+	for {
 
-		if idx == len(props) {
-			fmt.Println("diagonal : ", word.String())
-			result += countMBTIs(word.String())
-			word.Reset()
-			continue
+		if hIdx == n {
+			hIdx = 0
+			result += countMBTIs(word)
 		}
 
-		word.WriteString(props[idx])
-		idx++
+		word += sl[hIdx][vIdx]
+
+		break
 	}
 
-	result += countMBTIs(word.String())
+	//for _, props := range sl {
+	//
+	//	if idx == len(props) {
+	//		fmt.Println("diagonal : ", word.String())
+	//		result += countMBTIs(word.String())
+	//		word.Reset()
+	//		continue
+	//	}
+	//
+	//	word.WriteString(props[idx])
+	//	idx++
+	//}
 
 	return result
 }
