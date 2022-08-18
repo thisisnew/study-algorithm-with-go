@@ -105,7 +105,14 @@ func readMBTIWordDiagonally(sl [][]string, n, m int) int {
 			result += countMBTIs(word)
 		}
 
+		if vIdx == m {
+			vIdx = 0
+			result += countMBTIs(word)
+		}
+
 		word += sl[hIdx][vIdx]
+		hIdx++
+		vIdx++
 
 		break
 	}
