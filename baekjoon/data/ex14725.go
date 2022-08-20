@@ -30,6 +30,13 @@ func main() {
 
 			result[sl[1]] = props
 		} else {
+			for j := 0; j < len(sl)-2; j++ {
+				if len(pr) >= j+1 {
+					pr[j] = fmt.Sprintf("%s%s%s", pr[j], generateBars(j), sl[j+2])
+				} else {
+					pr = append(pr, fmt.Sprintf("%s%s", generateBars(j), sl[j+2]))
+				}
+			}
 
 		}
 
