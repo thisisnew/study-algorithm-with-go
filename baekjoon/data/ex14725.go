@@ -25,7 +25,7 @@ func main() {
 			var props = make([]string, len(sl)-2)
 
 			for j := 0; j < len(sl)-2; j++ {
-				props[j] = sl[j+2]
+				props[j] = fmt.Sprintf("%s%s", generateBars(j), sl[j+2])
 			}
 
 			result[sl[1]] = props
@@ -35,4 +35,15 @@ func main() {
 
 	}
 
+}
+
+func generateBars(j int) string {
+
+	var result strings.Builder
+
+	for i := 0; i < 2*(j+1); i++ {
+		result.WriteString("-")
+	}
+
+	return result.String()
 }
