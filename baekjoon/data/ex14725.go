@@ -18,28 +18,13 @@ func main() {
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
 		sl := strings.Split(string(text), " ")
-
 		key := sl[1]
 		pr, ok := result[key]
 
 		if !ok {
-			var props = make([]string, len(sl)-2)
-
-			for j := 0; j < len(sl)-2; j++ {
-				props[j] = fmt.Sprintf("%s%s", generateBars(j), sl[j+2])
-			}
-
-			result[key] = props
+			result[key] = getNewAntProperties(sl)
 		} else {
-			for j := 0; j < len(sl)-2; j++ {
-				if len(pr) >= j+1 {
-					pr[j] = fmt.Sprintf("%s%s%s", pr[j], generateBars(j), sl[j+2])
-				} else {
-					pr = append(pr, fmt.Sprintf("%s%s", generateBars(j), sl[j+2]))
-				}
-			}
-
-			result[key] = pr
+			result[key] = addAntPropertiesToPrevAntProperties(sl, pr)
 		}
 	}
 
@@ -55,4 +40,26 @@ func generateBars(j int) string {
 	}
 
 	return result.String()
+}
+
+func getNewAntProperties(sl []string) []string {
+	var result = make([]string, len(sl)-2)
+
+	for j := 0; j < len(sl)-2; j++ {
+		result[j] = fmt.Sprintf("%s%s", generateBars(j), sl[j+2])
+	}
+
+	return result
+}
+
+func addAntPropertiesToPrevAntProperties(sl, prev []string) []string {
+	for j := 0; j < len(sl)-2; j++ {
+		if len(prev) >= j+1 {
+			prev[j] = fmt.Sprintf("%s%s%s", prev[j], generateBars(j), sl[j+2])
+		} else {
+			prev = append(prev, fmt.Sprintf("%s%s", generateBars(j), sl[j+2]))
+		}
+	}
+
+	return prev
 }
