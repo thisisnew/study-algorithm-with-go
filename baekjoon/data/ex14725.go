@@ -19,7 +19,8 @@ func main() {
 		text, _, _ := read.ReadLine()
 		sl := strings.Split(string(text), " ")
 
-		pr, ok := result[sl[1]]
+		key := sl[1]
+		pr, ok := result[key]
 
 		if !ok {
 			var props = make([]string, len(sl)-2)
@@ -28,7 +29,7 @@ func main() {
 				props[j] = fmt.Sprintf("%s%s", generateBars(j), sl[j+2])
 			}
 
-			result[sl[1]] = props
+			result[key] = props
 		} else {
 			for j := 0; j < len(sl)-2; j++ {
 				if len(pr) >= j+1 {
@@ -38,10 +39,11 @@ func main() {
 				}
 			}
 
+			result[key] = pr
 		}
-
 	}
 
+	fmt.Println(result)
 }
 
 func generateBars(j int) string {
