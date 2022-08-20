@@ -13,7 +13,7 @@ func main() {
 	var n int
 	fmt.Fscanln(read, &n)
 
-	var result map[string][]string
+	result := map[string][]string{}
 
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
