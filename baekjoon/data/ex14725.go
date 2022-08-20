@@ -28,7 +28,7 @@ func main() {
 		}
 	}
 
-	fmt.Println(result)
+	printAntProperties(result)
 }
 
 func getNewAntProperties(sl []string) []string {
@@ -64,4 +64,10 @@ func generateBars(j int) string {
 	}
 
 	return result.String()
+}
+
+func printAntProperties(result map[string][]string) {
+	for key, _ := range result {
+		fmt.Println(key)
+	}
 }
