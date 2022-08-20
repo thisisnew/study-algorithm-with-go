@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 )
 
@@ -28,7 +29,8 @@ func main() {
 		}
 	}
 
-	printAntProperties(result)
+	keys := getAntPropertiesKeys(result)
+	printAntProperties(keys, result)
 }
 
 func getNewAntProperties(sl []string) []string {
@@ -66,8 +68,33 @@ func generateBars(j int) string {
 	return result.String()
 }
 
-func printAntProperties(result map[string][]string) {
+func getAntPropertiesKeys(result map[string][]string) []string {
+	var keys []string
+
 	for key, _ := range result {
-		fmt.Println(key)
+		keys = append(keys, key)
 	}
+
+	sort.Slice(keys, func(i, j int) bool {
+		return keys[i] < keys[j]
+	})
+
+	return keys
+}
+
+func printAntProperties(keys []string, result map[string][]string) {
+
+	for _, key := range keys {
+		fmt.Println(key)
+		props := result[key]
+
+		sort.Slice(props, func(i, j int) bool {
+			return props[i] < props[j]
+		})
+
+		for _, prop := range props {
+			fmt.Println(prop)
+		}
+	}
+
 }
