@@ -39,18 +39,18 @@ func getNewAntProperties(sl []string) [][]string {
 	for j := 0; j < len(sl)-2; j++ {
 		var sj []string
 		sj = append(sj, fmt.Sprintf("%s%s", generateBars(j), sl[j+2]))
-		result[j] = append(result[j], fmt.Sprintf("%s%s", generateBars(j), sl[j+2]))
+		result[j] = sj
 	}
 
 	return result
 }
 
-func addAntPropertiesToPrevAntProperties(sl, prev []string) []string {
+func addAntPropertiesToPrevAntProperties(sl, prev [][]string) [][]string {
 	for j := 0; j < len(sl)-2; j++ {
 		bars := generateBars(j)
 
 		if len(prev) >= j+1 {
-			prev[j] = fmt.Sprintf("%s%s%s", prev[j], bars, sl[j+2])
+			prev[j] = append(prev[j], fmt.Sprintf("%s%s%s", prev[j], bars, sl[j+2]))
 		} else {
 			prev = append(prev, fmt.Sprintf("%s%s", bars, sl[j+2]))
 		}
