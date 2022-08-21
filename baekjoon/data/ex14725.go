@@ -14,7 +14,7 @@ func main() {
 	var n int
 	fmt.Fscanln(read, &n)
 
-	result := map[string][]string{}
+	result := map[string][][]string{}
 
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
@@ -33,11 +33,13 @@ func main() {
 	printAntProperties(keys, result)
 }
 
-func getNewAntProperties(sl []string) []string {
-	var result = make([]string, len(sl)-2)
+func getNewAntProperties(sl []string) [][]string {
+	var result = make([][]string, len(sl)-2)
 
 	for j := 0; j < len(sl)-2; j++ {
-		result[j] = fmt.Sprintf("%s%s", generateBars(j), sl[j+2])
+		var sj []string
+		sj = append(sj, fmt.Sprintf("%s%s", generateBars(j), sl[j+2]))
+		result[j] = append(result[j], fmt.Sprintf("%s%s", generateBars(j), sl[j+2]))
 	}
 
 	return result
@@ -89,12 +91,18 @@ func printAntProperties(keys []string, result map[string][]string) {
 		props := result[key]
 
 		sort.Slice(props, func(i, j int) bool {
-			return props[i] < props[j]
+
+			pi := strings.ReplaceAll(props[i], "--", "")
+			pj := strings.ReplaceAll(props[j], "--", "")
+
+			return pi < pj
 		})
 
-		for _, prop := range props {
-			fmt.Println(prop)
-		}
+		fmt.Println(props)
+
+		//for _, prop := range props {
+		//	fmt.Println(prop)
+		//}
 	}
 
 }
