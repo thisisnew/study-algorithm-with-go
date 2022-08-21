@@ -29,8 +29,6 @@ func main() {
 		}
 	}
 
-	fmt.Println(result)
-
 	keys := getAntPropertiesKeys(result)
 	printAntProperties(keys, result)
 }
@@ -92,19 +90,10 @@ func printAntProperties(keys []string, result map[string][][]string) {
 		fmt.Println(key)
 		props := result[key]
 
-		//sort.Slice(props, func(i, j int) bool {
-		//
-		//	pi := strings.ReplaceAll(props[i], "--", "")
-		//	pj := strings.ReplaceAll(props[j], "--", "")
-		//
-		//	return pi < pj
-		//})
-
-		fmt.Println(props)
-
-		//for _, prop := range props {
-		//	fmt.Println(prop)
-		//}
+		for _, prop := range props {
+			for _, p := range prop {
+				fmt.Println(p)
+			}
+		}
 	}
-
 }
