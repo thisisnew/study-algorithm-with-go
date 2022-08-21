@@ -54,7 +54,7 @@ func addAntPropertiesToPrevAntProperties(sl []string, prev [][]string) [][]strin
 		if len(prev) >= i+1 {
 			prev[i] = append(prev[i], fmt.Sprintf("%s%s", bars, sl[i+2]))
 		} else {
-			prev[i] = append(prev[i], fmt.Sprintf("%s%s", bars, sl[i+2]))
+			prev = append(prev, []string{fmt.Sprintf("%s%s", bars, sl[i+2])})
 		}
 	}
 
