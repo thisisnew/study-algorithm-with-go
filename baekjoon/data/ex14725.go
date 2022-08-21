@@ -90,6 +90,11 @@ func printAntProperties(keys []string, result map[string][][]string) {
 		props := result[key]
 
 		for i, prop := range props {
+
+			sort.Slice(prop, func(i, j int) bool {
+				return prop[i] < prop[j]
+			})
+
 			for _, p := range prop {
 				bars := generateBars(i)
 				fmt.Println(bars + p)
