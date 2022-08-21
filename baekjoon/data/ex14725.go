@@ -29,8 +29,10 @@ func main() {
 		}
 	}
 
-	keys := getAntPropertiesKeys(result)
-	printAntProperties(keys, result)
+	fmt.Println(result)
+
+	//keys := getAntPropertiesKeys(result)
+	//printAntProperties(keys, result)
 }
 
 func getNewAntProperties(sl []string) [][]string {
@@ -45,14 +47,14 @@ func getNewAntProperties(sl []string) [][]string {
 	return result
 }
 
-func addAntPropertiesToPrevAntProperties(sl, prev [][]string) [][]string {
-	for j := 0; j < len(sl)-2; j++ {
-		bars := generateBars(j)
+func addAntPropertiesToPrevAntProperties(sl []string, prev [][]string) [][]string {
+	for i := 0; i < len(sl)-2; i++ {
+		bars := generateBars(i)
 
-		if len(prev) >= j+1 {
-			prev[j] = append(prev[j], fmt.Sprintf("%s%s%s", prev[j], bars, sl[j+2]))
+		if len(prev) >= i+1 {
+			prev[i] = append(prev[i], fmt.Sprintf("%s%s", bars, sl[i+2]))
 		} else {
-			prev = append(prev, fmt.Sprintf("%s%s", bars, sl[j+2]))
+			prev[i] = append(prev[i], fmt.Sprintf("%s%s", bars, sl[i+2]))
 		}
 	}
 
