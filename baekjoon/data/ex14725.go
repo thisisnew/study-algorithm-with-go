@@ -31,8 +31,8 @@ func main() {
 
 	fmt.Println(result)
 
-	//keys := getAntPropertiesKeys(result)
-	//printAntProperties(keys, result)
+	keys := getAntPropertiesKeys(result)
+	printAntProperties(keys, result)
 }
 
 func getNewAntProperties(sl []string) [][]string {
@@ -72,7 +72,7 @@ func generateBars(j int) string {
 	return result.String()
 }
 
-func getAntPropertiesKeys(result map[string][]string) []string {
+func getAntPropertiesKeys(result map[string][][]string) []string {
 	var keys []string
 
 	for key, _ := range result {
@@ -86,19 +86,19 @@ func getAntPropertiesKeys(result map[string][]string) []string {
 	return keys
 }
 
-func printAntProperties(keys []string, result map[string][]string) {
+func printAntProperties(keys []string, result map[string][][]string) {
 
 	for _, key := range keys {
 		fmt.Println(key)
 		props := result[key]
 
-		sort.Slice(props, func(i, j int) bool {
-
-			pi := strings.ReplaceAll(props[i], "--", "")
-			pj := strings.ReplaceAll(props[j], "--", "")
-
-			return pi < pj
-		})
+		//sort.Slice(props, func(i, j int) bool {
+		//
+		//	pi := strings.ReplaceAll(props[i], "--", "")
+		//	pj := strings.ReplaceAll(props[j], "--", "")
+		//
+		//	return pi < pj
+		//})
 
 		fmt.Println(props)
 
