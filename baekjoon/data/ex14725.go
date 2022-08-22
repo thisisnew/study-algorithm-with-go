@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -49,8 +50,12 @@ func getNewAntProperties(props []string) []string {
 	var result = make([]string, len(props))
 
 	for i, prop := range props {
-		result[i] = generateBars(i) + prop
+		result[i] = strconv.Itoa(i) + prop
 	}
+
+	sort.Slice(result, func(i, j int) bool {
+		return result[i] < result[j]
+	})
 
 	return result
 }
@@ -58,8 +63,12 @@ func getNewAntProperties(props []string) []string {
 func addAntPropertiesToPrevAntProperties(props []string, prev []string) []string {
 
 	for i, prop := range props {
-		prev = append(prev, generateBars(i)+prop)
+		prev = append(prev, strconv.Itoa(i)+prop)
 	}
+
+	sort.Slice(prev, func(i, j int) bool {
+		return prev[i] < prev[j]
+	})
 
 	return prev
 }
@@ -96,7 +105,8 @@ func printAntProperties(keys []string, result map[string][]string) {
 		props := result[key]
 
 		for _, prop := range props {
-			fmt.Println(prop)
+			idx, _ := strconv.Atoi(prop[0:1])
+			fmt.Println(generateBars(idx) + prop[1:])
 		}
 	}
 }
