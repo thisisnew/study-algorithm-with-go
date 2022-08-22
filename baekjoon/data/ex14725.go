@@ -53,10 +53,6 @@ func getNewAntProperties(props []string) []string {
 		result[i] = strconv.Itoa(i) + prop
 	}
 
-	sort.Slice(result, func(i, j int) bool {
-		return result[i] < result[j]
-	})
-
 	return result
 }
 
@@ -65,10 +61,6 @@ func addAntPropertiesToPrevAntProperties(props []string, prev []string) []string
 	for i, prop := range props {
 		prev = append(prev, strconv.Itoa(i)+prop)
 	}
-
-	sort.Slice(prev, func(i, j int) bool {
-		return prev[i] < prev[j]
-	})
 
 	return prev
 }
@@ -103,10 +95,39 @@ func printAntProperties(keys []string, result map[string][]string) {
 	for _, key := range keys {
 		fmt.Println(key)
 		props := result[key]
-
+		prevIdx := 0
+		var printProps []string
+		var bars string
 		for _, prop := range props {
 			idx, _ := strconv.Atoi(prop[0:1])
-			fmt.Println(generateBars(idx) + prop[1:])
+
+			if idx < prevIdx {
+				printOrderedProps(bars, printProps)
+				prevIdx = idx
+				printProps = []string{}
+				bars = ""
+			}
+
+			if len(bars) == 0 {
+				bars = generateBars(idx)
+			}
+
+			printProps = append(printProps, prop[1:])
 		}
+
+		if len(printProps) > 0 {
+			printOrderedProps(bars, printProps)
+		}
+	}
+}
+
+func printOrderedProps(bars string, printProps []string) {
+
+	sort.Slice(printProps, func(i, j int) bool {
+		return printProps[i] < printProps[j]
+	})
+
+	for _, ppr := range printProps {
+		fmt.Println(bars + ppr)
 	}
 }
