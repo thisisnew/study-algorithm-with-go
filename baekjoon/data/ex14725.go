@@ -14,7 +14,7 @@ func main() {
 	var n int
 	fmt.Fscanln(read, &n)
 
-	result := map[string][][]string{}
+	result := map[string][]string{}
 
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
@@ -23,9 +23,9 @@ func main() {
 		pr, ok := result[key]
 
 		if !ok {
-			result[key] = getNewAntProperties(sl)
+			result[key] = getNewAntProperties(getAntProperties(sl))
 		} else {
-			result[key] = addAntPropertiesToPrevAntProperties(sl, pr)
+			result[key] = addAntPropertiesToPrevAntProperties(getAntProperties(sl), pr)
 		}
 	}
 
@@ -33,26 +33,32 @@ func main() {
 	printAntProperties(keys, result)
 }
 
-func getNewAntProperties(sl []string) [][]string {
-	var result = make([][]string, len(sl)-2)
+func getAntProperties(sl []string) []string {
 
-	for j := 0; j < len(sl)-2; j++ {
-		var sj []string
-		sj = append(sj, sl[j+2])
-		result[j] = sj
+	var result = make([]string, len(sl)-2)
+
+	for i := 0; i < len(result); i++ {
+		result[i] = sl[i+2]
 	}
 
 	return result
 }
 
-func addAntPropertiesToPrevAntProperties(sl []string, prev [][]string) [][]string {
+func getNewAntProperties(props []string) []string {
 
-	for i := 0; i < len(sl)-2; i++ {
-		if len(prev) >= i+1 {
-			prev[i] = append(prev[i], sl[i+2])
-		} else {
-			prev = append(prev, []string{sl[i+2]})
-		}
+	var result = make([]string, len(props))
+
+	for i, prop := range props {
+		result[i] = generateBars(i) + prop
+	}
+
+	return result
+}
+
+func addAntPropertiesToPrevAntProperties(props []string, prev []string) []string {
+
+	for i, prop := range props {
+		prev = append(prev, generateBars(i)+prop)
 	}
 
 	return prev
@@ -69,7 +75,7 @@ func generateBars(j int) string {
 	return result.String()
 }
 
-func getAntPropertiesKeys(result map[string][][]string) []string {
+func getAntPropertiesKeys(result map[string][]string) []string {
 	var keys []string
 
 	for key, _ := range result {
@@ -83,22 +89,14 @@ func getAntPropertiesKeys(result map[string][][]string) []string {
 	return keys
 }
 
-func printAntProperties(keys []string, result map[string][][]string) {
+func printAntProperties(keys []string, result map[string][]string) {
 
 	for _, key := range keys {
 		fmt.Println(key)
 		props := result[key]
 
-		for i, prop := range props {
-
-			sort.Slice(prop, func(i, j int) bool {
-				return prop[i] < prop[j]
-			})
-
-			for _, p := range prop {
-				bars := generateBars(i)
-				fmt.Println(bars + p)
-			}
+		for _, prop := range props {
+			fmt.Println(prop)
 		}
 	}
 }
