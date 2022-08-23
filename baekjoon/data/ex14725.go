@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -15,54 +14,24 @@ func main() {
 	var n int
 	fmt.Fscanln(read, &n)
 
-	result := map[string][]string{}
+	result := map[string][][]string{}
 
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
-		sl := strings.Split(string(text), " ")
-		key := sl[1]
-		pr, ok := result[key]
+		inputs := strings.Split(string(text), " ")
+		key := inputs[1]
+		prev, ok := result[key]
 
 		if !ok {
-			result[key] = getNewAntProperties(getAntProperties(sl))
+			result[key] = [][]string{inputs[2:]}
 		} else {
-			result[key] = addAntPropertiesToPrevAntProperties(getAntProperties(sl), pr)
+			prev = append(prev, inputs[2:])
+			result[key] = prev
 		}
 	}
 
 	keys := getAntPropertiesKeys(result)
 	printAntProperties(keys, result)
-}
-
-func getAntProperties(sl []string) []string {
-
-	var result = make([]string, len(sl)-2)
-
-	for i := 0; i < len(result); i++ {
-		result[i] = sl[i+2]
-	}
-
-	return result
-}
-
-func getNewAntProperties(props []string) []string {
-
-	var result = make([]string, len(props))
-
-	for i, prop := range props {
-		result[i] = strconv.Itoa(i) + prop
-	}
-
-	return result
-}
-
-func addAntPropertiesToPrevAntProperties(props []string, prev []string) []string {
-
-	for i, prop := range props {
-		prev = append(prev, strconv.Itoa(i)+prop)
-	}
-
-	return prev
 }
 
 func generateBars(j int) string {
@@ -76,7 +45,7 @@ func generateBars(j int) string {
 	return result.String()
 }
 
-func getAntPropertiesKeys(result map[string][]string) []string {
+func getAntPropertiesKeys(result map[string][][]string) []string {
 	var keys []string
 
 	for key, _ := range result {
@@ -90,44 +59,21 @@ func getAntPropertiesKeys(result map[string][]string) []string {
 	return keys
 }
 
-func printAntProperties(keys []string, result map[string][]string) {
+func printAntProperties(keys []string, result map[string][][]string) {
 
 	for _, key := range keys {
 		fmt.Println(key)
 		props := result[key]
-		prevIdx := 0
-		var printProps []string
-		var bars string
+
+		sort.SliceStable(props, func(i, j int) bool {
+			return props[i][0] < props[j][0]
+		})
+
 		for _, prop := range props {
-			idx, _ := strconv.Atoi(prop[0:1])
-
-			if idx < prevIdx {
-				printOrderedProps(bars, printProps)
-				prevIdx = idx
-				printProps = []string{}
-				bars = ""
+			for i, p := range prop {
+				fmt.Println(generateBars(i) + p)
 			}
-
-			if len(bars) == 0 {
-				bars = generateBars(idx)
-			}
-
-			printProps = append(printProps, prop[1:])
 		}
 
-		if len(printProps) > 0 {
-			printOrderedProps(bars, printProps)
-		}
-	}
-}
-
-func printOrderedProps(bars string, printProps []string) {
-
-	sort.Slice(printProps, func(i, j int) bool {
-		return printProps[i] < printProps[j]
-	})
-
-	for _, ppr := range printProps {
-		fmt.Println(bars + ppr)
 	}
 }
