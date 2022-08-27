@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -14,6 +15,17 @@ func main() {
 	fmt.Fscanln(read, &input)
 
 	ln := len([]rune(input))
-	fmt.Println(fmt.Sprintf("%s%s%s", input[0:1], input[1:ln-1], input[ln:ln+1]))
+	fmt.Println(fmt.Sprintf("%s%s%s", input[0:1], getEsTwice(ln-2), input[ln-1:ln]))
 
+}
+
+func getEsTwice(ln int) string {
+
+	var result strings.Builder
+
+	for i := 0; i < 2*ln; i++ {
+		result.WriteString("e")
+	}
+
+	return result.String()
 }
