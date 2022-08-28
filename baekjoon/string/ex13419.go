@@ -30,9 +30,26 @@ func getTsyStack(input string) []rune {
 	return []rune(input)
 }
 
-func getRepeatString(tsyStack []rune) (string, string) {
+func getRepeatString(tsyStack []rune) string {
 
-	var f strings.Builder
-	var s strings.Builder
+	if len(tsyStack) <= 1 {
+		return string(tsyStack[0])
+	}
+
+	var fResult strings.Builder
+	f := tsyStack[0]
+
+	for {
+
+		r := tsyStack[0]
+
+		if r == f {
+			return fResult.String()
+		}
+
+		fResult.WriteRune(tsyStack[0])
+
+		tsyStack = append(...tsyStack[1:], tsyStack[0])
+	}
 
 }
