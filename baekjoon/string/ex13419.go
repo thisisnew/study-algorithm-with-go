@@ -33,6 +33,7 @@ func getFirstRepeatString(input string) string {
 	var first = input[0:1]
 	var s = input[0:1]
 	var i = 0
+	var start = false
 
 	for {
 		if i%2 != 0 {
@@ -40,18 +41,23 @@ func getFirstRepeatString(input string) string {
 			continue
 		}
 
+		s = input[i : i+1]
+
+		if start && s == first {
+			break
+		}
+
+		i++
+
 		if i > len([]rune(input))-1 {
 			i = 0
 		}
 
-		i++
-		s = input[i : i+1]
-
-		if s == first {
-			break
-		}
-
 		result.WriteString(s)
+
+		if !start {
+			start = true
+		}
 	}
 
 	return result.String()
