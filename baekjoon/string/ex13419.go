@@ -18,10 +18,9 @@ func main() {
 		var input string
 		fmt.Fscanln(read, &input)
 
-		f, s := getRepeatString(getTsyStack(input))
+		f := getRepeatString(getTsyStack(input))
 
 		fmt.Println(f)
-		fmt.Println(s)
 	}
 
 }
@@ -40,7 +39,6 @@ func getRepeatString(tsyStack []rune) string {
 	f := tsyStack[0]
 
 	for {
-
 		r := tsyStack[0]
 
 		if r == f {
@@ -48,8 +46,8 @@ func getRepeatString(tsyStack []rune) string {
 		}
 
 		fResult.WriteRune(tsyStack[0])
-
-		tsyStack = append(...tsyStack[1:], tsyStack[0])
+		tsyStack = append(tsyStack[1:], f)
 	}
 
+	return fResult.String()
 }
