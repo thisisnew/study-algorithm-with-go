@@ -36,6 +36,7 @@ func getFirstRepeatString(input string) string {
 
 	for {
 		if i%2 != 0 {
+			i++
 			continue
 		}
 
@@ -64,11 +65,16 @@ func getSecondRepeatString(input string) string {
 
 	var result strings.Builder
 	var second = input[1 : 1+1]
-
 	var i = 0
 
 	for {
+
+		if i > len([]rune(input))-1 {
+			i = 0
+		}
+
 		if i%2 == 0 {
+			i++
 			continue
 		}
 
@@ -80,10 +86,6 @@ func getSecondRepeatString(input string) string {
 
 		result.WriteString(s)
 		i++
-
-		if i > len([]rune(input))-1 {
-			i = 0
-		}
 	}
 
 	return result.String()
