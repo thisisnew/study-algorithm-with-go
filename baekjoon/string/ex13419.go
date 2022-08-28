@@ -47,6 +47,10 @@ func getFirstRepeatString(input string) string {
 
 		result.WriteString(s)
 		i++
+
+		if i > len([]rune(input))-1 {
+			i = 0
+		}
 	}
 
 	return result.String()
@@ -76,6 +80,10 @@ func getSecondRepeatString(input string) string {
 
 		result.WriteString(s)
 		i++
+
+		if i > len([]rune(input))-1 {
+			i = 0
+		}
 	}
 
 	return result.String()
