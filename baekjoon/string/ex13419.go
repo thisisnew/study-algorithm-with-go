@@ -37,8 +37,15 @@ func getRepeatString(tsyStack []rune) string {
 
 	var fResult strings.Builder
 	f := tsyStack[0]
+	var i = 0
 
 	for {
+
+		if i%2 != 0 {
+			i++
+			continue
+		}
+
 		r := tsyStack[0]
 
 		if r == f {
@@ -47,6 +54,7 @@ func getRepeatString(tsyStack []rune) string {
 
 		fResult.WriteRune(tsyStack[0])
 		tsyStack = append(tsyStack[1:], f)
+		i++
 	}
 
 	return fResult.String()
