@@ -38,10 +38,12 @@ func getRepeatString(tsyStack []rune, isFirst bool) string {
 
 	var result strings.Builder
 
-	if isFirst {
+	switch {
+	case isFirst:
 		result.WriteString(getStringEvenIndex(tsyStack))
 		result.WriteString(getStringOddIndex(tsyStack))
-	} else {
+
+	default:
 		result.WriteString(getStringOddIndex(tsyStack))
 		result.WriteString(getStringEvenIndex(tsyStack))
 	}
