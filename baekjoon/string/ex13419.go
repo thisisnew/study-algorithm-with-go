@@ -36,6 +36,20 @@ func getRepeatString(tsyStack []rune, isFirst bool) string {
 		return string(tsyStack[0])
 	}
 
+	var result string
+
+	switch {
+	case len(tsyStack)%2 == 0:
+
+	case len(tsyStack)%2 != 0:
+		result = getRepeatStringByOddNumber(tsyStack, isFirst)
+	}
+
+	return result
+}
+
+func getRepeatStringByOddNumber(tsyStack []rune, isFirst bool) string {
+
 	var result strings.Builder
 
 	switch {
