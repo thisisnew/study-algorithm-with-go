@@ -36,27 +36,37 @@ func getRepeatString(tsyStack []rune, isFirst bool) string {
 		return string(tsyStack[0])
 	}
 
-	var fResult strings.Builder
+	var result strings.Builder
 
 	if isFirst {
-
-		for i := 0; i < len(tsyStack); i += 2 {
-			fResult.WriteRune(tsyStack[i])
-		}
-
-		for i := 1; i < len(tsyStack); i += 2 {
-			fResult.WriteRune(tsyStack[i])
-		}
-
+		result.WriteString(getStringEvenIndex(tsyStack))
+		result.WriteString(getStringOddIndex(tsyStack))
 	} else {
-		for i := 0; i < len(tsyStack); i += 2 {
-			fResult.WriteRune(tsyStack[i])
-		}
-
-		for i := 1; i < len(tsyStack); i += 2 {
-			fResult.WriteRune(tsyStack[i])
-		}
+		result.WriteString(getStringOddIndex(tsyStack))
+		result.WriteString(getStringEvenIndex(tsyStack))
 	}
 
-	return fResult.String()
+	return result.String()
+}
+
+func getStringEvenIndex(tsyStack []rune) string {
+
+	var result strings.Builder
+
+	for i := 0; i < len(tsyStack); i += 2 {
+		result.WriteRune(tsyStack[i])
+	}
+
+	return result.String()
+}
+
+func getStringOddIndex(tsyStack []rune) string {
+
+	var result strings.Builder
+
+	for i := 1; i < len(tsyStack); i += 2 {
+		result.WriteRune(tsyStack[i])
+	}
+
+	return result.String()
 }
