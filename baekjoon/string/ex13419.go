@@ -40,7 +40,7 @@ func getRepeatString(tsyStack []rune, isFirst bool) string {
 
 	switch {
 	case len(tsyStack)%2 == 0:
-
+		result = getRepeatStringByEvenNumber(tsyStack, isFirst)
 	case len(tsyStack)%2 != 0:
 		result = getRepeatStringByOddNumber(tsyStack, isFirst)
 	}
@@ -52,15 +52,30 @@ func getRepeatStringByOddNumber(tsyStack []rune, isFirst bool) string {
 
 	var result strings.Builder
 
-	switch {
-	case isFirst:
+	if isFirst {
 		result.WriteString(getStringEvenIndex(tsyStack))
 		result.WriteString(getStringOddIndex(tsyStack))
 
-	default:
-		result.WriteString(getStringOddIndex(tsyStack))
-		result.WriteString(getStringEvenIndex(tsyStack))
+		return result.String()
 	}
+
+	result.WriteString(getStringOddIndex(tsyStack))
+	result.WriteString(getStringEvenIndex(tsyStack))
+
+	return result.String()
+}
+
+func getRepeatStringByEvenNumber(tsyStack []rune, isFirst bool) string {
+
+	var result strings.Builder
+
+	if isFirst {
+		result.WriteString(getStringEvenIndex(tsyStack))
+
+		return result.String()
+	}
+
+	result.WriteString(getStringOddIndex(tsyStack))
 
 	return result.String()
 }
