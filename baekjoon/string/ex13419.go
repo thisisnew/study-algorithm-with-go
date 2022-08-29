@@ -18,9 +18,10 @@ func main() {
 		var input string
 		fmt.Fscanln(read, &input)
 
-		f := getRepeatString(getTsyStack(input))
-
+		f := getRepeatString(getTsyStack(input), true)
+		s := getRepeatString(getTsyStack(input), false)
 		fmt.Println(f)
+		fmt.Println(s)
 	}
 
 }
@@ -29,32 +30,32 @@ func getTsyStack(input string) []rune {
 	return []rune(input)
 }
 
-func getRepeatString(tsyStack []rune) string {
+func getRepeatString(tsyStack []rune, isFirst bool) string {
 
 	if len(tsyStack) <= 1 {
 		return string(tsyStack[0])
 	}
 
 	var fResult strings.Builder
-	f := tsyStack[0]
-	var i = 0
 
-	for {
+	if isFirst {
 
-		if i%2 != 0 {
-			i++
-			continue
+		for i := 0; i < len(tsyStack); i += 2 {
+			fResult.WriteRune(tsyStack[i])
 		}
 
-		r := tsyStack[0]
-
-		if r == f {
-			return fResult.String()
+		for i := 1; i < len(tsyStack); i += 2 {
+			fResult.WriteRune(tsyStack[i])
 		}
 
-		fResult.WriteRune(tsyStack[0])
-		tsyStack = append(tsyStack[1:], f)
-		i++
+	} else {
+		for i := 0; i < len(tsyStack); i += 2 {
+			fResult.WriteRune(tsyStack[i])
+		}
+
+		for i := 1; i < len(tsyStack); i += 2 {
+			fResult.WriteRune(tsyStack[i])
+		}
 	}
 
 	return fResult.String()
