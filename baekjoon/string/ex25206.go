@@ -26,7 +26,7 @@ func main() {
 
 		point := getPointFromString(tokens[1])
 		sum += point
-		grade += getMultiplyGradeWithPoint(pointFromGrade, point)
+		grade += pointFromGrade * point
 	}
 
 	fmt.Println(grade / sum)
@@ -35,10 +35,6 @@ func main() {
 func getPointFromString(point string) float64 {
 	s, _ := strconv.ParseFloat(point, 64)
 	return s
-}
-
-func getMultiplyGradeWithPoint(grade float64, point float64) float64 {
-	return grade * point
 }
 
 func getPointFromGrade(grade string) (float64, error) {
