@@ -3,16 +3,16 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"os"
 	"sort"
 	"strconv"
 	"strings"
 )
 
 func main() {
-	var read bufio.Reader
+	var read = bufio.NewReader(os.Stdin)
 	var n int
-
-	fmt.Println(read, &n)
+	fmt.Fscanln(read, &n)
 
 	text, _, _ := read.ReadLine()
 
