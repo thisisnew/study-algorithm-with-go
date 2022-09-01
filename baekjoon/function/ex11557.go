@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"sort"
 	"strconv"
 	"strings"
 )
@@ -24,22 +23,20 @@ func main() {
 
 func getMaximumDrunkSchool(read *bufio.Reader, n int) string {
 
-	var alcohols = make([]int, n)
-	var schools = map[int]string{}
+	var alcohol int
+	var school string
 
 	for i := 0; i < n; i++ {
 		text, _, _ := read.ReadLine()
 
 		sl := strings.Split(string(text), " ")
-		alc, _ := strconv.Atoi(sl[1])
+		al, _ := strconv.Atoi(sl[1])
 
-		alcohols[i] = alc
-		schools[alc] = sl[0]
+		if al > alcohol {
+			alcohol = al
+			school = sl[0]
+		}
 	}
 
-	sort.Slice(alcohols, func(i, j int) bool {
-		return alcohols[i] > alcohols[j]
-	})
-
-	return schools[alcohols[0]]
+	return school
 }
