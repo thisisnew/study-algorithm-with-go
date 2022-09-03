@@ -77,9 +77,9 @@ func getKeyMapTouches(input string, keymaps map[string][]string) string {
 
 		for key, val := range keymaps {
 
-			//if int([]rune(s)[0]) > int([]rune(val[len(val)-1])[0]) {
-			//	continue
-			//}
+			if !isTokenInKeymaps(s, val) {
+				continue
+			}
 
 			for i, v := range val {
 				if v == s {
@@ -98,4 +98,12 @@ func getKeyMapTouches(input string, keymaps map[string][]string) string {
 	}
 
 	return result.String()
+}
+
+func isTokenInKeymaps(s string, val []string) bool {
+	if len(val) == 0 || strings.Compare(s, val[len(val)-1]) == 1 {
+		return false
+	}
+
+	return true
 }
