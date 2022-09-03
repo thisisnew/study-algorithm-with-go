@@ -61,8 +61,7 @@ func brokenKeymaps(nums []string) map[string][]string {
 	var result map[string][]string
 
 	for i, num := range nums {
-		n, _ := strconv.Atoi(num)
-		result[i+1] = usualKeyMaps[n]
+		result[strconv.Itoa(i+1)] = usualKeyMaps[num]
 	}
 
 	return result
@@ -73,13 +72,13 @@ func getKeyMapTouches(input string, keymaps map[string][]string) string {
 	var result strings.Builder
 	var prevWord string
 
-	for i := 0; i < len([]rune(input)); i++ {
+	for i := 0; i < len(input); i++ {
 		var s = input[i : i+1]
 
 		for key, val := range keymaps {
 
-			if rune(s) > rune(val[len(val)-1]) {
-
+			if int([]rune(s)[0]) > int([]rune(val[len(val)-1])[0]) {
+				continue
 			}
 
 			for i, v := range val {
