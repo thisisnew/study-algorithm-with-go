@@ -20,7 +20,6 @@ func main() {
 	fmt.Fscanln(read, &input)
 
 	fmt.Println(getKeyMapTouches(input, keymaps))
-
 }
 
 func getUsuallyKeymaps() map[string][]string {
@@ -82,17 +81,19 @@ func getKeyMapTouches(input string, keymaps map[string][]string) string {
 			}
 
 			for i, v := range val {
-				if v == s {
-					if prevWord == key {
-						result.WriteString("#")
-					}
-
-					for j := 0; j < i+1; j++ {
-						result.WriteString(key)
-					}
-
-					prevWord = key
+				if v != s {
+					continue
 				}
+
+				if prevWord == key {
+					result.WriteString("#")
+				}
+
+				for j := 0; j < i+1; j++ {
+					result.WriteString(key)
+				}
+
+				prevWord = key
 			}
 		}
 	}
