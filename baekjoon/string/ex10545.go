@@ -25,7 +25,7 @@ func main() {
 
 func getUsuallyKeymaps() map[string][]string {
 
-	var result map[string][]string
+	result := map[string][]string{}
 
 	for i := 1; i <= 9; i++ {
 		var props []string
@@ -58,7 +58,7 @@ func getUsuallyKeymaps() map[string][]string {
 
 func brokenKeymaps(nums []string) map[string][]string {
 
-	var result map[string][]string
+	result := map[string][]string{}
 
 	for i, num := range nums {
 		result[strconv.Itoa(i+1)] = usualKeyMaps[num]
