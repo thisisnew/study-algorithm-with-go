@@ -84,12 +84,19 @@ func getPopularPointMap(students map[string]int) (map[int][]string, []int) {
 
 func printPopularStudents(students map[int][]string, points []int) {
 
+	var prevPoint int
 	for _, p := range points {
+		if p == prevPoint {
+			continue
+		}
+
 		student, _ := students[p]
 
 		for _, s := range student {
 			fmt.Println(s, p)
 		}
+
+		prevPoint = p
 	}
 
 }
