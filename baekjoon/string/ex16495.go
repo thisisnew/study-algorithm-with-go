@@ -12,9 +12,14 @@ func main() {
 
 	fmt.Fscanln(read, &input)
 
-	if len([]rune(input)) == 1 {
-		fmt.Println(int([]rune(input)[0]-'A') + 1)
-		return
+	rns := []rune(input)
+
+	var result float64
+
+	for i := 0; i < len(rns); i++ {
+		result *= 26
+		result += float64(rns[i]-'A') + 1
 	}
 
+	fmt.Println(result)
 }
