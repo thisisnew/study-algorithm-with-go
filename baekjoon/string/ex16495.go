@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math"
 	"os"
 )
 
@@ -14,11 +15,10 @@ func main() {
 
 	rns := []rune(input)
 
-	var result float64
+	var result int
 
 	for i := 0; i < len(rns); i++ {
-		result *= 26
-		result += float64(rns[i]-'A') + 1
+		result += int(rns[i]-64) * int(math.Pow(26, float64(len(rns)-i-1)))
 	}
 
 	fmt.Println(result)
