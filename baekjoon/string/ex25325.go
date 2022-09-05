@@ -16,16 +16,8 @@ func main() {
 	var result = getPopularStudentMap(strings.Split(string(text), " "))
 
 	for i := 0; i < n; i++ {
-		text, _, _ := read.ReadLine()
-		students := strings.Split(string(text), " ")
-
-		if len(students) <= 1 {
-			result[students[0]]++
-			continue
-		}
-
-		result[students[0]]++
-		result[students[1]]++
+		text, _, _ = read.ReadLine()
+		result = addPopularPointToStudents(strings.Split(string(text), " "), result)
 	}
 
 	fmt.Println(result)
@@ -39,5 +31,17 @@ func getPopularStudentMap(students []string) map[string]int {
 		result[student] = 0
 	}
 
+	return result
+}
+
+func addPopularPointToStudents(students []string, result map[string]int) map[string]int {
+
+	if len(students) <= 1 {
+		result[students[0]]++
+		return result
+	}
+
+	result[students[0]]++
+	result[students[1]]++
 	return result
 }
