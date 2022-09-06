@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -15,40 +16,44 @@ func main() {
 
 	fmt.Fscanln(read, &n)
 
-	var sliceA = make([]int32, n)
+	var sliceA = make([]int, n)
 	text, _, _ := read.ReadLine()
 
 	for i, t := range strings.Split(string(text), " ") {
-		num, _ := strconv.ParseInt(t, 10, 32)
-		sliceA[i] = int32(num)
+		num, _ := strconv.Atoi(t)
+		sliceA[i] = num
 	}
+
+	sort.Slice(sliceA, func(i, j int) bool {
+		return sliceA[i] < sliceA[j]
+	})
 
 	var m int
 	fmt.Fscanln(read, &m)
 	text, _, _ = read.ReadLine()
 	for _, t := range strings.Split(string(text), " ") {
-		num, _ := strconv.ParseInt(t, 10, 32)
-		fmt.Println(getResultByBinarySearch(sliceA, int32(num)))
+		num, _ := strconv.Atoi(t)
+		fmt.Println(getResultByBinarySearch(sliceA, num))
 	}
 }
 
-func getResultByBinarySearch(sliceA []int32, num int32) int {
-	var start int32
-	var end = int32(len(sliceA))
-	var middle = int32(math.Floor(float64(start + end/2)))
+func getResultByBinarySearch(sliceA []int, num int) int {
+	var start = 0
+	var end = len(sliceA)
+	var middle = int(math.Floor(float64(start + end/2)))
 
-	for middle != num && start <= end {
+	for sliceA[middle] != num && start <= end {
 
-		if num > middle {
+		if num > sliceA[middle] {
 			start = middle + 1
 		} else {
 			end = middle - 1
 		}
 
-		middle = int32(math.Floor(float64(start+end) / 2))
+		middle = int(math.Floor(float64(start+end) / 2))
 	}
 
-	if middle == num {
+	if sliceA[middle] == num {
 		return 1
 	}
 
