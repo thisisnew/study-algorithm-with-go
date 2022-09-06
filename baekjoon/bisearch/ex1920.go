@@ -33,33 +33,43 @@ func main() {
 	text, _, _ = read.ReadLine()
 	for _, t := range strings.Split(string(text), " ") {
 		num, _ := strconv.Atoi(t)
-		fmt.Println(getResultByBinarySearch(sliceA, num))
+
+		if getResultByBinarySearch(sliceA, num) < 0 {
+			fmt.Println(0)
+		} else {
+			fmt.Println(1)
+		}
 	}
 }
 
 func getResultByBinarySearch(sliceA []int, num int) int {
 	var start = 0
 	var end = len(sliceA)
-	var middle = int(math.Floor(float64(start + end/2)))
+	var middle = int(math.Floor(float64((start + end) / 2)))
 
-	for start < end && sliceA[middle] != num {
+	for start <= end {
 
-		if num > sliceA[middle] {
-			start = middle + 1
-		} else {
-			end = middle - 1
+		if middle >= len(sliceA) {
+			return 0
 		}
 
-		middle = int(math.Floor(float64(start+end) / 2))
-	}
+		if sliceA[middle] == num {
+			return middle
+		}
 
-	if middle >= len(sliceA) {
-		return 0
+		if num < sliceA[middle] {
+			end = middle - 1
+		} else {
+			start = middle + 1
+		}
+
+		middle = int(math.Floor(float64((start + end) / 2)))
+
 	}
 
 	if sliceA[middle] == num {
-		return 1
+		return middle
 	}
 
-	return 0
+	return -1
 }
