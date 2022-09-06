@@ -42,7 +42,7 @@ func getResultByBinarySearch(sliceA []int, num int) int {
 	var end = len(sliceA)
 	var middle = int(math.Floor(float64(start + end/2)))
 
-	for sliceA[middle] != num && start <= end {
+	for start < end && sliceA[middle] != num {
 
 		if num > sliceA[middle] {
 			start = middle + 1
@@ -51,6 +51,10 @@ func getResultByBinarySearch(sliceA []int, num int) int {
 		}
 
 		middle = int(math.Floor(float64(start+end) / 2))
+	}
+
+	if middle >= len(sliceA) {
+		return 0
 	}
 
 	if sliceA[middle] == num {
