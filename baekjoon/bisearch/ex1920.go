@@ -18,8 +18,10 @@ func main() {
 	var sliceA = make([]int, n)
 	text, _, _ := read.ReadLine()
 
-	for i, t := range strings.Split(string(text), " ") {
-		num, _ := strconv.Atoi(t)
+	inputSl := strings.Split(string(text), " ")
+
+	for i := 0; i < n; i++ {
+		num, _ := strconv.Atoi(inputSl[i])
 		sliceA[i] = num
 	}
 
@@ -32,17 +34,13 @@ func main() {
 	text, _, _ = read.ReadLine()
 	sliceM := strings.Split(string(text), " ")
 
-	for i, t := range sliceM {
-		num, _ := strconv.Atoi(t)
+	for i := 0; i < m; i++ {
+		num, _ := strconv.Atoi(sliceM[i])
 
 		if getResultByBinarySearch(sliceA, num) >= 0 {
-			fmt.Print(1)
+			fmt.Println(1)
 		} else {
-			fmt.Print(0)
-		}
-
-		if i < len(sliceM)-1 {
-			fmt.Println()
+			fmt.Println(0)
 		}
 	}
 }
