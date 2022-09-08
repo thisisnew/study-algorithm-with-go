@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -44,31 +43,20 @@ func main() {
 
 func getResultByBinarySearch(sliceA []int, num int) int {
 	var start = 0
-	var end = len(sliceA)
-	var middle = int(math.Floor(float64((start + end) / 2)))
+	var end = len(sliceA) - 1
 
 	for start <= end {
 
-		if middle >= len(sliceA) {
-			return 0
-		}
-
-		if sliceA[middle] == num {
-			return middle
-		}
+		var middle = (start + end) / 2
 
 		if num < sliceA[middle] {
 			end = middle - 1
-		} else {
+		} else if num > sliceA[middle] {
 			start = middle + 1
+		} else {
+			return middle
 		}
 
-		middle = int(math.Floor(float64((start + end) / 2)))
-
-	}
-
-	if sliceA[middle] == num {
-		return middle
 	}
 
 	return -1
