@@ -30,13 +30,19 @@ func main() {
 	var m int
 	fmt.Fscanln(read, &m)
 	text, _, _ = read.ReadLine()
-	for _, t := range strings.Split(string(text), " ") {
+	sliceM := strings.Split(string(text), " ")
+
+	for i, t := range sliceM {
 		num, _ := strconv.Atoi(t)
 
-		if getResultByBinarySearch(sliceA, num) < 0 {
-			fmt.Println(0)
+		if getResultByBinarySearch(sliceA, num) >= 0 {
+			fmt.Print(1)
 		} else {
-			fmt.Println(1)
+			fmt.Print(0)
+		}
+
+		if i < len(sliceM)-1 {
+			fmt.Println()
 		}
 	}
 }
