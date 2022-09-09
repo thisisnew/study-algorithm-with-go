@@ -65,21 +65,20 @@ func countNumbersUseBinarySearch(sl []int, num int) int {
 			return result
 		}
 
-		if sl[middle] < num {
-			start = middle + 1
-		}
-
-		if sl[middle] > num {
-			end = middle - 1
-		}
-
-		middle = int(math.Floor(float64((start + end) / 2)))
-
 		if sl[middle] == num {
 			result++
 			middle++
-		}
+		} else {
+			if sl[middle] < num {
+				start = middle + 1
+			}
 
+			if sl[middle] > num {
+				end = middle - 1
+			}
+
+			middle = int(math.Floor(float64((start + end) / 2)))
+		}
 	}
 
 	return result
