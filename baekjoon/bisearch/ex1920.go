@@ -48,10 +48,15 @@ func main() {
 func getResultByBinarySearch(sliceA []int, num int) int {
 	var start = 0
 	var end = len(sliceA) - 1
+	var middle = 0
 
 	for start <= end {
 
-		var middle = (start + end) / 2
+		middle = (start + end) / 2
+
+		if middle >= len(sliceA) || middle < 0 {
+			return -1
+		}
 
 		if num < sliceA[middle] {
 			end = middle - 1
