@@ -58,6 +58,7 @@ func countNumbersUseBinarySearch(sl []int, num int) int {
 	var start = 0
 	var end = len(sl)
 	var middle = int(math.Floor(float64((start + end) / 2)))
+	var isResultAdd = false
 
 	for start <= end {
 
@@ -65,9 +66,10 @@ func countNumbersUseBinarySearch(sl []int, num int) int {
 			return result
 		}
 
-		if sl[middle] == num {
+		if sl[middle] == num && !isResultAdd {
 			result++
 			middle++
+			isResultAdd = true
 		} else {
 			if sl[middle] < num {
 				start = middle + 1
@@ -77,7 +79,15 @@ func countNumbersUseBinarySearch(sl []int, num int) int {
 				end = middle - 1
 			}
 
-			middle = int(math.Floor(float64((start + end) / 2)))
+			m := int(math.Floor(float64((start + end) / 2)))
+
+			if middle == m {
+				middle++
+			} else {
+				middle = m
+			}
+
+			isResultAdd = false
 		}
 	}
 
