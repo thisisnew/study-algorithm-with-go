@@ -80,10 +80,10 @@ func countNumbersUseBinarySearch(sl []int, num int) int {
 
 			m := int(math.Floor(float64((start + end) / 2)))
 
-			if middle == m {
-				middle++
-			} else {
+			if m > middle {
 				middle = m
+			} else {
+				middle++
 			}
 
 			isResultAdd = false
