@@ -68,7 +68,6 @@ func countNumbersUseBinarySearch(sl []int, num int) int {
 
 		if sl[middle] == num && !isResultAdd {
 			result++
-			middle++
 			isResultAdd = true
 		} else {
 			if sl[middle] < num {
