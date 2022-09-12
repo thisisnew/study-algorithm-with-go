@@ -13,15 +13,13 @@ import (
 func main() {
 	var n int
 	var read = bufio.NewReader(os.Stdin)
-
 	fmt.Fscanln(read, &n)
 
-	var sl = make([]int, n)
 	text, _, _ := read.ReadLine()
-
 	inputSl := strings.Split(string(text), " ")
 
-	for i := 0; i < n; i++ {
+	var sl = make([]int, len(inputSl))
+	for i := 0; i < len(inputSl); i++ {
 		num, _ := strconv.Atoi(inputSl[i])
 		sl[i] = num
 	}
@@ -35,9 +33,9 @@ func main() {
 	text, _, _ = read.ReadLine()
 	sliceM := strings.Split(string(text), " ")
 
-	var result = make([]int, m)
+	var result = make([]int, len(sliceM))
 
-	for i := 0; i < m; i++ {
+	for i := 0; i < len(sliceM); i++ {
 		num, _ := strconv.Atoi(sliceM[i])
 		result[i] = checkExistByBinarySearch(sl, num)
 	}
@@ -79,7 +77,7 @@ func checkExistByBinarySearch(sl []int, num int) int {
 		middle = int(math.Floor(float64((start + end) / 2)))
 	}
 
-	if sl[middle] == num {
+	if middle < len(sl) && sl[middle] == num {
 		return 1
 	}
 
