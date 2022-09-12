@@ -70,11 +70,11 @@ func checkExistByBinarySearch(sl []int, num int) int {
 			end = middle - 1
 		}
 
+		middle = int(math.Floor(float64((start + end) / 2)))
+
 		if sl[middle] == num {
 			return 1
 		}
-
-		middle = int(math.Floor(float64((start + end) / 2)))
 	}
 
 	if middle < len(sl) && sl[middle] == num {
