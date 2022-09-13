@@ -17,9 +17,10 @@ func main() {
 	fmt.Fscanln(read, &n)
 
 	var sl = make([]int, n)
-	text, _, _ := read.ReadLine()
+	text, _ := read.ReadString('\n')
+	text = strings.Replace(text, "\n", "", -1)
 
-	inputSl := strings.Split(string(text), " ")
+	inputSl := strings.Split(text, " ")
 
 	for i := 0; i < n; i++ {
 		num, _ := strconv.Atoi(inputSl[i])
@@ -32,8 +33,10 @@ func main() {
 
 	var m int
 	fmt.Fscanln(read, &m)
-	text, _, _ = read.ReadLine()
-	sliceM := strings.Split(string(text), " ")
+	text, _ = read.ReadString('\n')
+	text = strings.Replace(text, "\n", "", -1)
+
+	sliceM := strings.Split(text, " ")
 
 	var result = make([]int, m)
 
