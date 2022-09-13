@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -16,7 +15,7 @@ func main() {
 	fmt.Fscanln(read, &n)
 
 	text, _ := read.ReadString('\n')
-	text = strings.Replace(text, "\n", "", -1)
+	text = strings.TrimSuffix(text, "\n")
 	inputSl := strings.Split(text, " ")
 
 	var sl = make([]int, n)
@@ -32,7 +31,7 @@ func main() {
 	var m int
 	fmt.Fscanln(read, &m)
 	text, _ = read.ReadString('\n')
-	text = strings.Replace(text, "\n", "", -1)
+	text = strings.TrimSuffix(text, "\n")
 	sliceM := strings.Split(text, " ")
 
 	for i := 0; i < m; i++ {
@@ -49,9 +48,13 @@ func checkExistByBinarySearch(sl []int, num int) int {
 
 	var start = 0
 	var end = len(sl) - 1
-	var middle = int(math.Floor(float64((start + end) / 2)))
+	var middle = (start + end) / 2
 
 	for start <= end {
+
+		if middle < len(sl) && sl[middle] == num {
+			return 1
+		}
 
 		if middle >= len(sl) {
 			return 0
@@ -65,11 +68,7 @@ func checkExistByBinarySearch(sl []int, num int) int {
 			end = middle - 1
 		}
 
-		middle = int(math.Floor(float64((start + end) / 2)))
-
-		if middle < len(sl) && sl[middle] == num {
-			return 1
-		}
+		middle = (start + end) / 2
 	}
 
 	if middle < len(sl) && sl[middle] == num {
