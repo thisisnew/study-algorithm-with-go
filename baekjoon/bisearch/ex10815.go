@@ -15,11 +15,12 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n)
 
-	text, _, _ := read.ReadLine()
-	inputSl := strings.Split(string(text), " ")
+	text, _ := read.ReadString('\n')
+	text = strings.Replace(text, "\n", "", -1)
+	inputSl := strings.Split(text, " ")
 
-	var sl = make([]int, len(inputSl))
-	for i := 0; i < len(inputSl); i++ {
+	var sl = make([]int, n)
+	for i := 0; i < n; i++ {
 		num, _ := strconv.Atoi(inputSl[i])
 		sl[i] = num
 	}
@@ -30,24 +31,18 @@ func main() {
 
 	var m int
 	fmt.Fscanln(read, &m)
-	text, _, _ = read.ReadLine()
-	sliceM := strings.Split(string(text), " ")
+	text, _ = read.ReadString('\n')
+	text = strings.Replace(text, "\n", "", -1)
+	sliceM := strings.Split(text, " ")
 
-	var result = make([]int, len(sliceM))
-
-	for i := 0; i < len(sliceM); i++ {
+	for i := 0; i < m; i++ {
 		num, _ := strconv.Atoi(sliceM[i])
-		result[i] = checkExistByBinarySearch(sl, num)
-	}
+		fmt.Print(checkExistByBinarySearch(sl, num))
 
-	for i, n := range result {
-		fmt.Print(n)
-
-		if i != len(result)-1 {
+		if i < len(sliceM)-1 {
 			fmt.Print(" ")
 		}
 	}
-
 }
 
 func checkExistByBinarySearch(sl []int, num int) int {
@@ -72,7 +67,7 @@ func checkExistByBinarySearch(sl []int, num int) int {
 
 		middle = int(math.Floor(float64((start + end) / 2)))
 
-		if sl[middle] == num {
+		if middle < len(sl) && sl[middle] == num {
 			return 1
 		}
 	}
