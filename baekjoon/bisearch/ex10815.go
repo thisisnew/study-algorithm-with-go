@@ -46,14 +46,14 @@ func main() {
 
 func checkExistByBinarySearch(sl []int, num int) int {
 
-	var start = 0
-	var end = len(sl) - 1
-	var middle = (start + end) / 2
 	var lnSl = len(sl)
+	var start = 0
+	var end = lnSl - 1
+	var middle = end / 2
 
 	for start <= end {
 
-		if middle < len(sl) && sl[middle] == num {
+		if sl[middle] == num {
 			return 1
 		}
 
@@ -76,7 +76,7 @@ func checkExistByBinarySearch(sl []int, num int) int {
 		}
 	}
 
-	if middle < lnSl && sl[middle] == num {
+	if sl[middle] == num {
 		return 1
 	}
 
