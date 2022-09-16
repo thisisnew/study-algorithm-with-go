@@ -14,16 +14,21 @@ func main() {
 
 	for i := 0; i < n; i++ {
 
-		var sl = make([]string, n)
+		var result strings.Builder
+
+		if i%2 > 0 {
+			result.WriteString(" ")
+		}
 
 		for j := 0; j < n; j++ {
-			sl[j] = "*"
-		}
-		if i%2 > 0 {
-			fmt.Print(" ")
+			result.WriteString("*")
+
+			if j < n-1 {
+				result.WriteString(" ")
+			}
 		}
 
-		fmt.Print(strings.Join(sl, " "))
+		fmt.Print(result.String())
 
 		if i < n-1 {
 			fmt.Println()
