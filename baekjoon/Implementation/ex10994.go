@@ -23,12 +23,28 @@ func main() {
 		case i == 0, i == max-1:
 			printingStarsByNums(max)
 		case i%2 == 0:
+			printingStarsByNumsEndToEnd(max)
 		default:
 
 		}
-
 	}
 
+}
+
+func printingStarsByNumsEndToEnd(num int) {
+
+	var result strings.Builder
+
+	for i := 0; i < num; i++ {
+
+		if i == 0 || i == num-1 {
+			result.WriteString("*")
+			continue
+		}
+		result.WriteString(" ")
+	}
+
+	fmt.Println(result.String())
 }
 
 func printingStarsByNums(num int) {
