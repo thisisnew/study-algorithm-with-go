@@ -11,13 +11,12 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n)
 
-	var max = 4*(n-1) + 1
-
-	if max == 1 {
+	if n == 1 {
 		fmt.Println("*")
 		return
 	}
 
+	var max = 4*(n-1) + 1
 	for i := 0; i < max; i++ {
 
 	}
