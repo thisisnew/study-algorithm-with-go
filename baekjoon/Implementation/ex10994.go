@@ -25,7 +25,7 @@ func main() {
 
 		for j := 0; j < loops; j++ {
 
-			if i == 0 || i == loops-1 {
+			if j == 0 || j == loops-1 {
 				result.WriteString("*")
 			}
 
@@ -35,6 +35,7 @@ func main() {
 			}
 
 			result = printingStarsByNumsEndToEnd(stars, result)
+			stars -= 2
 		}
 
 		fmt.Println(result.String())
