@@ -30,7 +30,7 @@ func main() {
 			}
 
 			if i%2 == 0 {
-
+				result = printingStarsByNums(stars, result)
 				continue
 			}
 
@@ -41,28 +41,6 @@ func main() {
 		result.Reset()
 	}
 
-}
-
-func printingStarsByNumsByRules10994(max, mid int) {
-
-	var result strings.Builder
-
-	for i := 0; i < max; i++ {
-
-		if i == 0 || i == max-1 {
-			result.WriteString("*")
-			continue
-		}
-
-		if i == 1 || i == max-2 {
-			result.WriteString(" ")
-			continue
-		}
-
-		result.WriteString("*")
-	}
-
-	fmt.Println(result.String())
 }
 
 func printingStarsByNumsEndToEnd(stars int, result strings.Builder) strings.Builder {
@@ -80,13 +58,11 @@ func printingStarsByNumsEndToEnd(stars int, result strings.Builder) strings.Buil
 	return result
 }
 
-func printingStarsByNums(num int) {
+func printingStarsByNums(stars int, result strings.Builder) strings.Builder {
 
-	var result strings.Builder
-
-	for i := 0; i < num; i++ {
+	for i := 0; i < stars; i++ {
 		result.WriteString("*")
 	}
 
-	fmt.Println(result.String())
+	return result
 }
