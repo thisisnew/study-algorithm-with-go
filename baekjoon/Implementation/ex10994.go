@@ -22,8 +22,14 @@ func main() {
 
 	for i := 0; i < loops; i++ {
 		var result strings.Builder
+		dif := loops - stars
 
 		for j := 0; j < loops; j++ {
+
+			if dif > 0 {
+
+				continue
+			}
 
 			if j == 0 || j == loops-1 {
 				result.WriteString("*")
