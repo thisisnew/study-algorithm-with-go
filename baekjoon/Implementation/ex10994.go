@@ -28,6 +28,7 @@ func main() {
 
 			if dif > 0 {
 
+				dif -= 2
 				continue
 			}
 
