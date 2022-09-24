@@ -34,14 +34,12 @@ func main() {
 
 			if j == 0 || j == loops-1 {
 				result.WriteString("*")
-			}
-
-			if i%2 == 0 {
+			} else if i%2 == 0 {
 				result = printingStarsByNums(stars, result)
-				continue
+			} else {
+				result = printingStarsByNumsEndToEnd(stars, result)
 			}
 
-			result = printingStarsByNumsEndToEnd(stars, result)
 			stars -= 2
 		}
 
