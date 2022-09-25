@@ -21,34 +21,26 @@ func main() {
 	var stars = loops - 2
 
 	for i := 0; i < loops; i++ {
-		var result strings.Builder
-		dif := loops - stars
 
-		for j := 0; j < loops; j++ {
+		switch {
+		case i%2 == 0:
+			addStarsByNumsToBuilder(stars, loops)
+		case i%2 != 0:
+			addStarsByNumsEndToEndToBuilder(stars, loops)
+		}
 
-			if dif > 0 {
-
-				dif -= 2
-				continue
-			}
-
-			if j == 0 || j == loops-1 {
-				result.WriteString("*")
-			} else if i%2 == 0 {
-				result = printingStarsByNums(stars, result)
-			} else {
-				result = printingStarsByNumsEndToEnd(stars, result)
-			}
-
-			fmt.Println(result.String())
-			result.Reset()
+		if i < loops/2 {
 			stars -= 2
+		} else {
+			//반대방향
 		}
 	}
 
 }
 
-func printingStarsByNumsEndToEnd(stars int, result strings.Builder) strings.Builder {
+func addStarsByNumsEndToEndToBuilder(stars, loops int) {
+
+	var result strings.Builder
 
 	for i := 0; i < stars; i++ {
 
@@ -60,14 +52,16 @@ func printingStarsByNumsEndToEnd(stars int, result strings.Builder) strings.Buil
 		result.WriteString(" ")
 	}
 
-	return result
+	fmt.Println(result.String())
 }
 
-func printingStarsByNums(stars int, result strings.Builder) strings.Builder {
+func addStarsByNumsToBuilder(stars, loops int) {
+
+	var result strings.Builder
 
 	for i := 0; i < stars; i++ {
 		result.WriteString("*")
 	}
 
-	return result
+	fmt.Println(result.String())
 }
