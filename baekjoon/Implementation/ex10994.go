@@ -25,15 +25,16 @@ func main() {
 		switch {
 		case i%2 == 0:
 			addStarsByNumsToBuilder(stars, loops)
+			if i < loops/2 {
+				stars -= 2
+			} else {
+				//반대방향
+			}
 		case i%2 != 0:
-			addStarsByNumsEndToEndToBuilder(stars, loops)
+			fmt.Println()
+			//addStarsByNumsEndToEndToBuilder(stars, loops)
 		}
 
-		if i < loops/2 {
-			stars -= 2
-		} else {
-			//반대방향
-		}
 	}
 
 }
@@ -58,9 +59,35 @@ func addStarsByNumsEndToEndToBuilder(stars, loops int) {
 func addStarsByNumsToBuilder(stars, loops int) {
 
 	var result strings.Builder
+	dif := loops - stars
+	subDif := dif / 2
+	starCnt := 0
+	subDifCnt := 0
+	isBlank := false
 
-	for i := 0; i < stars; i++ {
-		result.WriteString("*")
+	for i := 0; i < loops; i++ {
+
+		if subDifCnt <= subDif {
+
+			if isBlank {
+				result.WriteString(" ")
+				isBlank = false
+			} else {
+				result.WriteString("*")
+				isBlank = true
+			}
+
+			subDifCnt++
+		} else {
+			result.WriteString("*")
+			starCnt++
+		}
+
+		if subDifCnt >= subDif && starCnt == stars {
+			starCnt = 0
+			subDifCnt = 1
+			isBlank = !isBlank
+		}
 	}
 
 	fmt.Println(result.String())
