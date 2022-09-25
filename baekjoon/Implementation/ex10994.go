@@ -40,11 +40,10 @@ func main() {
 				result = printingStarsByNumsEndToEnd(stars, result)
 			}
 
+			fmt.Println(result.String())
+			result.Reset()
 			stars -= 2
 		}
-
-		fmt.Println(result.String())
-		result.Reset()
 	}
 
 }
