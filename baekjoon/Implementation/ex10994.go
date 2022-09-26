@@ -32,6 +32,7 @@ func main() {
 			}
 		case i%2 != 0:
 			fmt.Println()
+			stars -= 2
 			//addStarsByNumsEndToEndToBuilder(stars, loops)
 		}
 
