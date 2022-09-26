@@ -71,12 +71,11 @@ func addStarsByNumsToBuilder(stars, loops int) {
 
 			if isBlank {
 				result.WriteString(" ")
-				isBlank = false
 			} else {
 				result.WriteString("*")
-				isBlank = true
 			}
 
+			isBlank = !isBlank
 			subDifCnt++
 		} else {
 			result.WriteString("*")
