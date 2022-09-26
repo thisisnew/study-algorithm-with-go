@@ -62,7 +62,7 @@ func addStarsByNumsToBuilder(stars, loops int) {
 	dif := loops - stars
 	subDif := dif / 2
 	starCnt := 0
-	subDifCnt := 0
+	subDifCnt := 1
 	isBlank := false
 
 	for i := 0; i < loops; i++ {
@@ -84,7 +84,7 @@ func addStarsByNumsToBuilder(stars, loops int) {
 
 		if subDifCnt >= subDif && starCnt == stars {
 			starCnt = 0
-			subDifCnt = 0
+			subDifCnt = 1
 			isBlank = !isBlank
 		}
 	}
