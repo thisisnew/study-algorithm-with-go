@@ -23,7 +23,7 @@ func main() {
 		}
 	}
 
-	pointStars(0, loops)
+	addStars(0, loops)
 
 	for i := 0; i < loops; i++ {
 		for j := 0; j < loops; j++ {
@@ -33,7 +33,7 @@ func main() {
 	}
 }
 
-func pointStars(n, loops int) {
+func addStars(n, loops int) {
 
 	for i := n; i < loops; i++ {
 		stars[n][i] = "*"
@@ -46,5 +46,5 @@ func pointStars(n, loops int) {
 		return
 	}
 
-	pointStars(n+2, loops-2)
+	addStars(n+2, loops-2)
 }
