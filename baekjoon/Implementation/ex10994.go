@@ -6,15 +6,13 @@ import (
 	"os"
 )
 
-var stars [][]string
-
 func main() {
 	var n int
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n)
 
 	var loops = 4*(n-1) + 1
-	stars = make([][]string, loops)
+	var stars = make([][]string, loops)
 
 	for i := 0; i < loops; i++ {
 		stars[i] = make([]string, loops)
@@ -23,7 +21,7 @@ func main() {
 		}
 	}
 
-	addStars(0, loops)
+	addStars(0, loops, stars)
 
 	for i := 0; i < loops; i++ {
 		for j := 0; j < loops; j++ {
@@ -33,7 +31,7 @@ func main() {
 	}
 }
 
-func addStars(n, loops int) {
+func addStars(n, loops int, stars [][]string) {
 
 	for i := n; i < loops; i++ {
 		stars[n][i] = "*"
@@ -46,5 +44,5 @@ func addStars(n, loops int) {
 		return
 	}
 
-	addStars(n+2, loops-2)
+	addStars(n+2, loops-2, stars)
 }
