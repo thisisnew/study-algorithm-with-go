@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -12,13 +13,35 @@ func main() {
 	fmt.Fscanln(read, &n)
 
 	var loops = 2*(n-1) + 1
-	var stars = make([][]string, loops)
+	var mid = loops / 2
+	var left = mid - 1
+	var right = mid + 1
 
-	for i := 0; i < loops; i++ {
-		stars[i] = make([]string, loops)
+	for i := 0; i < n; i++ {
+		var result strings.Builder
+
 		for j := 0; j < loops; j++ {
-			stars[i][j] = " "
+			if i == 0 {
+				if j == mid {
+					result.WriteString("*")
+					continue
+				}
+
+				result.WriteString(" ")
+			} else {
+				if j == left || j == right {
+					result.WriteString("*")
+					continue
+				}
+
+				result.WriteString(" ")
+			}
 		}
+
+		left--
+		right++
+		fmt.Println(result.String())
+		result.Reset()
 	}
 
 }
