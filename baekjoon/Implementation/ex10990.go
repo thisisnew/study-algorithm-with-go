@@ -14,8 +14,8 @@ func main() {
 
 	var loops = 2*(n-1) + 1
 	var mid = loops / 2
-	var left = mid - 1
-	var right = mid + 1
+	var left = mid
+	var right = mid
 
 	for i := 0; i < n; i++ {
 		var result strings.Builder
