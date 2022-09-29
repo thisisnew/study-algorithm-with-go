@@ -40,8 +40,12 @@ func main() {
 
 		left--
 		right++
-		fmt.Println(result.String())
+		fmt.Print(result.String())
 		result.Reset()
+
+		if i != n-1 {
+			fmt.Println()
+		}
 	}
 
 }
