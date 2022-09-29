@@ -24,14 +24,19 @@ func main() {
 			if i == 0 {
 				if j == mid {
 					result.WriteString("*")
-					continue
+					break
 				}
 
 				result.WriteString(" ")
 			} else {
-				if j == left || j == right {
+				if j == left {
 					result.WriteString("*")
 					continue
+				}
+
+				if j == right {
+					result.WriteString("*")
+					break
 				}
 
 				result.WriteString(" ")
