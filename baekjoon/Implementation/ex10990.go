@@ -48,5 +48,4 @@ func main() {
 		fmt.Println(result.String())
 		result.Reset()
 	}
-
 }
