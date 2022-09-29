@@ -45,12 +45,8 @@ func main() {
 
 		left--
 		right++
-		fmt.Print(result.String())
+		fmt.Println(result.String())
 		result.Reset()
-
-		if i != n-1 {
-			fmt.Println()
-		}
 	}
 
 }
