@@ -20,13 +20,14 @@ func main() {
 	for i := 0; i < n; i++ {
 		var result strings.Builder
 
+	lp:
 		for j := 0; j < loops; j++ {
 
 			switch {
 			case i == 0:
 				if j == mid {
 					result.WriteString("*")
-					break
+					break lp
 				}
 
 				result.WriteString(" ")
@@ -40,7 +41,7 @@ func main() {
 
 				if j == right {
 					result.WriteString("*")
-					break
+					break lp
 				}
 
 				result.WriteString(" ")
