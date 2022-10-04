@@ -15,14 +15,15 @@ func main() {
 	var n int
 	fmt.Fscanln(read, &n)
 
-	var inputs = map[int]int{}
+	var m = map[int]int{}
 	var nums = make([]int, n)
 
 	input, _, _ := read.ReadLine()
+	inputs := strings.Split(string(input), " ")
 
-	for i, in := range strings.Split(string(input), " ") {
+	for i, in := range inputs {
 		n, _ := strconv.Atoi(in)
-		inputs[n] = i + 1
+		m[n] = i + 1
 		nums[i] = n
 	}
 
@@ -31,7 +32,7 @@ func main() {
 	})
 
 	for i, n := range nums {
-		fmt.Print(inputs[n])
+		fmt.Print(m[n])
 		if i < len(nums)-1 {
 			fmt.Print(" ")
 		}
