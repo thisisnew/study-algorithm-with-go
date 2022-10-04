@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"os"
 	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -15,15 +14,12 @@ func main() {
 	var n int
 	fmt.Fscanln(read, &n)
 
-	var m = map[int]int{}
-	var nums = make([]int, n)
+	var nums = make([]string, n)
 
 	input, _, _ := read.ReadLine()
 	inputs := strings.Split(string(input), " ")
 
-	for i, in := range inputs {
-		n, _ := strconv.Atoi(in)
-		m[n] = i + 1
+	for i, n := range inputs {
 		nums[i] = n
 	}
 
@@ -31,8 +27,18 @@ func main() {
 		return nums[i] > nums[j]
 	})
 
+out:
 	for i, n := range nums {
-		fmt.Print(m[n])
+
+		for j, prop := range inputs {
+
+			if n == prop {
+				fmt.Print(j + 1)
+				continue out
+			}
+
+		}
+
 		if i < len(nums)-1 {
 			fmt.Print(" ")
 		}
