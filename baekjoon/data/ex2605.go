@@ -27,14 +27,13 @@ func main() {
 		return nums[i] > nums[j]
 	})
 
-out:
 	for i, n := range nums {
 
 		for j, prop := range inputs {
 
 			if n == prop {
 				fmt.Print(j + 1)
-				continue out
+				break
 			}
 
 		}
