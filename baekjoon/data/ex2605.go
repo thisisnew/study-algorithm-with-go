@@ -27,7 +27,7 @@ func main() {
 			result = append(result, number)
 		case n >= len(result):
 			result = append([]int{number}, result...)
-		default:
+		case n < len(result):
 			index := i - n
 			result = append(result[:index+1], result[index:]...)
 			result[index] = number
