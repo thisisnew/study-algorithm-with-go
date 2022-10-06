@@ -34,10 +34,5 @@ func main() {
 		}
 	}
 
-	for i, n := range result {
-		fmt.Print(n)
-		if i < len(result)-1 {
-			fmt.Print(" ")
-		}
-	}
+	fmt.Println(strings.Trim(fmt.Sprint(result), "[]"))
 }
