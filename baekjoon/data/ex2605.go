@@ -23,8 +23,6 @@ func main() {
 		number := i + 1
 
 		switch {
-		case i == 0:
-			result = []int{number}
 		case n == 0:
 			result = append(result, number)
 		case n >= len(result):
