@@ -12,12 +12,19 @@ func main() {
 	var s string
 	fmt.Fscanln(read, &s)
 
-	var right int
+	var cnt int
 	var result int
 
 	for _, b := range s {
 		if b == ')' {
-			right--
+			if cnt <= 0 {
+				result++
+			}
+			cnt--
+		}
+
+		if b == '(' {
+			cnt++
 		}
 
 	}
