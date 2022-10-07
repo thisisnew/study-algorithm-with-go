@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 )
 
 func main() {
@@ -51,6 +52,11 @@ func main() {
 }
 
 func printGroupMembers(members []string) {
+
+	sort.Slice(members, func(i, j int) bool {
+		return members[i] < members[j]
+	})
+
 	for _, member := range members {
 		fmt.Println(member)
 	}
