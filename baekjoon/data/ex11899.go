@@ -16,6 +16,7 @@ func main() {
 	var result int
 
 	for _, b := range s {
+
 		if b == ')' {
 			if cnt <= 0 {
 				result++
@@ -29,5 +30,5 @@ func main() {
 
 	}
 
-	fmt.Println(result)
+	fmt.Println(result + cnt)
 }
