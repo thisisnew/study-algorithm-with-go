@@ -14,17 +14,23 @@ func main() {
 
 	var cnt int
 	var result int
+	var isClose = false
 
 	for _, b := range s {
 
 		if b == ')' {
+			if !isClose {
+				cnt--
+			}
+
+			cnt--
 			if cnt <= 0 {
 				result++
 			}
-			cnt--
 		}
 
 		if b == '(' {
+			isClose = true
 			cnt++
 		}
 
