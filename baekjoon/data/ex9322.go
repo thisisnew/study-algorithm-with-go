@@ -10,7 +10,6 @@ import (
 func main() {
 
 	var read = bufio.NewReader(os.Stdin)
-
 	var t int
 	fmt.Fscanln(read, &t)
 
@@ -36,10 +35,10 @@ func main() {
 			}
 		}
 
-		cccc(fPublicKey, sPublicKey, crypto)
+		printPlainTextFromThreeProps(fPublicKey, sPublicKey, crypto)
 	}
 }
 
-func cccc(fPublicKey, sPublicKey, crypto []string) {
+func printPlainTextFromThreeProps(fPublicKey, sPublicKey, crypto []string) {
 
 }
