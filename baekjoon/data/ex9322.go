@@ -25,7 +25,7 @@ func main() {
 			text, _, _ := read.ReadLine()
 			values := strings.Split(string(text), " ")
 
-			switch i {
+			switch j {
 			case 0:
 				fPublicKey = values
 			case 1:
@@ -63,4 +63,6 @@ func printPlainTextFromThreeProps(fPublicKey, sPublicKey, crypto []string) {
 			fmt.Print(" ")
 		}
 	}
+
+	fmt.Println()
 }
