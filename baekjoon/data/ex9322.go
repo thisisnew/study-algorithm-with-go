@@ -41,4 +41,26 @@ func main() {
 
 func printPlainTextFromThreeProps(fPublicKey, sPublicKey, crypto []string) {
 
+	ln := len(crypto)
+	var result = make([]string, ln)
+
+	for i, fk := range fPublicKey {
+	in:
+		for j, sk := range sPublicKey {
+			if fk != sk {
+				continue in
+			}
+
+			result[j] = crypto[i]
+			break in
+		}
+	}
+
+	for i := ln - 1; i >= 0; i-- {
+		fmt.Print(result[i])
+
+		if i > 0 {
+			fmt.Print(" ")
+		}
+	}
 }
