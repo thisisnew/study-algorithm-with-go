@@ -43,15 +43,15 @@ func printPlainTextFromThreeProps(fPublicKey, sPublicKey, crypto []string) {
 
 	ln := len(crypto)
 	var result = make([]string, ln)
-	s := strings.Join(sPublicKey, "")
-
-	for {
-		//logic
-
-		if strings.Join(fPublicKey, "") == s {
-			break
-		}
-	}
+	//s := strings.Join(sPublicKey, "")
+	//
+	//for {
+	//	//logic
+	//
+	//	if strings.Join(fPublicKey, "") == s {
+	//		break
+	//	}
+	//}
 
 	for i := ln - 1; i >= 0; i-- {
 		fmt.Print(result[i])
