@@ -18,7 +18,6 @@ func main() {
 
 		var m = map[string]int{}
 		var keys = make([]int, n)
-		var result = make([]string, n)
 		text, _, _ := read.ReadLine()
 		values := strings.Split(string(text), " ")
 
@@ -35,6 +34,8 @@ func main() {
 
 		text, _, _ = read.ReadLine()
 		values = strings.Split(string(text), " ")
+
+		var result = make([]string, n)
 
 		for j := 0; j < n; j++ {
 			result[keys[j]] = values[j]
