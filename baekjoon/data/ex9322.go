@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	var read = bufio.NewReader(os.Stdin)
 	var t int
 	fmt.Fscanln(read, &t)
