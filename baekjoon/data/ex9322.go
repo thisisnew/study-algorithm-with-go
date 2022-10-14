@@ -17,49 +17,34 @@ func main() {
 		var n int
 		fmt.Fscanln(read, &n)
 
-		var fPublicKey []string
-		var sPublicKey []string
-		var crypto []string
+		var m = map[string]int{}
+		var keys = make([]int, n)
+		var result = make([]string, n)
+		text, _, _ := read.ReadLine()
+		values := strings.Split(string(text), " ")
 
-		for j := 0; j < 3; j++ {
-			text, _, _ := read.ReadLine()
-			values := strings.Split(string(text), " ")
-
-			switch j {
-			case 0:
-				fPublicKey = values
-			case 1:
-				sPublicKey = values
-			case 2:
-				crypto = values
-			}
+		for j := 0; j < n; j++ {
+			m[values[j]] = j
 		}
 
-		printPlainTextFromThreeProps(fPublicKey, sPublicKey, crypto)
-	}
-}
+		text, _, _ = read.ReadLine()
+		values = strings.Split(string(text), " ")
 
-func printPlainTextFromThreeProps(fPublicKey, sPublicKey, crypto []string) {
-
-	ln := len(crypto)
-	var result = make([]string, ln)
-	//s := strings.Join(sPublicKey, "")
-	//
-	//for {
-	//	//logic
-	//
-	//	if strings.Join(fPublicKey, "") == s {
-	//		break
-	//	}
-	//}
-
-	for i := ln - 1; i >= 0; i-- {
-		fmt.Print(result[i])
-
-		if i > 0 {
-			fmt.Print(" ")
+		for j := 0; j < n; j++ {
+			keys[j] = m[values[i]]
 		}
-	}
 
-	fmt.Println()
+		text, _, _ = read.ReadLine()
+		values = strings.Split(string(text), " ")
+
+		for j := 0; j < n; j++ {
+			result[keys[i]] = values[i]
+		}
+
+		for j := 0; j < n; j++ {
+			fmt.Print(result[i], " ")
+		}
+
+		fmt.Println()
+	}
 }
