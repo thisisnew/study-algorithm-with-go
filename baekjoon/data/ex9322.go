@@ -30,18 +30,18 @@ func main() {
 		values = strings.Split(string(text), " ")
 
 		for j := 0; j < n; j++ {
-			keys[j] = m[values[i]]
+			keys[j] = m[values[j]]
 		}
 
 		text, _, _ = read.ReadLine()
 		values = strings.Split(string(text), " ")
 
 		for j := 0; j < n; j++ {
-			result[keys[i]] = values[i]
+			result[keys[j]] = values[j]
 		}
 
 		for j := 0; j < n; j++ {
-			fmt.Print(result[i], " ")
+			fmt.Print(result[j], " ")
 		}
 
 		fmt.Println()
