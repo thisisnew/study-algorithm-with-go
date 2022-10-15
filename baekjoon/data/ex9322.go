@@ -16,11 +16,10 @@ func main() {
 		var n int
 		fmt.Fscanln(read, &n)
 
-		var m = map[string]int{}
-		var keys = make([]int, n)
 		text, _, _ := read.ReadLine()
 		values := strings.Split(string(text), " ")
 
+		var m = map[string]int{}
 		for j := 0; j < n; j++ {
 			m[values[j]] = j
 		}
@@ -28,6 +27,7 @@ func main() {
 		text, _, _ = read.ReadLine()
 		values = strings.Split(string(text), " ")
 
+		var keys = make([]int, n)
 		for j := 0; j < n; j++ {
 			keys[j] = m[values[j]]
 		}
