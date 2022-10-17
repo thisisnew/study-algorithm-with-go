@@ -14,18 +14,11 @@ func 삼총사(nums []int) int {
 
 	var result int
 
-	for i := 0; i < len(nums); i++ {
-	se:
-		for j := 0; j < len(nums); j++ {
-			if i == j {
-				continue se
-			}
-		th:
-			for k := 0; k < len(nums); k++ {
-				if k == i || k == j {
-					continue th
-				}
+	for i := 0; i < len(nums)-2; i++ {
 
+		for j := i + 1; j < len(nums)-1; j++ {
+
+			for k := j + 1; k < len(nums); k++ {
 				r := nums[i] + nums[j] + nums[k]
 				if r == 0 {
 					result++
