@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	nums := []int{
-		-2, 3, 0, 2, -5,
+		-1, 1, -1, 1,
 	}
 
 	fmt.Println(삼총사(nums))
