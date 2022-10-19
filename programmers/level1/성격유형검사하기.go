@@ -8,11 +8,11 @@ import (
 func main() {
 
 	survey := []string{
-		"AN", "CF", "MJ", "RT", "NA",
+		"TR", "RT", "TR",
 	}
 
 	choices := []int{
-		5, 3, 2, 7, 5,
+		7, 1, 3,
 	}
 
 	fmt.Println(성격유형검사하기(survey, choices))
