@@ -2,36 +2,31 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"strconv"
 	"strings"
 )
 
 func main() {
-	fmt.Println(숫자짝꿍("100", "2345"))
+	fmt.Println(숫자짝꿍("5525", "1255"))
 }
 
 func 숫자짝꿍(X string, Y string) string {
 
-	if len([]rune(X)) > len([]rune(Y)) {
-		X, Y = Y, X
-	}
+	xNum, _ := strconv.Atoi(X)
+	yNum, _ := strconv.Atoi(Y)
+
+	x := getPairSlice(xNum)
+	y := getPairSlice(yNum)
 
 	var sl []string
-	var yr = []rune(Y)
-	var isAllZero = true
 
-	for _, s := range X {
-		ok, nYr := isContainsNumberInY(s, yr)
+	for i := 9; i >= 0; i-- {
+		idx := strconv.Itoa(i)
 
-		if ok {
-			prop := string(s)
-
-			if isAllZero && prop != "0" {
-				isAllZero = false
-			}
-
-			sl = append(sl, prop)
-			yr = nYr
+		for x[i] > 0 && y[i] > 0 {
+			sl = append(sl, idx)
+			x[i]--
+			y[i]--
 		}
 	}
 
@@ -39,24 +34,26 @@ func 숫자짝꿍(X string, Y string) string {
 		return "-1"
 	}
 
-	if isAllZero {
+	if sl[0] == "0" {
 		return "0"
 	}
-
-	sort.Slice(sl, func(i, j int) bool {
-		return sl[i] > sl[j]
-	})
 
 	return strings.Join(sl, "")
 }
 
-func isContainsNumberInY(s rune, yr []rune) (bool, []rune) {
+func getPairSlice(num int) []int {
 
-	for i, r := range yr {
-		if r == s {
-			return true, append(yr[:i], yr[i+1:]...)
+	var result = make([]int, 10)
+
+	for {
+		result[num%10]++
+
+		r := num / 10
+
+		if r == 0 {
+			return result
 		}
-	}
 
-	return false, yr
+		num = r
+	}
 }
