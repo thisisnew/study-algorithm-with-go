@@ -1,15 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 
 	survey := []string{
-		"",
+		"AN", "CF", "MJ", "RT", "NA",
 	}
 
 	choices := []int{
-		-1, 1, -1, 1,
+		5, 3, 2, 7, 5,
 	}
 
 	fmt.Println(성격유형검사하기(survey, choices))
@@ -17,7 +20,7 @@ func main() {
 
 func 성격유형검사하기(survey []string, choices []int) string {
 
-	var result string
+	var result strings.Builder
 	var points = map[string]int{}
 
 	for i, s := range survey {
@@ -44,5 +47,41 @@ func 성격유형검사하기(survey []string, choices []int) string {
 
 	}
 
-	return result
+	for _, t := range []string{"RT", "CF", "JM", "AN"} {
+		f := t[:1]
+		b := t[1:]
+
+		var pointF int
+		var pointB int
+
+		if p, ok := points[f]; ok {
+			pointF = p
+		}
+
+		if p, ok := points[b]; ok {
+			pointB = p
+		}
+
+		if pointF > pointB {
+			result.WriteString(f)
+			continue
+		}
+
+		if pointB > pointF {
+			result.WriteString(b)
+			continue
+		}
+
+		if f > b {
+			result.WriteString(b)
+			continue
+		}
+
+		if b > f {
+			result.WriteString(f)
+			continue
+		}
+	}
+
+	return result.String()
 }
