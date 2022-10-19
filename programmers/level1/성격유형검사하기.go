@@ -57,6 +57,7 @@ func 성격유형검사하기(survey []string, choices []int) string {
 	}
 
 	for _, t := range []string{"RT", "CF", "JM", "AN"} {
+
 		f := t[:1]
 		b := t[1:]
 
