@@ -21,7 +21,16 @@ func main() {
 func 성격유형검사하기(survey []string, choices []int) string {
 
 	var result strings.Builder
-	var points = map[string]int{}
+	var points = map[string]int{
+		"R": 0,
+		"T": 0,
+		"C": 0,
+		"F": 0,
+		"J": 0,
+		"M": 0,
+		"A": 0,
+		"N": 0,
+	}
 
 	for i, s := range survey {
 
@@ -51,16 +60,8 @@ func 성격유형검사하기(survey []string, choices []int) string {
 		f := t[:1]
 		b := t[1:]
 
-		var pointF int
-		var pointB int
-
-		if p, ok := points[f]; ok {
-			pointF = p
-		}
-
-		if p, ok := points[b]; ok {
-			pointB = p
-		}
+		var pointF = points[f]
+		var pointB = points[b]
 
 		if pointF > pointB {
 			result.WriteString(f)
