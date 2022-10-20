@@ -12,11 +12,8 @@ func main() {
 
 func 숫자짝꿍(X string, Y string) string {
 
-	xNum, _ := strconv.Atoi(X)
-	yNum, _ := strconv.Atoi(Y)
-
-	x := getPairSlice(xNum)
-	y := getPairSlice(yNum)
+	x := getPairSlice(X)
+	y := getPairSlice(Y)
 
 	var sl []string
 
@@ -41,19 +38,14 @@ func 숫자짝꿍(X string, Y string) string {
 	return strings.Join(sl, "")
 }
 
-func getPairSlice(num int) []int {
+func getPairSlice(num string) []int {
 
 	var result = make([]int, 10)
 
-	for {
-		result[num%10]++
-
-		r := num / 10
-
-		if r == 0 {
-			return result
-		}
-
-		num = r
+	for _, s := range num {
+		n, _ := strconv.Atoi(string(s))
+		result[n]++
 	}
+
+	return result
 }
