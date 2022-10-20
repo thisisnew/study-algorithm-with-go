@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println(이진변환반복하기("01110"))
+	fmt.Println(이진변환반복하기("1111111"))
 }
 
 func 이진변환반복하기(s string) []int {
@@ -15,7 +15,7 @@ func 이진변환반복하기(s string) []int {
 	var cnt int
 	var removeZeros int
 
-	for strings.Contains(s, "0") {
+	for s != "1" {
 
 		r, c := countAndRemoveZeros(s)
 		cnt++
