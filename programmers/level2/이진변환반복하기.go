@@ -13,22 +13,19 @@ func main() {
 func 이진변환반복하기(s string) []int {
 
 	var cnt int
-	var result int
+	var removeZeros int
 
-	for {
+	for strings.Contains(s, "0") {
 
 		r, c := countAndRemoveZeros(s)
-
-		if c == 0 {
-			return []int{result, cnt}
-		}
-
-		result++
-		cnt += c
+		cnt++
+		removeZeros += c
 
 		s = convertDecimalToBinary(len(r))
 
 	}
+
+	return []int{cnt, removeZeros}
 }
 
 func countAndRemoveZeros(s string) (string, int) {
