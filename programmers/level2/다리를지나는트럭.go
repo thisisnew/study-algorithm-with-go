@@ -4,15 +4,15 @@ import "fmt"
 
 func main() {
 
-	bridge_length := 2
+	bridgeLength := 2
 	weight := 10
-	truck_weights := []int{7, 4, 5, 6}
+	truckWeights := []int{7, 4, 5, 6}
 
-	fmt.Println(다리를지나는트럭(bridge_length, weight, truck_weights))
+	fmt.Println(다리를지나는트럭(bridgeLength, weight, truckWeights))
 
 }
 
-func 다리를지나는트럭(bridge_length int, weight int, truck_weights []int) int {
+func 다리를지나는트럭(bridgeLength int, weight int, truckWeights []int) int {
 
 	var result int
 	var cTrucks []int
