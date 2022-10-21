@@ -14,11 +14,11 @@ func 괄호회전하기(s string) int {
 	for {
 		s = moveTokenLeft(s)
 
-		if s != origin {
-			continue
+		if s == origin {
+			break
 		}
 
-		break
+		//검증로직
 	}
 
 	return result
