@@ -7,7 +7,7 @@ var mBraceLocked = false
 var lBraceLocked = false
 
 func main() {
-	fmt.Println(괄호회전하기("}]()[{"))
+	fmt.Println(괄호회전하기("[)(]"))
 }
 
 func 괄호회전하기(s string) int {
@@ -16,7 +16,11 @@ func 괄호회전하기(s string) int {
 	var origin = s
 
 	for {
-		if !isValidBraces(s) {
+		sBraceLocked = false
+		mBraceLocked = false
+		lBraceLocked = false
+
+		if isValidBraces(s) {
 			result++
 		}
 
