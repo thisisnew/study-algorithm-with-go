@@ -2,6 +2,10 @@ package main
 
 import "fmt"
 
+type sBraceStack []string
+type mBraceStack []string
+type lBraceStack []string
+
 var sBraceLocked = false
 var mBraceLocked = false
 var lBraceLocked = false
