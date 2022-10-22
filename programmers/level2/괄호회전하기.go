@@ -6,6 +6,18 @@ type sBraceStack []string
 type mBraceStack []string
 type lBraceStack []string
 
+func (s sBraceStack) isEmpty() bool {
+	return len(s) == 0
+}
+
+func (m mBraceStack) isEmpty() bool {
+	return len(m) == 0
+}
+
+func (l lBraceStack) isEmpty() bool {
+	return len(l) == 0
+}
+
 var sBraceLocked = false
 var mBraceLocked = false
 var lBraceLocked = false
