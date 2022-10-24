@@ -2,21 +2,28 @@ package main
 
 import "fmt"
 
-var sBraceStack []string
-var mBraceStack []string
-var lBraceStack []string
+type braceStack []string
 
-func popBraceStack(bs []string) []string {
+var bs braceStack
 
-	if len(bs) == 0 {
-		return []string{}
+func (bs *braceStack) pop() string {
+
+	if len(*bs) == 0 {
+		return ""
 	}
 
-	return bs[:len(bs)-1]
+	var result = (*bs)[len(*bs)-1]
+	*bs = (*bs)[:len(*bs)-1]
+
+	return result
+}
+
+func (bs *braceStack) push(s string) {
+	*bs = append(*bs, s)
 }
 
 func main() {
-	fmt.Println(괄호회전하기("[)(]"))
+	fmt.Println(괄호회전하기("([{)}]"))
 }
 
 func 괄호회전하기(s string) int {
@@ -25,12 +32,7 @@ func 괄호회전하기(s string) int {
 	var origin = s
 
 	for {
-
-		sBraceStack = []string{}
-		mBraceStack = []string{}
-		lBraceStack = []string{}
-
-		if isValidBraces(s) {
+		if isValidBraces(s) && len(bs) == 0 {
 			result++
 		}
 
@@ -63,30 +65,26 @@ func isValidBraces(bs string) bool {
 func isBraceLocked(b string) bool {
 
 	switch b {
-	case "(":
-		sBraceStack = append(sBraceStack, b)
-	case "{":
-		mBraceStack = append(mBraceStack, b)
-	case "[":
-		lBraceStack = append(lBraceStack, b)
+	case "(", "{", "[":
+		bs.push(b)
 	case ")":
-		if len(sBraceStack) == 0 {
+		p := bs.pop()
+
+		if p != "(" {
 			return false
 		}
-
-		sBraceStack = popBraceStack(sBraceStack)
 	case "}":
-		if len(mBraceStack) == 0 {
+		p := bs.pop()
+
+		if p != "{" {
 			return false
 		}
-
-		mBraceStack = popBraceStack(mBraceStack)
 	case "]":
-		if len(lBraceStack) == 0 {
+		p := bs.pop()
+
+		if p != "[" {
 			return false
 		}
-
-		lBraceStack = popBraceStack(lBraceStack)
 	}
 
 	return true
