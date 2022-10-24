@@ -10,7 +10,7 @@ func main() {
 
 func 연속부분수열합의개수(elements []int) int {
 
-	var result int
+	var result = 0
 	var dif = 1
 
 	for {
