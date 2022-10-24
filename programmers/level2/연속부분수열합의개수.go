@@ -9,16 +9,37 @@ func main() {
 func 연속부분수열합의개수(elements []int) int {
 
 	var result int
-	var cnt = 1
-	var maxCnt = len(elements)
+	var dif = 1
 
 	for {
 
-		if cnt == maxCnt {
+		if dif == len(elements) {
 			break
 		}
 
+		dif++
+	}
+
+	return result
+}
+
+func sumElementByDif(elements []int, dif int) int {
+	var result int
+	var cnt = 0
+	var idx = 0
+
+	for {
+		result += elements[idx]
+		idx++
 		cnt++
+
+		if cnt == dif {
+			break
+		}
+
+		if idx == len(elements)-1 {
+			idx = 0
+		}
 	}
 
 	return result
