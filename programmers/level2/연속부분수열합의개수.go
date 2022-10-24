@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+var dupElementsMap = map[int]bool{}
+
 func main() {
 	fmt.Println(연속부분수열합의개수([]int{7, 9, 1, 1, 4}))
 }
@@ -12,6 +14,7 @@ func 연속부분수열합의개수(elements []int) int {
 	var dif = 1
 
 	for {
+		result += len(countElementsSumByDif(elements, dif))
 
 		if dif == len(elements) {
 			break
@@ -23,10 +26,27 @@ func 연속부분수열합의개수(elements []int) int {
 	return result
 }
 
-func sumElementByDif(elements []int, dif int) int {
-	var result int
+func countElementsSumByDif(elements []int, dif int) []int {
+	var result []int
+
+	for start := 0; start < len(elements); start++ {
+		sum := sumElementsBetweenDifByStartIndex(elements, start, dif)
+
+		if ok, _ := dupElementsMap[sum]; ok {
+			continue
+		}
+
+		dupElementsMap[sum] = true
+		result = append(result, sum)
+	}
+
+	return result
+}
+
+func sumElementsBetweenDifByStartIndex(elements []int, start, dif int) int {
+	var result = 0
+	var idx = start
 	var cnt = 0
-	var idx = 0
 
 	for {
 		result += elements[idx]
@@ -34,13 +54,11 @@ func sumElementByDif(elements []int, dif int) int {
 		cnt++
 
 		if cnt == dif {
-			break
+			return result
 		}
 
-		if idx == len(elements)-1 {
+		if idx > len(elements)-1 {
 			idx = 0
 		}
 	}
-
-	return result
 }
