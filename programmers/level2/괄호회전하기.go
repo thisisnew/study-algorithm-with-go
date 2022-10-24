@@ -2,25 +2,18 @@ package main
 
 import "fmt"
 
-type sBraceStack []string
-type mBraceStack []string
-type lBraceStack []string
+var sBraceStack []string
+var mBraceStack []string
+var lBraceStack []string
 
-func (s sBraceStack) isEmpty() bool {
-	return len(s) == 0
+func popBraceStack(bs []string) []string {
+
+	if len(bs) == 0 {
+		return []string{}
+	}
+
+	return bs[:len(bs)-1]
 }
-
-func (m mBraceStack) isEmpty() bool {
-	return len(m) == 0
-}
-
-func (l lBraceStack) isEmpty() bool {
-	return len(l) == 0
-}
-
-var sBraceLocked = false
-var mBraceLocked = false
-var lBraceLocked = false
 
 func main() {
 	fmt.Println(괄호회전하기("}}}"))
@@ -32,9 +25,6 @@ func 괄호회전하기(s string) int {
 	var origin = s
 
 	for {
-		sBraceLocked = false
-		mBraceLocked = false
-		lBraceLocked = false
 
 		if isValidBraces(s) {
 			result++
@@ -56,7 +46,7 @@ func moveTokenLeft(s string) string {
 
 func isValidBraces(bs string) bool {
 	for _, s := range bs {
-		if isBraceLocked(s) {
+		if isBraceLocked(string(s)) {
 			continue
 		}
 
@@ -66,30 +56,33 @@ func isValidBraces(bs string) bool {
 	return true
 }
 
-func isBraceLocked(b rune) bool {
+func isBraceLocked(b string) bool {
 
 	switch b {
-	case '(':
-		sBraceLocked = true
-	case '{':
-		mBraceLocked = true
-	case '[':
-		lBraceLocked = true
-	case ')':
-		if !sBraceLocked {
+	case "(":
+		sBraceStack = append(sBraceStack, b)
+	case "{":
+		mBraceStack = append(mBraceStack, b)
+	case "[":
+		lBraceStack = append(lBraceStack, b)
+	case ")":
+		if len(sBraceStack) == 0 {
 			return false
 		}
-		sBraceLocked = false
-	case '}':
-		if !mBraceLocked {
+
+		sBraceStack = popBraceStack(sBraceStack)
+	case "}":
+		if len(mBraceStack) == 0 {
 			return false
 		}
-		mBraceLocked = false
-	case ']':
-		if !lBraceLocked {
+
+		mBraceStack = popBraceStack(mBraceStack)
+	case "]":
+		if len(lBraceStack) == 0 {
 			return false
 		}
-		lBraceLocked = false
+
+		lBraceStack = popBraceStack(lBraceStack)
 	}
 
 	return true
