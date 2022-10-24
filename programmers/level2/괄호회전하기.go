@@ -16,7 +16,7 @@ func popBraceStack(bs []string) []string {
 }
 
 func main() {
-	fmt.Println(괄호회전하기("}}}"))
+	fmt.Println(괄호회전하기("[)(]"))
 }
 
 func 괄호회전하기(s string) int {
@@ -25,6 +25,10 @@ func 괄호회전하기(s string) int {
 	var origin = s
 
 	for {
+
+		sBraceStack = []string{}
+		mBraceStack = []string{}
+		lBraceStack = []string{}
 
 		if isValidBraces(s) {
 			result++
