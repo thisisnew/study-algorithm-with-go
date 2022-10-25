@@ -20,7 +20,7 @@ func 다리를지나는트럭(bridgeLength int, weight int, truckWeights []int) 
 	var passedTrucks []int
 
 	for {
-		if len(passingTrucks) < bridgeLength {
+		if len(passingTrucks) < bridgeLength && len(truckWeights) > 0 {
 			//하나더 진행
 			result++
 			passingTrucks = append(passingTrucks, truckWeights[0])
@@ -32,7 +32,7 @@ func 다리를지나는트럭(bridgeLength int, weight int, truckWeights []int) 
 				//되돌려놓기
 				truckWeights = append([]int{passingTrucks[len(passingTrucks)-1]}, truckWeights...)
 				passingTrucks = passingTrucks[:len(passingTrucks)-1]
-				result++
+				//result++
 
 				//각각 한칸앞으로
 				passedTrucks = append(passedTrucks, passingTrucks[0])
