@@ -16,7 +16,7 @@ func 다리를지나는트럭(bridgeLength int, weight int, truckWeights []int) 
 
 	var result int
 	var truckCount = len(truckWeights)
-	var passingTrucks []int
+	var passingTrucks = make([]int, bridgeLength)
 	var passedTrucks []int
 
 	for {
