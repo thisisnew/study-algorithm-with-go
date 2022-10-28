@@ -20,18 +20,21 @@ func 다리를지나는트럭(bridgeLength int, weight int, truckWeights []int) 
 	var passedTrucks []int
 
 	for {
+
+		if len(passingTrucks) == 0 {
+			passingTrucks = climbTheBridge(passedTrucks, truckWeights[0])
+			truckWeights = passTruck(truckWeights)
+			continue
+		}
+
 		//한칸진행
-		passingTrucks = crossingTheBridge(passedTrucks, bridgeLength)
+		passingTrucks, passedTrucks = crossingTheBridge(passingTrucks, passedTrucks, bridgeLength)
 
 		if passingTrucks[0] == 0 && len(truckWeights) > 0 {
 			if sumTruckWeight(passingTrucks)+truckWeights[0] <= weight {
-				//탑승
+				passingTrucks = climbTheBridge(passedTrucks, truckWeights[0])
+				truckWeights = passTruck(truckWeights)
 			}
-		}
-
-		//끝에 도달하면 넘어가기
-		if passingTrucks[len(passingTrucks)-1] > 0 {
-
 		}
 
 		result++
@@ -59,15 +62,22 @@ func climbTheBridge(passingTrucks []int, truck int) []int {
 	return passingTrucks
 }
 
-func crossingTheBridge(passingTrucks []int, bridgeLength int) []int {
+func crossingTheBridge(passingTrucks, passedTrucks []int, bridgeLength int) ([]int, []int) {
 
 	var result = make([]int, bridgeLength)
 
 	for i, p := range passingTrucks {
+
+		//끝에 도달하면 넘어가기
+		if i == len(passingTrucks)-1 {
+			passedTrucks = append(passedTrucks, p)
+			continue
+		}
+
 		result[i+1] = p
 	}
 
-	return result
+	return result, passedTrucks
 
 }
 
