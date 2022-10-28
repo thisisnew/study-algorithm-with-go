@@ -21,8 +21,8 @@ func 다리를지나는트럭(bridgeLength int, weight int, truckWeights []int) 
 
 	for {
 
-		if len(passingTrucks) == 0 {
-			passingTrucks = climbTheBridge(passedTrucks, truckWeights[0])
+		if sumTruckWeight(passingTrucks) == 0 {
+			passingTrucks = climbTheBridge(passingTrucks, truckWeights[0])
 			truckWeights = passTruck(truckWeights)
 			continue
 		}
@@ -71,6 +71,7 @@ func crossingTheBridge(passingTrucks, passedTrucks []int, bridgeLength int) ([]i
 		//끝에 도달하면 넘어가기
 		if i == len(passingTrucks)-1 {
 			passedTrucks = append(passedTrucks, p)
+			passingTrucks[i] = 0
 			continue
 		}
 
