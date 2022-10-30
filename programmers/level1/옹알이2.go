@@ -36,12 +36,14 @@ func canBabbling(bs string) bool {
 
 			temp.WriteString(bs[i : i+1])
 
+		in:
 			for j := i + 1; j < len([]rune(bs)); j++ {
 				temp.WriteString(bs[j : j+1])
 
 				if len([]rune(temp.String())) == len([]rune(p)) {
 					if temp.String() == p {
-						return true
+						temp.Reset()
+						continue in
 					}
 
 					temp.Reset()
