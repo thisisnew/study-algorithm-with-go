@@ -22,14 +22,25 @@ func 옹알이2(babbling []string) int {
 	return result
 }
 
-func canBabbling(b string) bool {
+func canBabbling(bs string) bool {
 	var possible = []string{"aya", "ye", "woo", "ma"}
 
 	for _, p := range possible {
-		b = strings.Replace(b, p, "", 1)
+		var temp strings.Builder
+		var isSameBeginning = false
 
-		if b == "" {
-			return true
+		for _, b := range bs {
+			if !isSameBeginning && string(b) != p[0:1] {
+				continue
+			}
+
+			isSameBeginning = true
+			temp.WriteRune(b)
+
+			if len([]rune(temp.String())) == len([]rune(p)) {
+
+			}
+
 		}
 	}
 
