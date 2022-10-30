@@ -27,20 +27,26 @@ func canBabbling(bs string) bool {
 
 	for _, p := range possible {
 		var temp strings.Builder
-		var isSameBeginning = false
 
-		for _, b := range bs {
-			if !isSameBeginning && string(b) != p[0:1] {
+		for i := 0; i < len([]rune(bs))-1; i++ {
+
+			if bs[i:i+1] != p[0:1] {
 				continue
 			}
 
-			isSameBeginning = true
-			temp.WriteRune(b)
+			temp.WriteString(bs[i : i+1])
 
-			if len([]rune(temp.String())) == len([]rune(p)) {
+			for j := i + 1; j < len([]rune(bs)); j++ {
+				temp.WriteString(bs[j : j+1])
 
+				if len([]rune(temp.String())) == len([]rune(p)) {
+					if temp.String() == p {
+						return true
+					}
+
+					temp.Reset()
+				}
 			}
-
 		}
 	}
 
