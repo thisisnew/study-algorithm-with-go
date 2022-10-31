@@ -14,19 +14,20 @@ func 옹알이2(babbling []string) int {
 	var result int
 
 	for _, bab := range babbling {
-		var stack string
+		var temp strings.Builder
 		var prev string
 
 		for _, b := range bab {
-			stack += string(b)
+			temp.WriteRune(b)
 
-			if prev != stack && (stack == "aya" || stack == "ye" || stack == "woo" || stack == "ma") {
-				prev = stack
-				stack = ""
+			ts := temp.String()
+			if prev != ts && canBabbling(ts) {
+				prev = temp.String()
+				temp.Reset()
 			}
 		}
 
-		if len(stack) == 0 {
+		if temp.Len() == 0 {
 			result++
 		}
 	}
@@ -34,15 +35,13 @@ func 옹알이2(babbling []string) int {
 	return result
 }
 
-func canBabbling(bs string) bool {
+func canBabbling(ts string) bool {
 	var possible = []string{"aya", "ye", "woo", "ma"}
 
 	for _, p := range possible {
-
-		if strings.Contains(bs, p) {
-
+		if p == ts {
+			return true
 		}
-
 	}
 
 	return false
