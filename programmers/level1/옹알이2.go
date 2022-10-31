@@ -13,8 +13,20 @@ func 옹알이2(babbling []string) int {
 
 	var result int
 
-	for _, b := range babbling {
-		if canBabbling(b) {
+	for _, bab := range babbling {
+		var stack string
+		var prev string
+
+		for _, b := range bab {
+			stack += string(b)
+
+			if prev != stack && (stack == "aya" || stack == "ye" || stack == "woo" || stack == "ma") {
+				prev = stack
+				stack = ""
+			}
+		}
+
+		if len(stack) == 0 {
 			result++
 		}
 	}
