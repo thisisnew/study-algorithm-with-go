@@ -53,6 +53,7 @@ func canBabbling(bs string) bool {
 						}
 
 						continue lp
+
 					}
 				}
 			}
