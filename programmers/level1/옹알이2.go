@@ -47,6 +47,11 @@ func canBabbling(bs string) bool {
 
 					if t == p {
 						bs = bs[j+1:]
+
+						if bs == "" {
+							return true
+						}
+
 						continue lp
 					}
 				}
