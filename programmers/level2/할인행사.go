@@ -19,9 +19,8 @@ func 할인행사(want []string, number []int, discount []string) int {
 
 	lp := len(discount) - 9
 	for i := 0; i < lp; i++ {
-
 		tenDiscount := discount[i : i+10]
-		descWantMap := decreaseWandFromDiscount(wantMap, tenDiscount)
+		descWantMap := decreaseWandFromDiscount(cpWantMap(wantMap), tenDiscount)
 
 		if canAllBuy(descWantMap) {
 			result++
@@ -30,6 +29,7 @@ func 할인행사(want []string, number []int, discount []string) int {
 
 	return result
 }
+
 func getWantMap(want []string, number []int) map[string]int {
 
 	var result = make(map[string]int)
@@ -59,4 +59,14 @@ func canAllBuy(wantMap map[string]int) bool {
 	}
 
 	return true
+}
+
+func cpWantMap(wantMap map[string]int) map[string]int {
+	var result = make(map[string]int)
+
+	for k, v := range wantMap {
+		result[k] = v
+	}
+
+	return result
 }
