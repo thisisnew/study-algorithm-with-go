@@ -17,7 +17,7 @@ func 할인행사(want []string, number []int, discount []string) int {
 	var result int
 	wantMap := getWantMap(want, number)
 
-	lp := len(discount) - 10
+	lp := len(discount) - 9
 	for i := 0; i < lp; i++ {
 		if canAllBuy(decreaseWandFromDiscount(wantMap, discount[i:i+10])) {
 			result++
