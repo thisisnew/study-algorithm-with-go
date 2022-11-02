@@ -10,17 +10,22 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
 	middleValue := getMiddleValue(queue1, queue2)
 	var result int
+	var isQueue1Finished = false
 
 	for {
 
-		if getSum(queue1) < getSum(queue2) {
-			queue, p := popProp(queue2)
-			queue2 = queue
-			queue1 = pushProp(queue1, p)
-		} else {
+		if !isQueue1Finished {
 			queue, p := popProp(queue1)
 			queue1 = queue
 			queue2 = pushProp(queue2, p)
+		} else {
+			queue, p := popProp(queue2)
+			queue2 = queue
+			queue1 = pushProp(queue1, p)
+		}
+
+		if len(queue1) == 0 {
+			isQueue1Finished = true
 		}
 
 		result++
@@ -29,7 +34,7 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 			return result
 		}
 
-		if result > len(queue1)+len(queue2) {
+		if len(queue2) == 0 {
 			return -1
 		}
 	}
