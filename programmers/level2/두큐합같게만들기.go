@@ -51,13 +51,13 @@ func isSameQueueValue(queue1, queue2 []int, middleValue int) bool {
 
 func getSum(sl []int) int {
 
-	var result int
+	var result float64
 
 	for _, v := range sl {
-		result += v
+		result += float64(v)
 	}
 
-	return result
+	return int(result)
 
 }
 
