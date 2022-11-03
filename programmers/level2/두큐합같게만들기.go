@@ -8,14 +8,14 @@ func main() {
 
 func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
-	middleValue := getMiddleValue(queue1, queue2)
+	middleValue, remain := getMiddleValue(queue1, queue2)
+
+	if remain == 1 {
+		return -1
+	}
+
 	var result int
 	var isQueue1Finished = false
-	//var original []int
-
-	if getSum(queue2) > getSum(queue1) {
-		queue1, queue2 = queue2, queue1
-	}
 
 	for {
 
@@ -39,9 +39,6 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 			return result
 		}
 
-		if len(queue2) == 0 {
-			return -1
-		}
 	}
 }
 
@@ -61,11 +58,13 @@ func getSum(sl []int) int {
 
 }
 
-func getMiddleValue(queue1 []int, queue2 []int) int {
+func getMiddleValue(queue1 []int, queue2 []int) (int, int) {
 
 	var sumSl = append(queue1, queue2...)
 
-	return getSum(sumSl) / 2
+	sum := getSum(sumSl)
+
+	return sum / 2, sum % 2
 
 }
 
