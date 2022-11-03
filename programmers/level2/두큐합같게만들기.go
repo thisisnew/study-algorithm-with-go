@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(두큐합같게만들기([]int{1, 1}, []int{1, 5}))
+	fmt.Println(두큐합같게만들기([]int{3, 2, 7, 2}, []int{4, 6, 5, 1}))
 }
 
 func 두큐합같게만들기(queue1 []int, queue2 []int) int {
@@ -11,6 +11,11 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 	middleValue := getMiddleValue(queue1, queue2)
 	var result int
 	var isQueue1Finished = false
+	//var original []int
+
+	if getSum(queue2) > getSum(queue1) {
+		queue1, queue2 = queue2, queue1
+	}
 
 	for {
 
