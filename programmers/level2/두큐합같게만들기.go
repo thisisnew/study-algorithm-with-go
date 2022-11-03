@@ -15,28 +15,28 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 	}
 
 	var result int
-	var isQueue1Finished = false
+	var ln = len(queue1) * 2
 
 	for {
 
-		if !isQueue1Finished {
-			queue, p := popProp(queue1)
-			queue1 = queue
-			queue2 = pushProp(queue2, p)
-		} else {
+		if getSum(queue1) < getSum(queue2) {
 			queue, p := popProp(queue2)
 			queue2 = queue
 			queue1 = pushProp(queue1, p)
-		}
-
-		if len(queue1) == 0 {
-			isQueue1Finished = true
+		} else {
+			queue, p := popProp(queue1)
+			queue1 = queue
+			queue2 = pushProp(queue2, p)
 		}
 
 		result++
 
 		if isSameQueueValue(queue1, queue2, middleValue) {
 			return result
+		}
+
+		if result > ln*2 {
+			return -1
 		}
 
 	}
