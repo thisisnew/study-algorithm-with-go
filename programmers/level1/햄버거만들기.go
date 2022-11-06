@@ -29,7 +29,12 @@ func 햄버거만들기(ingredient []int) int {
 
 		isBurgerMade = false
 		var i = 0
-		for i < ln {
+		for {
+
+			if i >= ln {
+				break
+			}
+
 			if ingredientStr[i:i+1] != bread {
 				i++
 				continue
