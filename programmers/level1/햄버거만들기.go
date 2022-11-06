@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
 
 func main() {
 	fmt.Println(햄버거만들기([]int{2, 1, 1, 2, 3, 1, 2, 3, 1}))
@@ -9,39 +13,27 @@ func main() {
 func 햄버거만들기(ingredient []int) int {
 
 	var result int
-	hasFinishedBurger := true
+	var cIngredient = ingredientToString(ingredient)
 
 	for {
+		nIngredient := strings.Replace(cIngredient, "1231", "", 1)
 
-		if !hasFinishedBurger || len(ingredient) < 4 {
+		if nIngredient == cIngredient {
 			return result
 		}
-
-		hasFinishedBurger = false
-		var bIdx = 0
-
-		for i := 0; i < len(ingredient)-3; i++ {
-			if isValidBurger(ingredient[i : i+4]) {
-				result++
-				hasFinishedBurger = true
-				bIdx = i
-				break
-			}
-		}
-
-		ingredient = append(ingredient[:bIdx], ingredient[bIdx+4:]...)
-
+		cIngredient = nIngredient
+		result++
 	}
 }
 
-func isValidBurger(burger []int) bool {
-	var ex = []int{1, 2, 3, 1}
+func ingredientToString(ingredient []int) string {
 
-	for i, b := range burger {
-		if ex[i] != b {
-			return false
-		}
+	var result strings.Builder
+
+	for _, p := range ingredient {
+		result.WriteString(strconv.Itoa(p))
 	}
 
-	return true
+	return result.String()
+
 }
