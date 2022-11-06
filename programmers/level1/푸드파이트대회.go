@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println(푸드파이트대회([]int{1, 3, 4, 6}))
+	fmt.Println(푸드파이트대회([]int{1, 7, 1, 2}))
 }
 
 func 푸드파이트대회(food []int) string {
@@ -15,10 +15,11 @@ func 푸드파이트대회(food []int) string {
 	var result strings.Builder
 
 	displayOne := displayDishes(food)
+	displayAnother := displayDishesAnother(displayOne)
 
 	result.WriteString(displayOne)
 	result.WriteString("0")
-	result.WriteString(displayDishesAnother(displayOne))
+	result.WriteString(displayAnother)
 
 	return result.String()
 }
