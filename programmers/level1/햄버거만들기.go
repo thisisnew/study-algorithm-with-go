@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 const bread = "1"
@@ -59,18 +60,13 @@ func 햄버거만들기(ingredient []int) int {
 
 func getIngredientString(ingredient []int) string {
 
-	var sum int
-	var last = len(ingredient) - 1
-	for i, p := range ingredient {
-		sum += p
+	var result strings.Builder
 
-		if i < last {
-			sum *= 10
-		}
-
+	for _, p := range ingredient {
+		result.WriteString(strconv.Itoa(p))
 	}
 
-	return strconv.Itoa(sum)
+	return result.String()
 }
 
 func isAnyIngredientRemain(ln, idx int) bool {
