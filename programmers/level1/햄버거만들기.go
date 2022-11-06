@@ -74,9 +74,5 @@ func getIngredientString(ingredient []int) string {
 }
 
 func isAnyIngredientRemain(ln, idx int) bool {
-	if idx+3 > ln-1 {
-		return false
-	}
-
-	return true
+	return idx+3 <= ln-1
 }
