@@ -11,7 +11,7 @@ const vegetable = "2"
 const meat = "3"
 
 func main() {
-	fmt.Println(햄버거만들기([]int{2, 1, 1, 2, 3, 1, 2, 3, 1}))
+	fmt.Println(햄버거만들기([]int{1, 3, 2, 1, 2, 1, 3, 1, 2}))
 }
 
 func 햄버거만들기(ingredient []int) int {
@@ -28,30 +28,39 @@ func 햄버거만들기(ingredient []int) int {
 		}
 
 		isBurgerMade = false
-
-		for i := 0; i < ln; i++ {
+		var i = 0
+		for i < ln {
 			if ingredientStr[i:i+1] != bread {
+				i++
 				continue
 			}
 
-			if isAnyIngredientRemain(ln, i) {
-				if ingredientStr[i+1:i+2] != vegetable {
-					continue
-				}
-
-				if ingredientStr[i+2:i+3] != meat {
-					continue
-				}
-
-				if ingredientStr[i+3:i+4] != bread {
-					continue
-				}
-
-				ingredientStr = ingredientStr[:i] + ingredientStr[i+4:]
-				isBurgerMade = true
-				result++
-				break
+			if !isAnyIngredientRemain(ln, i) {
+				i++
 			}
+
+			if ingredientStr[i+1:i+2] != vegetable {
+				i++
+				continue
+			}
+
+			if ingredientStr[i+2:i+3] != meat {
+				i += 2
+				continue
+			}
+
+			if ingredientStr[i+3:i+4] != bread {
+				i += 3
+				continue
+			}
+
+			a := ingredientStr[:i]
+			b := ingredientStr[i+3:]
+			ingredientStr = a + b
+			isBurgerMade = true
+			result++
+			break
+
 		}
 	}
 
