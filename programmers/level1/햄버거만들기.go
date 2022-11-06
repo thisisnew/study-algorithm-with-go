@@ -36,7 +36,7 @@ func 햄버거만들기(ingredient []int) int {
 			}
 
 			if !isAnyIngredientRemain(ln, i) {
-				i++
+				break
 			}
 
 			if ingredientStr[i+1:i+2] != vegetable {
