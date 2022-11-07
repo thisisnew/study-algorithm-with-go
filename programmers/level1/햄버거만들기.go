@@ -21,7 +21,7 @@ func 햄버거만들기(ingredient []int) int {
 			if [4]int{st[len(st)-4], st[len(st)-3], st[len(st)-2], st[len(st)-1]} == hamburger {
 				result++
 
-				st = st[4:]
+				st = st[:len(st)-4]
 			}
 		}
 	}
