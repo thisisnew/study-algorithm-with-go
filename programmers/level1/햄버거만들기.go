@@ -10,6 +10,7 @@ func main() {
 
 func 햄버거만들기(ingredient []int) int {
 
+	var hamburger = [4]int{1, 2, 3, 1}
 	var result = 0
 	var st []int
 
@@ -17,20 +18,12 @@ func 햄버거만들기(ingredient []int) int {
 		st = append(st, ingredient[i])
 
 		if len(st) >= 4 {
-
-			var temp = [4]int{st[len(st)-4], st[len(st)-3], st[len(st)-2], st[len(st)-1]}
-
-			if temp == [4]int{1, 2, 3, 1} {
+			if [4]int{st[len(st)-4], st[len(st)-3], st[len(st)-2], st[len(st)-1]} == hamburger {
 				result++
 
-				st = st[1:]
-				st = st[1:]
-				st = st[1:]
-				st = st[1:]
+				st = st[4:]
 			}
-
 		}
-
 	}
 
 	return result
