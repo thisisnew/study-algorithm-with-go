@@ -5,16 +5,16 @@ import (
 )
 
 func main() {
-	fmt.Println(햄버거만들기([]int{1, 3, 2, 1, 2, 1, 3, 1, 2}))
+	fmt.Println(햄버거만들기([]int{2, 1, 1, 2, 3, 1, 2, 3, 1}))
 }
 
 func 햄버거만들기(ingredient []int) int {
 
 	var result = 0
-	var st = make([]int, len(ingredient))
+	var st []int
 
 	for i := 0; i < len(ingredient); i++ {
-		st[i] = ingredient[i]
+		st = append(st, ingredient[i])
 
 		if len(st) >= 4 {
 
