@@ -2,13 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"strings"
 )
-
-const bread = "1"
-const vegetable = "2"
-const meat = "3"
 
 func main() {
 	fmt.Println(햄버거만들기([]int{1, 3, 2, 1, 2, 1, 3, 1, 2}))
@@ -17,70 +11,27 @@ func main() {
 func 햄버거만들기(ingredient []int) int {
 
 	var result = 0
-	var isBurgerMade = true
-	var ingredientStr = getIngredientString(ingredient)
+	var st = make([]int, len(ingredient))
 
-	for {
-		ln := len([]rune(ingredientStr))
+	for i := 0; i < len(ingredient); i++ {
+		st[i] = ingredient[i]
 
-		if ln < 4 || !isBurgerMade {
-			break
+		if len(st) >= 4 {
+
+			var temp = [4]int{st[len(st)-4], st[len(st)-3], st[len(st)-2], st[len(st)-1]}
+
+			if temp == [4]int{1, 2, 3, 1} {
+				result++
+
+				st = st[1:]
+				st = st[1:]
+				st = st[1:]
+				st = st[1:]
+			}
+
 		}
 
-		isBurgerMade = false
-		var i = 0
-		for {
-
-			if i >= ln {
-				break
-			}
-
-			if !isAnyIngredientRemain(ln, i) {
-				break
-			}
-
-			if ingredientStr[i:i+1] != bread {
-				i++
-				continue
-			}
-
-			if ingredientStr[i+1:i+2] != vegetable {
-				i++
-				continue
-			}
-
-			if ingredientStr[i+2:i+3] != meat {
-				i += 2
-				continue
-			}
-
-			if ingredientStr[i+3:i+4] != bread {
-				i += 3
-				continue
-			}
-
-			ingredientStr = ingredientStr[:i] + ingredientStr[i+4:]
-			isBurgerMade = true
-			result++
-			break
-
-		}
 	}
 
 	return result
-}
-
-func getIngredientString(ingredient []int) string {
-
-	var result strings.Builder
-
-	for _, p := range ingredient {
-		result.WriteString(strconv.Itoa(p))
-	}
-
-	return result.String()
-}
-
-func isAnyIngredientRemain(ln, idx int) bool {
-	return idx+3 <= ln-1
 }
