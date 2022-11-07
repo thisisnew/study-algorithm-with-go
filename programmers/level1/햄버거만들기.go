@@ -11,7 +11,7 @@ const vegetable = "2"
 const meat = "3"
 
 func main() {
-	fmt.Println(햄버거만들기([]int{2, 1, 1, 2, 3, 1, 2, 3, 1}))
+	fmt.Println(햄버거만들기([]int{1, 3, 2, 1, 2, 1, 3, 1, 2}))
 }
 
 func 햄버거만들기(ingredient []int) int {
