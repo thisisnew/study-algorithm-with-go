@@ -6,71 +6,27 @@ import (
 	"strings"
 )
 
-const bread = "1"
-const vegetable = "2"
-const meat = "3"
-
 func main() {
 	fmt.Println(햄버거만들기([]int{2, 1, 1, 2, 3, 1, 2, 3, 1}))
 }
 
 func 햄버거만들기(ingredient []int) int {
 
-	var result = 0
-	var isBurgerMade = true
-	var ingredientStr = getIngredientString(ingredient)
+	var result int
+	var cIngredient = ingredientToString(ingredient)
 
 	for {
-		ln := len([]rune(ingredientStr))
+		nIngredient := strings.Replace(cIngredient, "1231", "", 1)
 
-		if ln < 4 || !isBurgerMade {
-			break
+		if nIngredient == cIngredient {
+			return result
 		}
-
-		isBurgerMade = false
-		var i = 0
-		for {
-
-			if i >= ln {
-				break
-			}
-
-			if ingredientStr[i:i+1] != bread {
-				i++
-				continue
-			}
-
-			if !isAnyIngredientRemain(ln, i) {
-				break
-			}
-
-			if ingredientStr[i+1:i+2] != vegetable {
-				i++
-				continue
-			}
-
-			if ingredientStr[i+2:i+3] != meat {
-				i++
-				continue
-			}
-
-			if ingredientStr[i+3:i+4] != bread {
-				i++
-				continue
-			}
-
-			ingredientStr = ingredientStr[:i] + ingredientStr[i+4:]
-			isBurgerMade = true
-			result++
-			break
-
-		}
+		cIngredient = nIngredient
+		result++
 	}
-
-	return result
 }
 
-func getIngredientString(ingredient []int) string {
+func ingredientToString(ingredient []int) string {
 
 	var result strings.Builder
 
@@ -79,8 +35,5 @@ func getIngredientString(ingredient []int) string {
 	}
 
 	return result.String()
-}
 
-func isAnyIngredientRemain(ln, idx int) bool {
-	return idx+3 <= ln-1
 }
