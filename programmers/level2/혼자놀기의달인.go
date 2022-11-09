@@ -11,12 +11,10 @@ func main() {
 
 func 혼자놀기의달인(cards []int) int {
 
-	var openedBoxMap = map[int]bool{}
 	var boxPoints []int
 
 	for i := 0; i < len(cards); i++ {
-		var boxPoint = 0
-
+		var openedBoxMap = map[int]bool{}
 		isOpened, _ := openedBoxMap[i]
 
 		if isOpened {
@@ -25,19 +23,17 @@ func 혼자놀기의달인(cards []int) int {
 
 		boxNum := cards[i]
 		openedBoxMap[boxNum] = true
-		boxPoint++
 
 		for {
 			boxNum = cards[boxNum-1]
 			isOpened, _ = openedBoxMap[boxNum]
 
 			if isOpened {
-				boxPoints = append(boxPoints, boxPoint)
+				boxPoints = append(boxPoints, len(openedBoxMap))
 				break
 			}
 
 			openedBoxMap[boxNum] = true
-			boxPoint++
 		}
 
 	}
