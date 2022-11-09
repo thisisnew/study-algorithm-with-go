@@ -11,29 +11,33 @@ func main() {
 
 func 혼자놀기의달인(cards []int) int {
 
+	var openedBoxMap = map[int]bool{}
 	var boxPoints []int
 
 	for i := 0; i < len(cards); i++ {
-		var openedBoxMap = map[int]bool{}
-		isOpened, _ := openedBoxMap[i]
+		var boxPoint = 0
 
-		if isOpened {
+		isOpened, ok := openedBoxMap[i]
+
+		if ok && isOpened {
 			continue
 		}
 
 		boxNum := cards[i]
 		openedBoxMap[boxNum] = true
+		boxPoint++
 
 		for {
 			boxNum = cards[boxNum-1]
-			isOpened, _ = openedBoxMap[boxNum]
+			isOpened, ok = openedBoxMap[boxNum]
 
-			if isOpened {
-				boxPoints = append(boxPoints, len(openedBoxMap))
+			if ok && isOpened {
+				boxPoints = append(boxPoints, boxPoint)
 				break
 			}
 
 			openedBoxMap[boxNum] = true
+			boxPoint++
 		}
 
 	}
@@ -43,7 +47,12 @@ func 혼자놀기의달인(cards []int) int {
 
 func getHighestBoxPoint(boxPoints []int) int {
 
+	if len(boxPoints) == 0 {
+		return 0
+	}
+
 	if len(boxPoints) <= 1 {
+		return boxPoints[0]
 		return 0
 	}
 
