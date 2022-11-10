@@ -48,13 +48,15 @@ func 혼자놀기의달인(cards []int) int {
 
 		results = append(results, calculateHighestBoxPoint(boxPoints))
 
+		if len(results) == len(cards) {
+			return getHighestBoxPoint(results)
+		}
+
 		startIdx++
 		if startIdx > len(cards)-1 {
 			startIdx = 0
 		}
 	}
-
-	return getHighestBoxPoint(results)
 }
 
 func getHighestBoxPoint(results []int) int {
