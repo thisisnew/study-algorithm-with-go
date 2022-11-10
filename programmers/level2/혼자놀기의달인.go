@@ -6,24 +6,30 @@ import (
 )
 
 func main() {
-	fmt.Println(혼자놀기의달인([]int{2, 3, 1}))
+	fmt.Println(혼자놀기의달인([]int{2, 1}))
 }
 
 func 혼자놀기의달인(cards []int) int {
 
-	var openedBoxMap = map[int]bool{}
-	var boxPoints []int
+	var results []int
+	var startIdx = 0
+	var idx = 0
 
-	for i := 0; i < len(cards); i++ {
+	for {
+
+		var openedBoxMap = map[int]bool{}
+		var boxPoints []int
+
+		idx = startIdx
 		var boxPoint = 0
 
-		isOpened, ok := openedBoxMap[i]
+		isOpened, ok := openedBoxMap[idx]
 
 		if ok && isOpened {
 			continue
 		}
 
-		boxNum := cards[i]
+		boxNum := cards[idx]
 		openedBoxMap[boxNum] = true
 		boxPoint++
 
@@ -40,12 +46,27 @@ func 혼자놀기의달인(cards []int) int {
 			boxPoint++
 		}
 
+		results = append(results, calculateHighestBoxPoint(boxPoints))
+
+		startIdx++
+		if startIdx > len(cards)-1 {
+			startIdx = 0
+		}
 	}
 
-	return getHighestBoxPoint(boxPoints)
+	return getHighestBoxPoint(results)
 }
 
-func getHighestBoxPoint(boxPoints []int) int {
+func getHighestBoxPoint(results []int) int {
+
+	sort.Slice(results, func(i, j int) bool {
+		return results[i] > results[j]
+	})
+
+	return results[0] * results[1]
+}
+
+func calculateHighestBoxPoint(boxPoints []int) int {
 
 	if len(boxPoints) <= 1 {
 		return 0
