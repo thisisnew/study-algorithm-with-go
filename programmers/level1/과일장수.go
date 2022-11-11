@@ -23,14 +23,14 @@ func loadApples(m int, score []int) [][]int {
 	var idx = 0
 
 	for i := 0; i < len(score); i++ {
+		apples[idx] = score[i]
+		idx++
+
 		if idx == m {
 			idx = 0
 			appleBoxes = append(appleBoxes, apples)
 			apples = make([]int, m)
 		}
-
-		apples[idx] = score[i]
-		idx++
 	}
 
 	return appleBoxes
