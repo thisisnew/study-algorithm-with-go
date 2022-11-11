@@ -6,32 +6,44 @@ import (
 )
 
 func main() {
-	fmt.Println(과일장수(3, 4, []int{1, 2, 3, 1, 2, 3, 1}))
+	fmt.Println(과일장수(4, 3, []int{4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2}))
 }
 
 func 과일장수(k int, m int, score []int) int {
+	return calMaximumProfit(loadApples(m, score))
+}
 
+func loadApples(m int, score []int) [][]int {
 	sort.Slice(score, func(i, j int) bool {
 		return score[i] > score[j]
 	})
 
-	var boxCnt = 0
-	var minimums []int
-	for i := 0; i < len(score)-m; i += m {
-		boxCnt++
+	var appleBoxes [][]int
+	var apples = make([]int, m)
+	var idx = 0
 
-		minimums = append(minimums, score[i+m-1])
+	for i := 0; i < len(score); i++ {
+		if idx == m {
+			idx = 0
+			appleBoxes = append(appleBoxes, apples)
+			apples = make([]int, m)
+		}
+
+		apples[idx] = score[i]
+		idx++
 	}
 
-	return calMaximumProfit(boxCnt, minimums)
+	return appleBoxes
 }
 
-func calMaximumProfit(boxCnt int, minimums []int) int {
+func calMaximumProfit(appleBoxes [][]int) int {
 
 	var result = 0
+	var boxes = len(appleBoxes)
 
-	for _, m := range minimums {
-		result += m * boxCnt
+	for _, apples := range appleBoxes {
+		m := len(apples)
+		result += apples[m-1] * m * boxes
 	}
 
 	return result
