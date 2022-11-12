@@ -40,12 +40,13 @@ func countAppleBoxes(appleBoxes [][]int) [][]int {
 
 	var a = appleBoxes[0]
 	var boxes = 1
+	var result [][]int
 
 	for i := 1; i < len(appleBoxes); i++ {
 		apples := appleBoxes[i]
 
-		if !isSameAppleBox(a, apples) || i == len(appleBoxes)-1 {
-			addBoxCntToAppleBox(&appleBoxes, i, boxes)
+		if !isSameAppleBox(a, apples) {
+			result = addBoxCntToAppleBox(result, a, boxes)
 			a = apples
 			boxes = 0
 		}
@@ -53,9 +54,9 @@ func countAppleBoxes(appleBoxes [][]int) [][]int {
 		boxes++
 	}
 
-	addBoxCntToAppleBox(&appleBoxes, len(appleBoxes), boxes)
+	result = addBoxCntToAppleBox(result, a, boxes)
 
-	return appleBoxes
+	return result
 }
 
 func isSameAppleBox(ab, ac []int) bool {
@@ -69,14 +70,12 @@ func isSameAppleBox(ab, ac []int) bool {
 	return true
 }
 
-func addBoxCntToAppleBox(appleBoxes *[][]int, idx, boxes int) {
+func addBoxCntToAppleBox(appleBoxes [][]int, apples []int, boxes int) [][]int {
 
-	for i := idx - boxes; i < idx; i++ {
-		apples := (*appleBoxes)[i]
-		apples = append(apples, boxes)
-		(*appleBoxes)[i] = apples
-	}
+	apples = append(apples, boxes)
+	appleBoxes = append(appleBoxes, apples)
 
+	return appleBoxes
 }
 
 func calMaximumProfit(m int, appleBoxes [][]int) int {
@@ -84,9 +83,10 @@ func calMaximumProfit(m int, appleBoxes [][]int) int {
 	var result = 0
 
 	for _, apples := range appleBoxes {
-		boxes := apples[m-1]
-		minimum := apples[m-2]
-		result += minimum * m * boxes
+		ln := len(apples)
+		minPrice := apples[ln-2]
+		boxes := apples[ln-1]
+		result += minPrice * m * boxes
 	}
 
 	return result
