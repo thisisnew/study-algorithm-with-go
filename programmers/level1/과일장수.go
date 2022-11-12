@@ -10,7 +10,7 @@ func main() {
 }
 
 func 과일장수(k int, m int, score []int) int {
-	return calMaximumProfit(loadApples(m, score))
+	return calMaximumProfit(countAppleBoxes(loadApples(m, score)))
 }
 
 func loadApples(m int, score []int) [][]int {
@@ -36,14 +36,54 @@ func loadApples(m int, score []int) [][]int {
 	return appleBoxes
 }
 
+func countAppleBoxes(appleBoxes [][]int) [][]int {
+
+	var a = appleBoxes[0]
+	var boxes = 0
+
+	for i, apples := range appleBoxes {
+		boxes++
+
+		if !isSameAppleBox(a, apples) || i == len(appleBoxes)-1 {
+			addBoxCntToAppleBox(&appleBoxes, i, boxes-1)
+			a = apples
+			boxes = 0
+		}
+	}
+
+	return appleBoxes
+}
+
+func isSameAppleBox(ab, ac []int) bool {
+
+	for i, a := range ab {
+		if a != ac[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
+func addBoxCntToAppleBox(appleBoxes *[][]int, idx, boxes int) {
+
+	for i := idx - boxes; i < idx; i++ {
+		apples := (*appleBoxes)[i]
+		apples = append(apples, boxes)
+		(*appleBoxes)[i] = apples
+	}
+
+}
+
 func calMaximumProfit(appleBoxes [][]int) int {
 
 	var result = 0
-	var boxes = len(appleBoxes)
 
 	for _, apples := range appleBoxes {
 		m := len(apples)
-		result += apples[m-1] * m * boxes
+		boxes := apples[m-1]
+		minimum := apples[m-2]
+		result += minimum * m * boxes
 	}
 
 	return result
