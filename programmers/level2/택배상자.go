@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(택배상자([]int{5, 4, 3, 2, 1}))
+	fmt.Println(택배상자([]int{1, 2, 4, 3, 5}))
 }
 
 type Packs struct {
@@ -40,17 +40,6 @@ func (p *Packs) push(x int) {
 	p.items = append(p.items, x)
 }
 
-func (p Packs) contains(x int) bool {
-
-	for _, pack := range p.items {
-		if x == pack {
-			return true
-		}
-	}
-
-	return false
-}
-
 func 택배상자(order []int) int {
 
 	var result int
@@ -65,7 +54,7 @@ out:
 
 		o := order[0]
 
-		if packsInContainer.contains(o) {
+		if o > subContainer.top() {
 
 			for {
 				p := packsInContainer.pop()
