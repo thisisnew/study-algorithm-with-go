@@ -39,16 +39,18 @@ func loadApples(m int, score []int) [][]int {
 func countAppleBoxes(appleBoxes [][]int) [][]int {
 
 	var a = appleBoxes[0]
-	var boxes = 0
+	var boxes = 1
 
-	for i, apples := range appleBoxes {
-		boxes++
+	for i := 1; i < len(appleBoxes); i++ {
+		apples := appleBoxes[i]
 
 		if !isSameAppleBox(a, apples) || i == len(appleBoxes)-1 {
-			addBoxCntToAppleBox(&appleBoxes, i, boxes-1)
+			addBoxCntToAppleBox(&appleBoxes, i, boxes)
 			a = apples
 			boxes = 0
 		}
+
+		boxes++
 	}
 
 	return appleBoxes
