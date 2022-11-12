@@ -10,7 +10,7 @@ func main() {
 }
 
 func 과일장수(k int, m int, score []int) int {
-	return calMaximumProfit(m, countAppleBoxes(loadApples(m, score)))
+	return calMaximumProfit(countAppleBoxes(m, loadApples(m, score)))
 }
 
 func loadApples(m int, score []int) [][]int {
@@ -36,61 +36,25 @@ func loadApples(m int, score []int) [][]int {
 	return appleBoxes
 }
 
-func countAppleBoxes(appleBoxes [][]int) [][]int {
+func countAppleBoxes(m int, appleBoxes [][]int) map[int]int {
 
-	if len(appleBoxes) == 0 {
-		return [][]int{}
+	var applesMap = map[int]int{}
+
+	for _, apples := range appleBoxes {
+		minPrice := apples[len(apples)-1]
+		price := m * minPrice
+		applesMap[price]++
 	}
 
-	var a = appleBoxes[0]
-	var boxes = 1
-	var result [][]int
-
-	for i := 1; i < len(appleBoxes); i++ {
-		apples := appleBoxes[i]
-
-		if !isSameAppleBox(a, apples) {
-			result = addBoxCntToAppleBox(result, a, boxes)
-			a = apples
-			boxes = 0
-		}
-
-		boxes++
-	}
-
-	result = addBoxCntToAppleBox(result, a, boxes)
-
-	return result
+	return applesMap
 }
 
-func isSameAppleBox(ab, ac []int) bool {
-
-	for i, a := range ab {
-		if a != ac[i] {
-			return false
-		}
-	}
-
-	return true
-}
-
-func addBoxCntToAppleBox(appleBoxes [][]int, apples []int, boxes int) [][]int {
-
-	apples = append(apples, boxes)
-	appleBoxes = append(appleBoxes, apples)
-
-	return appleBoxes
-}
-
-func calMaximumProfit(m int, appleBoxes [][]int) int {
+func calMaximumProfit(applesMap map[int]int) int {
 
 	var result = 0
 
-	for _, apples := range appleBoxes {
-		ln := len(apples)
-		minPrice := apples[ln-2]
-		boxes := apples[ln-1]
-		result += minPrice * m * boxes
+	for price, boxes := range applesMap {
+		result += price * boxes
 	}
 
 	return result
