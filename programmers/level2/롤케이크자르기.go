@@ -8,7 +8,7 @@ func main() {
 
 func 롤케이크자르기(topping []int) int {
 
-	//topping = getNonOverlappingToppings(topping)
+	topping = getNonOverlappingToppings(topping)
 
 	if len(topping) <= 1 {
 		return -1
