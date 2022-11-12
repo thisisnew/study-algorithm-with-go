@@ -38,6 +38,10 @@ func loadApples(m int, score []int) [][]int {
 
 func countAppleBoxes(appleBoxes [][]int) [][]int {
 
+	if len(appleBoxes) == 0 {
+		return [][]int{}
+	}
+
 	var a = appleBoxes[0]
 	var boxes = 1
 	var result [][]int
