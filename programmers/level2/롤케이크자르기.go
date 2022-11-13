@@ -19,7 +19,20 @@ func 롤케이크자르기(topping []int) int {
 	preMap := getNonOverlappingToppings(pre)
 	postMap := getNonOverlappingToppings(post)
 
-	for i := 1; i < len(topping)-1; i++ {
+	for i := 1; i < len(topping); i++ {
+
+		t := topping[i]
+		preMap[t]++
+
+		_, ok := postMap[t]
+
+		if ok {
+			postMap[t]--
+
+			if postMap[t] <= 0 {
+				postMap = removeKeyFromToppingsMap(postMap)
+			}
+		}
 
 		if len(preMap) == len(postMap) {
 			result++
@@ -38,6 +51,20 @@ func getNonOverlappingToppings(topping []int) map[int]int {
 	}
 
 	return result
+}
+
+func removeKeyFromToppingsMap(m map[int]int) map[int]int {
+
+	var result = map[int]int{}
+
+	for k, v := range m {
+		if v > 0 {
+			result[k] = v
+		}
+	}
+
+	return result
+
 }
 
 func countToppings(cake []int) int {
