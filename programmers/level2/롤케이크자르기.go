@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(롤케이크자르기([]int{1, 2, 1, 3, 1, 4, 1, 2}))
+	fmt.Println(롤케이크자르기([]int{1, 2, 3, 1, 4}))
 }
 
 func 롤케이크자르기(topping []int) int {
@@ -14,27 +14,25 @@ func 롤케이크자르기(topping []int) int {
 		return result
 	}
 
-	pre := topping[:1]
-	post := topping[1:]
-	preMap := getNonOverlappingToppings(pre)
-	postMap := getNonOverlappingToppings(post)
+	pre := getNonOverlappingToppings(topping[:1])
+	post := getNonOverlappingToppings(topping[1:])
 
 	for i := 1; i < len(topping); i++ {
 
 		t := topping[i]
-		preMap[t]++
+		pre[t]++
 
-		_, ok := postMap[t]
+		_, ok := post[t]
 
 		if ok {
-			postMap[t]--
+			post[t]--
 
-			if postMap[t] <= 0 {
-				postMap = removeKeyFromToppingsMap(postMap)
+			if post[t] <= 0 {
+				post = removeKeyFromToppingsMap(post)
 			}
 		}
 
-		if len(preMap) == len(postMap) {
+		if hasSameCountToppings(pre, post) {
 			result++
 		}
 	}
@@ -67,19 +65,6 @@ func removeKeyFromToppingsMap(m map[int]int) map[int]int {
 
 }
 
-func countToppings(cake []int) int {
-
-	var cakeMap = map[int]int{}
-
-	for _, c := range cake {
-
-		_, ok := cakeMap[c]
-
-		if !ok {
-			cakeMap[c]++
-		}
-
-	}
-
-	return len(cakeMap)
+func hasSameCountToppings(pre, post map[int]int) bool {
+	return len(pre) == len(post)
 }
