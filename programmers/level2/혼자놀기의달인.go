@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(혼자놀기의달인([]int{2, 3, 1}))
+	fmt.Println(혼자놀기의달인([]int{2, 1}))
 }
 
 func 혼자놀기의달인(cards []int) int {
