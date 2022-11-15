@@ -6,6 +6,40 @@ func main() {
 	fmt.Println(두큐합같게만들기([]int{3, 2, 7, 2}, []int{4, 6, 5, 1}))
 }
 
+type Queue struct {
+	items []int
+}
+
+func (q *Queue) pop() int {
+
+	if len(q.items) == 0 {
+		return -1
+	}
+
+	pack := q.items[len(q.items)-1]
+
+	q.items = q.items[0 : len(q.items)-1]
+
+	return pack
+}
+
+func (q *Queue) top() int {
+
+	if len(q.items) == 0 {
+		return -1
+	}
+
+	return q.items[len(q.items)-1]
+}
+
+func (q Queue) empty() bool {
+	return len(q.items) == 0
+}
+
+func (q *Queue) push(x int) {
+	q.items = append(q.items, x)
+}
+
 func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
 	middleValue, remain := getMiddleValue(queue1, queue2)
