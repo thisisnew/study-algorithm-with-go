@@ -54,7 +54,10 @@ func (q *Queue) sum() int {
 
 func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
-	middleValue, remain := getMiddleValue(queue1, queue2)
+	q1 := Queue{queue1}
+	q2 := Queue{queue2}
+
+	middleValue, remain := getMiddleValue(q1, q2)
 
 	if remain == 1 {
 		return -1
@@ -62,8 +65,6 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
 	var result int
 	var ln = len(queue1) * 2
-	q1 := Queue{queue1}
-	q2 := Queue{queue2}
 
 	for {
 
@@ -93,12 +94,12 @@ func isSameQueueValue(q1, q2 Queue, middleValue int) bool {
 
 }
 
-func getMiddleValue(queue1 []int, queue2 []int) (int, int) {
+func getMiddleValue(q1, q2 Queue) (int, int) {
 
-	//var sumSl = append(queue1, queue2...)
-	//
-	//sum := getSum(sumSl)
-	//
-	//return sum / 2, sum % 2
-	return 0, 0
+	var q = Queue{}
+	q.items = append(q1.items, q2.items...)
+
+	sum := q.sum()
+
+	return sum / 2, sum % 2
 }
