@@ -40,6 +40,18 @@ func (q *Queue) push(x int) {
 	q.items = append(q.items, x)
 }
 
+func (q *Queue) sum() int {
+
+	var result float64
+
+	for _, v := range q.items {
+		result += float64(v)
+	}
+
+	return int(result)
+
+}
+
 func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
 	middleValue, remain := getMiddleValue(queue1, queue2)
@@ -57,7 +69,7 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
 		result++
 
-		if getSum(q1.items) < getSum(q2.items) {
+		if q1.sum() < q1.sum() {
 			p := q2.pop()
 			q1.push(p)
 		} else {
@@ -77,27 +89,16 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 }
 
 func isSameQueueValue(queue1, queue2 []int, middleValue int) bool {
-	return getSum(queue1) == middleValue && getSum(queue2) == middleValue
-}
-
-func getSum(sl []int) int {
-
-	var result float64
-
-	for _, v := range sl {
-		result += float64(v)
-	}
-
-	return int(result)
-
+	//return getSum(queue1) == middleValue && getSum(queue2) == middleValue
+	return false
 }
 
 func getMiddleValue(queue1 []int, queue2 []int) (int, int) {
 
-	var sumSl = append(queue1, queue2...)
-
-	sum := getSum(sumSl)
-
-	return sum / 2, sum % 2
-
+	//var sumSl = append(queue1, queue2...)
+	//
+	//sum := getSum(sumSl)
+	//
+	//return sum / 2, sum % 2
+	return 0, 0
 }
