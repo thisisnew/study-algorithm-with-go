@@ -77,7 +77,7 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 			q2.push(p)
 		}
 
-		if isSameQueueValue(q1.items, q2.items, middleValue) {
+		if isSameQueueValue(q1, q2, middleValue) {
 			return result
 		}
 
@@ -88,9 +88,9 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 	}
 }
 
-func isSameQueueValue(queue1, queue2 []int, middleValue int) bool {
-	//return getSum(queue1) == middleValue && getSum(queue2) == middleValue
-	return false
+func isSameQueueValue(q1, q2 Queue, middleValue int) bool {
+	return q1.sum() == middleValue && q2.sum() == middleValue
+
 }
 
 func getMiddleValue(queue1 []int, queue2 []int) (int, int) {
