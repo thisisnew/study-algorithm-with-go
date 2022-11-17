@@ -1,4 +1,4 @@
-package level0
+package main
 
 import "fmt"
 
@@ -7,5 +7,5 @@ func main() {
 }
 
 func 두수의나눗셈(num1 int, num2 int) int {
-	return (num1 / num2) * 1000
+	return (num2 / num1) * 1000
 }
