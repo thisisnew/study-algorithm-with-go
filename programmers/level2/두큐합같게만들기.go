@@ -66,8 +66,6 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 	var result int
 
 	for {
-		result++
-
 		switch {
 		case q2.sum() > q1.sum():
 			p := q2.pop()
@@ -82,6 +80,8 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
 			return -1
 		}
+
+		result++
 	}
 }
 
