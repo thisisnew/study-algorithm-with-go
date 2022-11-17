@@ -64,34 +64,25 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 	}
 
 	var result int
-	var ln = len(queue1) * 2
 
 	for {
-
 		result++
 
-		if q1.sum() < q1.sum() {
+		switch {
+		case q2.sum() > q1.sum():
 			p := q2.pop()
 			q1.push(p)
-		} else {
+		case q2.sum() < q1.sum():
 			p := q1.pop()
 			q2.push(p)
-		}
+		default:
+			if q1.sum() == middleValue && q2.sum() == middleValue {
+				return result
+			}
 
-		if isSameQueueValue(q1, q2, middleValue) {
-			return result
-		}
-
-		if result > ln*2 {
 			return -1
 		}
-
 	}
-}
-
-func isSameQueueValue(q1, q2 Queue, middleValue int) bool {
-	return q1.sum() == middleValue && q2.sum() == middleValue
-
 }
 
 func getMiddleValue(q1, q2 Queue) (int, int) {
