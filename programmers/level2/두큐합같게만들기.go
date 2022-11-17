@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(두큐합같게만들기([]int{3, 2, 7, 2}, []int{4, 6, 5, 1}))
+	fmt.Println(두큐합같게만들기([]int{1, 2, 1, 2}, []int{1, 10, 1, 2}))
 }
 
 type Queue struct {
@@ -16,11 +16,11 @@ func (q *Queue) pop() int {
 		return -1
 	}
 
-	pack := q.items[len(q.items)-1]
+	p := q.items[0]
 
-	q.items = q.items[0 : len(q.items)-1]
+	q.items = q.items[1:len(q.items)]
 
-	return pack
+	return p
 }
 
 func (q *Queue) top() int {
