@@ -26,7 +26,6 @@ func sumPower(divisorCount []int, limit int, power int) int {
 }
 
 func getDivisorsCountSlice(number int) []int {
-
 	var result []int
 
 	for i := 1; i <= number; i++ {
@@ -37,7 +36,6 @@ func getDivisorsCountSlice(number int) []int {
 }
 
 func countDivisors(number int) int {
-
 	var result int
 
 	for i := 1; i <= number; i++ {
