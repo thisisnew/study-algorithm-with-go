@@ -56,8 +56,10 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 
 	q1 := Queue{queue1}
 	q2 := Queue{queue2}
+	q1Sum := q1.sum()
+	q2Sum := q2.sum()
 
-	middleValue, remain := getMiddleValue(q1, q2)
+	middleValue, remain := getMiddleValue(q1Sum, q2Sum)
 	limitCount := 2 * (len(q1.items) + len(q2.items))
 
 	if remain == 1 {
@@ -73,14 +75,18 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 		}
 
 		switch {
-		case q2.sum() > q1.sum():
+		case q2Sum > q1Sum:
 			p := q2.pop()
 			q1.push(p)
-		case q2.sum() < q1.sum():
+			q1Sum += p
+			q2Sum -= p
+		case q2Sum < q1Sum:
 			p := q1.pop()
 			q2.push(p)
+			q2Sum += p
+			q1Sum -= p
 		default:
-			if q1.sum() == middleValue && q2.sum() == middleValue {
+			if q1Sum == middleValue && q2Sum == middleValue {
 				return result
 			}
 
@@ -92,12 +98,7 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 	}
 }
 
-func getMiddleValue(q1, q2 Queue) (int, int) {
-
-	var q = Queue{}
-	q.items = append(q1.items, q2.items...)
-
-	sum := q.sum()
-
+func getMiddleValue(q1Sum, q2Sum int) (int, int) {
+	sum := q1Sum + q2Sum
 	return sum / 2, sum % 2
 }
