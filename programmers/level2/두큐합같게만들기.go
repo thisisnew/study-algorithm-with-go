@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(두큐합같게만들기([]int{1, 2, 1, 2}, []int{1, 10, 1, 2}))
+	fmt.Println(두큐합같게만들기([]int{3, 3, 3, 3}, []int{3, 3, 21, 3}))
 }
 
 type Queue struct {
@@ -67,10 +67,6 @@ func 두큐합같게만들기(queue1 []int, queue2 []int) int {
 	var result int
 
 	for {
-
-		if limitCount < 0 {
-			return -1
-		}
 
 		switch {
 		case q2.sum() > q1.sum():
