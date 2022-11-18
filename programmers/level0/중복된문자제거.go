@@ -6,33 +6,34 @@ import (
 )
 
 func main() {
-	fmt.Println(중복된문자제거("people"))
+	fmt.Println(중복된문자제거("We are the world"))
 }
 
 func 중복된문자제거(my_string string) string {
 
 	var result strings.Builder
-	sl := []rune(my_string)
-	var idx = 0
+	var rs []rune
 
-	for {
-		if idx >= len(sl) {
-			break
+	for _, s := range my_string {
+
+		if isDupRune(s, rs) {
+			continue
 		}
 
-		r := sl[idx]
-		result.WriteRune(r)
-
-		for i := idx + 1; i < len(sl); i++ {
-			if r == sl[i] {
-				var temp []rune
-				temp = append(sl[0:i], sl[i+1:]...)
-				sl = temp
-			}
-		}
-
-		idx++
+		result.WriteRune(s)
+		rs = append(rs, s)
 	}
 
 	return result.String()
+}
+
+func isDupRune(r rune, rs []rune) bool {
+
+	for _, p := range rs {
+		if p == r {
+			return true
+		}
+	}
+
+	return false
 }
