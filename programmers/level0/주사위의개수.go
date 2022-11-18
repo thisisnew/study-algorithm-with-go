@@ -8,8 +8,40 @@ func main() {
 
 func 주사위의개수(box []int, n int) int {
 
-	boxVolume := box[0] * box[1] * box[2]
-	cube := n * n * n
+	w := box[0]
+	l := box[1]
+	h := box[2]
 
-	return boxVolume / cube
+	var wCnt int
+	var lCnt int
+	var hCnt int
+
+	for {
+		if w-n < 0 {
+			break
+		}
+
+		w -= n
+		wCnt++
+	}
+
+	for {
+		if l-n < 0 {
+			break
+		}
+
+		l -= n
+		lCnt++
+	}
+
+	for {
+		if h-n < 0 {
+			break
+		}
+
+		h -= n
+		hCnt++
+	}
+
+	return wCnt * lCnt * hCnt
 }
