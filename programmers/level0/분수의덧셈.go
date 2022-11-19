@@ -2,37 +2,44 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
-	fmt.Println(분수의덧셈(9, 2, 1, 3))
+	fmt.Println(분수의덧셈(1, 2, 3, 4))
 }
 
 func 분수의덧셈(denum1 int, num1 int, denum2 int, num2 int) []int {
 
-	var total = float64(denum1)/float64(num1) + float64(denum2)/float64(num2)
-
-	st := 1
+	denum := getDenum(denum1, denum2)
+	num := (num1 * (denum / denum1)) + (num2 * (denum / denum2))
 
 	for {
-		if math.Trunc(total) == total {
+		result := gcdPoints(num, denum)
+
+		if result == 1 || num/result == 1 || denum/result == 1 {
 			break
 		}
 
-		total *= 10
-		st *= 10
+		num = num / result
+		denum = denum / result
 	}
 
-	result := gcdPoints(total, float64(st))
-
-	return []int{int(total / result), st / int(result)}
+	return []int{denum, num}
 }
 
-func gcdPoints(total float64, st float64) float64 {
-	if st == 0 {
-		return total
+func getDenum(denum1 int, denum2 int) int {
+	return lcmPoints(denum1, denum2)
+}
+
+func lcmPoints(num1 int, num2 int) int {
+	gcd := gcdPoints(num1, num2)
+	return num1 * num2 / gcd
+}
+
+func gcdPoints(num1 int, num2 int) int {
+	if num2 == 0 {
+		return num1
 	} else {
-		return gcdPoints(st, float64(int(total)%int(st)))
+		return gcdPoints(num2, num1%num2)
 	}
 }
