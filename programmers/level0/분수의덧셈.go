@@ -5,30 +5,36 @@ import (
 )
 
 func main() {
-	fmt.Println(분수의덧셈(1, 2, 3, 4))
+	fmt.Println(분수의덧셈(512, 512, 512, 512))
 }
 
 func 분수의덧셈(denum1 int, num1 int, denum2 int, num2 int) []int {
 
-	denum := getDenum(denum1, denum2)
-	num := (num1 * (denum / denum1)) + (num2 * (denum / denum2))
+	denominator := getDenominator(num1, num2)                                      //분모
+	numerator := (denum1 * (denominator / num1)) + (denum2 * (denominator / num2)) //분자
 
 	for {
-		result := gcdPoints(num, denum)
+		result := gcdPoints(denominator, numerator)
 
-		if result == 1 || num/result == 1 || denum/result == 1 {
+		if result > 1 && numerator%result == 0 {
+			denominator = denominator / result
+			numerator = numerator / result
+			continue
+		}
+
+		if result == 1 || denominator/result == 1 || numerator/result == 1 {
 			break
 		}
 
-		num = num / result
-		denum = denum / result
+		denominator = denominator / result
+		numerator = numerator / result
 	}
 
-	return []int{denum, num}
+	return []int{numerator, denominator}
 }
 
-func getDenum(denum1 int, denum2 int) int {
-	return lcmPoints(denum1, denum2)
+func getDenominator(num1 int, num2 int) int {
+	return lcmPoints(num1, num2)
 }
 
 func lcmPoints(num1 int, num2 int) int {
