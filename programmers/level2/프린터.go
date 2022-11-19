@@ -5,6 +5,39 @@ import (
 	"sort"
 )
 
+type Printer struct {
+	items []int
+}
+
+func (p *Printer) pop() int {
+	var result = p.items[0]
+
+	p.items = p.items[1:]
+
+	return result
+}
+
+func (p *Printer) top() int {
+	var result = p.items[0]
+	return result
+}
+
+func (p *Printer) push(x int) {
+	p.items = append(p.items, x)
+}
+
+func (p *Printer) copy(x []int) {
+	var cp = make([]int, len(x))
+	copy(cp, x)
+	p.items = cp
+}
+
+func (p *Printer) reverseSort() {
+	sort.Slice(p.items, func(i, j int) bool {
+		return p.items[i] > p.items[j]
+	})
+}
+
 func main() {
 	priorities := []int{2, 1, 3, 2}
 	location := 2
@@ -13,23 +46,19 @@ func main() {
 
 func print(priorities []int, location int) int {
 
-	var cp = make([]int, len(priorities))
-	copy(cp, priorities)
-
-	sort.Slice(cp, func(i, j int) bool {
-		return cp[i] > cp[j]
-	})
-
 	var count int
 	var result int
+	var pr = Printer{priorities}
+	var cp = Printer{}
+	cp.copy(pr.items)
+	cp.reverseSort()
 
 	for {
-		p, popSlice := pop(priorities)
-		priorities = popSlice
+		p := pr.pop()
 
-		if p == cp[0] {
+		if p == cp.items[0] {
 			count++
-			_, cp = pop(cp)
+			cp.pop()
 
 			if location == 0 {
 				result = count
@@ -37,38 +66,17 @@ func print(priorities []int, location int) int {
 			}
 
 			location--
+			continue
+		}
+
+		pr.push(p)
+
+		if location == 0 {
+			location = len(pr.items) - 1
 		} else {
-
-			pushSlice := push(priorities, p)
-			priorities = pushSlice
-
-			if location == 0 {
-				location = len(priorities) - 1
-			} else {
-				location--
-			}
-
+			location--
 		}
 	}
 
 	return result
-}
-
-func pop(sl []int) (int, []int) {
-
-	var result = sl[0]
-
-	cp := make([]int, len(sl)-1)
-	copy(cp, sl[1:])
-
-	return result, cp
-}
-
-func push(sl []int, n int) []int {
-
-	cp := make([]int, len(sl)+1)
-	copy(cp, sl)
-	cp[len(cp)-1] = n
-
-	return cp
 }
