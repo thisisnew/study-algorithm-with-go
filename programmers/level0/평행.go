@@ -38,7 +38,13 @@ func 평행(dots [][]int) int {
 func getInclinationDots(dot1, dot2, dot3, dot4 []int) bool {
 
 	if dot2[0]-dot1[0] == 0 && dot4[0]-dot3[0] == 0 {
+
+		if dot2[1]-dot1[1] == 0 && dot4[1]-dot3[1] == 0 {
+			return false
+		}
+
 		return true
+
 	} else if dot2[0]-dot1[0] != 0 && dot4[0]-dot3[0] == 0 {
 		return false
 	} else if dot2[0]-dot1[0] == 0 && dot4[0]-dot3[0] != 0 {
