@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
 	fmt.Println(옷가게할인받기(150000))
@@ -8,14 +11,16 @@ func main() {
 
 func 옷가게할인받기(price int) int {
 
+	dc := 1.0
+
 	switch {
-	case price > 500000:
-		return int(float32(price) * 0.8)
-	case price > 300000:
-		return int(float32(price) * 0.9)
-	case price > 100000:
-		return int(float32(price) * 0.95)
+	case price >= 500000:
+		dc = 0.8
+	case price >= 300000:
+		dc = 0.9
+	case price >= 100000:
+		dc = 0.95
 	}
 
-	return price
+	return int(math.Floor(float64(price) * dc))
 }
