@@ -2,32 +2,23 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"sort"
 )
 
 func main() {
-	fmt.Println(최댓값만들기2([]int{1, 2, -3, 4, -5}))
+	fmt.Println(최댓값만들기2([]int{-1, 1}))
 }
 
 func 최댓값만들기2(numbers []int) int {
 
-	var abMax = 0
+	sort.Slice(numbers, func(i, j int) bool {
+		return numbers[i] < numbers[j]
+	})
 
-	for _, number := range numbers {
-		if int(math.Abs(float64(number))) > abMax {
-			abMax = number
-		}
-	}
+	var result = numbers[0] * numbers[1]
 
-	var result = 0
-	for _, number := range numbers {
-		if abMax == number {
-			continue
-		}
-
-		if abMax*number > result {
-			result = abMax * number
-		}
+	if numbers[len(numbers)-1]*numbers[len(numbers)-2] > result {
+		result = numbers[len(numbers)-1] * numbers[len(numbers)-2]
 	}
 
 	return result
