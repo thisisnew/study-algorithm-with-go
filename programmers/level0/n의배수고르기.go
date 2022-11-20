@@ -8,7 +8,7 @@ func main() {
 
 func n의배수고르기(n int, numlist []int) []int {
 
-	var result []int
+	result := []int{}
 
 	for _, num := range numlist {
 		if num%n == 0 {
