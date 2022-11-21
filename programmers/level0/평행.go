@@ -21,19 +21,19 @@ func 평행(dots [][]int) int {
 	dot4 := dots[3]
 
 	if getInclinationDots(dot1, dot2, dot3, dot4) {
-		if (dot4[1]-dot3[1])/(dot2[1]-dot1[1]) != -1 {
+		if int(float64(dot4[1]-dot3[1])/float64(dot2[1]-dot1[1])) != -1 {
 			return 1
 		}
 	}
 
 	if getInclinationDots(dot1, dot3, dot2, dot4) {
-		if (dot4[1]-dot2[1])/(dot3[1]-dot1[1]) != -1 {
+		if int(float64(dot4[1]-dot2[1])/float64(dot3[1]-dot1[1])) != -1 {
 			return 1
 		}
 	}
 
 	if getInclinationDots(dot1, dot4, dot2, dot3) {
-		if (dot3[1]-dot2[1])/(dot4[1]-dot1[1]) != -1 {
+		if int(float64(dot3[1]-dot2[1])/float64(dot4[1]-dot1[1])) != -1 {
 			return 1
 		}
 	}
@@ -51,12 +51,12 @@ func getInclinationDots(dot1, dot2, dot3, dot4 []int) bool {
 	}
 
 	if dot2[0]-dot1[0] != 0 && dot4[0]-dot3[0] == 0 {
-		return (dot2[1]-dot1[1])/(dot2[0]-dot1[0]) == 1
+		return int(float64(dot2[1]-dot1[1])/float64(dot2[0]-dot1[0])) == 1
 	}
 
 	if dot2[0]-dot1[0] == 0 && dot4[0]-dot3[0] != 0 {
-		return (dot4[1]-dot3[1])/(dot4[0]-dot3[0]) == 1
+		return int(float64(dot4[1]-dot3[1])/float64(dot4[0]-dot3[0])) == 1
 	}
 
-	return (dot2[1]-dot1[1])/(dot2[0]-dot1[0]) == (dot4[1]-dot3[1])/(dot4[0]-dot3[0])
+	return float64(dot2[1]-dot1[1])/float64(dot2[0]-dot1[0]) == float64(dot4[1]-dot3[1])/float64(dot4[0]-dot3[0])
 }
