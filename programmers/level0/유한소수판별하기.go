@@ -11,7 +11,7 @@ func 유한소수판별하기(a int, b int) int {
 	for {
 		d := getDivisionsBetweenNumbers(a, b)
 
-		if d == a {
+		if d == 1 || d == a {
 
 			if isFiniteNumber(b) {
 				return 1
