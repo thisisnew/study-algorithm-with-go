@@ -12,19 +12,56 @@ func 유한소수판별하기(a int, b int) int {
 		b = b / a
 	}
 
-	n := 10
+	for {
+		d := getDivisionsBetweenNumbers(a, b)
 
-	if 10 < b && b <= 100 {
-		n = 100
+		if d == a {
+
+			if isFiniteNumber(b) {
+				return 1
+			}
+
+			return 2
+
+		}
+
+		a = a / d
+		b = b / d
+	}
+}
+
+func isFiniteNumber(b int) bool {
+
+	for {
+
+		if b%2 == 0 {
+			b /= 2
+		}
+
+		if b%5 == 0 {
+			b /= 5
+		}
+
+		if b == 2 || b == 5 {
+			continue
+		}
+
+		if b == 1 {
+			return true
+		}
+
+		if b != 1 {
+			return false
+		}
+	}
+}
+
+func getDivisionsBetweenNumbers(a, b int) int {
+
+	if b == 0 {
+		return a
+	} else {
+		return gcdPoints(b, a%b)
 	}
 
-	if 100 < b && b <= 1000 {
-		n = 1000
-	}
-
-	if n%b == 0 {
-		return 1
-	}
-
-	return 2
 }
