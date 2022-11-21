@@ -29,7 +29,6 @@ func 유한소수판별하기(a int, b int) int {
 func isFiniteNumber(b int) bool {
 
 	for {
-
 		if b%2 == 0 {
 			b /= 2
 		}
@@ -42,22 +41,14 @@ func isFiniteNumber(b int) bool {
 			continue
 		}
 
-		if b == 1 {
-			return true
-		}
-
-		if b != 1 {
-			return false
-		}
+		return b == 1
 	}
 }
 
 func getDivisionsBetweenNumbers(a, b int) int {
-
 	if b == 0 {
 		return a
 	} else {
 		return getDivisionsBetweenNumbers(b, a%b)
 	}
-
 }
