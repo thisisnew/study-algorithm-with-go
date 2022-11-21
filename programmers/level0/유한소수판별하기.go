@@ -57,7 +57,7 @@ func getDivisionsBetweenNumbers(a, b int) int {
 	if b == 0 {
 		return a
 	} else {
-		return gcdPoints(b, a%b)
+		return getDivisionsBetweenNumbers(b, a%b)
 	}
 
 }
