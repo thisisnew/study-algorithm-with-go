@@ -47,12 +47,14 @@ func getInclinationDots(dot1, dot2, dot3, dot4 []int) bool {
 		if dot2[1]-dot1[1] == 0 && dot4[1]-dot3[1] == 0 {
 			return false
 		}
-
 		return true
+	}
 
-	} else if dot2[0]-dot1[0] != 0 && dot4[0]-dot3[0] == 0 {
+	if dot2[0]-dot1[0] != 0 && dot4[0]-dot3[0] == 0 {
 		return (dot2[1]-dot1[1])/(dot2[0]-dot1[0]) == 1
-	} else if dot2[0]-dot1[0] == 0 && dot4[0]-dot3[0] != 0 {
+	}
+
+	if dot2[0]-dot1[0] == 0 && dot4[0]-dot3[0] != 0 {
 		return (dot4[1]-dot3[1])/(dot4[0]-dot3[0]) == 1
 	}
 
