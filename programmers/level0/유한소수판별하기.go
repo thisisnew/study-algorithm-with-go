@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(유한소수판별하기(11, 22))
+	fmt.Println(유한소수판별하기(15, 25))
 }
 
 func 유한소수판별하기(a int, b int) int {
