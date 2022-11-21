@@ -8,10 +8,6 @@ func main() {
 
 func 유한소수판별하기(a int, b int) int {
 
-	if b%a == 0 {
-		b = b / a
-	}
-
 	for {
 		d := getDivisionsBetweenNumbers(a, b)
 
