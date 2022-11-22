@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func main() {
@@ -9,6 +10,10 @@ func main() {
 }
 
 func 겹치는선분의길이(lines [][]int) int {
+
+	sort.Slice(lines, func(i, j int) bool {
+		return lines[i][0] < lines[j][0]
+	})
 
 	line1 := lines[0]
 	line2 := lines[1]
