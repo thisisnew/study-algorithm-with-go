@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(유한소수판별하기(15, 25))
+	fmt.Println(유한소수판별하기(11, 22))
 }
 
 func 유한소수판별하기(a int, b int) int {
@@ -11,18 +11,17 @@ func 유한소수판별하기(a int, b int) int {
 	for {
 		d := getDivisionsBetweenNumbers(a, b)
 
-		if d == 1 {
-
-			if isFiniteNumber(b) {
-				return 1
-			}
-
-			return 2
-
+		if d > 1 {
+			a = a / d
+			b = b / d
+			continue
 		}
 
-		a = a / d
-		b = b / d
+		if isFiniteNumber(b) {
+			return 1
+		}
+
+		return 2
 	}
 }
 
@@ -31,13 +30,11 @@ func isFiniteNumber(b int) bool {
 	for {
 		if b%2 == 0 {
 			b /= 2
+			continue
 		}
 
 		if b%5 == 0 {
 			b /= 5
-		}
-
-		if b == 2 || b == 5 {
 			continue
 		}
 
