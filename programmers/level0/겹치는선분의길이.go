@@ -14,15 +14,15 @@ func 겹치는선분의길이(lines [][]int) int {
 	line2 := lines[1]
 	line3 := lines[2]
 
-	if line1[1] >= line2[1] && line1[1] >= line3[1] {
+	if line1[0] <= line2[0] && line1[0] <= line3[0] && line1[1] >= line2[1] && line1[1] >= line3[1] {
 		return line1[1] - line1[0]
 	}
 
-	if line2[1] >= line1[1] && line2[1] >= line3[1] {
+	if line2[0] <= line1[0] && line2[0] <= line3[0] && line2[1] >= line1[1] && line2[1] >= line3[1] {
 		return line2[1] - line2[0]
 	}
 
-	if line3[1] >= line2[1] && line3[1] >= line1[1] {
+	if line3[0] <= line1[0] && line3[0] <= line2[0] && line3[1] >= line2[1] && line3[1] >= line1[1] {
 		return line3[1] - line3[0]
 	}
 
