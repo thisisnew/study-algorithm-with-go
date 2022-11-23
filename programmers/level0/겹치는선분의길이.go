@@ -61,7 +61,7 @@ func 겹치는선분의길이(lines [][]int) int {
 		}
 	}
 
-	if line2[1] > line3[0] {
+	if line2 != nil && line3 != nil && line2[1] > line3[0] {
 		if line2[1] > line3[1] {
 			result += line3[1] - line3[0]
 		} else {
