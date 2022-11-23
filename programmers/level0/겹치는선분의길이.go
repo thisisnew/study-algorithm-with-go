@@ -61,5 +61,5 @@ func 겹치는선분의길이(lines [][]int) int {
 }
 
 func isContainLine(line1, line2, line3 []int) bool {
-	return line1[0] <= line2[0] && line1[0] <= line3[0] && line1[1] >= line2[1] && line1[1] >= line3[1]
+	return (line1[0] <= line2[0] && line1[1] >= line2[1]) || (line1[0] <= line3[0] && line1[1] >= line3[1])
 }
