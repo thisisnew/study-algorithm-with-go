@@ -15,28 +15,30 @@ func 겹치는선분의길이(lines [][]int) int {
 		return lines[i][0] < lines[j][0]
 	})
 
-	var result = make([]int, 2)
+	var dup [][]int
 
 	for i := 0; i < len(lines)-1; i++ {
-
+		var line = make([]int, 2)
 		lineI := lines[i]
 
 		for j := i + 1; j < len(lines); j++ {
 			lineJ := lines[j]
 
 			if lineI[0] > lineJ[0] {
-				result[0] = lineI[0]
+				line[0] = lineI[0]
 			} else {
-				result[0] = lineJ[0]
+				line[0] = lineJ[0]
 			}
 
 			if lineI[1] > lineJ[1] {
-				result[1] = lineJ[1]
+				line[1] = lineJ[1]
 			} else {
-				result[1] = lineI[1]
+				line[1] = lineI[1]
 			}
 		}
+
+		dup = append(dup, line)
 	}
 
-	return result[1] - result[0]
+	return 0
 }
