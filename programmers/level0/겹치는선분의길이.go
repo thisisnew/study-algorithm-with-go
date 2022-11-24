@@ -43,5 +43,11 @@ func 겹치는선분의길이(lines [][]int) int {
 
 	}
 
+	for i := 0; i < len(dup)-1; i++ {
+		for j := i + 1; j < len(lines); j++ {
+
+		}
+	}
+
 	return 0
 }
