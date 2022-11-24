@@ -17,7 +17,7 @@ func 귤고르기(k int, tangerine []int) int {
 		return counts[i] > counts[j]
 	})
 
-	return len(getCountsMoreThanMinCount(k, getMinCountTangerines(k, counts), tangerineBasket))
+	return len(getCountsMoreThanMinCount(k, counts, tangerineBasket))
 }
 
 func getTangerineBasket(tangerine []int) map[int]int {
@@ -68,8 +68,9 @@ func getMinCountTangerines(k int, counts []int) int {
 	return counts[idx]
 }
 
-func getCountsMoreThanMinCount(k, minCount int, tangerineBasket map[int]int) []int {
+func getCountsMoreThanMinCount(k int, counts []int, tangerineBasket map[int]int) []int {
 	var result []int
+	var minCount = getMinCountTangerines(k, counts)
 
 	for key, val := range tangerineBasket {
 		if val < minCount {
