@@ -15,63 +15,28 @@ func 겹치는선분의길이(lines [][]int) int {
 		return lines[i][0] < lines[j][0]
 	})
 
-	line1 := lines[0]
-	line2 := lines[1]
-	line3 := lines[2]
+	var result = make([]int, 2)
 
-	if line1[0] <= line2[0] && line1[0] <= line3[0] && line1[1] >= line2[1] && line1[1] >= line3[1] {
-		return line1[1] - line1[0]
-	}
+	for i := 0; i < len(lines)-1; i++ {
 
-	if line2[0] <= line1[0] && line2[0] <= line3[0] && line2[1] >= line1[1] && line2[1] >= line3[1] {
-		return line2[1] - line2[0]
-	}
+		lineI := lines[i]
 
-	if line3[0] <= line1[0] && line3[0] <= line2[0] && line3[1] >= line2[1] && line3[1] >= line1[1] {
-		return line3[1] - line3[0]
-	}
+		for j := i + 1; j < len(lines); j++ {
+			lineJ := lines[j]
 
-	if isContainLine(line1, line2, line3) {
-		line1 = nil
-	}
-
-	if isContainLine(line2, line1, line3) {
-		line2 = nil
-	}
-
-	if isContainLine(line3, line1, line2) {
-		line3 = nil
-	}
-
-	var result int
-
-	if line1 != nil && line2 != nil && line1[1] > line2[0] {
-		if line1[1] > line2[1] {
-			if line3 != nil && line1[1] > line3[0] {
-				if line1[1] > line3[1] {
-					result += (line2[1] - line2[0]) + (line3[1] - line3[0])
-				} else {
-					result += (line2[1] - line2[0]) + (line1[1] - line3[0])
-				}
+			if lineI[0] > lineJ[0] {
+				result[0] = lineI[0]
 			} else {
-				result += line2[1] - line2[0]
+				result[0] = lineJ[0]
 			}
-		} else {
-			result += line1[1] - line2[0]
+
+			if lineI[1] > lineJ[1] {
+				result[1] = lineJ[1]
+			} else {
+				result[1] = lineI[1]
+			}
 		}
 	}
 
-	if line2 != nil && line3 != nil && line2[1] > line3[0] {
-		if line2[1] > line3[1] {
-			result += line3[1] - line3[0]
-		} else {
-			result += line2[1] - line3[0]
-		}
-	}
-
-	return result
-}
-
-func isContainLine(line1, line2, line3 []int) bool {
-	return (line1[0] <= line2[0] && line1[1] >= line2[1]) || (line1[0] <= line3[0] && line1[1] >= line3[1])
+	return result[1] - result[0]
 }
