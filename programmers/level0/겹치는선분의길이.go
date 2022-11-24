@@ -35,11 +35,12 @@ func 겹치는선분의길이(lines [][]int) int {
 			} else {
 				line[1] = lineI[1]
 			}
+
+			if line[0] != 0 && line[1] != 0 {
+				dup = append(dup, line)
+			}
 		}
 
-		if line[0] != 0 && line[1] != 0 {
-			dup = append(dup, line)
-		}
 	}
 
 	return 0
