@@ -44,6 +44,7 @@ func getMinCountTangerines(k int, counts []int) int {
 	var idx = 0
 
 	for i := 0; i < len(counts); i++ {
+		idx = 0
 		var sum = 0
 
 		for j := i; j < len(counts); j++ {
