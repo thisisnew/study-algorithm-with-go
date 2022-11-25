@@ -11,8 +11,7 @@ func main() {
 
 func 귤고르기(k int, tangerine []int) int {
 
-	var tangerineBasket = getTangerineBasket(tangerine)
-	var counts = countTangerines(tangerineBasket)
+	var counts = countTangerines(getTangerineBasket(tangerine))
 	sort.Slice(counts, func(i, j int) bool {
 		return counts[i] > counts[j]
 	})
