@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(귤고르기(0, []int{1, 1, 1, 1, 2, 2, 2, 3}))
+	fmt.Println(귤고르기(4, []int{1, 1, 1, 1, 2, 2, 2, 3}))
 }
 
 func 귤고르기(k int, tangerine []int) int {
@@ -16,9 +16,9 @@ func 귤고르기(k int, tangerine []int) int {
 		return counts[i] > counts[j]
 	})
 
-	sum, result := countFittedMinTangerineTypes(k, counts)
+	cnt, result := countFittedMinTangerineTypes(k, counts)
 
-	if sum == k {
+	if cnt == k {
 		return result
 	}
 
@@ -48,45 +48,45 @@ func countTangerines(tangerineBasket map[int]int) []int {
 func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
 
 	var result = 0
-	var sum = 0
+	var cnt = 0
 
 	for i := 0; i < len(counts); i++ {
-		sum = 0
+		cnt = 0
 		result = 0
 
 		for j := i; j < len(counts); j++ {
-			if sum == k {
-				return sum, result
+			if cnt == k {
+				return cnt, result
 			}
 
 			c := counts[j]
 
-			if sum+c > k {
+			if cnt+c > k {
 				continue
 			}
 
-			sum += c
+			cnt += c
 			result++
 		}
 	}
 
-	return sum, result
+	return cnt, result
 }
 
 func countNotFittedMinTangerineTypes(k int, counts []int) int {
 
 	var result = 0
-	var sum = 0
+	var cnt = 0
 
 	for i := 0; i < len(counts); i++ {
 		c := counts[i]
 
-		if sum+c > k {
+		if cnt+c > k {
 			result++
 			return result
 		}
 
-		sum += c
+		cnt += c
 		result++
 	}
 
