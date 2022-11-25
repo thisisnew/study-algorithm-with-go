@@ -18,7 +18,6 @@ func (h *HallOfFame) push(x int) {
 }
 
 func (h *HallOfFame) pop() int {
-
 	if h.len() == 0 {
 		return -1
 	}
@@ -29,7 +28,6 @@ func (h *HallOfFame) pop() int {
 }
 
 func (h *HallOfFame) top() int {
-
 	if h.len() == 0 {
 		return -1
 	}
@@ -38,7 +36,6 @@ func (h *HallOfFame) top() int {
 }
 
 func (h *HallOfFame) sort() {
-
 	if h.len() == 0 {
 		return
 	}
@@ -46,7 +43,6 @@ func (h *HallOfFame) sort() {
 	sort.Slice(h.Items, func(i, j int) bool {
 		return h.Items[i] < h.Items[j]
 	})
-
 }
 
 type Minimums struct {
