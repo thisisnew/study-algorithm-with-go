@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(귤고르기(2, []int{1, 1, 1, 1, 2, 2, 2, 3}))
+	fmt.Println(귤고르기(0, []int{1, 1, 1, 1, 2, 2, 2, 3}))
 }
 
 func 귤고르기(k int, tangerine []int) int {
@@ -55,6 +55,10 @@ func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
 		result = 0
 
 		for j := i; j < len(counts); j++ {
+			if sum == k {
+				return sum, result
+			}
+
 			c := counts[j]
 
 			if sum+c > k {
@@ -63,10 +67,6 @@ func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
 
 			sum += c
 			result++
-
-			if sum == k {
-				return sum, result
-			}
 		}
 	}
 
