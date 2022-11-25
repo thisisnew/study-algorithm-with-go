@@ -79,19 +79,15 @@ func countNotFittedMinTangerineTypes(k int, counts []int) int {
 	var sum = 0
 
 	for i := 0; i < len(counts); i++ {
-		sum = 0
-		result = 0
+		c := counts[i]
 
-		for j := i; j < len(counts); j++ {
+		if sum+c > k {
 			result++
-			c := counts[j]
-
-			if sum+c > k {
-				return result
-			}
-
-			sum += c
+			return result
 		}
+
+		sum += c
+		result++
 	}
 
 	return result
