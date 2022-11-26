@@ -17,8 +17,10 @@ type Operation struct {
 	IsSorted bool
 }
 
-func (o *Operation) push(x int) {
+func (o *Operation) push(command string) {
+	x, _ := strconv.Atoi(command)
 	o.Items = append(o.Items, x)
+	o.IsSorted = false
 }
 
 func (o *Operation) Max() int {
@@ -96,9 +98,7 @@ func 이중우선순위큐(operations []string) []int {
 
 		switch commands[0] {
 		case "I":
-			v, _ := strconv.Atoi(commands[1])
-			result.push(v)
-			result.IsSorted = false
+			result.push(commands[1])
 		default:
 			if commands[1] == "1" {
 				result.removeMax()
