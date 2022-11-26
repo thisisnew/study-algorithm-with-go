@@ -16,46 +16,7 @@ func 베스트앨범(genres []string, plays []int) []int {
 	var result []int
 
 	for _, play := range totalPlays {
-		genresMatchesPlays := getGenresMatchesPlays(totalPlaysMap, play)
-
-		if len(genresMatchesPlays) == 1 {
-			ps := genresPlaysMap[genresMatchesPlays[0]]
-
-			if len(ps) == 1 {
-				result = append(result, genresIdxMap[ps[0]])
-			} else {
-				sort.Slice(ps, func(i, j int) bool {
-					return ps[i] > ps[j]
-				})
-
-				result = append(result, genresIdxMap[ps[1]])
-			}
-
-		} else {
-			maxGenre := genresMatchesPlays[0]
-			genresPlays := genresPlaysMap[maxGenre]
-
-			sort.Slice(genresPlays, func(i, j int) bool {
-				return genresPlays[i] > genresPlays[j]
-			})
-
-			maxPlay := genresPlays[0]
-
-			for i := 1; i < len(genresMatchesPlays); i++ {
-				g := genresMatchesPlays[i]
-				gp := genresPlaysMap[g]
-
-				sort.Slice(gp, func(i, j int) bool {
-					return gp[i] > gp[j]
-				})
-
-				if gp[0] > maxPlay {
-					maxPlay = gp[0]
-					maxGenre = g
-				}
-
-			}
-		}
+		result = append(result, addBestAlbum(getGenresMatchesPlays(totalPlaysMap, play), genresPlaysMap, genresIdxMap)...)
 	}
 
 	return result
@@ -96,6 +57,28 @@ func getGenresMatchesPlays(totalPlaysMap map[string]int, play int) []string {
 	for k, v := range totalPlaysMap {
 		if v == play {
 			result = append(result, k)
+		}
+	}
+
+	return result
+}
+
+func addBestAlbum(genresMatchesPlays []string, genresPlaysMap map[string][]int, genresIdxMap map[int]int) []int {
+
+	var result []int
+
+	if len(genresMatchesPlays) == 1 {
+		ps := genresPlaysMap[genresMatchesPlays[0]]
+
+		if len(ps) == 1 {
+			result = append(result, genresIdxMap[ps[0]])
+		} else {
+			sort.Slice(ps, func(i, j int) bool {
+				return ps[i] > ps[j]
+			})
+
+			result = append(result, genresIdxMap[ps[0]])
+			result = append(result, genresIdxMap[ps[1]])
 		}
 	}
 
