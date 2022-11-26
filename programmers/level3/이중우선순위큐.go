@@ -8,6 +8,9 @@ import (
 	"strings"
 )
 
+const InsertOperation = "I"
+const RemoveMax = "1"
+
 func main() {
 	fmt.Println(이중우선순위큐([]string{"I -45", "I 653", "D 1", "I -642", "I 45", "I 97", "D 1", "D -1", "I 333"}))
 }
@@ -97,10 +100,10 @@ func 이중우선순위큐(operations []string) []int {
 		commands := strings.Fields(operation)
 
 		switch commands[0] {
-		case "I":
+		case InsertOperation:
 			result.push(commands[1])
 		default:
-			if commands[1] == "1" {
+			if commands[1] == RemoveMax {
 				result.removeMax()
 			} else {
 				result.removeMin()
