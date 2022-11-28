@@ -79,8 +79,8 @@ func 디스크컨트롤러(jobs [][]int) int {
 			result += pj[1]
 			time = time + pj[1]
 
-			continue
 		} else {
+
 			t, err := waitingJobs.top()
 
 			if err != nil {
@@ -90,7 +90,6 @@ func 디스크컨트롤러(jobs [][]int) int {
 			if t[0] > time {
 				result += t[0] - time
 				time = t[0]
-				continue
 			} else {
 				wj, err := waitingJobs.pop()
 
