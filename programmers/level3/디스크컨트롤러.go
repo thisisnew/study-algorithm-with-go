@@ -26,7 +26,7 @@ func (j *Jobs) pop() ([]int, error) {
 }
 
 func main() {
-	fmt.Println(디스크컨트롤러([][]int{{0, 3}, {1, 9}, {2, 6}}))
+	fmt.Println(디스크컨트롤러([][]int{{2, 3}, {1, 9}, {3, 6}}))
 }
 
 func 디스크컨트롤러(jobs [][]int) int {
@@ -52,9 +52,13 @@ func 디스크컨트롤러(jobs [][]int) int {
 		}
 
 		if job[0] <= time {
-			wait = finished - job[0]
-			finished = time + (job[1] - job[0])
-			duration := wait + finished
+
+			if finished > job[0] {
+				wait = finished - job[0]
+			}
+
+			finished = time + job[1]
+			duration := wait + job[1]
 			result += duration
 		}
 
