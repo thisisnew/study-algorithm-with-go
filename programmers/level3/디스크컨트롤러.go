@@ -83,16 +83,22 @@ out:
 		}
 
 		for {
-			t, _ := waitingJobs.top()
+			t, err := waitingJobs.top()
+
+			if err != nil {
+				continue out
+			}
 
 			if t[0] > time {
-				if progressJobs.empty() {
-					result += t[0] - time
-					time = t[0]
-				} else {
+				if !progressJobs.empty() {
 					continue out
 				}
+
+				result += t[0] - time
+				time = t[0]
+
 			} else {
+
 				wj, _ := waitingJobs.pop()
 				progressJobs.push(wj)
 			}
