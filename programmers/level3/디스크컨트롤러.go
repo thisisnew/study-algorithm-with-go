@@ -46,7 +46,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 		job, err := progressJobs.pop()
 
 		if err != nil {
-			return result
+			return result / 3
 		}
 
 		if job[0] <= time {
