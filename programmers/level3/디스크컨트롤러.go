@@ -50,7 +50,7 @@ func (j *Jobs) sort() {
 }
 
 func main() {
-	fmt.Println(디스크컨트롤러([][]int{{7, 8}, {3, 5}, {9, 6}}))
+	fmt.Println(디스크컨트롤러([][]int{{0, 3}, {1, 9}, {2, 6}}))
 }
 
 func 디스크컨트롤러(jobs [][]int) int {
@@ -80,27 +80,27 @@ func 디스크컨트롤러(jobs [][]int) int {
 			time = time + pj[1]
 
 			continue
+		} else {
+			t, err := waitingJobs.top()
+
+			if err != nil {
+				break
+			}
+
+			if t[0] > time {
+				result += t[0] - time
+				time = t[0]
+				continue
+			} else {
+				wj, err := waitingJobs.pop()
+
+				if err != nil {
+					break
+				}
+
+				progressJobs.push(wj)
+			}
 		}
-
-		t, err := waitingJobs.top()
-
-		if err != nil {
-			break
-		}
-
-		if t[0] > time {
-			result += t[0] - time
-			time = t[0]
-			continue
-		}
-
-		wj, err := waitingJobs.pop()
-
-		if err != nil {
-			break
-		}
-
-		progressJobs.push(wj)
 	}
 
 	return result / 3
