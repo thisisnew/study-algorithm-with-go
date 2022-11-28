@@ -89,6 +89,8 @@ func progressJob(progressJobs *Jobs, time *int, result *int) {
 		if pj[0] > *time {
 			*result += pj[0] - *time
 			time = &(pj)[0]
+		} else {
+			*result += *time - pj[0]
 		}
 
 		*result += pj[1]
