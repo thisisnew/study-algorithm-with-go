@@ -64,7 +64,8 @@ func 디스크컨트롤러(jobs [][]int) int {
 	var result int
 	var time int
 
-	for {
+out:
+	for !waitingJobs.empty() {
 
 		if !progressJobs.empty() {
 			progressJobs.sort()
@@ -79,27 +80,34 @@ func 디스크컨트롤러(jobs [][]int) int {
 			result += pj[1]
 			time = time + pj[1]
 
-		} else {
+			continue
+		}
 
+		for {
 			t, err := waitingJobs.top()
 
 			if err != nil {
-				break
+				continue out
 			}
 
 			if t[0] > time {
-				result += t[0] - time
-				time = t[0]
+				if progressJobs.empty() {
+					result += t[0] - time
+					time = t[0]
+				} else {
+					continue out
+				}
 			} else {
 				wj, err := waitingJobs.pop()
 
 				if err != nil {
-					break
+					continue out
 				}
 
 				progressJobs.push(wj)
 			}
 		}
+
 	}
 
 	return result / 3
