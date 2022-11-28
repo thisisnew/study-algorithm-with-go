@@ -10,12 +10,19 @@ type Jobs struct {
 	jobs [][]int
 }
 
-func (j *Jobs) pop() (*[]int, error) {
+func (j *Jobs) push(job []int) {
+	j.jobs = append(j.jobs, job)
+}
+
+func (j *Jobs) pop() ([]int, error) {
 	if len(j.jobs) == 0 {
-		return nil, errors.New("empty jobs")
+		return []int{}, errors.New("empty jobs")
 	}
 
-	return &j.jobs[0], nil
+	job := j.jobs[0]
+	j.jobs = j.jobs[1:]
+
+	return job, nil
 }
 
 func main() {
@@ -31,16 +38,23 @@ func 디스크컨트롤러(jobs [][]int) int {
 		jobsAsc = append(jobsAsc, getJobsAsc(jobTime, jobs)...)
 	}
 
-	var totalJobs = Jobs{jobsAsc}
+	var progressJobs = Jobs{jobsAsc}
+	//var completeJobs = Jobs{}
 	var result int
 	var time int
 
 	for {
-		job, err := totalJobs.pop()
+		job, err := progressJobs.pop()
 
 		if err != nil {
 			return result
 		}
+
+		if job[0] <= time {
+			result = result + (time - job[0]) + (job[1] - job[0])
+		}
+
+		time++
 	}
 }
 
