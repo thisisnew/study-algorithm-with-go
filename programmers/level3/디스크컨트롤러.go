@@ -1,9 +1,22 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"sort"
 )
+
+type Jobs struct {
+	jobs [][]int
+}
+
+func (j *Jobs) pop() (*[]int, error) {
+	if len(j.jobs) == 0 {
+		return nil, errors.New("empty jobs")
+	}
+
+	return &j.jobs[0], nil
+}
 
 func main() {
 	fmt.Println(디스크컨트롤러([][]int{{0, 3}, {1, 9}, {2, 6}}))
@@ -18,7 +31,17 @@ func 디스크컨트롤러(jobs [][]int) int {
 		jobsAsc = append(jobsAsc, getJobsAsc(jobTime, jobs)...)
 	}
 
-	return 0
+	var totalJobs = Jobs{jobsAsc}
+	var result int
+	var time int
+
+	for {
+		job, err := totalJobs.pop()
+
+		if err != nil {
+			return result
+		}
+	}
 }
 
 func getJobTimesAsc(jobs [][]int) []int {
