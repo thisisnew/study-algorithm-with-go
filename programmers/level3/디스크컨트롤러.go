@@ -79,16 +79,11 @@ out:
 
 			result += pj[1]
 			time = time + pj[1]
-
 			continue
 		}
 
 		for {
-			t, err := waitingJobs.top()
-
-			if err != nil {
-				continue out
-			}
+			t, _ := waitingJobs.top()
 
 			if t[0] > time {
 				if progressJobs.empty() {
@@ -98,12 +93,7 @@ out:
 					continue out
 				}
 			} else {
-				wj, err := waitingJobs.pop()
-
-				if err != nil {
-					continue out
-				}
-
+				wj, _ := waitingJobs.pop()
 				progressJobs.push(wj)
 			}
 		}
