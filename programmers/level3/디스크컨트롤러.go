@@ -67,17 +67,16 @@ func 디스크컨트롤러(jobs [][]int) int {
 	for {
 
 		switch {
-		case progressJobs.empty() && waitingJobs.empty():
-			break
 		case !progressJobs.empty():
 			progressJob(&progressJobs, &time, &result)
+		case progressJobs.empty() && waitingJobs.empty():
+			return result / 3
 		default:
 			pushProgress(&waitingJobs, &progressJobs, &time, &result)
 		}
 
 	}
 
-	return result / 3
 }
 
 func progressJob(progressJobs *Jobs, time *int, result *int) {
