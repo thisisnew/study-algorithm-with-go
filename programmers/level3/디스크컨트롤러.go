@@ -65,7 +65,7 @@ func getJobTimesAsc(jobs [][]int) []int {
 	var result = make([]int, len(jobs))
 
 	for i, job := range jobs {
-		result[i] = job[1] - job[0]
+		result[i] = job[1]
 	}
 
 	sort.Slice(result, func(i, j int) bool {
@@ -80,7 +80,7 @@ func getJobsAsc(jobTime int, jobs [][]int) [][]int {
 	var result [][]int
 
 	for _, job := range jobs {
-		if job[1]-job[0] != jobTime {
+		if job[1] != jobTime {
 			continue
 		}
 
