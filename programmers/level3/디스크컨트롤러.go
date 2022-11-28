@@ -39,7 +39,6 @@ func 디스크컨트롤러(jobs [][]int) int {
 	}
 
 	var progressJobs = Jobs{jobsAsc}
-	//var completeJobs = Jobs{}
 	var result int
 	var time int
 
@@ -54,7 +53,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 			result = result + (time - job[0]) + (job[1] - job[0])
 		}
 
-		time++
+		time = job[1]
 	}
 }
 
