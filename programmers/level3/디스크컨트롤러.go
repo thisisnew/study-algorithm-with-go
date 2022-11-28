@@ -7,22 +7,46 @@ import (
 )
 
 type Jobs struct {
-	jobs [][]int
+	Jobs     [][]int
+	IsSorted bool
 }
 
 func (j *Jobs) push(job []int) {
-	j.jobs = append(j.jobs, job)
+	j.Jobs = append(j.Jobs, job)
+	j.IsSorted = false
 }
 
 func (j *Jobs) pop() ([]int, error) {
-	if len(j.jobs) == 0 {
+	if len(j.Jobs) == 0 {
 		return []int{}, errors.New("empty jobs")
 	}
 
-	job := j.jobs[0]
-	j.jobs = j.jobs[1:]
+	job := j.Jobs[0]
+	j.Jobs = j.Jobs[1:]
 
 	return job, nil
+}
+
+func (j *Jobs) top() ([]int, error) {
+	if len(j.Jobs) == 0 {
+		return []int{}, errors.New("empty jobs")
+	}
+
+	return j.Jobs[0], nil
+}
+
+func (j *Jobs) empty() bool {
+	return len(j.Jobs) == 0
+}
+
+func (j *Jobs) sort() {
+	if !j.IsSorted {
+		sort.Slice(j.Jobs, func(a, b int) bool {
+			return j.Jobs[a][1] < j.Jobs[b][1]
+		})
+	}
+
+	j.IsSorted = true
 }
 
 func main() {
@@ -31,74 +55,53 @@ func main() {
 
 func 디스크컨트롤러(jobs [][]int) int {
 
-	jobTimes := getJobTimesAsc(jobs)
-	var jobsAsc [][]int
-
-	for _, jobTime := range jobTimes {
-		jobsAsc = append(jobsAsc, getJobsAsc(jobTime, jobs)...)
-	}
-
-	var progressJobs = Jobs{jobsAsc}
-	var result int
-	var time int
-	var finished int
-	var wait int
-
-	for {
-		job, err := progressJobs.pop()
-
-		if err != nil {
-			return result / 3
-		}
-
-		if job[0] <= time {
-
-			if finished > job[0] {
-				wait = finished - job[0]
-			}
-
-			finished = time + job[1]
-			duration := wait + job[1]
-			result += duration
-		}
-
-		if finished > 0 {
-			time = finished
-		} else {
-			time++
-		}
-	}
-}
-
-func getJobTimesAsc(jobs [][]int) []int {
-	var result = make([]int, len(jobs))
-
-	for i, job := range jobs {
-		result[i] = job[1]
-	}
-
-	sort.Slice(result, func(i, j int) bool {
-		return result[i] < result[j]
+	sort.Slice(jobs, func(i, j int) bool {
+		return jobs[i][0] < jobs[j][0]
 	})
 
-	return result
-}
+	var waitingJobs = Jobs{jobs, false}
+	var progressJobs = Jobs{}
+	var result int
+	var time int
 
-func getJobsAsc(jobTime int, jobs [][]int) [][]int {
+	for {
 
-	var result [][]int
+		if !progressJobs.empty() {
+			progressJobs.sort()
 
-	for _, job := range jobs {
-		if job[1] != jobTime {
+			pj, _ := progressJobs.pop()
+
+			if pj[0] > time {
+				result += pj[0] - time
+				time = pj[0]
+			}
+
+			result += pj[1]
+			time = time + pj[1]
+
 			continue
 		}
 
-		result = append(result, job)
+		t, err := waitingJobs.top()
+
+		if err != nil {
+			break
+		}
+
+		if t[0] > time {
+			result += t[0] - time
+			time = t[0]
+			continue
+		}
+
+		wj, err := waitingJobs.pop()
+
+		if err != nil {
+			break
+		}
+
+		progressJobs.push(wj)
 	}
 
-	sort.Slice(result, func(i, j int) bool {
-		return result[i][0] < result[j][0]
-	})
-
-	return result
+	return result / 3
 }
