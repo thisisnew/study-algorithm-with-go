@@ -79,18 +79,26 @@ func 디스크컨트롤러(jobs [][]int) int {
 func progressJob(progressJobs *Jobs, time *int, result *int) {
 	progressJobs.sort()
 
-	pj, _ := progressJobs.pop()
+	for {
+		if progressJobs.empty() {
+			return
+		}
 
-	if pj[0] > *time {
-		*result += pj[0] - *time
-		time = &(pj)[0]
+		pj, _ := progressJobs.pop()
+
+		if pj[0] > *time {
+			*result += pj[0] - *time
+			time = &(pj)[0]
+		}
+
+		*result += pj[1]
+		*time = *time + pj[1]
 	}
 
-	*result += pj[1]
-	*time = *time + pj[1]
 }
 
 func pushProgress(waitingJobs, progressJobs *Jobs, time, result *int) {
+
 	for {
 		t, err := waitingJobs.top()
 
@@ -105,11 +113,11 @@ func pushProgress(waitingJobs, progressJobs *Jobs, time, result *int) {
 
 			*result += t[0] - *time
 			time = &(t)[0]
-
-		} else {
-
-			wj, _ := waitingJobs.pop()
-			progressJobs.push(wj)
+			continue
 		}
+
+		wj, _ := waitingJobs.pop()
+		progressJobs.push(wj)
 	}
+
 }
