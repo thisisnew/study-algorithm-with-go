@@ -65,7 +65,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 	var time int
 
 out:
-	for !waitingJobs.empty() {
+	for !progressJobs.empty() && !waitingJobs.empty() {
 
 		if !progressJobs.empty() {
 			progressJobs.sort()
