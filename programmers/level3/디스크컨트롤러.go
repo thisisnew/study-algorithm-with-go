@@ -41,6 +41,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 	var progressJobs = Jobs{jobsAsc}
 	var result int
 	var time int
+	var finished int
 
 	for {
 		job, err := progressJobs.pop()
@@ -50,10 +51,13 @@ func 디스크컨트롤러(jobs [][]int) int {
 		}
 
 		if job[0] <= time {
-			result = result + (time - job[0]) + (job[1] - job[0])
+			wait := finished - job[0]
+			finished = time + (job[1] - job[0])
+			duration := wait + finished
+			result += duration
 		}
 
-		time = job[1]
+		time = finished
 	}
 }
 
