@@ -64,47 +64,56 @@ func 디스크컨트롤러(jobs [][]int) int {
 	var result int
 	var time int
 
-out:
-	for !progressJobs.empty() && !waitingJobs.empty() {
+	for {
 
-		if !progressJobs.empty() {
-			progressJobs.sort()
-
-			pj, _ := progressJobs.pop()
-
-			if pj[0] > time {
-				result += pj[0] - time
-				time = pj[0]
-			}
-
-			result += pj[1]
-			time = time + pj[1]
-			continue
-		}
-
-		for {
-			t, err := waitingJobs.top()
-
-			if err != nil {
-				continue out
-			}
-
-			if t[0] > time {
-				if !progressJobs.empty() {
-					continue out
-				}
-
-				result += t[0] - time
-				time = t[0]
-
-			} else {
-
-				wj, _ := waitingJobs.pop()
-				progressJobs.push(wj)
-			}
+		switch {
+		case progressJobs.empty() && waitingJobs.empty():
+			break
+		case !progressJobs.empty():
+			progressJob(&progressJobs, &time, &result)
+		default:
+			pushProgress(&waitingJobs, &progressJobs, &time, &result)
 		}
 
 	}
 
 	return result / 3
+}
+
+func progressJob(progressJobs *Jobs, time *int, result *int) {
+	progressJobs.sort()
+
+	pj, _ := progressJobs.pop()
+
+	if pj[0] > *time {
+		*result += pj[0] - *time
+		time = &(pj)[0]
+	}
+
+	*result += pj[1]
+	*time = *time + pj[1]
+}
+
+func pushProgress(waitingJobs, progressJobs *Jobs, time, result *int) {
+	for {
+		t, err := waitingJobs.top()
+
+		if err != nil {
+			return
+		}
+
+		if t[0] > *time {
+			if !progressJobs.empty() {
+				return
+			}
+
+			*result += t[0] - *time
+			time = &(t)[0]
+
+		} else {
+
+			wj, _ := waitingJobs.pop()
+			progressJobs.push(wj)
+		}
+	}
 }
