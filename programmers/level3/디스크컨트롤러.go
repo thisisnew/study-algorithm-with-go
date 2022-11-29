@@ -50,7 +50,8 @@ func (j *Jobs) sort() {
 }
 
 func main() {
-	fmt.Println(디스크컨트롤러([][]int{{7, 8}, {3, 5}, {9, 6}}))
+	//fmt.Println(디스크컨트롤러([][]int{{7, 8}, {3, 5}, {9, 6}}))
+	fmt.Println(디스크컨트롤러([][]int{{0, 3}, {1, 9}, {2, 6}}))
 }
 
 func 디스크컨트롤러(jobs [][]int) int {
