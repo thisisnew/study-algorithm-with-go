@@ -110,6 +110,8 @@ func processJobs(progressJobs *Jobs, result *int, time *int) {
 			return
 		}
 
+		*result += (*time - job[0]) + job[1]
+		*time += job[1]
 	}
 
 }
