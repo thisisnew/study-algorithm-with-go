@@ -60,11 +60,10 @@ func 디스크컨트롤러(jobs [][]int) int {
 		return jobs[i][0] < jobs[j][0]
 	})
 
-	var progressJobs = Jobs{}
 	var result int
 	var time int
-
 	var waitingJobs = Jobs{jobs, false}
+	var progressJobs = Jobs{}
 
 	for {
 		if waitingJobs.empty() {
@@ -74,7 +73,12 @@ func 디스크컨트롤러(jobs [][]int) int {
 		t, _ := waitingJobs.top()
 
 		if time < t[0] {
-			time++
+			if progressJobs.empty() {
+				time++
+			} else {
+
+			}
+
 			continue
 		}
 
