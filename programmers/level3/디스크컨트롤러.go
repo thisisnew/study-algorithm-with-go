@@ -95,4 +95,10 @@ func processJobs(progressJobs *Jobs, result *int, time *int) {
 		return
 	}
 
+	job, err := progressJobs.pop()
+
+	if err != nil {
+		return
+	}
+
 }
