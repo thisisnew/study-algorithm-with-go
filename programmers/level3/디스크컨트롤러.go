@@ -86,19 +86,30 @@ func 디스크컨트롤러(jobs [][]int) int {
 		progressJobs.push(p)
 	}
 
+	if !progressJobs.empty() {
+		processJobs(&progressJobs, &result, &time)
+	}
+
 	return result
 }
 
 func processJobs(progressJobs *Jobs, result *int, time *int) {
 
-	if progressJobs.empty() {
-		return
-	}
+	sort.Slice(progressJobs.Jobs, func(i, j int) bool {
+		return progressJobs.Jobs[i][1] < progressJobs.Jobs[j][1]
+	})
 
-	job, err := progressJobs.pop()
+	for {
+		if progressJobs.empty() {
+			return
+		}
 
-	if err != nil {
-		return
+		job, err := progressJobs.pop()
+
+		if err != nil {
+			return
+		}
+
 	}
 
 }
