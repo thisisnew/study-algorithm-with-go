@@ -60,64 +60,27 @@ func 디스크컨트롤러(jobs [][]int) int {
 		return jobs[i][0] < jobs[j][0]
 	})
 
-	var waitingJobs = Jobs{jobs, false}
 	var progressJobs = Jobs{}
 	var result int
 	var time int
 
-	for {
-		switch {
-		case progressJobs.empty() && waitingJobs.empty():
-			return result / 3
-		case !progressJobs.empty():
-			progressJob(&progressJobs, &time, &result)
-		case progressJobs.empty():
-			pushProgress(&waitingJobs, &progressJobs, &time, &result)
-		}
-	}
-}
-
-func progressJob(progressJobs *Jobs, time *int, result *int) {
-	progressJobs.sort()
+	var waitingJobs = Jobs{jobs, false}
 
 	for {
-		if progressJobs.empty() {
-			return
+		if waitingJobs.empty() {
+			break
 		}
 
-		pj, _ := progressJobs.pop()
+		t, _ := waitingJobs.top()
 
-		if pj[0] < *time {
-			*result += *time - pj[0]
-		}
-
-		*result += pj[1]
-		*time = *time + pj[1]
-	}
-
-}
-
-func pushProgress(waitingJobs, progressJobs *Jobs, time, result *int) {
-
-	for {
-		t, err := waitingJobs.top()
-
-		if err != nil {
-			return
-		}
-
-		if t[0] > *time {
-			if !progressJobs.empty() {
-				return
-			}
-
-			*result += t[0] - *time
-			*time = t[0]
+		if time < t[0] {
+			time++
 			continue
 		}
 
-		wj, _ := waitingJobs.pop()
-		progressJobs.push(wj)
+		p, _ := waitingJobs.pop()
+		progressJobs.push(p)
 	}
 
+	return result
 }
