@@ -88,3 +88,11 @@ func 디스크컨트롤러(jobs [][]int) int {
 
 	return result
 }
+
+func processJobs(progressJobs Jobs, result *int, time *int) {
+
+	if progressJobs.empty() {
+		return
+	}
+
+}
