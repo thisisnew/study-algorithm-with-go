@@ -68,6 +68,9 @@ func 디스크컨트롤러(jobs [][]int) int {
 		t, _ := progressJobs.top()
 
 		if time >= t[0] {
+
+			//옮겨담기
+
 			processJobs(&progressJobs, &result, &time)
 			continue
 		} else {
