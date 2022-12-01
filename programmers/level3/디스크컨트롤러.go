@@ -58,23 +58,21 @@ func 디스크컨트롤러(jobs [][]int) int {
 
 	var result int
 	var time int
-	var waitingJobs = Jobs{jobs, false}
-	var progressJobs = Jobs{}
+	var progressJobs = Jobs{jobs, false}
 
 	for {
-		if waitingJobs.empty() {
+		if progressJobs.empty() {
 			break
 		}
 
-		t, _ := waitingJobs.top()
+		t, _ := progressJobs.top()
 
-		if t[0] <= time {
+		if time >= t[0] {
 			processJobs(&progressJobs, &result, &time)
 			continue
+		} else {
+			time++
 		}
-
-		p, _ := waitingJobs.pop()
-		progressJobs.push(p)
 	}
 
 	if !progressJobs.empty() {
