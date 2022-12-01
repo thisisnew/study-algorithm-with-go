@@ -90,7 +90,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 		processJobs(&progressJobs, &result, &time)
 	}
 
-	return result
+	return result / 3
 }
 
 func processJobs(progressJobs *Jobs, result *int, time *int) {
