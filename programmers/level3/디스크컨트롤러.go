@@ -68,13 +68,8 @@ func 디스크컨트롤러(jobs [][]int) int {
 
 		t, _ := waitingJobs.top()
 
-		if t[0] > time {
-			if progressJobs.empty() {
-				time++
-			} else {
-				processJobs(&progressJobs, &result, &time)
-			}
-
+		if t[0] <= time {
+			processJobs(&progressJobs, &result, &time)
 			continue
 		}
 
