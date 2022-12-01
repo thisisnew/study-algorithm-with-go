@@ -50,8 +50,8 @@ func (j *Jobs) sort() {
 }
 
 func main() {
-	//fmt.Println(디스크컨트롤러([][]int{{7, 8}, {3, 5}, {9, 6}}))
-	fmt.Println(디스크컨트롤러([][]int{{0, 3}, {1, 9}, {2, 6}}))
+	fmt.Println(디스크컨트롤러([][]int{{7, 8}, {3, 5}, {9, 6}}))
+	//fmt.Println(디스크컨트롤러([][]int{{0, 3}, {1, 9}, {2, 6}}))
 }
 
 func 디스크컨트롤러(jobs [][]int) int {
@@ -95,9 +95,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 
 func processJobs(progressJobs *Jobs, result *int, time *int) {
 
-	sort.Slice(progressJobs.Jobs, func(i, j int) bool {
-		return progressJobs.Jobs[i][1] < progressJobs.Jobs[j][1]
-	})
+	progressJobs.sort()
 
 	for {
 		if progressJobs.empty() {
@@ -113,5 +111,4 @@ func processJobs(progressJobs *Jobs, result *int, time *int) {
 		*result += (*time - job[0]) + job[1]
 		*time += job[1]
 	}
-
 }
