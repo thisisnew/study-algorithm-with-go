@@ -56,10 +56,6 @@ func main() {
 
 func 디스크컨트롤러(jobs [][]int) int {
 
-	sort.Slice(jobs, func(i, j int) bool {
-		return jobs[i][0] < jobs[j][0]
-	})
-
 	var result int
 	var time int
 	var waitingJobs = Jobs{jobs, false}
@@ -72,7 +68,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 
 		t, _ := waitingJobs.top()
 
-		if time < t[0] {
+		if t[0] > time {
 			if progressJobs.empty() {
 				time++
 			} else {
