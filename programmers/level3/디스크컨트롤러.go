@@ -63,6 +63,10 @@ func 디스크컨트롤러(jobs [][]int) int {
 
 	for {
 		if waitingJobs.empty() {
+			if !progressJobs.empty() {
+				processJobs(&progressJobs, &result, &time)
+			}
+
 			break
 		}
 
@@ -79,10 +83,6 @@ func 디스크컨트롤러(jobs [][]int) int {
 		}
 
 		time++
-	}
-
-	if !progressJobs.empty() {
-		processJobs(&progressJobs, &result, &time)
 	}
 
 	return result / 3
