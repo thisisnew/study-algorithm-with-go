@@ -74,7 +74,11 @@ func 디스크컨트롤러(jobs [][]int) int {
 		}
 
 		if time >= t[0] {
-			p, _ := waitingJobs.pop()
+			p, err := waitingJobs.pop()
+
+			if err != nil {
+				break
+			}
 
 			progressJobs.push(p)
 			continue
