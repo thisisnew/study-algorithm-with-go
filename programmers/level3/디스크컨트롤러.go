@@ -109,7 +109,5 @@ func processJobs(progressJobs *Jobs, result *int, time *int) {
 		if job[0]+job[1] > *time {
 			*time = job[0] + job[1]
 		}
-
-		*time += job[1]
 	}
 }
