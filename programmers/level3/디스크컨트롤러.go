@@ -103,6 +103,13 @@ func processJobs(progressJobs *Jobs, result *int, time *int) {
 
 		//이 부분이 의심됨
 		*result += (*time - job[0]) + job[1]
+
+		//job[0] + job[1]
+
+		if job[0]+job[1] > *time {
+			*time = job[0] + job[1]
+		}
+
 		*time += job[1]
 	}
 }
