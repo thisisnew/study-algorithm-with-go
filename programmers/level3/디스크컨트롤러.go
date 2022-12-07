@@ -82,9 +82,7 @@ func 디스크컨트롤러(jobs [][]int) int {
 
 			progressJobs.push(p)
 			continue
-		}
-
-		if !progressJobs.empty() {
+		} else if !progressJobs.empty() {
 			processJobs(&progressJobs, &result, &time)
 			continue
 		}
