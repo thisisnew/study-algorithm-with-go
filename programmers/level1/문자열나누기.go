@@ -42,5 +42,9 @@ func 문자열나누기(s string) int {
 		x = ""
 	}
 
+	if temp.Len() > 0 {
+		result = append(result, temp.String())
+	}
+
 	return len(result)
 }
