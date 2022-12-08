@@ -22,13 +22,19 @@ func 문자열나누기(s string) int {
 
 		if x == "" {
 			x = string(r)
-			continue
 		}
 
 		if string(r) == x {
 			xCnt++
 		} else {
 			yCnt++
+		}
+
+		if xCnt == yCnt {
+			result = append(result, temp.String())
+			xCnt = 0
+			yCnt = 0
+			x = ""
 		}
 
 	}
