@@ -15,18 +15,16 @@ func 점찍기(k int, d int) int64 {
 	var y int
 
 	for {
-		if x*x > d*d && y*y > d*d {
+		if x*x > d*d || y*y > d*d {
 			return result
-		}
-
-		if (x*x)+(y*y) > d*d {
-			x += k
-			y = 0
 		}
 
 		if (x*x)+(y*y) <= d*d {
 			result++
 			y += k
 		}
+
+		x += k
+		y = 0
 	}
 }
