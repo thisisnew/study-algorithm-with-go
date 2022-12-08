@@ -11,22 +11,23 @@ func main() {
 func 점찍기(k int, d int) int64 {
 
 	var result int64
-	var x int
-	var y int
+	var x int64
+	var y int64
+	var dsq = int64(d) * int64(d)
 
 	for {
-		if x*x > d*d && y*y > d*d {
+		if x*x > dsq && y*y > dsq {
 			return result
 		}
 
-		if (x*x)+(y*y) <= d*d {
+		if (x*x)+(y*y) <= dsq {
 			result++
 		}
 
-		y += k
+		y += int64(k)
 
-		if y*y > d*d && x*x <= d*d {
-			x += k
+		if y*y > dsq && x*x <= dsq {
+			x += int64(k)
 			y = 0
 		}
 	}
