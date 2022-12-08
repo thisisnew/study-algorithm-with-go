@@ -20,25 +20,25 @@ func 문자열나누기(s string) int {
 	for _, r := range s {
 		temp.WriteRune(r)
 
-		c := string(r)
-
 		if x == "" {
-			x = c
+			x = string(r)
 		}
 
-		if c == x {
+		switch x {
+		case string(r):
 			xCnt++
-		} else {
+		default:
 			yCnt++
 		}
 
-		if xCnt == yCnt {
-			result = append(result, temp.String())
-			xCnt = 0
-			yCnt = 0
-			x = ""
+		if xCnt != yCnt {
+			continue
 		}
 
+		result = append(result, temp.String())
+		xCnt = 0
+		yCnt = 0
+		x = ""
 	}
 
 	return len(result)
