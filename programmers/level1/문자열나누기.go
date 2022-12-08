@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(문자열나누기("abracadabra"))
+	fmt.Println(문자열나누기("aaabbaccccabba"))
 }
 
 func 문자열나누기(s string) int {
