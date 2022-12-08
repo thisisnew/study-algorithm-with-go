@@ -20,11 +20,13 @@ func 문자열나누기(s string) int {
 	for _, r := range s {
 		temp.WriteRune(r)
 
+		c := string(r)
+
 		if x == "" {
-			x = string(r)
+			x = c
 		}
 
-		if string(r) == x {
+		if c == x {
 			xCnt++
 		} else {
 			yCnt++
