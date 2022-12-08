@@ -22,6 +22,7 @@ func 점찍기(k int, d int) int64 {
 		if (x*x)+(y*y) <= d*d {
 			result++
 			y += k
+			continue
 		}
 
 		x += k
