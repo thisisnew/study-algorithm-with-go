@@ -16,8 +16,13 @@ func 점찍기(k int, d int) int64 {
 	var dsq = int64(d) * int64(d)
 
 	for {
-		if x*x > dsq && y*y > dsq {
-			return result
+		if y*y > dsq {
+			if x*x > dsq {
+				return result
+			}
+
+			x += int64(k)
+			y = 0
 		}
 
 		if (x*x)+(y*y) <= dsq {
@@ -25,10 +30,5 @@ func 점찍기(k int, d int) int64 {
 		}
 
 		y += int64(k)
-
-		if y*y > dsq && x*x <= dsq {
-			x += int64(k)
-			y = 0
-		}
 	}
 }
