@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(문자열나누기("banana"))
+	fmt.Println(문자열나누기("abracadabra"))
 }
 
 func 문자열나누기(s string) int {
@@ -36,6 +36,7 @@ func 문자열나누기(s string) int {
 		}
 
 		result = append(result, temp.String())
+		temp.Reset()
 		xCnt = 0
 		yCnt = 0
 		x = ""
