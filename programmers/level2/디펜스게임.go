@@ -25,6 +25,15 @@ func (d *DefenseGame) pop() (int, error) {
 	return g, nil
 }
 
+func (d *DefenseGame) top() (int, error) {
+
+	if len(d.games) == 0 {
+		return -1, errors.New("empty games")
+	}
+
+	return d.games[len(d.games)-1], nil
+}
+
 func (d *DefenseGame) empty() bool {
 	return len(d.games) == 0
 }
@@ -47,5 +56,17 @@ func 디펜스게임(n int, k int, enemy []int) int {
 
 	var result int
 
-	return result
+	for {
+		if !defense.empty() {
+			return result
+		}
+
+		g, err := defense.top()
+
+		if err != nil {
+			return result
+		}
+
+	}
+
 }
