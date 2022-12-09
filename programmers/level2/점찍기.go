@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 func main() {
@@ -10,30 +11,12 @@ func main() {
 
 func 점찍기(k int, d int) int64 {
 
-	var result int64
-	var x int64
-	var y int64
-	var dsq = int64(d) * int64(d)
+	var result float64
 
-	for {
-		xsq := x * x
-		ysq := y * y
-
-		if ysq > dsq {
-			if xsq > dsq {
-				return result
-			}
-
-			x += int64(k)
-			y = 0
-			xsq = x * x
-			ysq = y * y
-		}
-
-		if xsq+ysq <= dsq {
-			result++
-		}
-
-		y += int64(k)
+	for i := 0; i <= d; i += k {
+		y := math.Sqrt(math.Pow(float64(d), 2.0) - math.Pow(float64(i), 2.0))
+		result += math.Floor(y/float64(k)) + 1
 	}
+
+	return int64(result)
 }
