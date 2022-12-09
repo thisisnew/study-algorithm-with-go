@@ -39,23 +39,13 @@ func 디펜스게임(n int, k int, enemy []int) int {
 		return k
 	}
 
-	var result int
+	var defense = DefenseGame{}
 
 	for _, e := range enemy {
-
-		if n > e {
-			n -= e
-			result++
-			continue
-		}
-
-		if k > 0 {
-			k--
-			result++
-			continue
-		}
-
+		defense.push(e)
 	}
+
+	var result int
 
 	return result
 }
