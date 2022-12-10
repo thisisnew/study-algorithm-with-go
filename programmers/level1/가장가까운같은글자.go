@@ -15,12 +15,12 @@ func 가장가까운같은글자(s string) []int {
 		p, ok := position[r]
 
 		if !ok {
-			position[r] = i
 			result = append(result, -1)
 		} else {
-			position[r] = i
 			result = append(result, i-p)
 		}
+
+		position[r] = i
 	}
 
 	return result
