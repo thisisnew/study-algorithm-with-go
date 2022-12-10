@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(가장가까운같은글자("banana"))
+	fmt.Println(가장가까운같은글자("foobar"))
 }
 
 func 가장가까운같은글자(s string) []int {
