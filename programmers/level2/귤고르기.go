@@ -18,7 +18,7 @@ func 귤고르기(k int, tangerine []int) int {
 
 	cnt, result := countFittedMinTangerineTypes(k, counts)
 
-	if cnt == k {
+	if cnt <= k {
 		return result
 	}
 
