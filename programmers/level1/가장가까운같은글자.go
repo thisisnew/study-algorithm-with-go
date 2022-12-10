@@ -8,16 +8,16 @@ func main() {
 
 func 가장가까운같은글자(s string) []int {
 
-	var result []int
+	var result = make([]int, len([]rune(s)))
 	var position = map[rune]int{}
 
 	for i, r := range s {
 		p, ok := position[r]
 
 		if !ok {
-			result = append(result, -1)
+			result[i] = -1
 		} else {
-			result = append(result, i-p)
+			result[i] = i - p
 		}
 
 		position[r] = i
