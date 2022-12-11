@@ -16,9 +16,7 @@ func 귤고르기(k int, tangerine []int) int {
 		return counts[i] > counts[j]
 	})
 
-	_, result := countFittedMinTangerineTypes(k, counts)
-
-	return result
+	return countFittedMinTangerineTypes(k, counts)
 }
 
 func getTangerineBasket(tangerine []int) map[int]int {
@@ -41,7 +39,7 @@ func countTangerines(tangerineBasket map[int]int) []int {
 	return result
 }
 
-func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
+func countFittedMinTangerineTypes(k int, counts []int) int {
 
 	var result = 0
 	var cnt = 0
@@ -54,7 +52,7 @@ func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
 			result++
 
 			if cnt == k {
-				return cnt, result
+				return result
 			}
 
 			if cnt+counts[j] > k {
@@ -65,5 +63,5 @@ func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
 		}
 	}
 
-	return cnt, result
+	return result
 }
