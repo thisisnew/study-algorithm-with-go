@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -13,19 +11,26 @@ func main() {
 
 func 큰수만들기(number string, k int) string {
 
-	var p = number
+	var result strings.Builder
+	var numbers = strings.Split(number, "")
+	var ln = len(numbers) - k
 
-	sort.Slice(p, func(i, j int) bool {
-		return p[i] > p[j]
-	})
+	for {
+		if result.Len() == ln {
+			return result.String()
+		}
 
-	max, _ := strconv.Atoi(p[0:1])
+		var max = numbers[0]
+		var idx = 0
 
-	for i := 0; i < len([]rune(number)); i++ {
+		for i, n := range numbers {
+			if n > max {
+				max = n
+				idx = i
+			}
+		}
 
-		if
-
+		result.WriteString(max)
+		numbers = append(numbers[:idx], numbers[idx+1:]...)
 	}
-
-	return result.String()
 }
