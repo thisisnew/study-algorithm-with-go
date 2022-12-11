@@ -16,11 +16,11 @@ func 귤고르기(k int, tangerine []int) int {
 		return counts[i] > counts[j]
 	})
 
-	cnt, result := countFittedMinTangerineTypes(k, counts)
-
-	if cnt == k {
-		return result
-	}
+	//cnt, result := countFittedMinTangerineTypes(k, counts)
+	//
+	//if cnt == k {
+	//	return result
+	//}
 
 	return countUnFittedMinTangerineTypes(k, counts)
 }
@@ -82,6 +82,7 @@ func countUnFittedMinTangerineTypes(k int, counts []int) int {
 			return result
 		}
 
+		result++
 		cnt += counts[i]
 	}
 
