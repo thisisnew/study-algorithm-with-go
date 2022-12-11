@@ -16,20 +16,23 @@ func 큰수만들기(number string, k int) string {
 	var ln = len(numbers) - k
 
 	for {
-		if result.Len() == ln {
+		if ln == 0 {
 			return result.String()
 		}
 
 		var max = numbers[0]
 		var idx = 0
 
-		for i, n := range numbers {
+		for i := 1; i <= len(numbers)-ln; i++ {
+			n := numbers[i]
+
 			if n > max {
 				max = n
 				idx = i
 			}
 		}
 
+		ln--
 		result.WriteString(max)
 		numbers = append(numbers[:idx], numbers[idx+1:]...)
 	}
