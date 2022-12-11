@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(귤고르기(4, []int{1, 1, 1, 1, 2, 2, 2, 3}))
+	fmt.Println(귤고르기(2, []int{1, 1, 1, 1, 2, 2, 2, 3}))
 }
 
 func 귤고르기(k int, tangerine []int) int {
@@ -16,13 +16,9 @@ func 귤고르기(k int, tangerine []int) int {
 		return counts[i] > counts[j]
 	})
 
-	cnt, result := countFittedMinTangerineTypes(k, counts)
+	_, result := countFittedMinTangerineTypes(k, counts)
 
-	if cnt <= k {
-		return result
-	}
-
-	return countNotFittedMinTangerineTypes(k, counts)
+	return result
 }
 
 func getTangerineBasket(tangerine []int) map[int]int {
@@ -51,10 +47,12 @@ func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
 	var cnt = 0
 
 	for i := 0; i < len(counts); i++ {
-		cnt = 0
+		cnt = counts[i]
 		result = 0
 
 		for j := i + 1; j < len(counts); j++ {
+			result++
+
 			if cnt == k {
 				return cnt, result
 			}
@@ -64,27 +62,8 @@ func countFittedMinTangerineTypes(k int, counts []int) (int, int) {
 			}
 
 			cnt += counts[j]
-			result++
 		}
 	}
 
 	return cnt, result
-}
-
-func countNotFittedMinTangerineTypes(k int, counts []int) int {
-
-	var result = 0
-	var cnt = 0
-
-	for i := 0; i < len(counts); i++ {
-		result++
-
-		if cnt+counts[i] > k {
-			return result
-		}
-
-		cnt += counts[i]
-	}
-
-	return result
 }
