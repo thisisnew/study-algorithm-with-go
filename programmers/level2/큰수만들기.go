@@ -23,12 +23,18 @@ func 큰수만들기(number string, k int) string {
 		var max = numbers[0]
 		var idx = 0
 
-		for i := 1; i <= len(numbers)-ln; i++ {
-			n := numbers[i]
+		if max != "9" {
+			for i := 1; i <= len(numbers)-ln; i++ {
+				n := numbers[i]
 
-			if n > max {
-				max = n
-				idx = i
+				if n > max {
+					max = n
+					idx = i
+				}
+
+				if max == "9" {
+					break
+				}
 			}
 		}
 
