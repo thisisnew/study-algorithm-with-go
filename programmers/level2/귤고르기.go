@@ -48,7 +48,7 @@ func countMinTangerineTypes(k int, counts []int) int {
 		cnt = 0
 		result = 0
 
-		for j := i; j < len(counts); j++ {
+		for j := i + 1; j < len(counts); j++ {
 			if cnt >= k {
 				return result
 			}
