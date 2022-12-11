@@ -78,18 +78,11 @@ func countUnFittedMinTangerineTypes(k int, counts []int) int {
 	var cnt = 0
 
 	for i := 0; i < len(counts); i++ {
-		cnt = counts[i]
-		result = 0
-
-		for j := i + 1; j < len(counts); j++ {
-			result++
-
-			if cnt >= k {
-				return result
-			}
-
-			cnt += counts[j]
+		if cnt >= k {
+			return result
 		}
+
+		cnt += counts[i]
 	}
 
 	return result
