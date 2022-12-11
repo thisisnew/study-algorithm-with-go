@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(큰수만들기("1924", 2))
+	fmt.Println(큰수만들기("4177252841", 4))
 }
 
 func 큰수만들기(number string, k int) string {
@@ -34,6 +34,6 @@ func 큰수만들기(number string, k int) string {
 
 		ln--
 		result.WriteString(max)
-		numbers = append(numbers[:idx], numbers[idx+1:]...)
+		numbers = numbers[idx+1:]
 	}
 }
