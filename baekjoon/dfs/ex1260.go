@@ -9,12 +9,15 @@ import (
 var (
 	graph     [][]bool
 	isVisited []bool
+	writer    *bufio.Writer
 )
 
 func main() {
 	var n, m, v int
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n, &m, &v)
+
+	writer = bufio.NewWriter(os.Stdout)
 
 	graph = make([][]bool, n+1)
 	for i := range graph {
@@ -36,8 +39,7 @@ func main() {
 
 func dfs(v int) {
 	isVisited[v] = true
-
-	fmt.Print(v, " ")
+	fmt.Fprintf(writer, "%d", v)
 
 	for i := 0; i < len(graph[v]); i++ {
 		if graph[v][i] && !isVisited[i] {
