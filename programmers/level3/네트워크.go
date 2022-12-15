@@ -17,19 +17,19 @@ func 네트워크(n int, computers [][]int) int {
 	for i := 0; i < n; i++ {
 		if !isVisited[i] {
 			result++
-			dfs(i, computers)
+			dfsNetwork(i, computers)
 		}
 	}
 
 	return result
 }
 
-func dfs(n int, computers [][]int) {
+func dfsNetwork(n int, computers [][]int) {
 	isVisited[n] = true
 
 	for i := 0; i < len(computers[n]); i++ {
 		if !isVisited[i] && computers[n][i] == 1 {
-			dfs(i, computers)
+			dfsNetwork(i, computers)
 		}
 	}
 }
