@@ -17,9 +17,9 @@ func 여행경로(tickets [][]string) []string {
 		graphTickets[i] = make([]string, len(tickets)+1)
 	}
 
-	for _, ticket := range tickets {
-		graphTickets[]
-	}
+	//for _, ticket := range tickets {
+	//	graphTickets[]
+	//}
 
 	return []string{}
 }
