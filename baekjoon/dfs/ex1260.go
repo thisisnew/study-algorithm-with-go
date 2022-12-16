@@ -12,8 +12,18 @@ type Graph1260 struct {
 	result    []int
 }
 
-func (g *Graph1260) reset(n int) {
+func (g *Graph1260) reset1260(n int) {
 	g.isVisited = make([]bool, n+1)
+}
+
+func (g *Graph1260) print1260() {
+
+	for i, v := range g.result {
+		fmt.Print(v)
+		if i < len(g.result)-1 {
+			fmt.Print(" ")
+		}
+	}
 }
 
 func main() {
@@ -39,8 +49,8 @@ func main() {
 	}
 
 	dfs(v, &graph1260)
-	fmt.Printf("%v", graph1260.result)
-	graph1260.reset(n)
+	graph1260.print1260()
+	graph1260.reset1260(n)
 
 }
 
