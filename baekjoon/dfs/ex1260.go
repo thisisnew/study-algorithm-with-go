@@ -51,6 +51,7 @@ func main() {
 
 	dfs1260(v, &graph1260)
 	graph1260.print1260()
+	fmt.Println()
 
 	graph1260.reset1260(n)
 
