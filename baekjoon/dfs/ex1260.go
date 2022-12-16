@@ -11,6 +11,10 @@ type Graph1260 struct {
 	isVisited []bool
 }
 
+func (g *Graph1260) reset(n int) {
+	g.isVisited = make([]bool, n+1)
+}
+
 func main() {
 	var n, m, v int
 	var read = bufio.NewReader(os.Stdin)
@@ -34,6 +38,8 @@ func main() {
 	}
 
 	dfs(v, &graph1260)
+	graph1260.reset(n)
+
 }
 
 func dfs(v int, graph1260 *Graph1260) {
