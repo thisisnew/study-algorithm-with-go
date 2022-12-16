@@ -71,22 +71,23 @@ func dfs1260(v int, graph1260 *Graph1260) {
 
 func bfs1260(v int, graph1260 *Graph1260) {
 	graph1260.isVisited[v] = true
-	queue := []int{v}
+	q := []int{v}
 
 	for {
-		if len(queue) == 0 {
+		if len(q) == 0 {
 			return
 		}
 
-		f := queue[0]
-		queue = queue[1:]
+		f := q[0]
+		q = q[1:]
 		graph1260.result = append(graph1260.result, f)
 
 		for i := 0; i < len(graph1260.graph[v]); i++ {
 			if graph1260.graph[f][i] && !graph1260.isVisited[i] {
 				graph1260.isVisited[i] = true
-				queue = append(queue, i)
+				q = append(q, i)
 			}
 		}
 	}
+
 }
