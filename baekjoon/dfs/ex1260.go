@@ -39,7 +39,7 @@ func main() {
 	}
 
 	dfs(v, &graph1260)
-
+	fmt.Printf("%v", graph1260.result)
 	graph1260.reset(n)
 
 }
