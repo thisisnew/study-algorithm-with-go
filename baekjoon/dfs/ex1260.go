@@ -14,6 +14,7 @@ type Graph1260 struct {
 
 func (g *Graph1260) reset1260(n int) {
 	g.isVisited = make([]bool, n+1)
+	g.result = []int{}
 }
 
 func (g *Graph1260) print1260() {
@@ -48,19 +49,42 @@ func main() {
 		graph1260.graph[p2][p1] = true
 	}
 
-	dfs(v, &graph1260)
+	dfs1260(v, &graph1260)
 	graph1260.print1260()
 	graph1260.reset1260(n)
-
+	bfs1260(v, &graph1260)
+	graph1260.print1260()
 }
 
-func dfs(v int, graph1260 *Graph1260) {
+func dfs1260(v int, graph1260 *Graph1260) {
 	graph1260.isVisited[v] = true
 	graph1260.result = append(graph1260.result, v)
 
 	for i := 0; i < len(graph1260.graph[v]); i++ {
 		if graph1260.graph[v][i] && !graph1260.isVisited[i] {
-			dfs(i, graph1260)
+			dfs1260(i, graph1260)
+		}
+	}
+}
+
+func bfs1260(v int, graph1260 *Graph1260) {
+	graph1260.isVisited[v] = true
+	queue := []int{v}
+
+	for {
+		if len(queue) == 0 {
+			return
+		}
+
+		f := queue[0]
+		queue = queue[1:]
+		graph1260.result = append(graph1260.result, f)
+
+		for i := 0; i < len(graph1260.graph[v]); i++ {
+			if graph1260.graph[f][i] && !graph1260.isVisited[i] {
+				graph1260.isVisited[i] = true
+				queue = append(queue, i)
+			}
 		}
 	}
 }
