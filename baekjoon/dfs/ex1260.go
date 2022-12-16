@@ -9,6 +9,7 @@ import (
 type Graph1260 struct {
 	graph     [][]bool
 	isVisited []bool
+	result    []int
 }
 
 func (g *Graph1260) reset(n int) {
@@ -38,13 +39,14 @@ func main() {
 	}
 
 	dfs(v, &graph1260)
+
 	graph1260.reset(n)
 
 }
 
 func dfs(v int, graph1260 *Graph1260) {
 	graph1260.isVisited[v] = true
-	fmt.Print(v, " ")
+	graph1260.result = append(graph1260.result, v)
 
 	for i := 0; i < len(graph1260.graph[v]); i++ {
 		if graph1260.graph[v][i] && !graph1260.isVisited[i] {
