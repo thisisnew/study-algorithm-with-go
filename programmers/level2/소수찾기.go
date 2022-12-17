@@ -20,18 +20,24 @@ func 소수찾기(numbers string) int {
 		var num strings.Builder
 		num.WriteRune(numbersRune[i])
 
+		n, _ := strconv.Atoi(num.String())
+
+		if isPrimeNumber(n) {
+			result = append(result, n)
+		}
+
 		for j := 0; j < len(numbersRune); j++ {
-			n, _ := strconv.Atoi(num.String())
-
-			if isPrimeNumber(n) {
-				result = append(result, n)
-			}
-
 			if i == j {
 				continue
 			}
 
 			num.WriteRune(numbersRune[j])
+
+			n, _ := strconv.Atoi(num.String())
+
+			if isPrimeNumber(n) {
+				result = append(result, n)
+			}
 		}
 
 	}
