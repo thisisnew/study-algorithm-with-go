@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"strconv"
+	"strings"
 )
 
 func main() {
@@ -15,13 +16,20 @@ func 소수찾기(numbers string) int {
 
 	numbersRune := []rune(numbers)
 
-	sort.Slice(numbersRune, func(i, j int) bool {
-		return numbersRune[i] > numbersRune[j]
-	})
-
 	for i := 0; i < len(numbersRune); i++ {
-		if numbersRune[i] == '0' {
-			continue
+		var num strings.Builder
+		num.WriteRune(numbersRune[i])
+
+		for j := 0; j < len(numbersRune); j++ {
+			n, _ := strconv.Atoi(num.String())
+
+			//소수검증
+
+			if i == j {
+				continue
+			}
+
+			num.WriteRune(numbersRune[j])
 		}
 
 	}
