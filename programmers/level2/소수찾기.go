@@ -47,8 +47,6 @@ func 소수찾기(numbers string) int {
 
 	}
 
-	fmt.Println(result)
-
 	return len(result)
 }
 
