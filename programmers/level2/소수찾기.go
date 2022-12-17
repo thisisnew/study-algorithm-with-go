@@ -12,7 +12,7 @@ func main() {
 
 func 소수찾기(numbers string) int {
 
-	var result int
+	var result []int
 
 	numbersRune := []rune(numbers)
 
@@ -23,7 +23,9 @@ func 소수찾기(numbers string) int {
 		for j := 0; j < len(numbersRune); j++ {
 			n, _ := strconv.Atoi(num.String())
 
-			//소수검증
+			if isPrimeNumber(n) {
+				result = append(result, n)
+			}
 
 			if i == j {
 				continue
@@ -34,5 +36,18 @@ func 소수찾기(numbers string) int {
 
 	}
 
-	return result
+	fmt.Println(result)
+
+	return len(result)
+}
+
+func isPrimeNumber(n int) bool {
+
+	for i := 2; i < n-1; i++ {
+		if n%i == 0 {
+			return false
+		}
+	}
+
+	return true
 }
