@@ -22,7 +22,7 @@ func 소수찾기(numbers string) int {
 
 		ok, n := isPrimeNumber(&num)
 
-		if ok && isDup(n, result) {
+		if ok && !isDup(n, result) {
 			result = append(result, n)
 		}
 
@@ -35,7 +35,7 @@ func 소수찾기(numbers string) int {
 
 			ok, n := isPrimeNumber(&num)
 
-			if ok && isDup(n, result) {
+			if ok && !isDup(n, result) {
 				result = append(result, n)
 			}
 		}
