@@ -20,9 +20,9 @@ func 소수찾기(numbers string) int {
 		var num strings.Builder
 		num.WriteRune(numbersRune[i])
 
-		n, _ := strconv.Atoi(num.String())
+		ok, n := isPrimeNumber(&num)
 
-		if isPrimeNumber(n) {
+		if ok {
 			result = append(result, n)
 		}
 
@@ -33,9 +33,9 @@ func 소수찾기(numbers string) int {
 
 			num.WriteRune(numbersRune[j])
 
-			n, _ := strconv.Atoi(num.String())
+			ok, n := isPrimeNumber(&num)
 
-			if isPrimeNumber(n) {
+			if ok {
 				result = append(result, n)
 			}
 		}
@@ -47,17 +47,19 @@ func 소수찾기(numbers string) int {
 	return len(result)
 }
 
-func isPrimeNumber(n int) bool {
+func isPrimeNumber(num *strings.Builder) (bool, int) {
+
+	n, _ := strconv.Atoi(num.String())
 
 	if n == 1 {
-		return false
+		return false, -1
 	}
 
 	for i := 2; i < n-1; i++ {
 		if n%i == 0 {
-			return false
+			return false, -1
 		}
 	}
 
-	return true
+	return true, n
 }
