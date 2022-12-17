@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -15,6 +16,10 @@ func 소수찾기(numbers string) int {
 	var result []int
 
 	numbersRune := []rune(numbers)
+
+	sort.Slice(numbersRune, func(i, j int) bool {
+		return numbersRune[i] > numbersRune[j]
+	})
 
 	for i := 0; i < len(numbersRune); i++ {
 		var num strings.Builder
