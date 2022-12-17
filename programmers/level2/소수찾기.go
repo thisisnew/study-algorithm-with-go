@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println(소수찾기("17"))
+	fmt.Println(소수찾기("011"))
 }
 
 func 소수찾기(numbers string) int {
@@ -51,7 +51,7 @@ func isPrimeNumber(num *strings.Builder) (bool, int) {
 
 	n, _ := strconv.Atoi(num.String())
 
-	if n == 1 {
+	if n <= 1 {
 		return false, -1
 	}
 
