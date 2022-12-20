@@ -100,19 +100,19 @@ func processJobs(progressJobs *Jobs, result *int, time *int) {
 			return
 		}
 
-		//job, err := progressJobs.pop()
+		job, err := progressJobs.pop()
 
-		// err != nil {
-		//	return
-		//}
+		if err != nil {
+			return
+		}
 
 		//이 부분이 의심됨
-		//*result += (*time - job[0]) + job[1]
+		*result += (*time - job[0]) + job[1]
 
 		//job[0] + job[1]
 
-		//if job[0]+job[1] > *time {
-		//	*time = job[0] + job[1]
-		//}
+		if job[0]+job[1] > *time {
+			*time = job[0] + job[1]
+		}
 	}
 }
