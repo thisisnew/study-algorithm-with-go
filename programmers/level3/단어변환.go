@@ -15,7 +15,8 @@ func 단어변환(begin string, target string, words []string) int {
 	return wordDfsResult
 }
 
-func wordDfs() {
+func wordDfs(v int) {
 	wordDfsResult++
 
+	//재귀
 }
