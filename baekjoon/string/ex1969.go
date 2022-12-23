@@ -22,16 +22,16 @@ func main() {
 
 	var hammingDistance int
 	var result strings.Builder
+	var idx int
 
-	for _, dna := range dnas {
+	for idx < m {
 
 		var a, c, g, t int
 		var max = 0
 		var maxC string
 
-		for _, token := range dna {
-
-			switch string(token) {
+		for _, dna := range dnas {
+			switch dna[idx : idx+1] {
 			case "A":
 				a++
 				if max < a {
@@ -61,6 +61,7 @@ func main() {
 
 		result.WriteString(maxC)
 		hammingDistance = n - max
+		idx++
 	}
 
 	fmt.Println(result.String())
