@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(크기가작은부분문자열("3141592", "271"))
+	fmt.Println(크기가작은부분문자열("500220839878", "7"))
 }
 
 func 크기가작은부분문자열(t string, p string) int {
@@ -20,7 +20,7 @@ func 크기가작은부분문자열(t string, p string) int {
 
 		s := t[i : i+cLen]
 
-		if s < p {
+		if s <= p {
 			result++
 		}
 	}
