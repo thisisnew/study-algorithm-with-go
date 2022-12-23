@@ -18,6 +18,10 @@ func 배달(N int, road [][]int, k int) int {
 
 	isVisitedDelivery = make([]bool, N)
 
+	for i := 0; i < N; i++ {
+		dfsDelivery(i, road)
+	}
+
 	return answer
 }
 
@@ -29,5 +33,4 @@ func dfsDelivery(v int, road [][]int) {
 			dfsDelivery(i, road)
 		}
 	}
-
 }
