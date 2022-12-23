@@ -60,7 +60,7 @@ func main() {
 		}
 
 		result.WriteString(maxC)
-		hammingDistance = n - max
+		hammingDistance = m - max
 		idx++
 	}
 
