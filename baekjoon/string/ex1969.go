@@ -4,44 +4,65 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
-
-var fDna string
 
 func main() {
 	var n, m int
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n, &m)
-	fmt.Fscanln(read, &fDna)
 
-	var minHd int
-	var mDna string
-	var isGetHd bool
+	var dnas = make([]string, n)
 
-	for i := 0; i < n-1; i++ {
+	for i := 0; i < n; i++ {
 		var dna string
 		fmt.Fscanln(read, &dna)
-
-		hd := getHammingDistance(dna)
-
-		if !isGetHd || hd < minHd {
-			isGetHd = true
-			minHd = hd
-			mDna = dna
-		}
+		dnas[i] = dna
 	}
 
-	fmt.Println(mDna)
-}
+	var hd int
+	var result strings.Builder
+	var idx int
 
-func getHammingDistance(dna string) int {
-	var result int
+	for idx < n {
+		var a, c, g, t int
+		var max = 0
+		var maxC string
 
-	for i := 0; i < len([]rune(dna)); i++ {
-		if dna[i:i+1] != fDna[i:i+1] {
-			result++
+		for _, dna := range dnas {
+			switch dna[idx : idx+1] {
+			case "A":
+				a++
+				if max < a {
+					max = a
+					maxC = "A"
+				}
+			case "C":
+				c++
+				if max < c {
+					max = c
+					maxC = "C"
+				}
+			case "G":
+				g++
+				if max < g {
+					max = g
+					maxC = "G"
+				}
+			case "T":
+				t++
+				if max < t {
+					max = t
+					maxC = "T"
+				}
+			}
+			idx++
 		}
+
+		result.WriteString(maxC)
+		hd = n - max
 	}
 
-	return result
+	fmt.Println(result.String())
+	fmt.Println(hd)
 }
