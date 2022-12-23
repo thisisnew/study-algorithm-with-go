@@ -34,29 +34,33 @@ func main() {
 			switch dna[idx : idx+1] {
 			case "A":
 				a++
-				if max < a {
-					max = a
-					maxC = "A"
-				}
 			case "C":
 				c++
-				if max < c {
-					max = c
-					maxC = "C"
-				}
 			case "G":
 				g++
-				if max < g {
-					max = g
-					maxC = "G"
-				}
 			case "T":
 				t++
-				if max < t {
-					max = t
-					maxC = "T"
-				}
 			}
+		}
+
+		if max < a {
+			max = a
+			maxC = "A"
+		}
+
+		if max < c {
+			max = c
+			maxC = "C"
+		}
+
+		if max < g {
+			max = g
+			maxC = "G"
+		}
+
+		if max < t {
+			max = t
+			maxC = "T"
 		}
 
 		result.WriteString(maxC)
