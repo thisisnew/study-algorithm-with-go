@@ -31,26 +31,26 @@ func main() {
 
 		for _, token := range dna {
 
-			switch token {
-			case 'A':
+			switch string(token) {
+			case "A":
 				a++
 				if max < a {
 					max = a
 					maxC = "A"
 				}
-			case 'C':
+			case "C":
 				c++
 				if max < c {
 					max = c
 					maxC = "C"
 				}
-			case 'G':
+			case "G":
 				g++
 				if max < g {
 					max = g
 					maxC = "G"
 				}
-			case 'T':
+			case "T":
 				t++
 				if max < t {
 					max = t
