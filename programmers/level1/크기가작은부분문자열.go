@@ -16,6 +16,10 @@ func 크기가작은부분문자열(t string, p string) int {
 			break
 		}
 
+		if t[i:i+1] == "0" {
+			continue
+		}
+
 		s := t[i : i+3]
 
 		if s < p {
