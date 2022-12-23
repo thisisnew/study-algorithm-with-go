@@ -24,14 +24,8 @@ func main() {
 
 		hd := getHammingDistance(dna)
 
-		if !isGetHd {
+		if !isGetHd || hd < minHd {
 			isGetHd = true
-			minHd = hd
-			mDna = dna
-			continue
-		}
-
-		if hd < minHd {
 			minHd = hd
 			mDna = dna
 		}
