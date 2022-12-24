@@ -44,7 +44,10 @@ func main() {
 					fmt.Print()
 				}
 			}
+		}
 
+		if i < len([]rune(b))-1 {
+			fmt.Println()
 		}
 	}
 
