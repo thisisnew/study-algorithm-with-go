@@ -25,4 +25,10 @@ func main() {
 		}
 	}
 
+	for i, c := range cups {
+		if c {
+			fmt.Println(i + 1)
+			return
+		}
+	}
 }
