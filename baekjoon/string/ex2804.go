@@ -20,24 +20,7 @@ func main() {
 		a, b = b, a
 	}
 
-	var aIdx int
-	var bIdx int
-	var isAssign bool
-
-	for i, ar := range a {
-		if isAssign {
-			break
-		}
-
-		for j, br := range b {
-			if ar == br {
-				aIdx = i
-				bIdx = j
-				isAssign = true
-				break
-			}
-		}
-	}
+	aIdx, bIdx := getIndexBetweenTwoWords(a, b)
 
 	for i := 0; i < len([]rune(b)); i++ {
 		for j := 0; j < len([]rune(a)); j++ {
@@ -58,4 +41,27 @@ func main() {
 		}
 	}
 
+}
+
+func getIndexBetweenTwoWords(a, b string) (int, int) {
+	var aIdx int
+	var bIdx int
+	var isAssign bool
+
+	for i, ar := range a {
+		if isAssign {
+			return aIdx, bIdx
+		}
+
+		for j, br := range b {
+			if ar == br {
+				aIdx = i
+				bIdx = j
+				isAssign = true
+				break
+			}
+		}
+	}
+
+	return aIdx, bIdx
 }
