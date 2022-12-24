@@ -36,10 +36,10 @@ func getMinCharIndexes(input string) []int {
 		}
 	}
 
-	var sMin = input[fIdx : fIdx+1]
-	var sIdx = fIdx
+	var sMin = input[fIdx+1 : fIdx+2]
+	var sIdx = fIdx + 1
 
-	for i := fIdx; i < ln-1; i++ {
+	for i := fIdx + 1; i < ln-1; i++ {
 		if input[i:i+1] < sMin {
 			sMin = input[i : i+1]
 			sIdx = i
