@@ -22,10 +22,6 @@ func getIndexBetweenTwoWords(a, b string) (int, int) {
 	var bIdx int
 	var isAssign bool
 
-	if len([]rune(a)) > len([]rune(b)) {
-		a, b = b, a
-	}
-
 	for i, ar := range a {
 		if isAssign {
 			return aIdx, bIdx
