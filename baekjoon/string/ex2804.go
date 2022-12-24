@@ -22,12 +22,19 @@ func main() {
 
 	var aIdx int
 	var bIdx int
+	var isAssign bool
+
 	for i, ar := range a {
+
+		if isAssign {
+			break
+		}
+
 		for j, br := range b {
 			if ar == br {
 				aIdx = i
 				bIdx = j
-				break
+				isAssign = true
 			}
 		}
 	}
