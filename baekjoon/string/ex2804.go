@@ -13,12 +13,38 @@ func main() {
 	t, _, _ := read.ReadLine()
 	text := strings.Split(string(t), " ")
 
-	a := text[0]
-	b := text[1]
+	printCrossWord(text[0], text[1])
+}
+
+func getIndexBetweenTwoWords(a, b string) (int, int) {
+
+	var aIdx int
+	var bIdx int
+	var isAssign bool
 
 	if len([]rune(a)) > len([]rune(b)) {
 		a, b = b, a
 	}
+
+	for i, ar := range a {
+		if isAssign {
+			return aIdx, bIdx
+		}
+
+		for j, br := range b {
+			if ar == br {
+				aIdx = i
+				bIdx = j
+				isAssign = true
+				break
+			}
+		}
+	}
+
+	return aIdx, bIdx
+}
+
+func printCrossWord(a, b string) {
 
 	aIdx, bIdx := getIndexBetweenTwoWords(a, b)
 
@@ -40,28 +66,4 @@ func main() {
 			fmt.Println()
 		}
 	}
-
-}
-
-func getIndexBetweenTwoWords(a, b string) (int, int) {
-	var aIdx int
-	var bIdx int
-	var isAssign bool
-
-	for i, ar := range a {
-		if isAssign {
-			return aIdx, bIdx
-		}
-
-		for j, br := range b {
-			if ar == br {
-				aIdx = i
-				bIdx = j
-				isAssign = true
-				break
-			}
-		}
-	}
-
-	return aIdx, bIdx
 }
