@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"sort"
 	"strings"
 )
 
@@ -14,13 +13,7 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &input)
 
-	inputRunes := []rune(input)
-
-	sort.Slice(inputRunes, func(i, j int) bool {
-		return inputRunes[i] < inputRunes[j]
-	})
-
-	minCharIdx := getMinCharIndexes(inputRunes, input)
+	minCharIdx := getMinCharIndexes(input)
 
 	var result strings.Builder
 	result.WriteString(reverseInput1251(input[0 : minCharIdx[0]+1]))
@@ -29,42 +22,31 @@ func main() {
 	fmt.Println(result.String())
 }
 
-func getMinCharIndexes(inputRunes []rune, input string) []int {
+func getMinCharIndexes(input string) []int {
 
-	ln := len(inputRunes)
+	ln := len([]rune(input))
 
-	var index []int
-	var remain = 2
-	var fIdx = -1
+	var fMin = input[0:1]
+	var fIdx = 0
 
-	for i, r := range inputRunes {
-		if len(index) == 2 {
-			return index
-		}
-
-		for j, in := range input {
-
-			if r == in {
-				if j > ln-remain {
-					break
-				}
-
-				if j == fIdx {
-					continue
-				}
-
-				index = append(index, i)
-
-				if fIdx == -1 {
-					fIdx = i
-				}
-
-				remain--
-			}
+	for i := 1; i < ln-2; i++ {
+		if input[i:i+1] < fMin {
+			fMin = input[i : i+1]
+			fIdx = i
 		}
 	}
 
-	return index
+	var sMin = input[fIdx : fIdx+1]
+	var sIdx = fIdx
+
+	for i := fIdx; i < ln-1; i++ {
+		if input[i:i+1] < sMin {
+			sMin = input[i : i+1]
+			sIdx = i
+		}
+	}
+
+	return []int{fIdx, sIdx}
 }
 
 func reverseInput1251(input string) string {
