@@ -51,11 +51,12 @@ func printCrossWord(a, b string) {
 				continue
 			}
 
-			if j != aIdx {
-				fmt.Print(".")
-			} else {
+			if j == aIdx {
 				fmt.Print(b[i : i+1])
+				continue
 			}
+
+			fmt.Print(".")
 		}
 
 		if i < len([]rune(b))-1 {
