@@ -17,8 +17,8 @@ func main() {
 
 	var result strings.Builder
 	result.WriteString(reverseInput1251(input[0 : minCharIdx[0]+1]))
-	result.WriteString(reverseInput1251(input[minCharIdx[0] : minCharIdx[1]+1]))
-	result.WriteString(reverseInput1251(input[minCharIdx[1]:]))
+	result.WriteString(reverseInput1251(input[minCharIdx[0]+1 : minCharIdx[1]+2]))
+	result.WriteString(reverseInput1251(input[minCharIdx[1]+1:]))
 	fmt.Println(result.String())
 }
 
