@@ -23,9 +23,9 @@ func main() {
 	minCharIdx := getMinCharIndexes(inputRunes, input)
 
 	var result strings.Builder
-	result.WriteString(reverseInput1251(input[0:minCharIdx[0]]))
-	result.WriteString(reverseInput1251(input[minCharIdx[0]+1 : minCharIdx[1]]))
-	result.WriteString(reverseInput1251(input[minCharIdx[1]+1:]))
+	result.WriteString(reverseInput1251(input[0 : minCharIdx[0]+1]))
+	result.WriteString(reverseInput1251(input[minCharIdx[0] : minCharIdx[1]+1]))
+	result.WriteString(reverseInput1251(input[minCharIdx[1]:]))
 	fmt.Println(result.String())
 }
 
@@ -68,7 +68,6 @@ func getMinCharIndexes(inputRunes []rune, input string) []int {
 }
 
 func reverseInput1251(input string) string {
-
 	var result strings.Builder
 
 	for i := len([]rune(input)) - 1; i >= 0; i-- {
