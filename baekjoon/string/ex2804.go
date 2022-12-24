@@ -25,7 +25,6 @@ func main() {
 	var isAssign bool
 
 	for i, ar := range a {
-
 		if isAssign {
 			break
 		}
@@ -35,21 +34,22 @@ func main() {
 				aIdx = i
 				bIdx = j
 				isAssign = true
+				break
 			}
 		}
 	}
 
 	for i := 0; i < len([]rune(b)); i++ {
 		for j := 0; j < len([]rune(a)); j++ {
-
 			if i == bIdx {
 				fmt.Print(a[j : j+1])
+				continue
+			}
+
+			if j != aIdx {
+				fmt.Print(".")
 			} else {
-				if j != aIdx {
-					fmt.Print(".")
-				} else {
-					fmt.Print()
-				}
+				fmt.Print(b[i : i+1])
 			}
 		}
 
