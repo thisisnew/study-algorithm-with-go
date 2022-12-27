@@ -4,6 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
 
 func main() {
@@ -12,8 +14,14 @@ func main() {
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n)
 
-	for i := 1; i <= 100000; i++ {
+	var sb strings.Builder
 
+	for i := 1; i <= 100000; i++ {
+		if i > n {
+			break
+		}
+
+		sb.WriteString(strconv.Itoa(i))
 	}
 
 }
