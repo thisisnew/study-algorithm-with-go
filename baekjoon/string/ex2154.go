@@ -42,6 +42,8 @@ func main() {
 
 				break
 			}
+
+			temp.WriteString(strconv.Itoa(i))
 		}
 
 	}
