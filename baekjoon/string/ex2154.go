@@ -19,6 +19,7 @@ func main() {
 	var div = 10
 	var isMatching bool
 	var nStr = strconv.Itoa(n)
+	var startIdx int
 
 	for i := 1; i <= 100000; i++ {
 
@@ -32,12 +33,14 @@ func main() {
 
 		if d == nStr[0:1] {
 			isMatching = true
+			startIdx = i
 		}
 
 		if isMatching {
 			if temp.Len() == len([]rune(nStr)) {
 				if temp.String() != nStr {
 					temp.Reset()
+					startIdx = 0
 				}
 
 				break
@@ -45,7 +48,7 @@ func main() {
 
 			temp.WriteString(strconv.Itoa(i))
 		}
-
 	}
 
+	fmt.Println(startIdx)
 }
