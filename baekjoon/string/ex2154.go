@@ -15,7 +15,10 @@ func main() {
 	fmt.Fscanln(read, &n)
 
 	var sb strings.Builder
+	var temp strings.Builder
 	var div = 10
+	var isMatching bool
+	var nStr = strconv.Itoa(n)
 
 	for i := 1; i <= 100000; i++ {
 
@@ -23,13 +26,24 @@ func main() {
 			div *= 10
 		}
 
+		sb.WriteString(strconv.Itoa(i))
+
 		d := strconv.Itoa(i / div)
 
-		if d == strconv.Itoa(n)[0:1] {
-
+		if d == nStr[0:1] {
+			isMatching = true
 		}
 
-		sb.WriteString(strconv.Itoa(i))
+		if isMatching {
+			if temp.Len() == len([]rune(nStr)) {
+				if temp.String() != nStr {
+					temp.Reset()
+				}
+
+				break
+			}
+		}
+
 	}
 
 }
