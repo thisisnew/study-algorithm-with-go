@@ -8,6 +8,23 @@ func main() {
 
 func 마법의엘리베이터(storey int) int {
 
+	var result = getTotalStones(storey)
+
+	for {
+
+		stones := getTotalStones(storey)
+
+		if stones < result {
+			result = stones
+		}
+
+	}
+
+	return result
+}
+
+func getTotalStones(storey int) int {
+
 	var div = 100000000
 	var result int
 
@@ -26,5 +43,4 @@ func 마법의엘리베이터(storey int) int {
 		storey = storey % div
 
 	}
-
 }
