@@ -15,23 +15,23 @@ func main() {
 	fmt.Fscanln(read, &n)
 
 	var sb strings.Builder
-	var startIdx int
+	var temp strings.Builder
 
 	for i := 1; i <= 10000-len([]rune(n)); i++ {
 
 		d := strconv.Itoa(i)
+		temp.WriteString(d)
 
-		if d != n[0:1] {
+		if d[0:1] != n[0:1] {
 			continue
 		}
 
-		startIdx = i
 		sb.WriteString(d)
 
 		for j := i + 1; j <= 10000; j++ {
 			if sb.Len() == len([]rune(n)) {
 				if sb.String() == n {
-					fmt.Println(startIdx)
+					fmt.Println(temp.Len())
 					return
 				}
 
