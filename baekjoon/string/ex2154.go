@@ -31,7 +31,7 @@ func main() {
 		for j := i + 1; j <= 10000; j++ {
 			if sb.Len() == len([]rune(n)) {
 				if sb.String() == n {
-					fmt.Println(temp.Len())
+					fmt.Println(temp.Len() - (len([]rune(n)) - 1))
 					return
 				}
 
