@@ -10,45 +10,37 @@ import (
 
 func main() {
 
-	var n int
+	var n string
 	var read = bufio.NewReader(os.Stdin)
 	fmt.Fscanln(read, &n)
 
 	var sb strings.Builder
-	var temp strings.Builder
-	var div = 10
-	var isMatching bool
-	var nStr = strconv.Itoa(n)
 	var startIdx int
 
-	for i := 1; i <= 100000; i++ {
+	for i := 1; i <= 10000-len([]rune(n)); i++ {
 
-		if i == div*10 {
-			div *= 10
+		d := strconv.Itoa(i)
+
+		if d != n[0:1] {
+			continue
 		}
 
-		sb.WriteString(strconv.Itoa(i))
+		startIdx = i
+		sb.WriteString(d)
 
-		d := strconv.Itoa(i / div)
-
-		if d == nStr[0:1] {
-			isMatching = true
-			startIdx = i
-		}
-
-		if isMatching {
-			if temp.Len() == len([]rune(nStr)) {
-				if temp.String() != nStr {
-					temp.Reset()
-					startIdx = 0
+		for j := i + 1; j <= 10000; j++ {
+			if sb.Len() == len([]rune(n)) {
+				if sb.String() == n {
+					fmt.Println(startIdx)
+					return
 				}
 
+				sb.Reset()
 				break
 			}
 
-			temp.WriteString(strconv.Itoa(i))
+			sb.WriteString(strconv.Itoa(j))
 		}
 	}
 
-	fmt.Println(startIdx)
 }
