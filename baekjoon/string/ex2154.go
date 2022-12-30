@@ -18,7 +18,7 @@ func main() {
 	nLen := len([]rune(n))
 	var sb strings.Builder
 
-	for i := 1; i <= totalLen-nLen; i++ {
+	for i := 0; i < totalLen-nLen; i++ {
 
 		if total[i:i+1] != n[0:1] {
 			continue
@@ -38,7 +38,7 @@ func main() {
 				break
 			}
 
-			fmt.Println(i)
+			fmt.Println(i + 1)
 			return
 		}
 	}
