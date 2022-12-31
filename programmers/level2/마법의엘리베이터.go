@@ -9,8 +9,18 @@ func main() {
 func 마법의엘리베이터(storey int) int {
 
 	var result = getTotalStones(storey)
+	var div = 100000000
 
 	for {
+
+		if storey/div == 0 {
+			div = div / 10
+			continue
+		}
+
+		if storey%div > (div / 2) {
+
+		}
 
 		stones := getTotalStones(storey)
 
