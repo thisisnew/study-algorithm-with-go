@@ -16,7 +16,6 @@ func ParkingBill(E string, L string) int {
 
 	eTime, _ := time.Parse(parkingTimeLayout, E)
 	lTime, _ := time.Parse(parkingTimeLayout, L)
-
 	difMin := lTime.Sub(eTime).Minutes()
 
 	var isFirstTime = false
