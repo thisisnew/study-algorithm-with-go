@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	fmt.Println(binaryGap(32))
+	fmt.Println(binaryGap(1162))
 }
 
 func binaryGap(N int) int {
@@ -19,12 +19,27 @@ func binaryGap(N int) int {
 		return result
 	}
 
-	//var idx = strings.Index(binNum, "1")
+	var idx = strings.Index(binNum, "1")
+	var zeros = 0
 
-	//for {
-	//
-	//}
+	for {
+		idx++
 
-	return result
+		if idx > len([]rune(binNum))-1 {
+			return result
+		}
 
+		n := binNum[idx : idx+1]
+
+		switch n {
+		case "1":
+			if zeros > result {
+				result = zeros
+			}
+
+			zeros = 0
+		default:
+			zeros++
+		}
+	}
 }
