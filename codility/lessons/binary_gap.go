@@ -3,38 +3,28 @@ package main
 import (
 	"fmt"
 	"strconv"
+	"strings"
 )
 
 func main() {
-	fmt.Println(binaryGap(1041))
+	fmt.Println(binaryGap(32))
 }
 
 func binaryGap(N int) int {
 
-	var binNum = strconv.FormatInt(int64(N), 2)
 	var result = 0
-	var zeros = 0
-	var isStart = false
+	var binNum = strconv.FormatInt(int64(N), 2)
 
-	for _, n := range binNum {
-
-		if string(n) == "1" {
-			if !isStart {
-				isStart = true
-				continue
-			}
-
-			isStart = false
-
-			if zeros > result {
-				result = zeros
-			}
-		}
-
-		if isStart {
-			zeros++
-		}
+	if strings.Count(binNum, "1") < 2 {
+		return result
 	}
 
+	//var idx = strings.Index(binNum, "1")
+
+	//for {
+	//
+	//}
+
 	return result
+
 }
