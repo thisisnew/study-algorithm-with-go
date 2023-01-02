@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-const parkingTimeLayout = "15:04:05"
+const parkingTimeLayout = "15:04"
 
 func main() {
 	fmt.Println(ParkingBill("10:00", "13:21"))
@@ -17,11 +17,24 @@ func ParkingBill(E string, L string) int {
 	eTime, _ := time.Parse(parkingTimeLayout, E)
 	lTime, _ := time.Parse(parkingTimeLayout, L)
 
-	diff := lTime.Sub(eTime)
+	difMin := lTime.Sub(eTime).Minutes()
 
-	difMin := diff.Minutes()
+	var isFirstTime = false
+	var total int
 
-	fmt.Println(difMin)
+	for difMin > 0 {
+		if !isFirstTime {
+			result += 3
+			difMin -= 60
+			isFirstTime = true
+			continue
+		}
+
+		total++
+		difMin -= 60
+	}
+
+	result += total * 4
 
 	return result
 }
