@@ -11,14 +11,21 @@ func main() {
 
 func ParityDegree(N int) int {
 
-	var result float64 = 0
+	var result = 0
+	var n float64 = 0
 
 	for {
-		if int(math.Pow(2.0, result)) >= N {
-			return int(result)
+		pow := int(math.Pow(2.0, n))
+
+		if pow >= N {
+			return result
 		}
 
-		result++
+		if N%(pow) == 0 {
+			result = int(n)
+		}
+
+		n++
 	}
 
 }
