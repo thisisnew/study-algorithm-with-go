@@ -17,7 +17,7 @@ func ParityDegree(N int) int {
 	for {
 		pow := int(math.Pow(2.0, n))
 
-		if pow >= N {
+		if pow > N {
 			return result
 		}
 
