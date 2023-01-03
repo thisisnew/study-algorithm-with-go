@@ -16,7 +16,10 @@ func ArrListLen(A []int) int {
 			return result
 		}
 
-		result++
+		if A[idx] > result {
+			result = A[idx]
+		}
+
 		idx = A[idx]
 	}
 
