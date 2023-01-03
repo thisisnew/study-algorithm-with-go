@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	fmt.Println(ThreeLetters(1, 4))
+	fmt.Println(ThreeLetters(4, 4))
 }
 
 func ThreeLetters(A int, B int) string {
@@ -20,24 +19,29 @@ func ThreeLetters(A int, B int) string {
 		a, b = b, a
 	}
 
-	var result strings.Builder
+	var result string
 	var aLp = 0
-	var bLp = 0
+	var bLp = 2
 
 	for i := 0; i < total; i++ {
 		switch {
-		case aLp < 2 && A > 0:
+		case aLp < 2 && bLp >= 2 && A > 0:
 			A--
 			aLp++
-			bLp = 0
-			result.WriteString(a)
-		case bLp < 2 && B > 0:
+			result += a
+			if aLp == 2 {
+				bLp = 0
+			}
+		case bLp < 2 && aLp >= 2 && B > 0:
 			B--
 			bLp++
 			aLp = 0
-			result.WriteString(b)
+			result += b
+			if aLp == 2 {
+				bLp = 0
+			}
 		}
 	}
 
-	return result.String()
+	return result
 }
