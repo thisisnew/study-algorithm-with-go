@@ -22,18 +22,19 @@ func ThreeLetters(A int, B int) string {
 
 	var result strings.Builder
 	var aLp = 0
-	for i := 0; i < total; i++ {
-		if aLp < 2 {
-			result.WriteString(a)
-			aLp++
-			continue
-		}
+	var bLp = 0
 
-		aLp = 0
-		var bLp = 0
-		for B > 0 && bLp < 2 {
-			bLp++
+	for i := 0; i < total; i++ {
+		switch {
+		case aLp < 2 && A > 0:
+			A--
+			aLp++
+			bLp = 0
+			result.WriteString(a)
+		case bLp < 2 && B > 0:
 			B--
+			bLp++
+			aLp = 0
 			result.WriteString(b)
 		}
 	}
