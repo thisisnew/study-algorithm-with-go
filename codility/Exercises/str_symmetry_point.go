@@ -11,20 +11,22 @@ func main() {
 
 func StrSymmetryPoint(S string) int {
 
-	var result = 0
 	var ln = len([]rune(S))
 
-	if ln <= 1 {
-		return result
-	}
-
-	mid := len([]rune(S)) / 2
-
-	if S[0:mid+1] != getReverserStr(mid, S) {
+	switch ln {
+	case 0:
 		return -1
-	}
+	case 1:
+		return 0
+	default:
+		var mid = len([]rune(S)) / 2
 
-	return mid
+		if S[0:mid+1] != getReverserStr(mid, S) {
+			return -1
+		}
+
+		return mid
+	}
 }
 
 func getReverserStr(idx int, S string) string {
