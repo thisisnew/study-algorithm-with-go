@@ -18,15 +18,15 @@ func StrSymmetryPoint(S string) int {
 		return -1
 	case 1:
 		return 0
-	default:
-		var mid = len([]rune(S)) / 2
-
-		if S[0:mid+1] != getReverserStr(mid, S) {
-			return -1
-		}
-
-		return mid
 	}
+
+	var mid = len([]rune(S)) / 2
+
+	if S[0:mid+1] != getReverserStr(mid, S) {
+		return -1
+	}
+
+	return mid
 }
 
 func getReverserStr(idx int, S string) string {
