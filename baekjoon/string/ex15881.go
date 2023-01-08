@@ -17,28 +17,36 @@ func main() {
 	fmt.Fscanln(read, &n)
 	fmt.Fscanln(read, &input)
 
-	var idx = 0
-	var f = -1
+	var i = 0
 	var result = 0
 	var sb strings.Builder
 
 	for {
-		s := input[idx : idx+1]
+
+		if i > len([]rune(input))-3 || len([]rune(input)) < 4 {
+			break
+		}
+
+		s := input[i : i+1]
 
 		if s != "p" {
+			i++
 			continue
 		}
-		f = idx
-		sb.WriteString(input[idx : idx+1])
 
-		if idx < 0 || len([]rune(input)) < 4 {
-			fmt.Println(result)
-			return
+		for j := i; j < i+4; j++ {
+			sb.WriteString(input[j : j+1])
 		}
 
+		if sb.String() != penPineAppleApplePen {
+			i++
+			continue
+		}
+
+		input = input[0:i] + input[i+4:]
+		i = 0
 		result++
-		input = input[0:f] + input[f+4:]
-		idx = 0
 	}
 
+	fmt.Println(result)
 }
