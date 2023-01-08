@@ -30,10 +30,7 @@ func main() {
 		}
 
 		result++
-
-		i = 0
-		input = input[0:i] + input[i+4:]
-		n = len([]rune(input))
+		i += 3
 	}
 
 	fmt.Println(result)
