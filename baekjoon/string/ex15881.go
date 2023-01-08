@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 const penPineAppleApplePen = "pPAp"
@@ -16,21 +17,18 @@ func main() {
 	fmt.Fscanln(read, &n)
 	fmt.Fscanln(read, &input)
 
-	var i = 0
 	var result = 0
+	var f = -1
 
 	for {
-		if i >= n-3 || n < 4 {
+		f = strings.Index(input, penPineAppleApplePen)
+
+		if f == -1 {
 			break
 		}
 
-		if input[i:i+4] != penPineAppleApplePen {
-			i++
-			continue
-		}
-
 		result++
-		i += 3
+		input = input[f+4:]
 	}
 
 	fmt.Println(result)
