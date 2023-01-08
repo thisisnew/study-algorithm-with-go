@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+const penPineAppleApplePen = "pPAp"
+
 func main() {
 	var n int
 	var input string
@@ -15,11 +17,19 @@ func main() {
 	fmt.Fscanln(read, &n)
 	fmt.Fscanln(read, &input)
 
-	var idx = -1
+	var idx = 0
+	var f = -1
 	var result = 0
+	var sb strings.Builder
 
 	for {
-		idx = strings.Index(input, "pPAp")
+		s := input[idx : idx+1]
+
+		if s != "p" {
+			continue
+		}
+		f = idx
+		sb.WriteString(input[idx : idx+1])
 
 		if idx < 0 || len([]rune(input)) < 4 {
 			fmt.Println(result)
@@ -27,7 +37,8 @@ func main() {
 		}
 
 		result++
-		input = input[0:idx] + input[idx+4:]
+		input = input[0:f] + input[f+4:]
+		idx = 0
 	}
 
 }
