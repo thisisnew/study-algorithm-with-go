@@ -45,6 +45,7 @@ func main() {
 
 		input = input[0:i] + input[i+4:]
 		i = 0
+		sb.Reset()
 		result++
 	}
 
