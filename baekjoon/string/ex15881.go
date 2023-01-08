@@ -23,22 +23,11 @@ func main() {
 
 	for {
 
-		if i > len([]rune(input))-3 || len([]rune(input)) < 4 {
+		if i >= n-3 || n < 4 {
 			break
 		}
 
-		s := input[i : i+1]
-
-		if s != "p" {
-			i++
-			continue
-		}
-
-		for j := i; j < i+4; j++ {
-			sb.WriteString(input[j : j+1])
-		}
-
-		if sb.String() != penPineAppleApplePen {
+		if input[i:i+4] != penPineAppleApplePen {
 			i++
 			continue
 		}
@@ -47,6 +36,7 @@ func main() {
 		i = 0
 		sb.Reset()
 		result++
+		n = len([]rune(input))
 	}
 
 	fmt.Println(result)
