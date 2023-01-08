@@ -18,10 +18,9 @@ func main() {
 	fmt.Fscanln(read, &input)
 
 	var result = 0
-	var f = -1
 
 	for {
-		f = strings.Index(input, penPineAppleApplePen)
+		f := strings.Index(input, penPineAppleApplePen)
 
 		if f == -1 {
 			break
