@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 )
 
 const penPineAppleApplePen = "pPAp"
@@ -19,10 +18,8 @@ func main() {
 
 	var i = 0
 	var result = 0
-	var sb strings.Builder
 
 	for {
-
 		if i >= n-3 || n < 4 {
 			break
 		}
@@ -32,12 +29,13 @@ func main() {
 			continue
 		}
 
-		input = input[0:i] + input[i+4:]
-		i = 0
-		sb.Reset()
 		result++
+
+		i = 0
+		input = input[0:i] + input[i+4:]
 		n = len([]rune(input))
 	}
 
 	fmt.Println(result)
+	return
 }
