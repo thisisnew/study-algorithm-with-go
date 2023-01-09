@@ -22,7 +22,11 @@ func main() {
 		fmt.Fscanln(read, &word)
 
 		if !isSameWord(std, word, words) {
-			words = append(words, word)
+
+			if !isContainsInWords(words, word) {
+				words = append(words, word)
+			}
+
 			std = word
 		}
 	}
@@ -46,7 +50,7 @@ func isSameWord(std, word string, words []string) bool {
 
 		temp = temp[i:] + temp[0:i]
 
-		if isContainsInWords() {
+		if std == temp {
 			return true
 		}
 	}
@@ -54,6 +58,13 @@ func isSameWord(std, word string, words []string) bool {
 	return false
 }
 
-func isContainsInWords() bool {
+func isContainsInWords(words []string, word string) bool {
+
+	for _, w := range words {
+		if w == word {
+			return true
+		}
+	}
+
 	return false
 }
