@@ -21,7 +21,7 @@ func main() {
 		var word string
 		fmt.Fscanln(read, &word)
 
-		if !isSameWord(std, word, words) {
+		if !isSameWord(std, word) {
 
 			if !isContainsInWords(words, word) {
 				words = append(words, word)
@@ -35,7 +35,7 @@ func main() {
 	return
 }
 
-func isSameWord(std, word string, words []string) bool {
+func isSameWord(std, word string) bool {
 
 	if len([]rune(std)) != len([]rune(word)) {
 		return false
