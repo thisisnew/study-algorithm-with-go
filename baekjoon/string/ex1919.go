@@ -26,8 +26,8 @@ func main() {
 				continue
 			}
 
-			a = strings.Replace(a, s, "*", i)
-			b = strings.Replace(b, s, "*", j)
+			a = a[0:i] + "*" + a[i+1:]
+			b = b[0:i] + "*" + b[i+1:]
 			break
 		}
 	}
