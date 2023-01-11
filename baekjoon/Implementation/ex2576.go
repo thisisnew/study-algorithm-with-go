@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"os"
 )
 
@@ -13,9 +14,9 @@ func main() {
 
 	for {
 		var n int
-		fmt.Fscanln(read, &n)
+		_, err := fmt.Fscanln(read, &n)
 
-		if n == 0 {
+		if err == io.EOF {
 			break
 		}
 
